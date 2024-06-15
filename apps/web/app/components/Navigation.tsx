@@ -4,7 +4,7 @@ export function Navigation({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <nav className="flex bg-bunker-600 flex-row p-4 gap-4 shadow-md">
+    <nav className="flex bg-bunker-600 flex-row p-2 gap-2 shadow-md">
       {children}
     </nav>
   );

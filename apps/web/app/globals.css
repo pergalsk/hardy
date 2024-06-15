@@ -2,6 +2,29 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-transparent rounded;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /* @apply: bg-orange-700 rounded; */
+  background: #ffffff10;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff30;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;

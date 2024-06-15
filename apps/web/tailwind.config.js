@@ -7,6 +7,7 @@ export const content = [
 export const theme = {
   extend: {
     colors: {
+      // https://www.tailwindshades.com/#color=223%2C25%2C15&step-up=8&step-down=8&hue-shift=-14&name=mirage&base-stop=9.5&v=1&overrides=e30%3D
       mirage: {
         DEFAULT: "#1D2230",
         50: "#D6DEE6",
@@ -34,6 +35,20 @@ export const theme = {
         800: "#131720",
         900: "#0F121A",
         950: "#0D1016",
+      },
+      accent: {
+        DEFAULT: "#0B6C7E",
+        50: "#9EE9F7",
+        100: "#8EE5F5",
+        200: "#6DDDF2",
+        300: "#4CD6EF",
+        400: "#2BCEED",
+        500: "#14C0E1",
+        600: "#11A4C0",
+        700: "#0E889F",
+        800: "#0B6C7E",
+        900: "#095462",
+        950: "#074854",
       },
     },
   },

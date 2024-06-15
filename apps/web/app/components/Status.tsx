@@ -21,10 +21,10 @@ export function Status({ status, colored }: StatusProps): JSX.Element {
     : "bg-bunker-500";
 
   return (
-    <div
-      className={`${colorClass} rounded-md px-2 py-0.5 text-white font-bold text-sm`}
+    <span
+      className={`${colorClass} rounded-md px-2 py-0.5 text-white font-bold`}
     >
       {status}
-    </div>
+    </span>
   );
 }

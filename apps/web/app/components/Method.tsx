@@ -1,9 +1,9 @@
 export const methodColors: { [key: string]: string } = {
-  GET: "text-green-500",
-  POST: "text-blue-500",
-  DELETE: "text-yellow-500",
-  PUT: "text-purple-500",
-  PATCH: "text-red-500",
+  GET: "text-green-400",
+  POST: "text-blue-400",
+  DELETE: "text-yellow-400",
+  PUT: "text-purple-400",
+  PATCH: "text-red-400",
 };
 
 interface MethodProps {
@@ -17,8 +17,8 @@ export function Method({ method, colored }: MethodProps): JSX.Element {
     : "text-white";
 
   return (
-    <div className={`${colorClass} rounded-md px-2 py-1 font-bold text-sm`}>
+    <span className={`${colorClass} rounded-md px-2 py-1 font-bold`}>
       {method}
-    </div>
+    </span>
   );
 }

@@ -5,7 +5,7 @@ import { Status } from "./Status";
 
 export function DetailCommon({ data }: { data: any }): JSX.Element {
   return (
-    <div className="flex flex-col flex-1 bg-bunker-700 p-2 gap-2 rounded-md">
+    <div className="flex flex-col flex-1 bg-bunker-700 p-2 gap-1 rounded-md">
       <div className="text-mirage-200 font-mono">
         <span className="font-bold pr-2">URL:</span>
         <Url url={data.url} />

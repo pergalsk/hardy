@@ -1,0 +1,79 @@
+export function prepareList(data: any): any {
+  if (!Array.isArray(data)) {
+    return [];
+  }
+
+  return data.map((item) => {
+    const { startedDateTime, time, request, response } = item;
+
+    const { method, url } = request;
+    const { status } = response;
+
+    return {
+      status,
+      url,
+      method,
+      startedDateTime,
+      time,
+    };
+  });
+}
+
+export function prepareCommon(data: any): any {
+  if (!data) {
+    return {};
+  }
+
+  const { request, response, serverIPAddress } = data;
+  const { method, url } = request;
+  const { status } = response;
+
+  return {
+    status,
+    url,
+    method,
+    serverIPAddress,
+  };
+}
+
+export function prepareParts(data: any): any {
+  if (!data) {
+    return {};
+  }
+
+  const { request, response, timings } = data;
+
+  return {
+    request: {
+      headers: request.headers,
+      headersSize: request.headersSize,
+      bodySize: request.bodySize,
+    },
+    response: {
+      headers: response.headers,
+      headersSize: response.headersSize,
+      bodySize: response.bodySize,
+    },
+    timings,
+  };
+}
+
+export function getUrlParts(url: string) {
+  const parser = new URL(url);
+
+  const protocol = parser.protocol;
+  const domain = parser.hostname;
+  const port = parser.port;
+  const path = parser.pathname;
+  const params = parser.search;
+  const hash = parser.hash;
+
+  return {
+    protocol,
+    domain,
+    port,
+    path,
+    params,
+    hash,
+  };
+}

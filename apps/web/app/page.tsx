@@ -34,7 +34,7 @@ function prepareEntries(data: any): any {
   });
 }
 
-function prepareDetail(data: any): any {
+function prepareCommon(data: any): any {
   if (!data) {
     return null;
   }
@@ -56,7 +56,7 @@ export default function Page(): JSX.Element {
 
   const entries = exampleData?.log?.entries || [];
   const list = prepareEntries(entries);
-  const detail = prepareDetail(entries[id] || {});
+  const detail = prepareCommon(entries[id] || {});
 
   const onSelect = (index: number) => {
     setId(index);

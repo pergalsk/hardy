@@ -58,6 +58,24 @@ export function prepareParts(data: any): any {
   };
 }
 
+export function prepareFooter(data: any): any {
+  if (!data) {
+    return {};
+  }
+
+  const { version, creator, entries } = data;
+
+  return {
+    version,
+    creatorName: creator?.name,
+    creatorVersion: creator?.version,
+    entriesNum: entries?.length || 0,
+    totalTime: (
+      entries?.reduce((acc: number, entry: any) => acc + entry.time, 0) || 0
+    ).toFixed(2),
+  };
+}
+
 export function getUrlParts(url: string) {
   const parser = new URL(url);
 

@@ -1,6 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
+import {
+  prepareCommon,
+  prepareList,
+  prepareParts,
+  prepareFooter,
+} from "./helpers/helpers";
+import { Header } from "./components/Header";
+import { Detail } from "./components/Detail";
+import { List } from "./components/List";
+import { Footer } from "./components/Footer";
 
 // import Image from "next/image";
 // import { Card } from "@repo/ui/card";
@@ -8,24 +18,19 @@ import React, { useState } from "react";
 // import styles from "./page.module.css";
 // import { Button } from "@repo/ui/button";
 
-import { prepareCommon, prepareList, prepareParts } from "./helpers/helpers";
-
-import { Header } from "./components/Header";
-import { Detail } from "./components/Detail";
-import { List } from "./components/List";
-
-import exampleData from "./data/example05.json";
+import exampleData from "./data/example02.json";
 
 export default function Page(): JSX.Element {
   const [id, setId] = useState(0);
   const [tab, setTab] = useState("REQ");
 
-  const entries =
-    (exampleData as { log: { entries: any[] } })?.log?.entries || [];
+  const log = (exampleData as { log: any })?.log;
+  const entries = log?.entries || [];
 
   const list = prepareList(entries);
   const common = prepareCommon(entries[id]);
   const parts = prepareParts(entries[id]);
+  const footer = prepareFooter(log);
 
   const onSelect = (index: number) => {
     setId(index);
@@ -49,6 +54,7 @@ export default function Page(): JSX.Element {
           onTabChange={onTabChange}
         />
       </main>
+      <Footer data={footer} />
     </div>
   );
 }

@@ -7,10 +7,11 @@ export function prepareList(data: any): any {
     const { startedDateTime, time, request, response } = item;
 
     const { method, url } = request;
-    const { status } = response;
+    const { status, statusText } = response;
 
     return {
       status,
+      statusText,
       url,
       method,
       startedDateTime,
@@ -26,10 +27,11 @@ export function prepareCommon(data: any): any {
 
   const { request, response, serverIPAddress } = data;
   const { method, url } = request;
-  const { status } = response;
+  const { status, statusText } = response;
 
   return {
     status,
+    statusText,
     url,
     method,
     serverIPAddress,

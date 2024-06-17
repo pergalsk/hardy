@@ -16,7 +16,7 @@ export function DetailCommon({ data }: { data: any }): JSX.Element {
       </div>
       <div className="text-mirage-200 font-mono">
         <span className="font-bold pr-2">Status:</span>
-        <Status status={data.status} colored={true} />
+        <Status status={data.status} text={data.statusText} colored={true} />
       </div>
       <div className="text-mirage-200 font-mono">
         <span className="font-bold pr-2">Server IP:</span>

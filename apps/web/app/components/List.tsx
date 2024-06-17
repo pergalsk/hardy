@@ -15,6 +15,7 @@ export function List({ data, selected, onSelect }: ListProps): JSX.Element {
           index={index}
           isSelected={index === selected}
           status={item.status}
+          statusText={item.statusText}
           method={item.method}
           url={item.url}
           dateTime={item.startedDateTime}

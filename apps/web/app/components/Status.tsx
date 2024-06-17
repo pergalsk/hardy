@@ -8,10 +8,11 @@ export const statusColors: { [key: string]: string } = {
 
 interface StatusProps {
   status: number;
+  text: string;
   colored: boolean;
 }
 
-export function Status({ status, colored }: StatusProps): JSX.Element {
+export function Status({ status, text, colored }: StatusProps): JSX.Element {
   let colorClass;
 
   const statusRange = Math.floor(status / 100);
@@ -21,10 +22,13 @@ export function Status({ status, colored }: StatusProps): JSX.Element {
     : "bg-bunker-500";
 
   return (
-    <span
-      className={`${colorClass} rounded-md px-2 py-0.5 text-white font-bold`}
-    >
-      {status}
-    </span>
+    <>
+      <span
+        className={`${colorClass} rounded-md px-2 py-0.5 text-white font-bold`}
+      >
+        {status}
+      </span>
+      {text && <span className="ml-2">{text}</span>}
+    </>
   );
 }

@@ -4,7 +4,7 @@ export interface HeaderItem {
 }
 export function Headers({ headers }: { headers: HeaderItem[] }): JSX.Element {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 text-sm">
       {Array.isArray(headers) &&
         headers
           .sort((a: HeaderItem, b: HeaderItem) => a.name.localeCompare(b.name))

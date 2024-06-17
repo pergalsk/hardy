@@ -1,0 +1,481 @@
+{
+  "log": {
+    "version": "1.2",
+    "creator": {
+      "name": "WebInspector",
+      "version": "537.36"
+    },
+    "pages": [],
+    "entries": [
+      {
+        "_initiator": {
+          "type": "script",
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "",
+                "scriptId": "7",
+                "url": "https://b24wac11.apptest.slsp.sk/wac-web/main.925b061c386f756c1f2e.js",
+                "lineNumber": 28,
+                "columnNumber": 53292
+              },
+              {
+                "functionName": "v",
+                "scriptId": "7",
+                "url": "https://b24wac11.apptest.slsp.sk/wac-web/main.925b061c386f756c1f2e.js",
+                "lineNumber": 28,
+                "columnNumber": 51290
+              },
+              {
+                "functionName": "c",
+                "scriptId": "7",
+                "url": "https://b24wac11.apptest.slsp.sk/wac-web/main.925b061c386f756c1f2e.js",
+                "lineNumber": 28,
+                "columnNumber": 49576
+              },
+              {
+                "functionName": "s",
+                "scriptId": "7",
+                "url": "https://b24wac11.apptest.slsp.sk/wac-web/main.925b061c386f756c1f2e.js",
+                "lineNumber": 28,
+                "columnNumber": 67997
+              },
+              {
+                "functionName": "",
+                "scriptId": "7",
+                "url": "https://b24wac11.apptest.slsp.sk/wac-web/main.925b061c386f756c1f2e.js",
+                "lineNumber": 28,
+                "columnNumber": 68169
+              },
+              {
+                "functionName": "$eval",
+                "scriptId": "7",
+                "url": "https://b24wac11.apptest.slsp.sk/wac-web/main.925b061c386f756c1f2e.js",
+                "lineNumber": 28,
+                "columnNumber": 75670
+              },
+              {
+                "functionName": "$digest",
+                "scriptId": "7",
+                "url": "https://b24wac11.apptest.slsp.sk/wac-web/main.925b061c386f756c1f2e.js",
+                "lineNumber": 28,
+                "columnNumber": 74178
+              },
+              {
+                "functionName": "$apply",
+                "scriptId": "7",
+                "url": "https://b24wac11.apptest.slsp.sk/wac-web/main.925b061c386f756c1f2e.js",
+                "lineNumber": 28,
+                "columnNumber": 75953
+              },
+              {
+                "functionName": "",
+                "scriptId": "7",
+                "url": "https://b24wac11.apptest.slsp.sk/wac-web/main.925b061c386f756c1f2e.js",
+                "lineNumber": 28,
+                "columnNumber": 143664
+              },
+              {
+                "functionName": "dispatch",
+                "scriptId": "7",
+                "url": "https://b24wac11.apptest.slsp.sk/wac-web/main.925b061c386f756c1f2e.js",
+                "lineNumber": 23,
+                "columnNumber": 35147
+              },
+              {
+                "functionName": "v.handle",
+                "scriptId": "7",
+                "url": "https://b24wac11.apptest.slsp.sk/wac-web/main.925b061c386f756c1f2e.js",
+                "lineNumber": 23,
+                "columnNumber": 33121
+              }
+            ]
+          }
+        },
+        "_priority": "High",
+        "_resourceType": "xhr",
+        "cache": {},
+        "connection": "221516",
+        "request": {
+          "method": "POST",
+          "url": "https://b24wac11.apptest.slsp.sk/rs-wac/journal/search",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "Accept-Encoding",
+              "value": "gzip, deflate, br"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "sk"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJraWQiOiIxIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJNU0FEOjg5NjM0N0B1YXQzLnNrIiwiYW1yIjpbIkVBX0xEQVAiXSwicm9sZXMiOlsiQVBQX0IyNF9EYXRhYmFua2luZ19BIiwiQVBQX0IyNF9QU0QyX1AiLCJBUFBfQjI0X1BTRDJfQSIsIkFQUF9CMjRfUFNEMl9BRE1JTiIsIkFQUF9CMjRfRGF0YWJhbmtpbmdfQURNSU4iLCJBUFBfQjI0X0RhdGFiYW5raW5nX1AiLCJBUFBfQjI0X1NUIiwiQVBQX0IyNF9CTyIsIkFQUF9CMjRfQVMiLCJBUFBfQjI0X1NEIiwiQVBQX0IyNF9BTyIsIkFQUF9CMjRfUkIiLCJBUFBfQjI0X0EiXSwiaXNzIjoiaHR0cHM6XC9cL2IyNHdhYzExLmFwcHRlc3Quc2xzcC5za1wvZ2FhcyIsIm5vbmNlIjoiYzIzMTQ5OGFmYjBkYTM3MTM1ODNlZDNiY2VhZGI4NmM3ZjhkZDE5NWNjMWJiNzA2NGVjYzI5MzU0NjFmZDA4NCIsInVpX2xvY2FsZSI6InNrIGVuIiwidGlkIjoyMDI1NTI4LCJzaWQiOjY2NTI2NCwiYXV0aF9zdHJlbmd0aCI6MjAsImFjY2Vzc190b2tlbiI6IjI1MEU4NkE1NDczODQ5RDMxODJDM0U0Q0M1MEVGQURCODk4MjIzRkZDN0JBNDM0NEUyMkI1NTQzNUFEMzZEMzYiLCJhdWQiOiJNQ0g6V0FDIiwiYXV0aF90aW1lIjoxNjc1MDgyMTkyLCJleHAiOjE2NzUxMjUzOTIsImlhdCI6MTY3NTA4MjE5MiwianRpIjoiMjAyNTUyOCJ9.DUuqj1_lGW_oVG55n4edQc3Lu0EVt2D6uuiy6zGZ1-siTpfuUUSAMexSoD7FG4h3jtkJlxjGyp_1Ti6_BmC8XWpkxA2drKylmzf9yEuJTOxwD4uzB91h1D54x5YEyqSJ7FL4bzVDgWLe_YSnDCYLVn2Xz762n2RfDDkMpCFlgOGDWzJLyRG5U_En0DH4BsprejNNegC0SIJ40HKy1KBsn0heaLGScrA_IQUfMwXf70ZJl9QUn3YmRjnbD8q7BaiAvV2lz2cyXOmkhTizh5E8JvjlNdQrvcK-h3UMzU96d_u7j4jjWiErxW3LFj9yfS9mkwiM0_ZDsIYZVYC7j4ibkg"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "name": "Content-Length",
+              "value": "97"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json;charset=UTF-8"
+            },
+            {
+              "name": "Cookie",
+              "value": "TS01d4cc90=DmjiQA7Ho68vE0EzbJhZSFoD1CHFNozh; TCPID=12221144566153208390; TC_PRIVACY=0@006%7C2%7C2%7C129%7C38%7C5091@1%2C2%2C5%2C3%2C4@@1644241517309%2C1644241517309%2C1677937517309@; TC_PRIVACY_CENTER=1%2C2%2C5%2C3%2C4; tracking_disabled=false; _fbp=fb.1.1644401169680.768275310; AMCV_FF8851515B7C27640A495D95%40AdobeOrg=-432600572%7CMCIDTS%7C19033%7CMCMID%7C91203394283730501614262147978229066187%7CMCAAMLH-1645088818%7C6%7CMCAAMB-1645088818%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCCIDH%7C233969950%7CMCOPTOUT-1644491218s%7CNONE%7CvVersion%7C4.5.2; _hjSessionUser_2696567=eyJpZCI6ImZjZGJmNjJmLWYwNzgtNTQwNy1iZmEzLTU5NTQ2ODQzNTYxMCIsImNyZWF0ZWQiOjE2NDQ4MzA5NjY5MDYsImV4aXN0aW5nIjp0cnVlfQ==; p_domain_id=597483b3-2fc5-4675-b432-c7ed9caf9463; _scid=159d722a-d957-4c93-badf-b224bd1760ba; FPID=FPID2.2.ltwRpvR8phq2OykFbLFdPfVYPUG3wVgpLjTErZNtGKw%3D.1644401169; amdg=\"63f5a0c0438d4c32bef932728fc8b012,d0fdc49589eb4f1e9033929d4630dda1\"; CYmsDMYh2b=NcpUOXcXJsw0k30CHfmzoxQJASCfyGJc; _gcl_au=1.1.1054165079.1667813892; _rdt_uuid=1667813893472.1b8cf715-9d19-4986-a302-2b8439af077e; _ga_123123123=GS1.1.1670937936.427.0.1670937936.0.0.0; ajs_user_id=%229c6cbee61138fc25ac35a523270f62489d5d425c%22; ajs_anonymous_id=%22359a40d8-8412-421e-8a14-f26643c6f036%22; _ga=GA1.1.1218258671.1644401169; _ga_TCF37KLX2L=GS1.1.1674833492.403.0.1674834515.60.0.0; rxVisitor=1675070772380ED819RA7JKK66G1SFNG8B92U53IABTLU; dtCookie=v_4_srv_5_sn_90D15E00D5460C51FF1A67C70E424FBF_perc_100000_ol_0_mul_1_app-3Aea7c4b59f27d43eb_1; dtSa=-; rxvt=1675083992953|1675082182757; dtPC=5$482192738_463h-vSIFAVHPGDLUKLKWKMKLUPCGRHARRHVRU-0e0; dtLatC=4"
+            },
+            {
+              "name": "Host",
+              "value": "b24wac11.apptest.slsp.sk"
+            },
+            {
+              "name": "Origin",
+              "value": "https://b24wac11.apptest.slsp.sk"
+            },
+            {
+              "name": "Referer",
+              "value": "https://b24wac11.apptest.slsp.sk/wac-web/"
+            },
+            {
+              "name": "Sec-Fetch-Dest",
+              "value": "empty"
+            },
+            {
+              "name": "Sec-Fetch-Mode",
+              "value": "cors"
+            },
+            {
+              "name": "Sec-Fetch-Site",
+              "value": "same-origin"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "X-Request-ID",
+              "value": "3d7dd941-1db5-4b39-bb4c-34516027eeb1"
+            },
+            {
+              "name": "sec-ch-ua",
+              "value": "\"Not_A Brand\";v=\"99\", \"Google Chrome\";v=\"109\", \"Chromium\";v=\"109\""
+            },
+            {
+              "name": "sec-ch-ua-mobile",
+              "value": "?0"
+            },
+            {
+              "name": "sec-ch-ua-platform",
+              "value": "\"Windows\""
+            }
+          ],
+          "queryString": [],
+          "cookies": [
+            {
+              "name": "TS01d4cc90",
+              "value": "DmjiQA7Ho68vE0EzbJhZSFoD1CHFNozh",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-09-05T20:19:50.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "TCPID",
+              "value": "12221144566153208390",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-03-07T13:45:06.000Z",
+              "httpOnly": false,
+              "secure": false,
+              "sameSite": "Lax"
+            },
+            {
+              "name": "TC_PRIVACY",
+              "value": "0@006%7C2%7C2%7C129%7C38%7C5091@1%2C2%2C5%2C3%2C4@@1644241517309%2C1644241517309%2C1677937517309@",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-03-04T13:45:17.000Z",
+              "httpOnly": false,
+              "secure": false,
+              "sameSite": "Lax"
+            },
+            {
+              "name": "TC_PRIVACY_CENTER",
+              "value": "1%2C2%2C5%2C3%2C4",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-03-04T13:45:17.000Z",
+              "httpOnly": false,
+              "secure": false,
+              "sameSite": "Lax"
+            },
+            {
+              "name": "tracking_disabled",
+              "value": "false",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2072-01-28T10:06:08.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "_fbp",
+              "value": "fb.1.1644401169680.768275310",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-04-27T15:31:32.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "AMCV_FF8851515B7C27640A495D95%40AdobeOrg",
+              "value": "-432600572%7CMCIDTS%7C19033%7CMCMID%7C91203394283730501614262147978229066187%7CMCAAMLH-1645088818%7C6%7CMCAAMB-1645088818%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCCIDH%7C233969950%7CMCOPTOUT-1644491218s%7CNONE%7CvVersion%7C4.5.2",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2024-02-10T09:06:58.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "_hjSessionUser_2696567",
+              "value": "eyJpZCI6ImZjZGJmNjJmLWYwNzgtNTQwNy1iZmEzLTU5NTQ2ODQzNTYxMCIsImNyZWF0ZWQiOjE2NDQ4MzA5NjY5MDYsImV4aXN0aW5nIjp0cnVlfQ==",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-07-22T11:57:44.000Z",
+              "httpOnly": false,
+              "secure": true,
+              "sameSite": "Lax"
+            },
+            {
+              "name": "p_domain_id",
+              "value": "597483b3-2fc5-4675-b432-c7ed9caf9463",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-05-31T15:52:39.437Z",
+              "httpOnly": true,
+              "secure": true
+            },
+            {
+              "name": "_scid",
+              "value": "159d722a-d957-4c93-badf-b224bd1760ba",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-05-02T02:59:13.000Z",
+              "httpOnly": false,
+              "secure": false,
+              "sameSite": "Lax"
+            },
+            {
+              "name": "FPID",
+              "value": "FPID2.2.ltwRpvR8phq2OykFbLFdPfVYPUG3wVgpLjTErZNtGKw%3D.1644401169",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2024-02-08T08:03:17.669Z",
+              "httpOnly": true,
+              "secure": true
+            },
+            {
+              "name": "amdg",
+              "value": "\"63f5a0c0438d4c32bef932728fc8b012,d0fdc49589eb4f1e9033929d4630dda1\"",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-05-31T15:52:39.437Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "CYmsDMYh2b",
+              "value": "NcpUOXcXJsw0k30CHfmzoxQJASCfyGJc",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-11-23T15:48:35.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "_gcl_au",
+              "value": "1.1.1054165079.1667813892",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-02-05T09:38:12.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "_rdt_uuid",
+              "value": "1667813893472.1b8cf715-9d19-4986-a302-2b8439af077e",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2023-04-09T12:10:01.000Z",
+              "httpOnly": false,
+              "secure": true,
+              "sameSite": "Strict"
+            },
+            {
+              "name": "_ga_123123123",
+              "value": "GS1.1.1670937936.427.0.1670937936.0.0.0",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2024-01-17T13:25:36.086Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "ajs_user_id",
+              "value": "%229c6cbee61138fc25ac35a523270f62489d5d425c%22",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2024-01-30T11:56:42.000Z",
+              "httpOnly": false,
+              "secure": false,
+              "sameSite": "Lax"
+            },
+            {
+              "name": "ajs_anonymous_id",
+              "value": "%22359a40d8-8412-421e-8a14-f26643c6f036%22",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2024-01-30T11:56:42.000Z",
+              "httpOnly": false,
+              "secure": false,
+              "sameSite": "Lax"
+            },
+            {
+              "name": "_ga",
+              "value": "GA1.1.1218258671.1644401169",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2024-03-02T15:31:32.050Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "_ga_TCF37KLX2L",
+              "value": "GS1.1.1674833492.403.0.1674834515.60.0.0",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "2024-03-02T15:48:35.368Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "rxVisitor",
+              "value": "1675070772380ED819RA7JKK66G1SFNG8B92U53IABTLU",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "1969-12-31T23:59:59.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "dtCookie",
+              "value": "v_4_srv_5_sn_90D15E00D5460C51FF1A67C70E424FBF_perc_100000_ol_0_mul_1_app-3Aea7c4b59f27d43eb_1",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "1969-12-31T23:59:59.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "dtSa",
+              "value": "-",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "1969-12-31T23:59:59.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "rxvt",
+              "value": "1675083992953|1675082182757",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "1969-12-31T23:59:59.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "dtPC",
+              "value": "5$482192738_463h-vSIFAVHPGDLUKLKWKMKLUPCGRHARRHVRU-0e0",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "1969-12-31T23:59:59.000Z",
+              "httpOnly": false,
+              "secure": false
+            },
+            {
+              "name": "dtLatC",
+              "value": "4",
+              "path": "/",
+              "domain": ".slsp.sk",
+              "expires": "1969-12-31T23:59:59.000Z",
+              "httpOnly": false,
+              "secure": false
+            }
+          ],
+          "headersSize": 3630,
+          "bodySize": 97,
+          "postData": {
+            "mimeType": "application/json;charset=UTF-8",
+            "text": "{\"dateFrom\":\"2020-10-14\",\"dateTo\":\"2020-10-15\",\"clientId\":20892,\"userId\":null,\"actorUserId\":null}"
+          }
+        },
+        "response": {
+          "status": 504,
+          "statusText": "Gateway Time-out",
+          "httpVersion": "HTTP/1.1",
+          "headers": [
+            {
+              "name": "cache-control",
+              "value": "no-cache"
+            },
+            {
+              "name": "content-length",
+              "value": "92"
+            },
+            {
+              "name": "content-type",
+              "value": "text/html"
+            }
+          ],
+          "cookies": [],
+          "content": {
+            "size": 92,
+            "mimeType": "text/html",
+            "compression": 0,
+            "text": "<html><body><h1>504 Gateway Time-out</h1>\nThe server didn't respond in time.\n</body></html>\n"
+          },
+          "redirectURL": "",
+          "headersSize": 103,
+          "bodySize": 92,
+          "_transferSize": 195,
+          "_error": null
+        },
+        "serverIPAddress": "10.212.184.60",
+        "startedDateTime": "2023-01-30T12:46:44.974Z",
+        "time": 30060.742000000293,
+        "timings": {
+          "blocked": 3.898999999650754,
+          "dns": 0.02499999999999991,
+          "ssl": 37.192,
+          "connect": 42.693,
+          "send": 0.8049999999999997,
+          "wait": 30012.92399999755,
+          "receive": 0.39600000309292227,
+          "_blocked_queueing": 2.749999999650754,
+          "_blocked_proxy": 0.5479999999999999
+        }
+      }
+    ]
+  }
+}

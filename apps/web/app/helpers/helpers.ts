@@ -25,7 +25,7 @@ export function prepareCommon(data: any): any {
     return {};
   }
 
-  const { request, response, serverIPAddress } = data;
+  const { request, response, serverIPAddress, time } = data;
   const { method, url } = request;
   const { status, statusText } = response;
 
@@ -35,6 +35,7 @@ export function prepareCommon(data: any): any {
     url,
     method,
     serverIPAddress,
+    time,
   };
 }
 

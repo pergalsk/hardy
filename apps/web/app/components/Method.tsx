@@ -16,9 +16,5 @@ export function Method({ method, colored }: MethodProps): JSX.Element {
     ? methodColors[method] || "text-gray-500"
     : "text-white";
 
-  return (
-    <span className={`${colorClass} rounded-md px-2 py-1 font-bold`}>
-      {method}
-    </span>
-  );
+  return <span className={`${colorClass} font-bold`}>{method}</span>;
 }

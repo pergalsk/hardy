@@ -51,11 +51,13 @@ export function prepareParts(data: any): any {
       headers: request.headers,
       headersSize: request.headersSize,
       bodySize: request.bodySize,
+      content: request.postData?.text,
     },
     response: {
       headers: response.headers,
       headersSize: response.headersSize,
       bodySize: response.bodySize,
+      content: response.content?.text,
     },
     timings,
   };
@@ -97,4 +99,24 @@ export function getUrlParts(url: string) {
     params,
     hash,
   };
+}
+
+export function formatAsJson(str: string): string {
+  if (typeof str !== "string" || !str.length) {
+    console.info("Data is not a string:", str);
+    return str;
+  }
+
+  if (!str.trim().startsWith("{") && !str.trim().startsWith("[")) {
+    console.info("String is not JSON:", str);
+    return str;
+  }
+
+  try {
+    const parsedJson = JSON.parse(str);
+    return JSON.stringify(parsedJson, null, 2);
+  } catch (error) {
+    console.error("Error parsing JSON:", error);
+    return str;
+  }
 }

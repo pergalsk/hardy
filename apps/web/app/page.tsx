@@ -18,7 +18,7 @@ import { Footer } from "./components/Footer";
 // import styles from "./page.module.css";
 // import { Button } from "@repo/ui/button";
 
-import exampleData from "./data/example02.json";
+import exampleData from "./data/example05.json";
 
 export default function Page(): JSX.Element {
   const [id, setId] = useState(0);

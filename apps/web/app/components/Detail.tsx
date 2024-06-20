@@ -33,7 +33,7 @@ export function Detail(props: DetailProps): JSX.Element {
     headersMap[tab] || null;
 
   return (
-    <div className="flex flex-col flex-1 max-w-1/2 h-full p-2">
+    <div className="flex flex-col flex-none lg:w-1/2 lg:h-full h-1/2 w-full p-2">
       {data ? (
         <>
           <DetailCommon data={data} />

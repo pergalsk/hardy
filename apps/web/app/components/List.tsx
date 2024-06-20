@@ -8,10 +8,7 @@ interface ListProps {
 
 export function List({ data, selected, onSelect }: ListProps): JSX.Element {
   return (
-    <div
-      style={{ maxWidth: "50vw" }}
-      className="flex flex-col flex-1 p-2 bg-bunker-950 border-r border-thin border-bunker-700 gap-2 overflow-auto"
-    >
+    <div className="flex flex-col flex-1 max-w-1/2 p-2 bg-bunker-950 border-r border-thin border-bunker-700 gap-2 overflow-auto">
       {data.map((item, index) => (
         <ListItem
           key={index}

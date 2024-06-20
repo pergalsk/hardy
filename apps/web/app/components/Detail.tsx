@@ -33,7 +33,10 @@ export function Detail(props: DetailProps): JSX.Element {
     headersMap[tab] || null;
 
   return (
-    <div className="flex flex-col flex-1 h-full p-2">
+    <div
+      style={{ maxWidth: "50vw" }}
+      className="flex flex-col flex-1 h-full p-2"
+    >
       {data ? (
         <>
           <DetailCommon data={data} />
@@ -47,7 +50,7 @@ export function Detail(props: DetailProps): JSX.Element {
               {partsSelection?.content ? (
                 <>
                   <div className="font-bold pb-2 uppercase">Content</div>
-                  <pre className="text-sm">
+                  <pre className="text-sm overflow-auto whitespace-pre-wrap break-words ">
                     {formatAsJson(partsSelection.content)}
                   </pre>
                 </>

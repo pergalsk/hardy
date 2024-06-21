@@ -46,7 +46,7 @@ export function Detail(props: DetailProps): JSX.Element {
               {partsSelection?.content ? (
                 <>
                   <div className="pb-2 font-bold uppercase">Content</div>
-                  <pre className="bg-bunker-500 overflow-auto whitespace-pre-wrap break-words text-sm">
+                  <pre className="overflow-auto whitespace-pre-wrap break-words text-sm">
                     {formatAsJson(partsSelection.content)}
                   </pre>
                 </>

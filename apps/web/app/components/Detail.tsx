@@ -33,7 +33,7 @@ export function Detail(props: DetailProps): JSX.Element {
     headersMap[tab] || null;
 
   return (
-    <div className="flex flex-col flex-none lg:w-1/2 lg:h-full h-1/2 w-full p-2">
+    <div className="flex h-1/2 w-full flex-none flex-col p-2 lg:h-full lg:w-1/2">
       {data ? (
         <>
           <DetailCommon data={data} />
@@ -42,12 +42,11 @@ export function Detail(props: DetailProps): JSX.Element {
             {partsSelection?.headers && (
               <Headers headers={partsSelection.headers} />
             )}
-            <hr className="border-b border-bunker-700 mt-3" />
-            <div className="pt-2 break-all text-mirage-200">
+            <div className="text-mirage-200 break-all pt-2">
               {partsSelection?.content ? (
                 <>
-                  <div className="font-bold pb-2 uppercase">Content</div>
-                  <pre className="text-sm overflow-auto whitespace-pre-wrap break-words ">
+                  <div className="pb-2 font-bold uppercase">Content</div>
+                  <pre className="bg-bunker-500 overflow-auto whitespace-pre-wrap break-words text-sm">
                     {formatAsJson(partsSelection.content)}
                   </pre>
                 </>

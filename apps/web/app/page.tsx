@@ -18,7 +18,7 @@ import { Footer } from "./components/Footer";
 // import styles from "./page.module.css";
 // import { Button } from "@repo/ui/button";
 
-import exampleData from "./data/example05.json";
+import exampleData from "./data/example02.json";
 
 export default function Page(): JSX.Element {
   const [id, setId] = useState(0);
@@ -43,7 +43,7 @@ export default function Page(): JSX.Element {
   };
 
   return (
-    <div className="flex flex-col bg-bunker-900 w-screen h-screen font-mono">
+    <div className="bg-bunker-900 flex h-screen w-screen flex-col font-mono">
       <Header></Header>
       <main className="flex flex-1 flex-col items-stretch overflow-hidden lg:flex-row">
         <List data={list} selected={id} onSelect={onSelect} />

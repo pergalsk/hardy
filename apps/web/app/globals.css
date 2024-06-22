@@ -10,19 +10,19 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply bg-transparent rounded;
+  @apply rounded bg-transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   /* @apply: bg-orange-700 rounded; */
-  background: #ffffff10;
+  background: #ffffff20;
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffffff30;
+  background: #ffffff40;
 }
 
 :root {

@@ -5,23 +5,23 @@ import { Status } from "./Status";
 
 export function DetailCommon({ data }: { data: any }): JSX.Element {
   return (
-    <div className="flex flex-col flex-1 bg-bunker-700 p-2 gap-1 rounded-md">
+    <div className="bg-bunker-500 flex flex-1 flex-col gap-1 rounded-md p-2">
       <div className="text-mirage-200 font-mono">
-        <span className="font-bold pr-2">URL:</span>
+        <span className="pr-2 font-bold">URL:</span>
         <Url url={data.url} />
       </div>
 
-      <hr className="border-b border border-bunker-600 my-1" />
+      <hr className="border-bunker-600 my-1 border border-b" />
 
       <div className="flex">
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-1 flex-col">
           <div className="text-mirage-200 font-mono">
-            <span className="font-bold pr-2">Method:</span>
+            <span className="pr-2 font-bold">Method:</span>
             <Method method={data.method} colored={true} />
           </div>
 
           <div className="text-mirage-200 font-mono">
-            <span className="font-bold pr-2">Status:</span>
+            <span className="pr-2 font-bold">Status:</span>
             <Status
               status={data.status}
               text={data.statusText}
@@ -30,13 +30,13 @@ export function DetailCommon({ data }: { data: any }): JSX.Element {
           </div>
         </div>
 
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-1 flex-col">
           <div className="text-mirage-200 font-mono">
-            <span className="font-bold pr-2">Time:</span>
+            <span className="pr-2 font-bold">Time:</span>
             {data.time.toFixed(2)} ms
           </div>
           <div className="text-mirage-200 font-mono">
-            <span className="font-bold pr-2">Server IP:</span>
+            <span className="pr-2 font-bold">Server IP:</span>
             {data.serverIPAddress}
           </div>
         </div>

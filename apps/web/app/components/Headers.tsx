@@ -5,7 +5,7 @@ export interface HeaderItem {
 
 export function Headers({ headers }: { headers: HeaderItem[] }): JSX.Element {
   return (
-    <table className="table-auto text-sm">
+    <table className="w-full table-auto text-sm">
       <tbody>
         {Array.isArray(headers) &&
           headers

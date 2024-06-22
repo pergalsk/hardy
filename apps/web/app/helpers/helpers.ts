@@ -65,7 +65,7 @@ export function prepareParts(data: any): any {
 
 export function prepareFooter(data: any): any {
   if (!data) {
-    return {};
+    return null;
   }
 
   const { version, creator, entries } = data;

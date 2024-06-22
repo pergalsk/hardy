@@ -2,6 +2,7 @@ export interface HeaderItem {
   name: string;
   value: string;
 }
+
 export function Headers({ headers }: { headers: HeaderItem[] }): JSX.Element {
   return (
     <table className="table-auto text-sm">

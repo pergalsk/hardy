@@ -20,14 +20,10 @@ import { Footer } from "./components/Footer";
 import { FileDropper } from "./components/FileDropper";
 import { FileOpener } from "./components/FileOpener";
 
-import data from "./data/example02.json";
-
 export default function Page(): JSX.Element {
   const [id, setId] = useState(0);
   const [tab, setTab] = useState("REQ");
   const [data, setData] = useState(null);
-
-  // let data = null;
 
   const log = (data as { log: any } | null)?.log;
   const entries = log?.entries || [];

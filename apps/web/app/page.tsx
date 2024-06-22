@@ -20,16 +20,16 @@ import { Footer } from "./components/Footer";
 import { FileDropper } from "./components/FileDropper";
 import { FileOpener } from "./components/FileOpener";
 
-import exampleData from "./data/example02.json";
+import data from "./data/example02.json";
 
 export default function Page(): JSX.Element {
   const [id, setId] = useState(0);
   const [tab, setTab] = useState("REQ");
-  const [exampleData, setData] = useState(null);
+  const [data, setData] = useState(null);
 
-  // let exampleData = null;
+  // let data = null;
 
-  const log = (exampleData as { log: any } | null)?.log;
+  const log = (data as { log: any } | null)?.log;
   const entries = log?.entries || [];
 
   const list = prepareList(entries);
@@ -54,7 +54,7 @@ export default function Page(): JSX.Element {
   return (
     <div className="bg-bunker-900 flex h-screen w-screen flex-col font-mono">
       <Header></Header>
-      {exampleData ? (
+      {data ? (
         <main className="flex flex-1 flex-col items-stretch overflow-hidden lg:flex-row">
           <List data={list} selected={id} onSelect={onSelect} />
           <Detail

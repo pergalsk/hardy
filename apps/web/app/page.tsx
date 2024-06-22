@@ -25,8 +25,9 @@ import exampleData from "./data/example02.json";
 export default function Page(): JSX.Element {
   const [id, setId] = useState(0);
   const [tab, setTab] = useState("REQ");
+  const [exampleData, setData] = useState(null);
 
-  const exampleData = null;
+  // let exampleData = null;
 
   const log = (exampleData as { log: any } | null)?.log;
   const entries = log?.entries || [];
@@ -46,8 +47,8 @@ export default function Page(): JSX.Element {
     console.log(tab);
   };
 
-  const onFileOpen = (file: any) => {
-    alert("File opened: " + file.name);
+  const onFileOpen = (jsonData: any) => {
+    setData(jsonData);
   };
 
   return (

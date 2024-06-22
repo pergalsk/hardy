@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { readFileData } from "../helpers/helpers";
 
 interface FileDropperProps {
   onFileOpen: (file: any) => void;
@@ -22,14 +23,24 @@ export const FileDropper = ({ onFileOpen }: FileDropperProps) => {
     e.preventDefault();
   };
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragging(false);
-    const file = e.dataTransfer.files[0];
-    // Handle the dropped file here
-    console.log("Dropped file:", file);
 
-    onFileOpen(file);
+    const file = e.dataTransfer.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    try {
+      const fileData = await readFileData(file);
+      const jsonData = JSON.parse(fileData);
+      console.log("Loaded file data:", jsonData);
+      onFileOpen(jsonData);
+    } catch (error) {
+      console.error("Error loading file:", error);
+    }
   };
 
   useEffect(() => {

@@ -121,17 +121,21 @@ export function formatAsJson(str: string): string {
   }
 }
 
+export function leadingZero(num: number): string {
+  return (num < 10 ? "0" : "") + num;
+}
+
 export function formatDateTime(dateTime: string): string {
   const date = new Date(dateTime);
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
+  const day = leadingZero(date.getDate());
+  const month = leadingZero(date.getMonth() + 1);
   const year = date.getFullYear();
   const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
+  const minutes = leadingZero(date.getMinutes());
+  const seconds = leadingZero(date.getSeconds());
   const milliseconds = date.getMilliseconds();
 
-  return `${day < 10 ? "0" + day : day}.${month < 10 ? "0" + month : month}.${year} ${hours}:${minutes}:${seconds}.${milliseconds}`;
+  return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}.${milliseconds}`;
 }
 
 export function readFileData(file: File): Promise<string> {

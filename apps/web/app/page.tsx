@@ -7,6 +7,8 @@
 // import { Button } from "@repo/ui/button";
 
 import React, { useState } from "react";
+import { useAppStore, type AppStore } from "./store/store";
+
 import {
   prepareCommon,
   prepareList,
@@ -21,7 +23,8 @@ import { FileDropper } from "./components/FileDropper";
 import { FileOpener } from "./components/FileOpener";
 
 export default function Page(): JSX.Element {
-  const [id, setId] = useState<number>(0);
+  const rowId = useAppStore((state: AppStore) => state.ui.rowId);
+  const setRowId = useAppStore((state: AppStore) => state.setRowId);
   const [tab, setTab] = useState<string>("REQ");
   const [files, setFiles] = useState<any[]>([]);
 
@@ -31,12 +34,12 @@ export default function Page(): JSX.Element {
   const entries = log?.entries || [];
 
   const list = prepareList(entries);
-  const common = prepareCommon(entries[id]);
-  const parts = prepareParts(entries[id]);
+  const common = prepareCommon(entries[rowId]);
+  const parts = prepareParts(entries[rowId]);
   const footer = prepareFooter(log);
 
   const onSelect = (index: number) => {
-    setId(index);
+    setRowId(index);
     console.log(index);
   };
 
@@ -52,7 +55,7 @@ export default function Page(): JSX.Element {
 
   const onFileClose = (index: number) => () => {
     const newFiles = files.filter((_, i) => i !== index);
-    setId(0);
+    setRowId(0);
     setTab("REQ");
     setFiles(newFiles);
   };
@@ -65,7 +68,7 @@ export default function Page(): JSX.Element {
       />
       {data ? (
         <main className="flex flex-1 flex-col items-stretch overflow-hidden lg:flex-row">
-          <List data={list} selected={id} onSelect={onSelect} />
+          <List data={list} selected={rowId} onSelect={onSelect} />
           <Detail
             data={common}
             parts={parts}

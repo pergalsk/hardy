@@ -33,11 +33,13 @@ export const FileDropper = ({ onFileOpen }: FileDropperProps) => {
       return;
     }
 
+    const { name, size } = file;
+
     try {
-      const fileData = await readFileData(file);
-      const jsonData = JSON.parse(fileData);
-      console.log("Loaded file data:", jsonData);
-      onFileOpen(jsonData);
+      const rawData = await readFileData(file);
+      const data = JSON.parse(rawData);
+      console.log("Loaded file data:", name, size);
+      onFileOpen({ name, size, data });
     } catch (error) {
       console.error("Error loading file:", error);
     }

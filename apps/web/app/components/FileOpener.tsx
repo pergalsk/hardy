@@ -20,11 +20,13 @@ export const FileOpener = ({ onFileOpen }: FileOpenerProps) => {
       return;
     }
 
+    const { name, size } = file;
+
     try {
       const fileData = await readFileData(file);
-      const jsonData = JSON.parse(fileData);
-      console.log("Loaded file data:", jsonData);
-      onFileOpen(jsonData);
+      const data = JSON.parse(fileData);
+      console.log("Loaded file data:", data);
+      onFileOpen({ name, size, data });
     } catch (error) {
       console.error("Error loading file:", error);
     }

@@ -21,9 +21,11 @@ import { FileDropper } from "./components/FileDropper";
 import { FileOpener } from "./components/FileOpener";
 
 export default function Page(): JSX.Element {
-  const [id, setId] = useState(0);
-  const [tab, setTab] = useState("REQ");
-  const [data, setData] = useState(null);
+  const [id, setId] = useState<number>(0);
+  const [tab, setTab] = useState<string>("REQ");
+  const [files, setFiles] = useState<any[]>([]);
+
+  const data = files?.[0]?.data || null;
 
   const log = (data as { log: any } | null)?.log;
   const entries = log?.entries || [];
@@ -43,13 +45,24 @@ export default function Page(): JSX.Element {
     console.log(tab);
   };
 
-  const onFileOpen = (jsonData: any) => {
-    setData(jsonData);
+  const onFileOpen = (file: any) => {
+    const newFiles = [...files, file];
+    setFiles(newFiles);
+  };
+
+  const onFileClose = (index: number) => () => {
+    const newFiles = files.filter((_, i) => i !== index);
+    setId(0);
+    setTab("REQ");
+    setFiles(newFiles);
   };
 
   return (
     <div className="bg-bunker-900 flex h-screen w-screen flex-col font-mono">
-      <Header></Header>
+      <Header
+        files={files.map((file) => ({ name: file.name, size: file.size }))}
+        onClose={onFileClose}
+      />
       {data ? (
         <main className="flex flex-1 flex-col items-stretch overflow-hidden lg:flex-row">
           <List data={list} selected={id} onSelect={onSelect} />

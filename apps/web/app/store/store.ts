@@ -59,7 +59,13 @@ export const selectFileTabs = (state: AppStore) =>
   state.files.map((file) => ({ fileId: file.fileId, name: file.name }));
 
 export function selectFooterData(state: AppStore) {
-  const { version, creator, entries } = state.files?.[0]?.data?.log || {};
+  const harData = state.files?.[0]?.data?.log || null;
+
+  if (!harData) {
+    return null;
+  }
+
+  const { version, creator, entries } = harData;
 
   return {
     version,

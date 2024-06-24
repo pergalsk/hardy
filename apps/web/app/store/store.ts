@@ -7,9 +7,11 @@ export type File = {
   data: any;
 };
 
+export type TabCode = "REQ" | "RES" | "COO" | "TIM";
+
 export type Ui = {
   rowId: number;
-  tab: "REQ" | "RES" | "COO" | "TIM";
+  tab: TabCode;
 };
 
 export type State = {
@@ -19,8 +21,9 @@ export type State = {
 
 export type Actions = {
   setRowId: (rowId: number) => void;
+  setTab: (tab: TabCode) => void;
   addFile: (file: File) => void;
-  removeFile: (index: number) => void;
+  removeFile: (fileId: string) => void;
   removeAllFiles: () => void;
 };
 
@@ -33,9 +36,27 @@ export const useAppStore = create<AppStore>((set) => ({
     tab: "REQ",
   },
   settings: {},
+
   setRowId: (rowId: number) => set((state) => ({ ui: { ...state.ui, rowId } })),
+  setTab: (tab: TabCode) => set((state) => ({ ui: { ...state.ui, tab } })),
   addFile: (file: File) => set((state) => ({ files: [...state.files, file] })),
-  removeFile: (index: number) =>
-    set((state) => ({ files: state.files.filter((_, i) => i !== index) })),
+  removeFile: (fileId: string) =>
+    set((state) => ({
+      files: state.files.filter((file) => file.fileId !== fileId),
+    })),
   removeAllFiles: () => set({ files: [] }),
 }));
+
+export function selectFooterData(state: AppStore) {
+  const { version, creator, entries } = state.files?.[0]?.data?.log || {};
+
+  return {
+    version,
+    creatorName: creator?.name,
+    creatorVersion: creator?.version,
+    entriesNum: entries?.length || 0,
+    totalTime: (
+      entries?.reduce((acc: number, entry: any) => acc + entry.time, 0) || 0
+    ).toFixed(2),
+  };
+}

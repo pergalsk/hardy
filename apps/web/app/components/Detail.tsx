@@ -6,16 +6,17 @@ import { Headers, HeaderItem } from "./Headers";
 import { formatAsJson } from "../helpers/helpers";
 import { NoData } from "./NoData";
 import { Collapsible } from "./Collapsible";
+import { useAppStore } from "../store/store";
 
 interface DetailProps {
   data: any;
   parts: any;
-  tab: string;
-  onTabChange: (tab: string) => void;
 }
 
 export function Detail(props: DetailProps): JSX.Element {
-  const { data, parts, tab, onTabChange } = props;
+  const tab = useAppStore((state) => state.ui.tab);
+
+  const { data, parts } = props;
 
   const headersMap: {
     [key: string]: { headers: HeaderItem[]; content: string };
@@ -38,7 +39,7 @@ export function Detail(props: DetailProps): JSX.Element {
       {data ? (
         <>
           <DetailCommon data={data} />
-          <DetailButtons tabCode={tab} tabChange={onTabChange} />
+          <DetailButtons />
           <DetailSegment>
             <Collapsible title="Headers">
               {partsSelection?.headers && (

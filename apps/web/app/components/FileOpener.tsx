@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import { readFileData } from "../helpers/helpers";
+import { nanoid } from "../helpers/nanoid";
+import { type AppStore, useAppStore } from "../store/store";
 
-interface FileOpenerProps {
-  onFileOpen: (file: any) => void;
-}
+export const FileOpener = () => {
+  const addFile = useAppStore((state: AppStore) => state.addFile);
 
-export const FileOpener = ({ onFileOpen }: FileOpenerProps) => {
   const openFileSelector = () => {
     (document.querySelector("input[type='file']") as HTMLInputElement)?.click();
   };
@@ -21,14 +21,15 @@ export const FileOpener = ({ onFileOpen }: FileOpenerProps) => {
     }
 
     const { name, size } = file;
+    const fileId = nanoid();
 
     try {
       const fileData = await readFileData(file);
       const data = JSON.parse(fileData);
-      console.log("Loaded file data:", data);
-      onFileOpen({ name, size, data });
+      addFile({ fileId, name, size, data });
     } catch (error) {
       console.error("Error loading file:", error);
+      // todo: modal with warning
     }
   };
 

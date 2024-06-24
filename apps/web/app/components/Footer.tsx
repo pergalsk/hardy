@@ -1,4 +1,8 @@
-export function Footer({ data }: { data: any }) {
+import { useAppStore, selectFooterData } from "../store/store";
+
+export function Footer() {
+  const data = useAppStore(selectFooterData);
+
   if (!data) {
     return (
       <div

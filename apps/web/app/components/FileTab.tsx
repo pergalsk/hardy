@@ -1,19 +1,22 @@
+import { type AppStore, useAppStore } from "../store/store";
+
 interface FileTabProps {
-  file: any;
-  index: number;
-  onClose: (index: number) => () => void;
+  file: {
+    name: string;
+    fileId: string;
+  };
 }
 
-export function FileTab({ file, index, onClose }: FileTabProps): JSX.Element {
+export function FileTab({ file }: FileTabProps): JSX.Element {
+  const removeFile = useAppStore((state: AppStore) => state.removeFile);
+  const { name, fileId } = file;
+
   return (
-    <div
-      key={file.name}
-      className="bg-bunker-700 text-mirage-200 flex cursor-default select-none items-center justify-center rounded-lg px-3 py-1 pr-1.5 text-sm font-bold"
-    >
-      {file.name}
+    <div className="bg-bunker-700 text-mirage-200 flex cursor-default select-none items-center justify-center rounded-lg px-3 py-1 pr-1.5 text-sm font-bold">
+      {name}
       <span
-        onClick={onClose(index)}
-        className="bg-bunker-500 hover:bg-accent-600 ml-2 cursor-pointer rounded px-1.5 py-0.5 font-bold transition-colors duration-200 hover:text-white"
+        className="bg-bunker-700 hover:bg-accent-600 ml-2 cursor-pointer rounded px-1.5 py-0.5 font-bold transition-colors duration-200 hover:text-white"
+        onClick={() => removeFile(fileId)}
       >
         ⨉
       </span>

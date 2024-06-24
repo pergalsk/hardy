@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { TabCode, useAppStore } from "../store/store";
 
 interface Tab {
-  code: string;
+  code: TabCode;
   name: string;
   active: boolean;
   action: () => void;
@@ -14,13 +15,10 @@ const tabsDef: Tab[] = [
   { code: "TIM", name: "Timing", active: false, action: () => {} },
 ];
 
-export function DetailButtons({
-  tabCode,
-  tabChange,
-}: {
-  tabCode: string;
-  tabChange: (tab: string) => void;
-}) {
+export function DetailButtons(): JSX.Element {
+  const tabCode = useAppStore((state) => state.ui.tab);
+  const setTab = useAppStore((state) => state.setTab);
+
   return (
     <div className="flex gap-2 py-2">
       {tabsDef.map((tab) => {
@@ -32,8 +30,8 @@ export function DetailButtons({
         return (
           <button
             key={tab.name}
-            className={`${activeClasses} px-4 py-1 text-mirage-200 font-bold rounded-md  transition-colors duration-200 uppercase`}
-            onClick={() => tabChange(tab.code)}
+            className={`${activeClasses} text-mirage-200 rounded-md px-4 py-1 font-bold uppercase transition-colors duration-200`}
+            onClick={() => setTab(tab.code)}
           >
             {tab.name}
           </button>

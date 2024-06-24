@@ -1,12 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { readFileData } from "../helpers/helpers";
+import { nanoid } from "../helpers/nanoid";
+import { useAppStore, type AppStore } from "../store/store";
 
-interface FileDropperProps {
-  onFileOpen: (file: any) => void;
-}
-
-export const FileDropper = ({ onFileOpen }: FileDropperProps) => {
+export const FileDropper = () => {
+  const addFile = useAppStore((state: AppStore) => state.addFile);
   const [isDragging, setIsDragging] = useState(false);
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
@@ -34,14 +33,15 @@ export const FileDropper = ({ onFileOpen }: FileDropperProps) => {
     }
 
     const { name, size } = file;
+    const fileId = nanoid();
 
     try {
       const rawData = await readFileData(file);
       const data = JSON.parse(rawData);
-      console.log("Loaded file data:", name, size);
-      onFileOpen({ name, size, data });
+      addFile({ fileId, name, size, data });
     } catch (error) {
       console.error("Error loading file:", error);
+      // todo: modal with warning
     }
   };
 

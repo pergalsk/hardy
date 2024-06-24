@@ -1,10 +1,8 @@
 export function Logo(): JSX.Element {
   return (
-    <div className="flex content-center text-lg font-black tracking-wide gap-3">
-      <div className="bg-yellow-500 text-black py-1 px-3 rounded-lg ">
-        HARDY
-      </div>
-      <div className="text-white flex items-center">HAR viewer</div>
+    <div className="flex content-center gap-3 text-lg font-black tracking-wide">
+      <div className="rounded-lg bg-yellow-500 px-3 py-1 text-black">HARDY</div>
+      <div className="flex items-center text-white">HAR viewer</div>
     </div>
   );
 }

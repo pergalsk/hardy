@@ -1,5 +1,5 @@
 import React from "react";
-import { TabCode, useAppStore } from "../store/store";
+import { TabCode, useAppStore, selectTab, selectSetTab } from "../store/store";
 
 interface Tab {
   code: TabCode;
@@ -16,8 +16,8 @@ const tabsDef: Tab[] = [
 ];
 
 export function DetailButtons(): JSX.Element {
-  const tabCode = useAppStore((state) => state.ui.tab);
-  const setTab = useAppStore((state) => state.setTab);
+  const tabCode = useAppStore(selectTab);
+  const setTab = useAppStore(selectSetTab);
 
   return (
     <div className="flex gap-2 py-2">

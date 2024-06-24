@@ -6,7 +6,7 @@ import { Headers, HeaderItem } from "./Headers";
 import { formatAsJson } from "../helpers/helpers";
 import { NoData } from "./NoData";
 import { Collapsible } from "./Collapsible";
-import { useAppStore } from "../store/store";
+import { useAppStore, selectTab } from "../store/store";
 
 interface DetailProps {
   data: any;
@@ -14,7 +14,7 @@ interface DetailProps {
 }
 
 export function Detail(props: DetailProps): JSX.Element {
-  const tab = useAppStore((state) => state.ui.tab);
+  const tab = useAppStore(selectTab);
 
   const { data, parts } = props;
 

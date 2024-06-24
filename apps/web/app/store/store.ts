@@ -47,6 +47,17 @@ export const useAppStore = create<AppStore>((set) => ({
   removeAllFiles: () => set({ files: [] }),
 }));
 
+export const selectTab = (state: AppStore) => state.ui.tab;
+export const selectSetTab = (state: AppStore) => state.setTab;
+export const selectAddFile = (state: AppStore) => state.addFile;
+export const selectRemoveFile = (state: AppStore) => state.removeFile;
+export const selectFiles = (state: AppStore) => state.files;
+export const selectRowId = (state: AppStore) => state.ui.rowId;
+export const selectSetRowId = (state: AppStore) => state.setRowId;
+
+export const selectFileTabs = (state: AppStore) =>
+  state.files.map((file) => ({ fileId: file.fileId, name: file.name }));
+
 export function selectFooterData(state: AppStore) {
   const { version, creator, entries } = state.files?.[0]?.data?.log || {};
 

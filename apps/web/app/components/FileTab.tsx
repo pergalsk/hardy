@@ -1,4 +1,4 @@
-import { type AppStore, useAppStore } from "../store/store";
+import { useAppStore, selectRemoveFile } from "../store/store";
 
 interface FileTabProps {
   file: {
@@ -8,7 +8,7 @@ interface FileTabProps {
 }
 
 export function FileTab({ file }: FileTabProps): JSX.Element {
-  const removeFile = useAppStore((state: AppStore) => state.removeFile);
+  const removeFile = useAppStore(selectRemoveFile);
   const { name, fileId } = file;
 
   return (

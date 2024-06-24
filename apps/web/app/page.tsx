@@ -7,7 +7,12 @@
 // import { Button } from "@repo/ui/button";
 
 import React from "react";
-import { useAppStore, type AppStore } from "./store/store";
+import {
+  useAppStore,
+  selectFiles,
+  selectRowId,
+  selectSetRowId,
+} from "./store/store";
 import { Header } from "./components/Header";
 import { List } from "./components/List";
 import { Detail } from "./components/Detail";
@@ -17,9 +22,9 @@ import { Footer } from "./components/Footer";
 import { prepareCommon, prepareList, prepareParts } from "./helpers/helpers";
 
 export default function Page(): JSX.Element {
-  const files = useAppStore((state: AppStore) => state.files);
-  const rowId = useAppStore((state: AppStore) => state.ui.rowId);
-  const setRowId = useAppStore((state: AppStore) => state.setRowId);
+  const files = useAppStore(selectFiles);
+  const rowId = useAppStore(selectRowId);
+  const setRowId = useAppStore(selectSetRowId);
 
   const data = files?.[0]?.data || null;
   const log = (data as { log: any } | null)?.log;

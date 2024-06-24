@@ -22,28 +22,31 @@ export function Footer() {
       className="bg-accent-950 flex flex-row gap-8 px-2 py-1 text-sm text-white drop-shadow-lg"
     >
       <div>
-        <span>HAR Version:</span> <span>{version ?? "--"}</span>
+        <span className="text-accent-200">Entries:</span>{" "}
+        <span>{entriesNum ?? "--"}</span>
       </div>
 
       <div>
-        <span>Creator:</span> <span>{creatorName ?? "--"}</span>{" "}
-        {creatorVersion && <span>{creatorVersion}</span>}
-      </div>
-
-      <div>
-        <span>Entries in list:</span> <span>{entriesNum ?? "--"}</span>
-      </div>
-
-      <div>
-        <span>Total time:</span>{" "}
+        <span className="text-accent-200">Total time:</span>{" "}
         {totalTime ? (
           <>
             <span>{(totalTime / 1000).toFixed(2) ?? "--"} s</span>{" "}
-            <span>({totalTime ?? "--"} ms)</span>
+            <span className="text-accent-50">({totalTime ?? "--"} ms)</span>
           </>
         ) : (
           "--"
         )}
+      </div>
+
+      <div className="ml-auto">
+        <span className="text-accent-200">HAR:</span>{" "}
+        <span>{version ? "v" + version : "--"}</span>
+      </div>
+
+      <div>
+        <span className="text-accent-200">Creator:</span>{" "}
+        <span>{creatorName ?? "--"}</span>{" "}
+        {creatorVersion && <span>{creatorVersion}</span>}
       </div>
     </div>
   );

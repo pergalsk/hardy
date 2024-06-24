@@ -26,6 +26,7 @@
     "packages/*"
   ],
   "dependencies": {
+    "nanoid": "^5.0.7",
     "zustand": "^4.5.2"
   }
 }

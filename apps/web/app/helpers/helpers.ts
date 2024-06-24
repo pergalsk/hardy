@@ -103,12 +103,12 @@ export function getUrlParts(url: string) {
 
 export function formatAsJson(str: string): string {
   if (typeof str !== "string" || !str.length) {
-    console.info("Data is not a string:", str);
+    console.info("Data is not a string.");
     return str;
   }
 
   if (!str.trim().startsWith("{") && !str.trim().startsWith("[")) {
-    console.info("String is not JSON:", str);
+    console.info("String is not JSON.");
     return str;
   }
 

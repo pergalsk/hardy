@@ -5,7 +5,6 @@ import { DateTime } from "./DateTime";
 import { Time } from "./Time";
 
 interface ListItemProps {
-  index: number;
   status: number;
   statusText: string;
   method: string;
@@ -14,12 +13,11 @@ interface ListItemProps {
   time: number;
   isSelected: boolean;
   id: number;
-  onSelect: (index: number) => void;
+  onSelect: (id: number) => void;
 }
 
 export function ListItem(props: ListItemProps): JSX.Element {
   const {
-    index,
     status,
     statusText,
     method,
@@ -32,7 +30,7 @@ export function ListItem(props: ListItemProps): JSX.Element {
   } = props;
 
   const selectedClasses = isSelected
-    ? "border-accent-700 hover:border-accent-600"
+    ? "border-accent-700 hover:border-accent-400"
     : "border-transparent hover:border-bunker-200";
 
   return (

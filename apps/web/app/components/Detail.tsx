@@ -22,12 +22,12 @@ export function Detail(props: DetailProps): JSX.Element {
     [key: string]: { headers: HeaderItem[]; content: string };
   } = {
     REQ: {
-      headers: parts.request.headers,
-      content: parts.request.content,
+      headers: parts?.request?.headers,
+      content: parts?.request?.content,
     },
     RES: {
-      headers: parts.response.headers,
-      content: parts.response.content,
+      headers: parts?.response?.headers,
+      content: parts?.response?.content,
     },
   };
 
@@ -35,7 +35,7 @@ export function Detail(props: DetailProps): JSX.Element {
     headersMap[tab] || null;
 
   return (
-    <div className="flex h-1/2 w-full flex-none flex-col p-2 lg:h-full lg:w-1/2">
+    <>
       {data ? (
         <>
           <DetailCommon data={data} />
@@ -65,6 +65,6 @@ export function Detail(props: DetailProps): JSX.Element {
           <NoData>Select a request</NoData>
         </DetailSegment>
       )}
-    </div>
+    </>
   );
 }

@@ -1,10 +1,12 @@
+import { nanoid } from "./nanoid";
+
 export function prepareList(data: any): any {
   if (!Array.isArray(data)) {
     return [];
   }
 
   return data.map((item) => {
-    const { startedDateTime, time, request, response } = item;
+    const { startedDateTime, time, request, response, $$id } = item;
 
     const { method, url } = request;
     const { status, statusText } = response;
@@ -16,13 +18,14 @@ export function prepareList(data: any): any {
       method,
       startedDateTime,
       time,
+      $$id,
     };
   });
 }
 
 export function prepareCommon(data: any): any {
   if (!data) {
-    return {};
+    return null;
   }
 
   const { request, response, serverIPAddress, time } = data;
@@ -41,7 +44,7 @@ export function prepareCommon(data: any): any {
 
 export function prepareParts(data: any): any {
   if (!data) {
-    return {};
+    return null;
   }
 
   const { request, response, timings } = data;
@@ -125,7 +128,10 @@ export function leadingZero(num: number): string {
   return (num < 10 ? "0" : "") + num;
 }
 
-export function formatDateTime(dateTime: string): string {
+export function formatDateTime(
+  dateTime: string,
+  timeOnly: boolean = false,
+): string {
   const date = new Date(dateTime);
   const day = leadingZero(date.getDate());
   const month = leadingZero(date.getMonth() + 1);
@@ -134,6 +140,10 @@ export function formatDateTime(dateTime: string): string {
   const minutes = leadingZero(date.getMinutes());
   const seconds = leadingZero(date.getSeconds());
   const milliseconds = date.getMilliseconds();
+
+  if (timeOnly) {
+    return `${hours}:${minutes}:${seconds}.${milliseconds}`;
+  }
 
   return `${day}.${month}.${year} ${hours}:${minutes}:${seconds}.${milliseconds}`;
 }

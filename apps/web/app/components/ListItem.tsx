@@ -13,6 +13,7 @@ interface ListItemProps {
   dateTime: string;
   time: number;
   isSelected: boolean;
+  id: number;
   onSelect: (index: number) => void;
 }
 
@@ -26,6 +27,7 @@ export function ListItem(props: ListItemProps): JSX.Element {
     dateTime,
     time,
     isSelected,
+    id,
     onSelect,
   } = props;
 
@@ -35,14 +37,16 @@ export function ListItem(props: ListItemProps): JSX.Element {
 
   return (
     <div
-      className={`${selectedClasses} group flex flex-col w-full p-2 bg-bunker-800 gap-2 border-2 hover:cursor-pointer transition-colors duration-200 rounded-xl hover:border-2 text-sm text-mirage-200`}
-      onClick={() => onSelect(index)}
+      className={`${selectedClasses} bg-bunker-800 text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 p-2 text-sm transition-colors duration-200 hover:cursor-pointer hover:border-2`}
+      onClick={() => onSelect(id)}
     >
       <div className="flex items-center gap-1">
         <Status status={status} text={statusText} colored={true} />
-        <DateTime dateTime={dateTime} />
+        <DateTime dateTime={dateTime} timeOnly={true} />
         <div className="text-mirage-600">|</div>
         <Time time={time} />
+        <div className="text-mirage-600">|</div>
+        <div className="text-mirage-200">#{id}</div>
       </div>
       <div className="flex gap-2">
         <Method method={method} colored={true} />

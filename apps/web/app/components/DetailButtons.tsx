@@ -20,7 +20,7 @@ export function DetailButtons(): JSX.Element {
   const setTab = useAppStore(selectSetTab);
 
   return (
-    <div className="flex gap-2 py-2">
+    <div className="flex gap-2">
       {tabsDef.map((tab) => {
         const activeClasses =
           tab.code === tabCode

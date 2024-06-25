@@ -14,8 +14,17 @@ export type Ui = {
   tab: TabCode;
 };
 
+export type Filter = {
+  visible: boolean;
+  active: boolean;
+  url: string;
+  method: string;
+  status: string;
+};
+
 export type State = {
   files: File[];
+  filter: Filter;
   ui: Ui;
 };
 
@@ -25,14 +34,22 @@ export type Actions = {
   addFile: (file: File) => void;
   removeFile: (fileId: string) => void;
   removeAllFiles: () => void;
+  setFilter: (filter: Filter) => void;
 };
 
 export type AppStore = State & Actions;
 
 export const useAppStore = create<AppStore>((set) => ({
   files: [],
+  filter: {
+    visible: false,
+    active: false,
+    url: "",
+    method: "",
+    status: "",
+  },
   ui: {
-    rowId: 0,
+    rowId: 1,
     tab: "REQ",
   },
   settings: {},
@@ -45,6 +62,8 @@ export const useAppStore = create<AppStore>((set) => ({
       files: state.files.filter((file) => file.fileId !== fileId),
     })),
   removeAllFiles: () => set({ files: [] }),
+  setFilter: (newFilter: Filter) =>
+    set((state) => ({ filter: { ...state.filter, ...newFilter } })),
 }));
 
 export const selectTab = (state: AppStore) => state.ui.tab;
@@ -54,6 +73,8 @@ export const selectRemoveFile = (state: AppStore) => state.removeFile;
 export const selectFiles = (state: AppStore) => state.files;
 export const selectRowId = (state: AppStore) => state.ui.rowId;
 export const selectSetRowId = (state: AppStore) => state.setRowId;
+export const selectFilter = (state: AppStore) => state.filter;
+export const selectSetFilter = (state: AppStore) => state.setFilter;
 
 export const selectFileTabs = (state: AppStore) =>
   state.files.map((file) => ({ fileId: file.fileId, name: file.name }));

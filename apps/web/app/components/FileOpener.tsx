@@ -2,10 +2,11 @@
 import React from "react";
 import { readFileData } from "../helpers/helpers";
 import { nanoid } from "../helpers/nanoid";
-import { useAppStore, selectAddFile } from "../store/store";
+import { useAppStore, selectAddFile, selectSetRowId } from "../store/store";
 
 export const FileOpener = () => {
   const addFile = useAppStore(selectAddFile);
+  const setRowId = useAppStore(selectSetRowId);
 
   const openFileSelector = () => {
     (document.querySelector("input[type='file']") as HTMLInputElement)?.click();
@@ -27,6 +28,7 @@ export const FileOpener = () => {
       const fileData = await readFileData(file);
       const data = JSON.parse(fileData);
       addFile({ fileId, name, size, data });
+      setRowId(1); // reset rowId to 1 (first entry in the list)
     } catch (error) {
       console.error("Error loading file:", error);
       // todo: modal with warning

@@ -23,20 +23,22 @@ export function Filter() {
     setFilter({ ...filter, method });
   };
 
-  const highlightClasses =
-    url.trim() || status.trim() || method.trim()
-      ? "bg-accent-950"
-      : "bg-bunker-500";
+  const isFilled = url.trim() || status.trim() || method.trim();
+
+  const highlightPanelClasses = isFilled ? "bg-accent-950" : "bg-bunker-500";
+  const highlightInputClasses = isFilled
+    ? "bg-bunker-600 focus:ring-accent-600"
+    : "bg-bunker-700 focus:ring-mirage-700";
 
   return (
     <div
-      className={`${highlightClasses} text-mirage-200 flex flex-col flex-wrap gap-2 rounded-md px-2 py-2 transition-colors duration-200`}
+      className={`${highlightPanelClasses} text-mirage-200 flex flex-col flex-wrap gap-2 rounded-md px-2 py-2 transition-colors duration-200`}
     >
       <div className="flex flex-row items-center gap-4 p-0">
         <span className="font-bold">URL</span>
         <input
           type="text"
-          className="bg-bunker-700 flex-1 rounded-md px-2 py-1 text-sm text-white"
+          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-white transition-colors duration-200 focus:outline-none focus:ring-2`}
           value={url}
           onChange={handleUrlChange}
         />
@@ -46,7 +48,7 @@ export function Filter() {
         <span className="font-bold">Status</span>
         <input
           type="text"
-          className="bg-bunker-700 flex-1 rounded-md px-2 py-1 text-sm text-white"
+          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-white transition-colors duration-200 focus:outline-none focus:ring-2`}
           value={status}
           onChange={handleStatusChange}
         />
@@ -54,7 +56,7 @@ export function Filter() {
         <span className="font-bold">Method</span>
         <input
           type="text"
-          className="bg-bunker-700 flex-1 rounded-md px-2 py-1 text-sm text-white"
+          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-white transition-colors duration-200 focus:outline-none focus:ring-2`}
           value={method}
           onChange={handleMethodChange}
         />

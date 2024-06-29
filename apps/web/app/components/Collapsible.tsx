@@ -18,7 +18,7 @@ export function Collapsible({
         <div>{isOpen ? "▲" : "▼"}</div>
         <div className="font-bold uppercase">{title}</div>
       </div>
-      {isOpen && <div className="p-2">{children}</div>}
+      {isOpen && <div className="p-2 pb-0">{children}</div>}
     </div>
   );
 }

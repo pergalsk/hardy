@@ -21,6 +21,9 @@ export const selectFile = (state: AppStore) => {
   return files[fileId] || null;
 };
 
+export const selectHarData = (state: AppStore) =>
+  selectFile(state)?.data?.log || null;
+
 export const selectFileEntries = (state: AppStore) => {
   const file = selectFile(state);
 
@@ -37,10 +40,10 @@ export const selectFileEntries = (state: AppStore) => {
 };
 
 export const selectFileTabs = (state: AppStore) =>
-  state.files.map((file) => ({ fileId: file.fileId, name: file.name }));
+  selectFiles(state).map(({ fileId, name }) => ({ fileId, name }));
 
 export function selectFooterData(state: AppStore) {
-  const harData = state.files?.[0]?.data?.log || null;
+  const harData = selectHarData(state);
 
   if (!harData) {
     return null;

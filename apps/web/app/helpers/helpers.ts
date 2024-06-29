@@ -1,5 +1,3 @@
-import { nanoid } from "./nanoid";
-
 export function prepareList(data: any): any {
   if (!Array.isArray(data)) {
     return [];

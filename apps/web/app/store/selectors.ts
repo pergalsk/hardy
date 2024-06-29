@@ -62,6 +62,13 @@ export function selectFooterData(state: AppStore) {
   };
 }
 
+export function selectEntry(state: AppStore) {
+  const entries = selectFileEntries(state);
+  const rowId = selectRowId(state);
+
+  return entries.find((entry: any) => entry.$$id === rowId);
+}
+
 export function selectListData(state: AppStore): any {
   const entries = selectFileEntries(state);
 
@@ -80,4 +87,25 @@ export function selectListData(state: AppStore): any {
       time,
     };
   });
+}
+
+export function selectCommonData(state: AppStore): any {
+  const entry = selectEntry(state);
+
+  if (!entry) {
+    return null;
+  }
+
+  const { request, response, serverIPAddress, time } = entry;
+  const { method, url } = request;
+  const { status, statusText } = response;
+
+  return {
+    status,
+    statusText,
+    url,
+    method,
+    serverIPAddress,
+    time,
+  };
 }

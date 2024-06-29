@@ -17,7 +17,7 @@ import { FileOpener } from "./components/FileOpener";
 import { Footer } from "./components/Footer";
 import { Panel } from "./components/Panel";
 import { Filter } from "./components/Filter";
-import { prepareCommon, prepareParts } from "./helpers/helpers";
+import { prepareParts } from "./helpers/helpers";
 
 export default function Page(): JSX.Element {
   const files = useAppStore(selectFiles);
@@ -33,7 +33,6 @@ export default function Page(): JSX.Element {
   );
 
   const entry = entries.find((entry: any) => entry.$$id === rowId);
-  const common = prepareCommon(entry);
   const parts = prepareParts(entry);
 
   return (
@@ -46,7 +45,7 @@ export default function Page(): JSX.Element {
             <List />
           </Panel>
           <Panel>
-            <Detail data={common} parts={parts} />
+            <Detail parts={parts} />
           </Panel>
         </main>
       ) : (

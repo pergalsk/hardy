@@ -1,10 +1,14 @@
 import React from "react";
+import { useAppStore } from "../store/store";
+import { selectCommonData } from "../store/selectors";
 import { Url } from "./Url";
 import { Method } from "./Method";
 import { Status } from "./Status";
 import { Time } from "./Time";
 
-export function DetailCommon({ data }: { data: any }): JSX.Element {
+export function DetailCommon(): JSX.Element {
+  const data = useAppStore(selectCommonData);
+
   return (
     <div className="bg-bunker-500 flex flex-1 flex-col gap-1 rounded-md p-2">
       <div className="text-mirage-200 font-mono">

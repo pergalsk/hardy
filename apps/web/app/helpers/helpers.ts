@@ -1,22 +1,3 @@
-export function prepareCommon(data: any): any {
-  if (!data) {
-    return null;
-  }
-
-  const { request, response, serverIPAddress, time } = data;
-  const { method, url } = request;
-  const { status, statusText } = response;
-
-  return {
-    status,
-    statusText,
-    url,
-    method,
-    serverIPAddress,
-    time,
-  };
-}
-
 export function prepareParts(data: any): any {
   if (!data) {
     return null;

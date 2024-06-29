@@ -10,14 +10,13 @@ import { useAppStore } from "../store/store";
 import { selectTab } from "../store/selectors";
 
 interface DetailProps {
-  data: any;
   parts: any;
 }
 
 export function Detail(props: DetailProps): JSX.Element {
   const tab = useAppStore(selectTab);
 
-  const { data, parts } = props;
+  const { parts } = props;
 
   const headersMap: {
     [key: string]: { headers: HeaderItem[]; content: string };
@@ -37,35 +36,27 @@ export function Detail(props: DetailProps): JSX.Element {
 
   return (
     <>
-      {data ? (
-        <>
-          <DetailCommon data={data} />
-          <DetailButtons />
-          <DetailSegment>
-            <Collapsible title="Headers">
-              {partsSelection?.headers && (
-                <Headers headers={partsSelection.headers} />
-              )}
-            </Collapsible>
+      <DetailCommon />
+      <DetailButtons />
+      <DetailSegment>
+        <Collapsible title="Headers">
+          {partsSelection?.headers && (
+            <Headers headers={partsSelection.headers} />
+          )}
+        </Collapsible>
 
-            <Collapsible title="Content">
-              <div className="text-mirage-200 break-all">
-                {partsSelection?.content ? (
-                  <pre className="overflow-auto whitespace-pre-wrap break-words text-sm">
-                    {formatAsJson(partsSelection.content)}
-                  </pre>
-                ) : (
-                  <NoData>No data</NoData>
-                )}
-              </div>
-            </Collapsible>
-          </DetailSegment>
-        </>
-      ) : (
-        <DetailSegment>
-          <NoData>Select a request</NoData>
-        </DetailSegment>
-      )}
+        <Collapsible title="Content">
+          <div className="text-mirage-200 break-all">
+            {partsSelection?.content ? (
+              <pre className="overflow-auto whitespace-pre-wrap break-words text-sm">
+                {formatAsJson(partsSelection.content)}
+              </pre>
+            ) : (
+              <NoData>No data</NoData>
+            )}
+          </div>
+        </Collapsible>
+      </DetailSegment>
     </>
   );
 }

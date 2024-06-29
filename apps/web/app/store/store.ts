@@ -10,6 +10,7 @@ export type File = {
 export type TabCode = "REQ" | "RES" | "COO" | "TIM";
 
 export type Ui = {
+  fileId: number;
   rowId: number;
   tab: TabCode;
 };
@@ -29,6 +30,7 @@ export type State = {
 };
 
 export type Actions = {
+  setFileId: (fileId: number) => void;
   setRowId: (rowId: number) => void;
   setTab: (tab: TabCode) => void;
   addFile: (file: File) => void;
@@ -49,11 +51,14 @@ export const useAppStore = create<AppStore>((set) => ({
     status: "",
   },
   ui: {
+    fileId: 0,
     rowId: 1,
     tab: "REQ",
   },
   settings: {},
 
+  setFileId: (fileId: number) =>
+    set((state) => ({ ui: { ...state.ui, fileId } })),
   setRowId: (rowId: number) => set((state) => ({ ui: { ...state.ui, rowId } })),
   setTab: (tab: TabCode) => set((state) => ({ ui: { ...state.ui, tab } })),
   addFile: (file: File) => set((state) => ({ files: [...state.files, file] })),

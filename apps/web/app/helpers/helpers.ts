@@ -1,26 +1,3 @@
-export function prepareList(data: any): any {
-  if (!Array.isArray(data)) {
-    return [];
-  }
-
-  return data.map((item) => {
-    const { startedDateTime, time, request, response, $$id } = item;
-
-    const { method, url } = request;
-    const { status, statusText } = response;
-
-    return {
-      status,
-      statusText,
-      url,
-      method,
-      startedDateTime,
-      time,
-      $$id,
-    };
-  });
-}
-
 export function prepareCommon(data: any): any {
   if (!data) {
     return null;

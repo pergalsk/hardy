@@ -2,6 +2,7 @@ import React from "react";
 import { Url } from "./Url";
 import { Method } from "./Method";
 import { Status } from "./Status";
+import { Time } from "./Time";
 
 export function DetailCommon({ data }: { data: any }): JSX.Element {
   return (
@@ -33,7 +34,7 @@ export function DetailCommon({ data }: { data: any }): JSX.Element {
         <div className="flex flex-1 flex-col">
           <div className="text-mirage-200 font-mono">
             <span className="pr-2 font-bold">Time:</span>
-            {data.time.toFixed(2)} ms
+            <Time time={data.time} />
           </div>
           <div className="text-mirage-200 font-mono">
             <span className="pr-2 font-bold">Server IP:</span>

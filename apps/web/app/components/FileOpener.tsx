@@ -2,7 +2,8 @@
 import React from "react";
 import { readFileData } from "../helpers/helpers";
 import { nanoid } from "../helpers/nanoid";
-import { useAppStore, selectAddFile, selectSetRowId } from "../store/store";
+import { useAppStore } from "../store/store";
+import { selectAddFile, selectSetRowId } from "../store/selectors";
 
 export const FileOpener = () => {
   const addFile = useAppStore(selectAddFile);

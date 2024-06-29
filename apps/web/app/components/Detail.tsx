@@ -6,7 +6,8 @@ import { Headers, HeaderItem } from "./Headers";
 import { formatAsJson } from "../helpers/helpers";
 import { NoData } from "./NoData";
 import { Collapsible } from "./Collapsible";
-import { useAppStore, selectTab } from "../store/store";
+import { useAppStore } from "../store/store";
+import { selectTab } from "../store/selectors";
 
 interface DetailProps {
   data: any;

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import { useAppStore, selectFilter, selectSetFilter } from "../store/store";
+import { useAppStore } from "../store/store";
+import { selectFilter, selectSetFilter } from "../store/selectors";
 
 export function Filter() {
   const filter = useAppStore(selectFilter);

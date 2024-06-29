@@ -1,4 +1,5 @@
-import { useAppStore, selectFooterData } from "../store/store";
+import { useAppStore } from "../store/store";
+import { selectFooterData } from "../store/selectors";
 
 export function Footer() {
   const data = useAppStore(selectFooterData);

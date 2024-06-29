@@ -1,4 +1,5 @@
-import { useAppStore, selectRemoveFile } from "../store/store";
+import { useAppStore } from "../store/store";
+import { selectRemoveFile } from "../store/selectors";
 
 interface FileTabProps {
   file: {

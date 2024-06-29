@@ -1,4 +1,5 @@
-import { selectFilter, useAppStore } from "../store/store";
+import { useAppStore } from "../store/store";
+import { selectFilter } from "../store/selectors";
 import { filterData } from "../helpers/filter";
 import { ListItem } from "./ListItem";
 

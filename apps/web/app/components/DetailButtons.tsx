@@ -1,5 +1,6 @@
 import React from "react";
-import { TabCode, useAppStore, selectTab, selectSetTab } from "../store/store";
+import { TabCode, useAppStore } from "../store/store";
+import { selectTab, selectSetTab } from "../store/selectors";
 
 interface Tab {
   code: TabCode;

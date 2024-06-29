@@ -1,4 +1,5 @@
-import { useAppStore, selectFileTabs } from "../store/store";
+import { useAppStore } from "../store/store";
+import { selectFileTabs } from "../store/selectors";
 import { FileTab } from "./FileTab";
 
 export function FileTabs(): JSX.Element {

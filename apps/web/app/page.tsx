@@ -7,12 +7,8 @@
 // import { Button } from "@repo/ui/button";
 
 import React from "react";
-import {
-  useAppStore,
-  selectFiles,
-  selectRowId,
-  selectSetRowId,
-} from "./store/store";
+import { useAppStore } from "./store/store";
+import { selectFiles, selectRowId, selectSetRowId } from "./store/selectors";
 import { Header } from "./components/Header";
 import { List } from "./components/List";
 import { Detail } from "./components/Detail";

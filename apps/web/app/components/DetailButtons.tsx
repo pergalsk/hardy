@@ -25,8 +25,8 @@ export function DetailButtons(): JSX.Element {
       {tabsDef.map((tab) => {
         const activeClasses =
           tab.code === tabCode
-            ? "bg-accent-800"
-            : "bg-bunker-500 hover:bg-bunker-300";
+            ? "bg-accent-700 text-white hover:bg-accent-600"
+            : "bg-bunker-500 hover:text-white hover:bg-bunker-200";
 
         return (
           <button

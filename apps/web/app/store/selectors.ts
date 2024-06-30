@@ -24,6 +24,11 @@ export const selectFile = (state: AppStore) => {
 export const selectHarData = (state: AppStore) =>
   selectFile(state)?.data?.log || null;
 
+export const selectEntriesNum = (store: AppStore) => {
+  const entries = selectFile(store)?.data?.log?.entries;
+  return (Array.isArray(entries) && entries.length) || 0;
+};
+
 export const selectFileEntries = (state: AppStore) => {
   const file = selectFile(state);
 
@@ -107,5 +112,31 @@ export function selectCommonData(state: AppStore): any {
     method,
     serverIPAddress,
     time,
+  };
+}
+
+export function selectPartsData(state: AppStore): any {
+  const entry = selectEntry(state);
+
+  if (!entry) {
+    return null;
+  }
+
+  const { request, response, timings } = entry;
+
+  return {
+    request: {
+      headers: request.headers,
+      headersSize: request.headersSize,
+      bodySize: request.bodySize,
+      content: request.postData?.text,
+    },
+    response: {
+      headers: response.headers,
+      headersSize: response.headersSize,
+      bodySize: response.bodySize,
+      content: response.content?.text,
+    },
+    timings,
   };
 }

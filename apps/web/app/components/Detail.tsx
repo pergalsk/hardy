@@ -7,16 +7,11 @@ import { formatAsJson } from "../helpers/helpers";
 import { NoData } from "./NoData";
 import { Collapsible } from "./Collapsible";
 import { useAppStore } from "../store/store";
-import { selectTab } from "../store/selectors";
+import { selectTab, selectPartsData } from "../store/selectors";
 
-interface DetailProps {
-  parts: any;
-}
-
-export function Detail(props: DetailProps): JSX.Element {
+export function Detail(): JSX.Element {
   const tab = useAppStore(selectTab);
-
-  const { parts } = props;
+  const parts = useAppStore(selectPartsData);
 
   const headersMap: {
     [key: string]: { headers: HeaderItem[]; content: string };

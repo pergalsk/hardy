@@ -6,8 +6,12 @@ import { Method } from "./Method";
 import { Status } from "./Status";
 import { Time } from "./Time";
 
-export function DetailCommon(): JSX.Element {
+export function DetailCommon(): JSX.Element | null {
   const data = useAppStore(selectCommonData);
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <div className="bg-bunker-500 flex flex-1 flex-col gap-1 rounded-md p-2">

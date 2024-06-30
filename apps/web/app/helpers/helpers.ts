@@ -1,27 +1,3 @@
-export function prepareParts(data: any): any {
-  if (!data) {
-    return null;
-  }
-
-  const { request, response, timings } = data;
-
-  return {
-    request: {
-      headers: request.headers,
-      headersSize: request.headersSize,
-      bodySize: request.bodySize,
-      content: request.postData?.text,
-    },
-    response: {
-      headers: response.headers,
-      headersSize: response.headersSize,
-      bodySize: response.bodySize,
-      content: response.content?.text,
-    },
-    timings,
-  };
-}
-
 export function prepareFooter(data: any): any {
   if (!data) {
     return null;

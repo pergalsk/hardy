@@ -46,7 +46,7 @@ export const FileOpener = () => {
       />
 
       <button
-        className="bg-bunker-400 hover:bg-accent-950 rounded-lg px-8 py-4 text-lg font-bold text-white transition-colors duration-200"
+        className="bg-accent-800 hover:bg-accent-600 rounded-lg px-8 py-4 text-lg font-bold text-white transition-colors duration-200"
         onClick={openFileSelector}
       >
         Open HAR file

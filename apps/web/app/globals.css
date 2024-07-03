@@ -75,3 +75,30 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* JSON viewer */
+.w-json-view-container {
+  font-size: 14px !important;
+  line-height: 1.75 !important;
+  padding-left: 4px !important;
+}
+.w-rjv-inner:has(.w-rjv-arrow) {
+  margin-left: -13px;
+}
+.w-rjv-inner > div > .w-rjv-curlybraces-end,
+.w-rjv-inner > div > .w-rjv-brackets-end {
+  margin-left: 8px;
+}
+.w-rjv-wrap {
+  padding-left: 16px !important;
+  margin-left: 14px !important;
+}
+.w-rjv-type {
+  opacity: 0.5 !important;
+}
+.w-rjv-type[data-type="null"] {
+  opacity: 1 !important;
+}
+.w-rjv-object-size {
+  opacity: 0.6 !important;
+}

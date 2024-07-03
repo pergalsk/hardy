@@ -26,14 +26,17 @@ export function Filter() {
 
   const isFilled = url.trim() || status.trim() || method.trim();
 
-  const highlightPanelClasses = isFilled ? "bg-accent-950" : "bg-bunker-500";
+  const highlightPanelClasses = isFilled
+    ? "bg-accent-800 text-white"
+    : "bg-bunker-500 text-mirage-200";
+
   const highlightInputClasses = isFilled
     ? "bg-bunker-600 focus:ring-accent-600"
     : "bg-bunker-700 focus:ring-mirage-700";
 
   return (
     <div
-      className={`${highlightPanelClasses} text-mirage-200 flex flex-col flex-wrap gap-2 rounded-md px-2 py-2 transition-colors duration-200`}
+      className={`${highlightPanelClasses} flex flex-col flex-wrap gap-2 rounded-md px-2 py-2 transition-colors duration-200`}
     >
       <div className="flex flex-row items-center gap-4 p-0">
         <span className="font-bold">URL</span>

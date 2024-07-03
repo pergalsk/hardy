@@ -36,23 +36,23 @@ export function getUrlParts(url: string) {
   };
 }
 
-export function formatAsJson(str: string): string {
+export function formatAsJson(str: string): any {
   if (typeof str !== "string" || !str.length) {
     console.info("Data is not a string.");
-    return str;
+    return {};
   }
 
   if (!str.trim().startsWith("{") && !str.trim().startsWith("[")) {
     console.info("String is not JSON.");
-    return str;
+    return {};
   }
 
   try {
     const parsedJson = JSON.parse(str);
-    return JSON.stringify(parsedJson, null, 2);
+    return parsedJson; //JSON.stringify(parsedJson, null, 2);
   } catch (error) {
     console.error("Error parsing JSON:", error);
-    return str;
+    return {};
   }
 }
 

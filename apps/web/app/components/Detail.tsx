@@ -1,4 +1,5 @@
 import React from "react";
+import JsonView from "@uiw/react-json-view";
 import { DetailSegment } from "./DetailSegment";
 import { DetailButtons } from "./DetailButtons";
 import { DetailCommon } from "./DetailCommon";
@@ -12,6 +13,38 @@ import { selectTab, selectPartsData } from "../store/selectors";
 export function Detail(): JSX.Element {
   const tab = useAppStore(selectTab);
   const parts = useAppStore(selectPartsData);
+
+  const customTheme = {
+    "--w-rjv-color": "#9cdcfe",
+    "--w-rjv-key-number": "#b3d9ed88",
+    "--w-rjv-key-string": "#b3d9ed",
+    "--w-rjv-background-color": "#0e1016",
+    "--w-rjv-line-color": "#b3d9ed11",
+    "--w-rjv-arrow-color": "#838383",
+    "--w-rjv-edit-color": "#9cdcfe",
+    "--w-rjv-info-color": "#9c9c9c7a",
+    "--w-rjv-update-color": "#9cdcfe",
+    "--w-rjv-copied-color": "#9cdcfe",
+    "--w-rjv-copied-success-color": "#28a745",
+
+    "--w-rjv-curlybraces-color": "#b3d9ed88",
+    "--w-rjv-colon-color": "#b3d9ed88",
+    "--w-rjv-brackets-color": "#b3d9ed88",
+    "--w-rjv-ellipsis-color": "#cb4b16",
+    "--w-rjv-quotes-color": "#b3d9ed88",
+    "--w-rjv-quotes-string-color": "#ffd70088",
+
+    "--w-rjv-type-string-color": "#ffd700ee",
+    "--w-rjv-type-int-color": "#42d939",
+    "--w-rjv-type-float-color": "#42d939",
+    "--w-rjv-type-bigint-color": "#42d939",
+    "--w-rjv-type-boolean-color": "#569cd6",
+    "--w-rjv-type-date-color": "#b5cea8",
+    "--w-rjv-type-url-color": "#3b89cf",
+    "--w-rjv-type-null-color": "#fa8072",
+    "--w-rjv-type-nan-color": "#859900",
+    "--w-rjv-type-undefined-color": "#fa8072",
+  };
 
   const headersMap: {
     [key: string]: { headers: HeaderItem[]; content: string };
@@ -41,11 +74,18 @@ export function Detail(): JSX.Element {
         </Collapsible>
 
         <Collapsible title="Content">
-          <div className="text-mirage-200 break-all">
+          <div className="text-mirage-200 break-all text-lg">
             {partsSelection?.content ? (
-              <pre className="overflow-auto whitespace-pre-wrap break-words text-sm">
-                {formatAsJson(partsSelection.content)}
-              </pre>
+              <JsonView
+                value={formatAsJson(partsSelection.content)}
+                collapsed={2}
+                indentWidth={24}
+                enableClipboard={false}
+                displayDataTypes={false}
+                displayObjectSize={false}
+                highlightUpdates={false}
+                style={customTheme}
+              />
             ) : (
               <NoData>No data</NoData>
             )}

@@ -19,7 +19,7 @@ export function Detail(): JSX.Element {
     "--w-rjv-key-number": "#b3d9ed88",
     "--w-rjv-key-string": "#b3d9ed",
     "--w-rjv-background-color": "#0e1016",
-    "--w-rjv-line-color": "#b3d9ed11",
+    "--w-rjv-line-color": "#b3d9ed22",
     "--w-rjv-arrow-color": "#838383",
     "--w-rjv-edit-color": "#9cdcfe",
     "--w-rjv-info-color": "#9c9c9c7a",
@@ -30,7 +30,7 @@ export function Detail(): JSX.Element {
     "--w-rjv-curlybraces-color": "#b3d9ed88",
     "--w-rjv-colon-color": "#b3d9ed88",
     "--w-rjv-brackets-color": "#b3d9ed88",
-    "--w-rjv-ellipsis-color": "#cb4b16",
+    "--w-rjv-ellipsis-color": "#ff0000",
     "--w-rjv-quotes-color": "#b3d9ed88",
     "--w-rjv-quotes-string-color": "#ffd70088",
 

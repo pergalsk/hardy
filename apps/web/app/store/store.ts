@@ -66,7 +66,7 @@ export const useAppStore = create<AppStore>((set) => ({
   },
   ui: {
     fileId: 0,
-    rowId: 1,
+    rowId: 0,
     tab: "REQ",
   },
   settings: {

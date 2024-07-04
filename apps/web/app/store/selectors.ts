@@ -42,7 +42,7 @@ export const selectFileEntries = (state: AppStore) => {
 
   return entries.map((entry: any, index: number) => ({
     ...entry,
-    $$id: index + 1,
+    $$id: index,
   }));
 };
 

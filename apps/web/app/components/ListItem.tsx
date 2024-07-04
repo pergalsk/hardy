@@ -44,7 +44,7 @@ export function ListItem(props: ListItemProps): JSX.Element {
         <div className="text-mirage-600">|</div>
         <Time time={time} />
         <div className="text-mirage-600">|</div>
-        <div className="text-mirage-200">#{id}</div>
+        <div className="text-mirage-200">#{id + 1}</div>
       </div>
       <div className="flex gap-2">
         <Method method={method} colored={true} />

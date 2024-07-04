@@ -41,7 +41,7 @@ export const FileDropper = () => {
       const rawData = await readFileData(file);
       const data = JSON.parse(rawData);
       addFile({ fileId, name, size, data });
-      setRowId(1); // reset rowId to 1 (first entry in the list)
+      setRowId(0);
     } catch (error) {
       console.error("Error loading file:", error);
       // todo: modal with warning

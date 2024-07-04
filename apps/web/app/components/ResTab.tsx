@@ -4,19 +4,17 @@ import { Headers } from "./Headers";
 import { NoData } from "./NoData";
 
 export function ResTab({ data }: { data: any }): JSX.Element {
+  const { headers, content } = data;
+
   return (
     <>
       <Collapsible title="Headers">
-        {data?.headers && <Headers headers={data?.headers} />}
+        {headers && <Headers headers={headers} />}
       </Collapsible>
 
       <Collapsible title="Content">
         <div className="text-mirage-200 break-all text-lg">
-          {data?.content ? (
-            <JsonContent data={data.content} />
-          ) : (
-            <NoData>No data</NoData>
-          )}
+          {content ? <JsonContent data={content} /> : <NoData>No data</NoData>}
         </div>
       </Collapsible>
     </>

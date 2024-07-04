@@ -1,4 +1,4 @@
-import { AppStore } from "./store";
+import { AppStore, TabCode } from "./store";
 
 export const selectTab = (state: AppStore) => state.ui.tab;
 export const selectSetTab = (state: AppStore) => state.setTab;
@@ -10,6 +10,8 @@ export const selectFileId = (state: AppStore) => state.ui.fileId;
 export const selectSetRowId = (state: AppStore) => state.setRowId;
 export const selectFilter = (state: AppStore) => state.filter;
 export const selectSetFilter = (state: AppStore) => state.setFilter;
+export const selectJsonViewerSettings = (state: AppStore) =>
+  state.settings.jsonViewer;
 
 export const selectFile = (state: AppStore) => {
   const files = selectFiles(state);
@@ -115,28 +117,42 @@ export function selectCommonData(state: AppStore): any {
   };
 }
 
-export function selectPartsData(state: AppStore): any {
-  const entry = selectEntry(state);
+export function selectTabData(tabCode: TabCode): any {
+  return (state: AppStore) => {
+    const entry = selectEntry(state);
 
-  if (!entry) {
+    if (!entry) {
+      return null;
+    }
+
+    const { request, response, timings } = entry;
+
+    if (tabCode === "REQ") {
+      return {
+        headers: request?.headers,
+        headersSize: request?.headersSize,
+        bodySize: request?.bodySize,
+        content: request?.postData?.text,
+      };
+    }
+
+    if (tabCode === "RES") {
+      return {
+        headers: response?.headers,
+        headersSize: response?.headersSize,
+        bodySize: response?.bodySize,
+        content: response?.content?.text,
+      };
+    }
+
+    if (tabCode === "COO") {
+      return null;
+    }
+
+    if (tabCode === "TIM") {
+      return timings;
+    }
+
     return null;
-  }
-
-  const { request, response, timings } = entry;
-
-  return {
-    request: {
-      headers: request.headers,
-      headersSize: request.headersSize,
-      bodySize: request.bodySize,
-      content: request.postData?.text,
-    },
-    response: {
-      headers: response.headers,
-      headersSize: response.headersSize,
-      bodySize: response.bodySize,
-      content: response.content?.text,
-    },
-    timings,
   };
 }

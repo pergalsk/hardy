@@ -7,14 +7,6 @@ export type File = {
   data: any;
 };
 
-export type TabCode = "REQ" | "RES" | "COO" | "TIM";
-
-export type Ui = {
-  fileId: number;
-  rowId: number;
-  tab: TabCode;
-};
-
 export type Filter = {
   visible: boolean;
   active: boolean;
@@ -23,10 +15,32 @@ export type Filter = {
   status: string;
 };
 
+export type TabCode = "REQ" | "RES" | "COO" | "TIM";
+
+export type Ui = {
+  fileId: number;
+  rowId: number;
+  tab: TabCode;
+};
+
+export type JsonViewerSettings = {
+  collapsed: number;
+  indentWidth: number;
+  enableClipboard: boolean;
+  displayDataTypes: boolean;
+  displayObjectSize: boolean;
+  highlightUpdates: boolean;
+};
+
+export type Settings = {
+  jsonViewer: JsonViewerSettings;
+};
+
 export type State = {
   files: File[];
   filter: Filter;
   ui: Ui;
+  settings: Settings;
 };
 
 export type Actions = {
@@ -55,7 +69,16 @@ export const useAppStore = create<AppStore>((set) => ({
     rowId: 1,
     tab: "REQ",
   },
-  settings: {},
+  settings: {
+    jsonViewer: {
+      collapsed: 2,
+      indentWidth: 24,
+      enableClipboard: false,
+      displayDataTypes: true,
+      displayObjectSize: false,
+      highlightUpdates: false,
+    },
+  },
 
   setFileId: (fileId: number) =>
     set((state) => ({ ui: { ...state.ui, fileId } })),

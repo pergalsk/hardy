@@ -15,14 +15,25 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  /* @apply: bg-orange-700 rounded; */
-  background: #ffffff20;
+  background: #f1f5f9;
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffffff40;
+  background: #e6ebf0;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff20;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffffff40;
+  }
 }
 
 :root {

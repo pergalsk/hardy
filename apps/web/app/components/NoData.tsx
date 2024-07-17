@@ -6,9 +6,9 @@ export function NoData({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <div className="flex flex-col justify-center items-center h-full">
+    <div className="flex h-full flex-col items-center justify-center">
       <MagnifyingGlassSvg />
-      <h1 className="text-lg font-bold uppercase text-center text-mirage-900">
+      <h1 className="dark:text-mirage-900 text-center text-lg font-bold uppercase text-slate-200">
         {children || "No data here"}
       </h1>
     </div>

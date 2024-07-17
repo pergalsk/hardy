@@ -12,7 +12,7 @@ export function MagnifyingGlassSvg(): JSX.Element {
       strokeLinejoin="round"
       width="128"
       height="128"
-      className="text-mirage-900"
+      className="dark:text-mirage-900 text-slate-100"
     >
       <circle cx="11" cy="11" r="8" />
       <line x1="21" y1="21" x2="16.65" y2="16.65" />

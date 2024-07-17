@@ -27,12 +27,12 @@ export function Filter() {
   const isFilled = url.trim() || status.trim() || method.trim();
 
   const highlightPanelClasses = isFilled
-    ? "bg-accent-800 text-white"
-    : "bg-bunker-500 text-mirage-200";
+    ? "bg-accent-50 text-black dark:bg-accent-800 dark:text-white"
+    : "bg-mirage-50 text-black dark:bg-bunker-500 dark:text-mirage-200";
 
   const highlightInputClasses = isFilled
-    ? "bg-bunker-600 focus:ring-accent-600"
-    : "bg-bunker-700 focus:ring-mirage-700";
+    ? "text-black dark:bg-bunker-600 dark:focus:ring-accent-600"
+    : "text-black dark:bg-bunker-700 dark:focus:ring-mirage-700";
 
   return (
     <div
@@ -42,7 +42,7 @@ export function Filter() {
         <span className="font-bold">URL</span>
         <input
           type="text"
-          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-white transition-colors duration-200 focus:outline-none focus:ring-2`}
+          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
           value={url}
           onChange={handleUrlChange}
         />
@@ -52,7 +52,7 @@ export function Filter() {
         <span className="font-bold">Status</span>
         <input
           type="text"
-          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-white transition-colors duration-200 focus:outline-none focus:ring-2`}
+          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
           value={status}
           onChange={handleStatusChange}
         />
@@ -60,7 +60,7 @@ export function Filter() {
         <span className="font-bold">Method</span>
         <input
           type="text"
-          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-white transition-colors duration-200 focus:outline-none focus:ring-2`}
+          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
           value={method}
           onChange={handleMethodChange}
         />

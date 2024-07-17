@@ -15,7 +15,7 @@ export function Headers({ headers }: { headers: HeaderItem[] }): JSX.Element {
             .map((header: HeaderItem, index: number) => (
               <tr
                 key={index}
-                className="text-mirage-200 border-bunker-400 break-all border-b font-mono last:border-none"
+                className="dark:text-mirage-200 dark:border-bunker-400 break-all border-b border-slate-100 font-mono text-black last:border-none"
               >
                 <td className="w-auto whitespace-nowrap py-1 pr-2 align-top font-bold">
                   {header.name}:

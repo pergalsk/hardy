@@ -30,12 +30,12 @@ export function ListItem(props: ListItemProps): JSX.Element {
   } = props;
 
   const selectedClasses = isSelected
-    ? "border-accent-700 hover:border-accent-400"
-    : "border-transparent hover:border-bunker-200";
+    ? "border-accent-500 hover:border-accent-300 dark:border-accent-700 dark:hover:border-accent-400"
+    : "border-transparent hover:border-mirage-100 dark:hover:border-bunker-200";
 
   return (
     <div
-      className={`${selectedClasses} bg-bunker-800 text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 p-2 text-sm transition-colors duration-200 hover:cursor-pointer hover:border-2`}
+      className={`${selectedClasses} text-mirage-800 dark:bg-bunker-800 dark:text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 bg-slate-100 p-2 text-sm transition-colors duration-200 hover:cursor-pointer hover:border-2`}
       onClick={() => onSelect(id)}
     >
       <div className="flex items-center gap-1">

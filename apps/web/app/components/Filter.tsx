@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import { useAppStore } from "../store/store";
-import { selectFilter, selectSetFilter } from "../store/selectors";
+import { selectFilter } from "../store/selectors";
+import { setFilter } from "../store/actions";
 
 export function Filter() {
   const filter = useAppStore(selectFilter);
-  const setFilter = useAppStore(selectSetFilter);
 
   const { url, status, method } = filter;
 

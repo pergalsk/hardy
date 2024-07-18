@@ -1,19 +1,14 @@
-import { AppStore, TabCode } from "./store";
+import { AppState, TabCode } from "./store";
 
-export const selectTab = (state: AppStore) => state.ui.tab;
-export const selectSetTab = (state: AppStore) => state.setTab;
-export const selectAddFile = (state: AppStore) => state.addFile;
-export const selectRemoveFile = (state: AppStore) => state.removeFile;
-export const selectFiles = (state: AppStore) => state.files;
-export const selectRowId = (state: AppStore) => state.ui.rowId;
-export const selectFileId = (state: AppStore) => state.ui.fileId;
-export const selectSetRowId = (state: AppStore) => state.setRowId;
-export const selectFilter = (state: AppStore) => state.filter;
-export const selectSetFilter = (state: AppStore) => state.setFilter;
-export const selectJsonViewerSettings = (state: AppStore) =>
+export const selectTab = (state: AppState) => state.ui.tab;
+export const selectFiles = (state: AppState) => state.files;
+export const selectRowId = (state: AppState) => state.ui.rowId;
+export const selectFileId = (state: AppState) => state.ui.fileId;
+export const selectFilter = (state: AppState) => state.filter;
+export const selectJsonViewerSettings = (state: AppState) =>
   state.settings.jsonViewer;
 
-export const selectFile = (state: AppStore) => {
+export const selectFile = (state: AppState) => {
   const files = selectFiles(state);
   const fileId = selectFileId(state);
 
@@ -23,15 +18,15 @@ export const selectFile = (state: AppStore) => {
   return files[fileId] || null;
 };
 
-export const selectHarData = (state: AppStore) =>
+export const selectHarData = (state: AppState) =>
   selectFile(state)?.data?.log || null;
 
-export const selectEntriesNum = (store: AppStore) => {
+export const selectEntriesNum = (store: AppState) => {
   const entries = selectFile(store)?.data?.log?.entries;
   return (Array.isArray(entries) && entries.length) || 0;
 };
 
-export const selectFileEntries = (state: AppStore) => {
+export const selectFileEntries = (state: AppState) => {
   const file = selectFile(state);
 
   const entries = file?.data?.log?.entries;
@@ -46,10 +41,10 @@ export const selectFileEntries = (state: AppStore) => {
   }));
 };
 
-export const selectFileTabs = (state: AppStore) =>
+export const selectFileTabs = (state: AppState) =>
   selectFiles(state).map(({ fileId, name }) => ({ fileId, name }));
 
-export function selectFooterData(state: AppStore) {
+export function selectFooterData(state: AppState) {
   const harData = selectHarData(state);
 
   if (!harData) {
@@ -69,14 +64,14 @@ export function selectFooterData(state: AppStore) {
   };
 }
 
-export function selectEntry(state: AppStore) {
+export function selectEntry(state: AppState) {
   const entries = selectFileEntries(state);
   const rowId = selectRowId(state);
 
   return entries.find((entry: any) => entry.$$id === rowId);
 }
 
-export function selectListData(state: AppStore): any {
+export function selectListData(state: AppState): any {
   const entries = selectFileEntries(state);
 
   return entries.map((entry: any) => {
@@ -96,7 +91,7 @@ export function selectListData(state: AppStore): any {
   });
 }
 
-export function selectCommonData(state: AppStore): any {
+export function selectCommonData(state: AppState): any {
   const entry = selectEntry(state);
 
   if (!entry) {
@@ -118,7 +113,7 @@ export function selectCommonData(state: AppStore): any {
 }
 
 export function selectTabData(tabCode: TabCode): any {
-  return (state: AppStore) => {
+  return (state: AppState) => {
     const entry = selectEntry(state);
 
     if (!entry) {

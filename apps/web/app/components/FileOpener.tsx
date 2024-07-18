@@ -2,13 +2,9 @@
 import React from "react";
 import { readFileData } from "../helpers/helpers";
 import { nanoid } from "../helpers/nanoid";
-import { useAppStore } from "../store/store";
-import { selectAddFile, selectSetRowId } from "../store/selectors";
+import { addFile, setRowId } from "../store/actions";
 
 export const FileOpener = () => {
-  const addFile = useAppStore(selectAddFile);
-  const setRowId = useAppStore(selectSetRowId);
-
   const openFileSelector = () => {
     (document.querySelector("input[type='file']") as HTMLInputElement)?.click();
   };

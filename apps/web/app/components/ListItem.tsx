@@ -1,5 +1,6 @@
 import { useAppStore } from "../store/store";
-import { selectRowId, selectSetRowId } from "../store/selectors";
+import { selectRowId } from "../store/selectors";
+import { setRowId } from "../store/actions";
 import { Method } from "./Method";
 import { Url } from "./Url";
 import { Status } from "./Status";
@@ -7,7 +8,6 @@ import { DateTime } from "./DateTime";
 import { Time } from "./Time";
 
 export function ListItem({ item }: { item: any }): JSX.Element {
-  const setRowId = useAppStore(selectSetRowId);
   const rowId = useAppStore(selectRowId);
 
   const { status, statusText, method, url, startedDateTime, time, $$id } = item;

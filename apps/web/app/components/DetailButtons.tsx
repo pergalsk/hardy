@@ -1,6 +1,7 @@
 import React from "react";
 import { TabCode, useAppStore } from "../store/store";
-import { selectTab, selectSetTab } from "../store/selectors";
+import { selectTab } from "../store/selectors";
+import { setTab } from "../store/actions";
 
 interface Tab {
   code: TabCode;
@@ -18,7 +19,6 @@ const tabsDef: Tab[] = [
 
 export function DetailButtons(): JSX.Element {
   const tabCode = useAppStore(selectTab);
-  const setTab = useAppStore(selectSetTab);
 
   return (
     <div className="flex gap-2">

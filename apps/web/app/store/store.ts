@@ -36,26 +36,14 @@ export type Settings = {
   jsonViewer: JsonViewerSettings;
 };
 
-export type State = {
+export type AppState = {
   files: File[];
   filter: Filter;
   ui: Ui;
   settings: Settings;
 };
 
-export type Actions = {
-  setFileId: (fileId: number) => void;
-  setRowId: (rowId: number) => void;
-  setTab: (tab: TabCode) => void;
-  addFile: (file: File) => void;
-  removeFile: (fileId: string) => void;
-  removeAllFiles: () => void;
-  setFilter: (filter: Filter) => void;
-};
-
-export type AppStore = State & Actions;
-
-export const useAppStore = create<AppStore>((set) => ({
+export const useAppStore = create<AppState>(() => ({
   files: [],
   filter: {
     visible: false,
@@ -79,17 +67,4 @@ export const useAppStore = create<AppStore>((set) => ({
       highlightUpdates: false,
     },
   },
-
-  setFileId: (fileId: number) =>
-    set((state) => ({ ui: { ...state.ui, fileId } })),
-  setRowId: (rowId: number) => set((state) => ({ ui: { ...state.ui, rowId } })),
-  setTab: (tab: TabCode) => set((state) => ({ ui: { ...state.ui, tab } })),
-  addFile: (file: File) => set((state) => ({ files: [...state.files, file] })),
-  removeFile: (fileId: string) =>
-    set((state) => ({
-      files: state.files.filter((file) => file.fileId !== fileId),
-    })),
-  removeAllFiles: () => set({ files: [] }),
-  setFilter: (newFilter: Filter) =>
-    set((state) => ({ filter: { ...state.filter, ...newFilter } })),
 }));

@@ -2,12 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { readFileData } from "../helpers/helpers";
 import { nanoid } from "../helpers/nanoid";
-import { useAppStore } from "../store/store";
-import { selectAddFile, selectSetRowId } from "../store/selectors";
+import { addFile, setRowId } from "../store/actions";
 
 export const FileDropper = () => {
-  const addFile = useAppStore(selectAddFile);
-  const setRowId = useAppStore(selectSetRowId);
   const [isDragging, setIsDragging] = useState(false);
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {

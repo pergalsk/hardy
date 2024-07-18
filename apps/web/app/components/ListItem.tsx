@@ -1,50 +1,33 @@
+import { useAppStore } from "../store/store";
+import { selectRowId, selectSetRowId } from "../store/selectors";
 import { Method } from "./Method";
 import { Url } from "./Url";
 import { Status } from "./Status";
 import { DateTime } from "./DateTime";
 import { Time } from "./Time";
 
-interface ListItemProps {
-  status: number;
-  statusText: string;
-  method: string;
-  url: string;
-  dateTime: string;
-  time: number;
-  isSelected: boolean;
-  id: number;
-  onSelect: (id: number) => void;
-}
+export function ListItem({ item }: { item: any }): JSX.Element {
+  const setRowId = useAppStore(selectSetRowId);
+  const rowId = useAppStore(selectRowId);
 
-export function ListItem(props: ListItemProps): JSX.Element {
-  const {
-    status,
-    statusText,
-    method,
-    url,
-    dateTime,
-    time,
-    isSelected,
-    id,
-    onSelect,
-  } = props;
+  const { status, statusText, method, url, startedDateTime, time, $$id } = item;
 
-  const selectedClasses = isSelected
-    ? "border-accent-500 hover:border-accent-300 dark:border-accent-700 dark:hover:border-accent-400"
-    : "border-transparent hover:border-mirage-100 dark:hover:border-bunker-200";
+  const selectedClasses =
+    $$id === rowId
+      ? "border-accent-500 hover:border-accent-300 dark:border-accent-700 dark:hover:border-accent-400"
+      : "border-transparent hover:border-mirage-100 dark:hover:border-bunker-200";
 
   return (
     <div
       className={`${selectedClasses} text-mirage-800 dark:bg-bunker-800 dark:text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 bg-slate-100 p-2 text-sm transition-colors duration-200 hover:cursor-pointer hover:border-2`}
-      onClick={() => onSelect(id)}
+      onClick={() => setRowId($$id)}
     >
       <div className="flex items-center gap-1">
         <Status status={status} text={statusText} colored={true} />
-        <DateTime dateTime={dateTime} timeOnly={true} />
+        <DateTime dateTime={startedDateTime} timeOnly={true} />
         <div className="text-mirage-600">|</div>
-        <Time time={time} />
-        <div className="text-mirage-600">|</div>
-        <div className="text-mirage-200">#{id + 1}</div>
+        <Time time={time} />s<div className="text-mirage-600">|</div>
+        <div className="text-mirage-200">#{$$id + 1}</div>
       </div>
       <div className="flex gap-2">
         <Method method={method} colored={true} />

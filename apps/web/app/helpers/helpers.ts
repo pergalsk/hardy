@@ -36,15 +36,13 @@ export function getUrlParts(url: string) {
   };
 }
 
-export function formatAsJson(str: string): any {
+export function parseJsonData(str: string): any {
   if (typeof str !== "string" || !str.length) {
-    console.info("Data is not a string.");
-    return {};
+    return null;
   }
 
   if (!str.trim().startsWith("{") && !str.trim().startsWith("[")) {
-    console.info("String is not JSON.");
-    return {};
+    return null;
   }
 
   try {
@@ -52,7 +50,7 @@ export function formatAsJson(str: string): any {
     return parsedJson; //JSON.stringify(parsedJson, null, 2);
   } catch (error) {
     console.error("Error parsing JSON:", error);
-    return {};
+    return null;
   }
 }
 

@@ -1,7 +1,7 @@
 import JsonView from "@uiw/react-json-view";
 import { useAppStore } from "../store/store";
 import { selectJsonViewerSettings } from "../store/selectors";
-import { formatAsJson } from "../helpers/helpers";
+import { parseJson } from "../helpers/helpers";
 
 const style = {
   "--w-rjv-color": "#9cdcfe",
@@ -37,7 +37,10 @@ const style = {
 
 export function JsonContent({ data }: { data: any }): JSX.Element {
   const settings = useAppStore(selectJsonViewerSettings);
-  const value = formatAsJson(data);
 
-  return <JsonView value={value} style={style} {...settings} />;
+  return (
+    <div className="break-all">
+      <JsonView value={data} style={style} {...settings} />
+    </div>
+  );
 }

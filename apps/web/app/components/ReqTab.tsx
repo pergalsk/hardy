@@ -1,7 +1,6 @@
 import { Collapsible } from "./Collapsible";
 import { Headers } from "./Headers";
-import { JsonContent } from "./JsonContent";
-import { NoData } from "./NoData";
+import { Content } from "./Content";
 
 export function ReqTab({ data }: { data: any }): JSX.Element {
   const { headers, content } = data;
@@ -12,9 +11,7 @@ export function ReqTab({ data }: { data: any }): JSX.Element {
       </Collapsible>
 
       <Collapsible title="Content">
-        <div className="text-mirage-200 break-all text-lg">
-          {content ? <JsonContent data={content} /> : <NoData>No data</NoData>}
-        </div>
+        <Content data={content} />
       </Collapsible>
     </>
   );

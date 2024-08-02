@@ -1,38 +1,33 @@
 import { Filter } from "../store/store";
 
-const resolveToken = (str: string, token: string) => {
-  // negative filter
-  if (token.startsWith("-")) {
-    if (str.includes(token.substring(1))) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-  // positive filter
-  if (str.includes(token)) {
-    return true;
-  } else {
-    return false;
-  }
+const getTokens = (fields: Filter["fields"]) => {
+  const { url } = fields;
+
+  return typeof url === "string" && url !== ""
+    ? url.split(" ").filter(Boolean)
+    : [];
 };
 
-export const filterData = (filter: Filter) => (item: any) => {
-  const { url } = filter;
+const resolveToken = (str: string, token: string) => str.includes(token);
 
-  // wrong filter definition
-  if (typeof url !== "string" || url === "") {
-    return true;
+export const filterData = ({ fields }: Filter) => {
+  const tokens = getTokens(fields);
+
+  if (tokens.length < 1) {
+    // filter method
+    return () => true;
   }
 
-  const tokens = url.split(" ");
+  // filter method
+  return (item: any): boolean => {
+    const result = tokens.reduce((acc, token) => {
+      if (token.startsWith("-") && token.length > 1) {
+        return acc && !resolveToken(item.url, token.substring(1));
+      }
 
-  const result = tokens.reduce((acc, token) => {
-    if (token === "") {
-      return acc;
-    }
-    return acc || resolveToken(item.url, token);
-  }, false);
+      return acc && resolveToken(item.url, token);
+    }, true);
 
-  return result;
+    return result;
+  };
 };

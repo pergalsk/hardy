@@ -1,27 +1,29 @@
 "use client";
+
 import React from "react";
 import { useAppStore } from "../store/store";
 import { selectFilter } from "../store/selectors";
-import { setFilter } from "../store/actions";
+import { setFilterFields } from "../store/actions";
+import { Filter } from "../store/store";
 
-export function Filter() {
-  const filter = useAppStore(selectFilter);
+export function ListFilter() {
+  const filter: Filter = useAppStore(selectFilter);
 
-  const { url, status, method } = filter;
+  const { url, status, method } = filter.fields;
 
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const url = e.target.value;
-    setFilter({ ...filter, url });
+    setFilterFields({ ...filter.fields, url });
   };
 
   const handleStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const status = e.target.value;
-    setFilter({ ...filter, status });
+    setFilterFields({ ...filter.fields, status });
   };
 
   const handleMethodChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const method = e.target.value;
-    setFilter({ ...filter, method });
+    setFilterFields({ ...filter.fields, method });
   };
 
   const isFilled = url.trim() || status.trim() || method.trim();

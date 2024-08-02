@@ -10,9 +10,11 @@ export type File = {
 export type Filter = {
   visible: boolean;
   active: boolean;
-  url: string;
-  method: string;
-  status: string;
+  fields: {
+    url: string;
+    method: string;
+    status: string;
+  };
 };
 
 export type TabCode = "REQ" | "RES" | "COO" | "TIM";
@@ -48,9 +50,11 @@ export const useAppStore = create<AppState>(() => ({
   filter: {
     visible: false,
     active: false,
-    url: "",
-    method: "",
-    status: "",
+    fields: {
+      url: "",
+      method: "",
+      status: "",
+    },
   },
   ui: {
     fileId: 0,

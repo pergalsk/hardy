@@ -23,3 +23,12 @@ export const setFilter = (newFilter: Filter) =>
   useAppStore.setState((state) => ({
     filter: { ...state.filter, ...newFilter },
   }));
+
+// todo: simplify with immer
+export const setFilterFields = (newFilterFields: Filter["fields"]) =>
+  useAppStore.setState((state) => ({
+    filter: {
+      ...state.filter,
+      fields: { ...state.filter.fields, ...newFilterFields },
+    },
+  }));

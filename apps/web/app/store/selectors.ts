@@ -141,7 +141,12 @@ export function selectTabData(tabCode: TabCode): any {
     }
 
     if (tabCode === "COO") {
-      return null;
+      return {
+        cookies: {
+          request: request?.cookies,
+          response: response?.cookies,
+        },
+      };
     }
 
     if (tabCode === "TIM") {

@@ -3,7 +3,7 @@ import { MagnifyingGlassSvg } from "./MagnifyingGlassSvg";
 export function NoContent({
   children,
 }: {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }): JSX.Element {
   return (
     <div className="flex h-full flex-col items-center justify-center">

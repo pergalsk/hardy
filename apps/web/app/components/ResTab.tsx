@@ -5,13 +5,16 @@ import { Content } from "./Content";
 export function ResTab({ data }: { data: any }): JSX.Element {
   const { headers, content } = data;
 
+  const headersTitle = `Headers${headers ? "" : " / No content"}`;
+  const contentTitle = `Content${content ? "" : " / No content"}`;
+
   return (
     <>
-      <Collapsible title="Headers">
-        {headers && <Headers headers={headers} />}
+      <Collapsible title={headersTitle} disabled={!headers}>
+        <Headers headers={headers} />
       </Collapsible>
 
-      <Collapsible title="Content">
+      <Collapsible title={contentTitle} disabled={!content}>
         <Content data={content} />
       </Collapsible>
     </>

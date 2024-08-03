@@ -49,7 +49,7 @@ const pairTokenWithField = (fieldName: string) => (token: string) => [
 ];
 
 const resolveToken = (str: string, token: string) =>
-  str.toString().includes(token);
+  str.toString().toLowerCase().includes(token.toLocaleLowerCase());
 
 const resolveVectors =
   (listItem: any) => (acc: boolean, tokenVector: [string, string]) => {

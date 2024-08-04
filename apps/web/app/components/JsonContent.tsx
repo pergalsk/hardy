@@ -1,7 +1,6 @@
 import JsonView from "@uiw/react-json-view";
 import { useAppStore } from "../store/store";
 import { selectJsonViewerSettings } from "../store/selectors";
-import { parseJson } from "../helpers/helpers";
 
 const style = {
   "--w-rjv-color": "#9cdcfe",

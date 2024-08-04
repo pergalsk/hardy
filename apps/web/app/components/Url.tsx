@@ -9,12 +9,20 @@ export function Url({ url }: UrlProps): JSX.Element {
 
   return (
     <span className="break-all text-sm">
-      {protocol && <span className="text-mirage-400">{protocol + "//"}</span>}
-      <span className="text-mirage-200">{domain}</span>
-      {port && <span className="text-mirage-400">{":" + port}</span>}
-      <span className="text-black dark:text-white">{path}</span>
-      <span className="text-mirage-200">{params}</span>
-      <span className="text-mirage-400">{hash}</span>
+      {protocol && (
+        <span className="dark:text-mirage-400 text-slate-500">
+          {protocol + "//"}
+        </span>
+      )}
+      <span className="dark:text-mirage-200 text-slate-500">{domain}</span>
+      {port && (
+        <span className="dark:text-mirage-400 text-slate-400">
+          {":" + port}
+        </span>
+      )}
+      <span className="font-bold text-black dark:text-white">{path}</span>
+      <span className="dark:text-mirage-200 text-slate-500">{params}</span>
+      <span className="dark:text-mirage-400 text-slate-400">{hash}</span>
     </span>
   );
 }

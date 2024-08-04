@@ -7,5 +7,9 @@ export function DateTime({
   dateTime: string;
   timeOnly: boolean;
 }) {
-  return <div className="ml-auto">{formatDateTime(dateTime, timeOnly)}</div>;
+  return (
+    dateTime && (
+      <div className="ml-auto">{formatDateTime(dateTime, timeOnly)}</div>
+    )
+  );
 }

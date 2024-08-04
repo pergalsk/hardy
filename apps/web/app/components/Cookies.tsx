@@ -1,9 +1,10 @@
 import { DateTime } from "./DateTime";
+import { TrueFalseMark } from "./TrueFalseMark";
 
 export function Cookies({ data }: { data: any }): JSX.Element {
   return (
     <table className="w-full text-sm">
-      <thead className="dark:bg-bunker-950 dark:border-bunker-400 sticky top-0 border-b border-slate-100 text-xs uppercase">
+      <thead className="dark:bg-bunker-950 dark:border-bunker-400 sticky top-0 border-b border-slate-100 bg-slate-50 text-xs font-bold uppercase">
         <tr className="dark:text-mirage-400 text-black">
           <th className="w-[25%] px-2 py-2">Name</th>
           <th className="px-2 py-2">Value</th>
@@ -15,6 +16,7 @@ export function Cookies({ data }: { data: any }): JSX.Element {
           <th className="px-2 py-2">Secure</th>
         </tr>
       </thead>
+
       <tbody>
         {data.map((cookie: any, index: number) => {
           const {
@@ -38,30 +40,14 @@ export function Cookies({ data }: { data: any }): JSX.Element {
               <td className="break-all px-2 py-1">{path ?? ""}</td>
               <td className="break-all px-2 py-1">{domain ?? ""}</td>
               <td className="px-2 py-1 text-center">
-                {expires ? (
-                  <DateTime dateTime={expires} timeOnly={false}></DateTime>
-                ) : (
-                  ""
-                )}
+                <DateTime dateTime={expires} timeOnly={false}></DateTime>
               </td>
               <td className="px-2 py-1 text-center">{sameSite ?? ""}</td>
               <td className="px-2 py-1 text-center">
-                {httpOnly === true ? (
-                  <span className="bg-accent-900 rounded-md px-2 py-1">Y</span>
-                ) : httpOnly === false ? (
-                  <span className="bg-bunker-600 rounded-md px-2 py-1">N</span>
-                ) : (
-                  ""
-                )}
+                <TrueFalseMark value={httpOnly} />
               </td>
               <td className="px-2 py-1 text-center">
-                {secure === true ? (
-                  <span className="bg-accent-900 rounded-md px-2 py-1">Y</span>
-                ) : secure === false ? (
-                  <span className="bg-bunker-600 rounded-md px-2 py-1">N</span>
-                ) : (
-                  ""
-                )}
+                <TrueFalseMark value={secure} />
               </td>
             </tr>
           );

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { readFileData } from "../helpers/helpers";
 import { nanoid } from "../helpers/nanoid";
 import { addFile, setRowId } from "../store/actions";
+import { FileOpener } from "./FileOpener";
 
 export const FileDropper = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -61,13 +62,15 @@ export const FileDropper = () => {
 
   return (
     <div
-      className={`${isDragging ? "border-accent-400 text-accent-400" : "text-mirage-500 border-mirage-700"} group flex h-1/2 w-1/2 select-none items-center justify-center rounded-2xl border-4 border-dashed text-lg font-bold transition-colors duration-200`}
+      className={`${isDragging ? "border-accent-600 text-accent-600" : "text-mirage-500 border-mirage-400"} group flex h-2/3 w-4/5 select-none flex-col items-center justify-center gap-3 rounded-2xl border-4 border-dashed text-lg font-bold transition-colors duration-200`}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      Drop HAR file here
+      <div className="text-center">Drop HAR file here</div>
+      <div className="text-md pb-2 text-center">or</div>
+      <FileOpener />
     </div>
   );
 };

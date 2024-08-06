@@ -22,12 +22,14 @@ export function ListItem({ item }: { item: any }): JSX.Element {
       className={`${selectedClasses} text-mirage-800 dark:bg-bunker-800 dark:text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 bg-slate-100 p-2 transition-colors duration-200 hover:cursor-pointer hover:border-2`}
       onClick={() => setRowId($$id)}
     >
-      <div className="flex items-center gap-1">
+      <div className="flex items-center justify-between gap-1">
         <Status status={status} text={statusText} colored={true} />
-        <DateTime dateTime={startedDateTime} timeOnly={true} />
-        <div className="text-mirage-600">|</div>
-        <Time time={time} />s<div className="text-mirage-600">|</div>
-        <div className="text-mirage-200">#{$$id + 1}</div>
+        <div className="flex items-center gap-1 text-sm">
+          <DateTime dateTime={startedDateTime} timeOnly={true} />
+          <div className="text-mirage-600">|</div>
+          <Time time={time} />s<div className="text-mirage-600">|</div>
+          <div className="text-mirage-200">#{$$id + 1}</div>
+        </div>
       </div>
       <div className="flex gap-2">
         <Method method={method} colored={true} />

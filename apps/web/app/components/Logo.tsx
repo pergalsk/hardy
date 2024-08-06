@@ -4,9 +4,7 @@ export function Logo(): JSX.Element {
       <div className="rounded-lg bg-yellow-400 px-3 py-1 text-black dark:bg-yellow-500">
         HARDY
       </div>
-      <div className="flex items-center text-black dark:text-white">
-        HAR viewer
-      </div>
+      <div className="flex items-center text-white">HAR viewer</div>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export function ListItem({ item }: { item: any }): JSX.Element {
 
   return (
     <div
-      className={`${selectedClasses} text-mirage-800 dark:bg-bunker-800 dark:text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 bg-slate-100 p-2 text-sm transition-colors duration-200 hover:cursor-pointer hover:border-2`}
+      className={`${selectedClasses} text-mirage-800 dark:bg-bunker-800 dark:text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 bg-slate-100 p-2 transition-colors duration-200 hover:cursor-pointer hover:border-2`}
       onClick={() => setRowId($$id)}
     >
       <div className="flex items-center gap-1">

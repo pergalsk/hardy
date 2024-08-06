@@ -8,7 +8,7 @@ export function Url({ url }: UrlProps): JSX.Element {
   const { protocol, domain, port, path, params, hash } = getUrlParts(url);
 
   return (
-    <span className="break-all text-sm">
+    <span className="break-all">
       {protocol && (
         <span className="dark:text-mirage-400 text-slate-500">
           {protocol + "//"}

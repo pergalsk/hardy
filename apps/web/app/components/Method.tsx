@@ -1,9 +1,10 @@
 export const methodColors: { [key: string]: string } = {
-  GET: "text-green-400",
-  POST: "text-blue-400",
-  DELETE: "text-yellow-400",
-  PUT: "text-purple-400",
+  GET: "text-green-600",
+  POST: "text-blue-500",
+  DELETE: "text-yellow-600",
+  PUT: "text-violet-500",
   PATCH: "text-red-400",
+  OPTIONS: "text-orange-700",
 };
 
 interface MethodProps {

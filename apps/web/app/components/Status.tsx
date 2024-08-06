@@ -1,9 +1,9 @@
 export const statusColors: { [key: string]: string } = {
-  "1xx": "bg-gray-800",
-  "2xx": "bg-green-900",
-  "3xx": "bg-blue-900",
-  "4xx": "bg-yellow-900",
-  "5xx": "bg-orange-900",
+  "1xx": "bg-slate-400 dark:bg-gray-800",
+  "2xx": "bg-lime-700 dark:bg-green-900",
+  "3xx": "bg-sky-600 dark:bg-blue-900",
+  "4xx": "bg-orange-700 dark:bg-yellow-900",
+  "5xx": "bg-pink-700 dark:bg-orange-900",
 };
 
 interface StatusProps {
@@ -18,13 +18,13 @@ export function Status({ status, text, colored }: StatusProps): JSX.Element {
   const statusRange = Math.floor(status / 100);
   colorClass = colored
     ? statusColors[`${statusRange}xx` as keyof typeof statusColors] ||
-      "bg-bunker-700"
-    : "bg-bunker-500";
+      "bg-bunker-200"
+    : "bg-bunker-100";
 
   return (
     <>
       <span
-        className={`${colorClass} rounded-md px-2 py-0.5 text-white font-bold`}
+        className={`${colorClass} rounded-md px-2 py-0.5 font-bold text-white`}
       >
         {status}
       </span>

@@ -22,13 +22,13 @@ export function Status({ status, text, colored }: StatusProps): JSX.Element {
     : "bg-bunker-100";
 
   return (
-    <div>
+    <span>
       <span
         className={`${colorClass} rounded-md px-2 py-0.5 font-bold text-white`}
       >
         {status}
       </span>
       {text && <span className="ml-2">{text}</span>}
-    </div>
+    </span>
   );
 }

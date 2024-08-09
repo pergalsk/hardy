@@ -73,13 +73,36 @@ const resolveVectors =
 export const filterData = ({ fields }: Filter) => {
   const tokenVectors = getTokenVectors(fields);
 
-  if (tokenVectors.length < 1) {
-    // filter method
-    return () => true;
-  }
+  // filters's reduce method
+  return (acc: any, listItem: any, index: number, arr: any[]): any => {
+    // list item which should be visible
+    // initial `true` means all entries should be included at the beginning
+    const shouldBeVisible =
+      tokenVectors.length < 1 ||
+      tokenVectors.reduce(resolveVectors(listItem), true);
 
-  // filter method
-  // initial `true` means all entries should be included at the beginning
-  return (listItem: any): boolean =>
-    tokenVectors.reduce(resolveVectors(listItem), true);
+    if (shouldBeVisible) {
+      return [...acc, listItem];
+    }
+
+    // actual length of the accumulator
+    const length = acc.length;
+
+    // add special list item with hidden count stats
+    if (length && acc[length - 1].$$stats) {
+      // rise hidden count by 1
+      acc[length - 1].$$hidden = acc[length - 1].$$hidden + 1;
+    } else {
+      acc = [
+        ...acc,
+        {
+          $$stats: true,
+          $$hidden: 1,
+          $$id: arr.length * 10 + index, // must have an id
+        },
+      ];
+    }
+
+    return acc;
+  };
 };

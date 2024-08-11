@@ -31,7 +31,7 @@ export function DetailButtons(): JSX.Element {
         return (
           <button
             key={tab.name}
-            className={`${activeClasses} text-mirage-200 rounded-md px-4 py-1 font-bold uppercase transition-colors duration-200`}
+            className={`${activeClasses} text-mirage-200 select-none rounded-md px-4 py-1 font-bold uppercase transition-colors duration-200`}
             onClick={() => setTab(tab.code)}
           >
             {tab.name}

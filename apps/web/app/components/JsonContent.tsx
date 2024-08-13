@@ -2,7 +2,7 @@ import JsonView from "@uiw/react-json-view";
 import { useAppStore } from "../store/store";
 import { selectJsonViewerSettings } from "../store/selectors";
 
-const style = {
+const style: { [key: string]: string } = {
   "--w-rjv-color": "#9cdcfe",
   "--w-rjv-key-number": "#b3d9ed88",
   "--w-rjv-key-string": "#b3d9ed",

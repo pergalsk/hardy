@@ -1,0 +1,15 @@
+{
+  "name": "desktop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HARDY | desktop version of HAR viewer",
+  "scripts": {
+    "tauri": "tauri",
+    "t:build": "tauri build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0-rc.3"
+  }
+}

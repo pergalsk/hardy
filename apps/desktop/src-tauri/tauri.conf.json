@@ -9,6 +9,7 @@
   "app": {
     "windows": [
       {
+        "label": "main",
         "title": "HARDY | HAR viewer",
         "width": 1600,
         "minWidth": 750,
@@ -20,7 +21,20 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": null,
+      "capabilities": [
+        {
+          "identifier": "window-minimize",
+          "description": "This capability allows the `main` window to be minimized.",
+          "windows": ["main"],
+          "platforms": ["linux", "macOS", "windows"],
+          "permissions": [
+            "core:window:allow-minimize",
+            "core:window:allow-toggle-maximize",
+            "core:window:allow-close"
+          ]
+        }
+      ]
     }
   },
   "bundle": {

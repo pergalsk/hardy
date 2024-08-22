@@ -150,7 +150,7 @@ export function selectTabData(tabCode: TabCode): any {
     }
 
     if (tabCode === "TIM") {
-      return timings;
+      return { timings };
     }
 
     return null;

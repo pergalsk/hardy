@@ -9,8 +9,8 @@ export function CooTab({ data }: { data: any }): JSX.Element {
   const requestLength = request.length > 0;
   const responseLength = response.length > 0;
 
-  const requestTitle = `Request Cookies${requestLength ? "" : " / No data"}`;
-  const responseTitle = `Response Cookies${responseLength ? "" : " / No data"}`;
+  const requestTitle = `Request Cookies${requestLength ? "" : " | No data"}`;
+  const responseTitle = `Response Cookies${responseLength ? "" : " | No data"}`;
 
   return (
     <>

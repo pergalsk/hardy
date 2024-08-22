@@ -5,8 +5,8 @@ import { Content } from "./Content";
 export function ReqTab({ data }: { data: any }): JSX.Element {
   const { headers, content } = data;
 
-  const headersTitle = `Headers${headers ? "" : " / No data"}`;
-  const contentTitle = `Content${content ? "" : " / No data"}`;
+  const headersTitle = `Headers${headers ? "" : " | No data"}`;
+  const contentTitle = `Content${content ? "" : " | No data"}`;
 
   return (
     <>

@@ -5,8 +5,8 @@ import { Content } from "./Content";
 export function ResTab({ data }: { data: any }): JSX.Element {
   const { headers, content } = data;
 
-  const headersTitle = `Headers${headers ? "" : " / No content"}`;
-  const contentTitle = `Content${content ? "" : " / No content"}`;
+  const headersTitle = `Headers${headers ? "" : " | No content"}`;
+  const contentTitle = `Content${content ? "" : " | No content"}`;
 
   return (
     <>

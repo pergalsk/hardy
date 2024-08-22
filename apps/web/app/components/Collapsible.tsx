@@ -13,8 +13,8 @@ export function Collapsible({
 
   const rotation = !disabled && isOpen ? "rotate-270" : "-rotate-90";
   const disabledClasses = disabled
-    ? "cursor-default opacity-50"
-    : "cursor-pointer hover:bg-mirage-100 dark:hover:bg-bunker-200 dark:hover:text-white";
+    ? "opacity-50"
+    : "hover:bg-mirage-100 dark:hover:bg-bunker-200 dark:hover:text-white";
 
   return (
     <div>

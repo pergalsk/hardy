@@ -1,20 +1,24 @@
 import { Collapsible } from "./Collapsible";
 import { Headers } from "./Headers";
 import { Content } from "./Content";
+import { CollapsibleTitle } from "./CollapsibleTitle";
 
 export function ResTab({ data }: { data: any }): JSX.Element {
-  const { headers, content } = data;
+  const { headers, headersSize, content, bodySize } = data;
 
-  const headersTitle = `Headers${headers ? "" : " | No content"}`;
-  const contentTitle = `Content${content ? "" : " | No content"}`;
+  const hInfo = headers != null ? headersSize + " b" : "No data";
+  const hTitle = <CollapsibleTitle title={"Headers"} info={hInfo} />;
+
+  const cInfo = content != null ? bodySize + " b" : "No data";
+  const cTitle = <CollapsibleTitle title={"Content"} info={cInfo} />;
 
   return (
     <>
-      <Collapsible title={headersTitle} disabled={!headers}>
-        <Headers headers={headers} />
+      <Collapsible title={hTitle} disabled={!headers}>
+        {headers && <Headers headers={headers} />}
       </Collapsible>
 
-      <Collapsible title={contentTitle} disabled={!content}>
+      <Collapsible title={cTitle} disabled={!content}>
         <Content data={content} />
       </Collapsible>
     </>

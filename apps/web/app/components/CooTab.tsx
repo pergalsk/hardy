@@ -1,4 +1,5 @@
 import { Collapsible } from "./Collapsible";
+import { CollapsibleTitle } from "./CollapsibleTitle";
 import { Cookies } from "./Cookies";
 import { NoContent } from "./NoContent";
 
@@ -6,20 +7,26 @@ export function CooTab({ data }: { data: any }): JSX.Element {
   const { cookies } = data;
   const { request, response } = cookies;
 
-  const requestLength = request.length > 0;
-  const responseLength = response.length > 0;
+  const reqLength = request.length > 0;
+  const reqInfo = request.length > 0 ? "" : "No data";
+  const reqTitle = (
+    <CollapsibleTitle title={"Request Cookies"} info={reqInfo} />
+  );
 
-  const requestTitle = `Request Cookies${requestLength ? "" : " | No data"}`;
-  const responseTitle = `Response Cookies${responseLength ? "" : " | No data"}`;
+  const resLength = response.length > 0;
+  const resInfo = response.length > 0 ? "" : "No data";
+  const resTitle = (
+    <CollapsibleTitle title={"Response Cookies"} info={resInfo} />
+  );
 
   return (
     <>
-      <Collapsible title={requestTitle} disabled={!requestLength}>
-        {requestLength ? <Cookies data={request} /> : <NoContent />}
+      <Collapsible title={reqTitle} disabled={!reqLength}>
+        {reqLength ? <Cookies data={request} /> : <NoContent />}
       </Collapsible>
 
-      <Collapsible title={responseTitle} disabled={!responseLength}>
-        {responseLength ? <Cookies data={response} /> : <NoContent />}
+      <Collapsible title={resTitle} disabled={!resLength}>
+        {resLength ? <Cookies data={response} /> : <NoContent />}
       </Collapsible>
     </>
   );

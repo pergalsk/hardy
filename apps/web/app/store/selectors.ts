@@ -98,8 +98,8 @@ export function selectCommonData(state: AppState): any {
     return null;
   }
 
-  const { request, response, serverIPAddress, time } = entry;
-  const { method, url } = request;
+  const { request, response, serverIPAddress, time, _securityState } = entry;
+  const { method, url, httpVersion } = request;
   const { status, statusText } = response;
 
   return {
@@ -109,6 +109,8 @@ export function selectCommonData(state: AppState): any {
     method,
     serverIPAddress,
     time,
+    httpVersion,
+    _securityState,
   };
 }
 

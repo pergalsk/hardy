@@ -41,24 +41,28 @@ export function DetailCommon(): JSX.Element | null {
         <div className="flex flex-1 flex-col">
           <div className="text-mirage-700 dark:text-mirage-200 font-mono">
             <span className="pr-2 font-bold">HTTP version:</span>
-            <span className="text-white">{httpVersion}</span>
+            <span className="text-black dark:text-white">{httpVersion}</span>
           </div>
           <div className="text-mirage-700 dark:text-mirage-200 font-mono">
             <span className="pr-2 font-bold">Security state:</span>
-            <span className="text-white">{_securityState ?? "N/A"}</span>
+            <span className="text-black dark:text-white">
+              {_securityState ?? "N/A"}
+            </span>
           </div>
         </div>
 
         <div className="flex flex-1 flex-col">
           <div className="text-mirage-700 dark:text-mirage-200 font-mono">
             <span className="pr-2 font-bold">Time:</span>
-            <span className="text-white">
+            <span className="text-black dark:text-white">
               <Time time={time} />
             </span>
           </div>
           <div className="text-mirage-700 dark:text-mirage-200 font-mono">
             <span className="pr-2 font-bold">Server IP:</span>
-            <span className="text-white">{serverIPAddress}</span>
+            <span className="text-black dark:text-white">
+              {serverIPAddress}
+            </span>
           </div>
         </div>
       </div>

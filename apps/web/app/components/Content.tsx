@@ -3,7 +3,7 @@ import { JsonContent } from "./JsonContent";
 import { NoContent } from "./NoContent";
 
 function TextContent({ data }: { data: string }): JSX.Element {
-  return <span className="text-mirage-200 break-all text-sm">{data}</span>;
+  return <span className="break-all text-sm text-black">{data}</span>;
 }
 
 export function Content({ data }: { data: any }): JSX.Element {

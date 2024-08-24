@@ -27,7 +27,8 @@ export function ListItem({ item }: { item: any }): JSX.Element {
         <div className="flex items-center gap-1 text-sm">
           <DateTime dateTime={startedDateTime} timeOnly={true} />
           <div className="text-mirage-600">|</div>
-          <Time time={time} />s<div className="text-mirage-600">|</div>
+          <Time time={time} />
+          <div className="text-mirage-600">|</div>
           <div className="text-mirage-200">#{$$id + 1}</div>
         </div>
       </div>

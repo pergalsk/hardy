@@ -1,4 +1,5 @@
 import { NoContent } from "./NoContent";
+import { Time } from "./Time";
 
 export function TimTab({ data }: { data: any }): JSX.Element {
   const { timings } = data;
@@ -19,7 +20,10 @@ export function TimTab({ data }: { data: any }): JSX.Element {
             <td className="w-[15%] whitespace-nowrap py-1 pr-2 align-top font-bold capitalize">
               {part[0]}:
             </td>
-            <td className="py-1">{part[1]}</td>
+            <td className="w-[15%] py-1 text-right">
+              <Time time={part[1]} />
+            </td>
+            <td className="w-[70%]"></td>
           </tr>
         ))}
       </tbody>

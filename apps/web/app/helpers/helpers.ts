@@ -94,3 +94,8 @@ export function readFileData(file: File): Promise<string> {
     reader.readAsText(file);
   });
 }
+
+export const findHeader =
+  (name: string) =>
+  (header: { name: string; value: string }): boolean =>
+    header.name.toLowerCase() === name.toLowerCase();

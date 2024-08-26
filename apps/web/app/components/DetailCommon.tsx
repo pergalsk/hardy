@@ -5,6 +5,7 @@ import { Url } from "./Url";
 import { Method } from "./Method";
 import { Status } from "./Status";
 import { Time } from "./Time";
+import { DetailField } from "./DetailField";
 
 export function DetailCommon(): JSX.Element | null {
   const data = useAppStore(selectCommonData);
@@ -18,52 +19,35 @@ export function DetailCommon(): JSX.Element | null {
 
   return (
     <div className="bg-mirage-50 dark:bg-bunker-500 flex flex-1 flex-col gap-1 rounded-md p-2">
-      <div className="text-mirage-700 dark:text-mirage-200 font-mono">
-        <span className="pr-2 font-bold">URL:</span>
+      <DetailField label={"URL:"}>
         <Url url={url} />
-      </div>
+      </DetailField>
 
       <hr className="border-mirage-100 dark:border-bunker-600 my-1 border border-b" />
 
       <div className="flex text-sm">
         <div className="flex flex-1 flex-col">
-          <div className="text-mirage-700 dark:text-mirage-200 font-mono">
-            <span className="pr-2 font-bold">Method:</span>
+          <DetailField label={"Method:"}>
             <Method method={method} colored={true} />
-          </div>
+          </DetailField>
 
-          <div className="text-mirage-700 dark:text-mirage-200 font-mono">
-            <span className="pr-2 font-bold">Status:</span>
+          <DetailField label={"Status:"}>
             <Status status={status} text={statusText} colored={true} />
-          </div>
+          </DetailField>
         </div>
 
         <div className="flex flex-1 flex-col">
-          <div className="text-mirage-700 dark:text-mirage-200 font-mono">
-            <span className="pr-2 font-bold">HTTP version:</span>
-            <span className="text-black dark:text-white">{httpVersion}</span>
-          </div>
-          <div className="text-mirage-700 dark:text-mirage-200 font-mono">
-            <span className="pr-2 font-bold">Security state:</span>
-            <span className="text-black dark:text-white">
-              {_securityState ?? "N/A"}
-            </span>
-          </div>
+          <DetailField label={"HTTP version:"}>{httpVersion}</DetailField>
+          <DetailField label={"Security state:"}>
+            {_securityState ?? "N/A"}
+          </DetailField>
         </div>
 
         <div className="flex flex-1 flex-col">
-          <div className="text-mirage-700 dark:text-mirage-200 font-mono">
-            <span className="pr-2 font-bold">Time:</span>
-            <span className="text-black dark:text-white">
-              <Time time={time} />
-            </span>
-          </div>
-          <div className="text-mirage-700 dark:text-mirage-200 font-mono">
-            <span className="pr-2 font-bold">Server IP:</span>
-            <span className="text-black dark:text-white">
-              {serverIPAddress}
-            </span>
-          </div>
+          <DetailField label={"Time:"}>
+            <Time time={time} />
+          </DetailField>
+          <DetailField label={"Server IP:"}>{serverIPAddress}</DetailField>
         </div>
       </div>
     </div>

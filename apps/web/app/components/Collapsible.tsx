@@ -18,16 +18,23 @@ export function Collapsible({
 
   return (
     <div>
-      <div
-        className={`${disabledClasses} bg-mirage-50 text-mirage-700 dark:bg-bunker-500 dark:text-mirage-300 mr-2 flex flex-1 select-none items-center justify-start gap-2 rounded-md p-3 py-1 transition-colors duration-200`}
-        onClick={() => !disabled && setIsOpen(!isOpen)}
-      >
+      <div className="flex">
         <div
-          className={`transform transition-transform duration-200 ${rotation}`}
+          className={`${disabledClasses} bg-mirage-50 text-mirage-700 dark:bg-bunker-500 dark:text-mirage-300 mr-2 flex flex-1 select-none items-center justify-start gap-2 rounded-md p-3 py-1 transition-colors duration-200`}
+          onClick={() => !disabled && setIsOpen(!isOpen)}
         >
-          ▼
+          <div
+            className={`transform transition-transform duration-200 ${rotation}`}
+          >
+            ▼
+          </div>
+          <div className="w-full">{title}</div>
         </div>
-        <div className="w-full">{title}</div>
+        {/* <div className="bg-mirage-50 text-mirage-700 dark:text-mirage-500 mr-2 flex gap-2 rounded-md p-1 px-[0.375rem] transition-colors duration-200 dark:bg-transparent">
+          <div className="iconify material-symbols--code-rounded hover:text-mirage-200 my-auto text-xl"></div>
+          <div className="iconify material-symbols--list-alt-outline-rounded hover:text-mirage-200 my-auto text-xl"></div>
+          <div className="iconify material-symbols--content-copy-outline-rounded hover:text-mirage-200 my-auto text-xl"></div>
+        </div> */}
       </div>
       {!disabled && isOpen && <div className="p-2 pb-0">{children}</div>}
     </div>

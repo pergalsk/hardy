@@ -1,4 +1,10 @@
-import { useAppStore, File, Filter, TabCode } from "./store";
+import {
+  useAppStore,
+  File,
+  Filter,
+  TabCode,
+  initialFilterFieldsState,
+} from "./store";
 
 export const setFileId = (fileId: number) =>
   useAppStore.setState((state) => ({ ui: { ...state.ui, fileId } }));
@@ -22,6 +28,15 @@ export const removeAllFiles = () => useAppStore.setState({ files: [] });
 export const setFilter = (newFilter: Filter) =>
   useAppStore.setState((state) => ({
     filter: { ...state.filter, ...newFilter },
+  }));
+
+// todo: simplify with immer
+export const clearFilter = () =>
+  useAppStore.setState((state) => ({
+    filter: {
+      ...state.filter,
+      fields: { ...initialFilterFieldsState },
+    },
   }));
 
 // todo: simplify with immer

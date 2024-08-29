@@ -45,22 +45,26 @@ export type AppState = {
   settings: Settings;
 };
 
+export const initialFilterFieldsState: Filter["fields"] = {
+  url: "",
+  method: "",
+  status: "",
+};
+
+export const initialUiState: Ui = {
+  fileId: 0,
+  rowId: 0,
+  tab: "REQ",
+};
+
 export const useAppStore = create<AppState>(() => ({
   files: [],
   filter: {
     visible: false,
     active: false,
-    fields: {
-      url: "",
-      method: "",
-      status: "",
-    },
+    fields: { ...initialFilterFieldsState },
   },
-  ui: {
-    fileId: 0,
-    rowId: 0,
-    tab: "REQ",
-  },
+  ui: { ...initialUiState },
   settings: {
     jsonViewer: {
       collapsed: 2,

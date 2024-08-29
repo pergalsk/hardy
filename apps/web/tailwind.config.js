@@ -1,3 +1,5 @@
+const { addIconSelectors } = require("@iconify/tailwind");
+
 /** @type {import('tailwindcss').Config} */
 export const content = [
   "./app/**/*.{js,ts,jsx,tsx,mdx}", // Note the addition of the `app` directory.
@@ -54,4 +56,4 @@ export const theme = {
   },
 };
 
-export const plugins = [];
+export const plugins = [addIconSelectors(["material-symbols"])];

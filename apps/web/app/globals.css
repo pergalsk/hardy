@@ -101,6 +101,7 @@ input[type="text"] {
   font-size: 14px !important;
   line-height: 1.75 !important;
   padding-left: 4px !important;
+  font-family: var(--font-default-mono);
 }
 .w-rjv-inner:has(.w-rjv-arrow) {
   margin-left: -13px;

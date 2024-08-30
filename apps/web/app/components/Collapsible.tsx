@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ToggleMark } from "./ToggleMark";
 
 export function Collapsible({
   children,
@@ -11,7 +12,6 @@ export function Collapsible({
 }) {
   const [isOpen, setIsOpen] = useState(true);
 
-  const rotation = !disabled && isOpen ? "rotate-270" : "-rotate-90";
   const disabledClasses = disabled
     ? "opacity-50"
     : "hover:bg-mirage-100 dark:hover:bg-bunker-200 dark:hover:text-white";
@@ -23,11 +23,7 @@ export function Collapsible({
           className={`${disabledClasses} bg-mirage-50 text-mirage-700 dark:bg-bunker-500 dark:text-mirage-300 mr-2 flex flex-1 select-none items-center justify-start gap-2 rounded-md p-3 py-1 transition-colors duration-200`}
           onClick={() => !disabled && setIsOpen(!isOpen)}
         >
-          <div
-            className={`transform transition-transform duration-200 ${rotation}`}
-          >
-            ▼
-          </div>
+          <ToggleMark opened={isOpen && !disabled} />
           <div className="w-full">{title}</div>
         </div>
         {/* <div className="bg-mirage-50 text-mirage-700 dark:text-mirage-500 mr-2 flex gap-2 rounded-md p-1 px-[0.375rem] transition-colors duration-200 dark:bg-transparent">

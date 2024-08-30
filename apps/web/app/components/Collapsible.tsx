@@ -20,7 +20,7 @@ export function Collapsible({
     <div>
       <div className="flex">
         <div
-          className={`${disabledClasses} bg-mirage-50 text-mirage-700 dark:bg-bunker-500 dark:text-mirage-300 mr-2 flex flex-1 select-none items-center justify-start gap-2 rounded-md p-3 py-1.5 transition-colors duration-200`}
+          className={`${disabledClasses} bg-mirage-50 text-mirage-700 dark:bg-bunker-500 dark:text-mirage-300 mr-2 flex flex-1 select-none items-center justify-start gap-2 rounded-md p-3 py-1.5 pl-2 transition-colors duration-200`}
           onClick={() => !disabled && setIsOpen(!isOpen)}
         >
           <ToggleMark opened={isOpen && !disabled} />

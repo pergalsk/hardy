@@ -56,7 +56,7 @@ export function DetailButtons(): JSX.Element {
         return (
           <button
             key={tab.name}
-            className={`${activeClasses} text-mirage-200 flex select-none justify-center rounded-md px-3 py-1.5 align-middle font-bold uppercase transition-colors duration-200`}
+            className={`${activeClasses} text-mirage-200 flex select-none justify-center rounded-md px-3 py-1.5 pl-2 align-middle font-bold uppercase transition-colors duration-200`}
             onClick={() => setTab(tab.code)}
           >
             <span className={`iconify ${tab.icon} my-auto mr-2 text-xl`}></span>

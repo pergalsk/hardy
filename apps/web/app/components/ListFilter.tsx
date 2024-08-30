@@ -29,7 +29,7 @@ export function ListFilter() {
   const isFilled: boolean = !!(url.trim() || status.trim() || method.trim());
 
   const highlightPanelClasses = isFilled
-    ? "bg-accent-50 text-black dark:bg-accent-800 dark:text-white"
+    ? "bg-accent-700 text-white dark:bg-accent-800 dark:text-white"
     : "bg-mirage-50 text-black dark:bg-bunker-500 dark:text-mirage-200";
 
   const highlightInputClasses = isFilled
@@ -37,7 +37,7 @@ export function ListFilter() {
     : "text-black dark:bg-bunker-700 dark:focus:ring-mirage-700";
 
   const highlightButtonClasses = isFilled
-    ? "dark:hover:bg-accent-700 hover:bg-accent-200 dark:hover:text-white"
+    ? "dark:hover:bg-accent-700 hover:bg-accent-800 dark:hover:text-white"
     : "opacity-50";
 
   return (

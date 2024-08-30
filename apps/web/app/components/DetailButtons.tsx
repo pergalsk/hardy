@@ -50,7 +50,7 @@ export function DetailButtons(): JSX.Element {
       {tabsDef.map((tab) => {
         const activeClasses =
           tab.code === tabCode
-            ? "bg-accent-100 text-mirage-700 dark:bg-accent-700 dark:text-white dark:hover:bg-accent-600 hover:bg-accent-300"
+            ? "bg-accent-700 text-white dark:bg-accent-700 dark:text-white dark:hover:bg-accent-600 hover:bg-accent-800"
             : "bg-mirage-50 text-mirage-700 dark:text-mirage-300 dark:bg-bunker-500 hover:bg-mirage-100 dark:hover:text-white dark:hover:bg-bunker-200";
 
         return (

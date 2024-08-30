@@ -26,10 +26,12 @@ export function Collapsible({
           <ToggleMark opened={isOpen && !disabled} />
           <div className="w-full">{title}</div>
         </div>
-        {/* <div className="bg-mirage-50 text-mirage-700 dark:text-mirage-500 mr-2 flex gap-2 rounded-md p-1 px-[0.375rem] transition-colors duration-200 dark:bg-transparent">
-          <div className="iconify material-symbols--code-rounded hover:text-mirage-200 my-auto text-xl"></div>
-          <div className="iconify material-symbols--list-alt-outline-rounded hover:text-mirage-200 my-auto text-xl"></div>
-          <div className="iconify material-symbols--content-copy-outline-rounded hover:text-mirage-200 my-auto text-xl"></div>
+        {/* <div className="text-mirage-700 bg-mirage-50 dark:text-mirage-500 mr-2 flex gap-2 rounded-md p-1 px-[0.375rem] transition-colors duration-200 dark:bg-transparent">
+          <div className="iconify material-symbols--code-rounded hover:text-accent-700 my-auto text-xl"></div>
+          <div className="iconify material-symbols--image-search-rounded hover:text-accent-700 my-auto text-xl"></div>
+          <div className="iconify material-symbols--close-fullscreen-rounded hover:text-accent-700 my-auto rotate-90 text-xl"></div>
+          <div className="iconify material-symbols--open-in-full-rounded hover:text-accent-700 my-auto rotate-90 text-xl"></div>
+          <div className="iconify material-symbols--content-copy-outline-rounded hover:text-accent-700 my-auto text-xl"></div>
         </div> */}
       </div>
       {!disabled && isOpen && <div className="p-2 pb-0">{children}</div>}

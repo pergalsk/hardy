@@ -1,8 +1,12 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const defaultMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-default-mono",
+});
 
 export const metadata: Metadata = {
   title: "HARDY | HAR viewer",
@@ -16,7 +20,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${defaultMono.variable} text-base`}>{children}</body>
     </html>
   );
 }

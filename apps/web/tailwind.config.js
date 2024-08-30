@@ -7,7 +7,20 @@ export const content = [
 ];
 
 export const theme = {
+  fontSize: {
+    xs: "0.6rem",
+    sm: "0.8rem",
+    base: "0.90625rem", // 14.5px
+    xl: "1.25rem",
+    "2xl": "1.563rem",
+    "3xl": "1.953rem",
+    "4xl": "2.441rem",
+    "5xl": "3.052rem",
+  },
   extend: {
+    fontFamily: {
+      mono: ["var(--font-default-mono)"],
+    },
     colors: {
       // https://www.tailwindshades.com/#color=223%2C25%2C15&step-up=8&step-down=8&hue-shift=-14&name=mirage&base-stop=9.5&v=1&overrides=e30%3D
       mirage: {

@@ -13,7 +13,7 @@ import { Footer } from "./components/Footer";
 
 export default function Page(): JSX.Element {
   return (
-    <div className="dark:bg-bunker-900 flex h-screen w-screen flex-col bg-white font-mono">
+    <div className="dark:bg-bunker-900 flex h-screen w-screen flex-col bg-white font-mono text-base">
       <Header />
       <MainContent />
       <Footer />

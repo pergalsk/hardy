@@ -42,10 +42,11 @@ export const FileOpener = () => {
       />
 
       <button
-        className="bg-accent-800 hover:bg-accent-600 rounded-lg px-8 py-4 text-lg font-bold text-white transition-colors duration-200"
+        className="bg-accent-800 hover:bg-accent-600 upper flex rounded-lg px-8 py-4 align-middle font-bold uppercase text-white transition-colors duration-200"
         onClick={openFileSelector}
       >
-        Open HAR file
+        <span className="iconify material-symbols--folder-open-outline-rounded my-auto mr-3 text-2xl"></span>
+        <span className="my-auto align-middle">Open HAR file</span>
       </button>
     </>
   );

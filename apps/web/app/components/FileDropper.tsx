@@ -62,7 +62,7 @@ export const FileDropper = () => {
 
   return (
     <div
-      className={`${isDragging ? "border-accent-600 text-accent-600" : "text-mirage-500 border-mirage-400"} group flex h-2/3 w-4/5 select-none flex-col items-center justify-center gap-3 rounded-2xl border-4 border-dashed text-lg font-bold transition-colors duration-200`}
+      className={`${isDragging ? "border-accent-600 text-accent-600" : "text-mirage-500 border-mirage-400"} group flex h-2/3 w-4/5 select-none flex-col items-center justify-center gap-3 rounded-2xl border-4 border-dashed font-bold transition-colors duration-200`}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}

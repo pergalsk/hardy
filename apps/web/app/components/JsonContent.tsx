@@ -1,6 +1,7 @@
 import JsonView from "@uiw/react-json-view";
 import { useAppStore } from "../store/store";
 import { selectJsonViewerSettings } from "../store/selectors";
+import { useDarkMode } from "../helpers/useDarkMode";
 
 const lightStyle: { [key: string]: string } = {
   "--w-rjv-font-family": "var(--font-default-mono)",
@@ -70,10 +71,15 @@ const darkStyle: { [key: string]: string } = {
 
 export function JsonContent({ data }: { data: any }): JSX.Element {
   const settings = useAppStore(selectJsonViewerSettings);
+  const isDark = useDarkMode();
 
   return (
     <div className="break-all">
-      <JsonView value={data} style={darkStyle} {...settings} />
+      <JsonView
+        value={data}
+        style={isDark ? darkStyle : lightStyle}
+        {...settings}
+      />
     </div>
   );
 }

@@ -36,7 +36,7 @@ const tabsDef: Tab[] = [
   {
     code: "TIM",
     name: "Timing",
-    icon: "material-symbols--clock-loader-10",
+    icon: "material-symbols--timer-outline-rounded",
     active: false,
     action: () => {},
   },

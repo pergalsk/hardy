@@ -3,6 +3,7 @@ import { useAppStore } from "../store/store";
 import { selectJsonViewerSettings } from "../store/selectors";
 
 const lightStyle: { [key: string]: string } = {
+  "--w-rjv-font-family": "var(--font-default-mono)",
   "--w-rjv-color": "#9cdcfe",
   "--w-rjv-background-color": "#fff",
   "--w-rjv-key-string": "#185d81",
@@ -35,6 +36,7 @@ const lightStyle: { [key: string]: string } = {
 };
 
 const darkStyle: { [key: string]: string } = {
+  "--w-rjv-font-family": "var(--font-default-mono)",
   "--w-rjv-color": "#9cdcfe",
   "--w-rjv-key-number": "#b3d9ed88",
   "--w-rjv-key-string": "#b3d9ed",

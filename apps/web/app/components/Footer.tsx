@@ -20,15 +20,15 @@ export function Footer() {
   return (
     <div
       id="footer"
-      className="bg-accent-50 dark:bg-accent-950 flex flex-row gap-8 px-2 py-1 text-sm text-black drop-shadow-lg dark:text-white"
+      className="bg-accent-700 dark:bg-accent-950 flex flex-row gap-8 px-2 py-1 text-sm text-white drop-shadow-lg dark:text-white"
     >
       <div>
-        <span className="text-accent-700 dark:text-accent-200">Entries:</span>{" "}
+        <span className="text-accent-100 dark:text-accent-200">Entries:</span>{" "}
         <span>{entriesNum ?? "--"}</span>
       </div>
 
       <div>
-        <span className="text-accent-700 dark:text-accent-200">
+        <span className="text-accent-100 dark:text-accent-200">
           Total time:
         </span>{" "}
         {totalTime ? (
@@ -42,12 +42,12 @@ export function Footer() {
       </div>
 
       <div className="ml-auto">
-        <span className="text-accent-700 dark:text-accent-200">HAR:</span>{" "}
+        <span className="text-accent-100 dark:text-accent-200">HAR:</span>{" "}
         <span>{version ? "v" + version : "--"}</span>
       </div>
 
       <div>
-        <span className="text-accent-700 dark:text-accent-200">Creator:</span>{" "}
+        <span className="text-accent-100 dark:text-accent-200">Creator:</span>{" "}
         <span>{creatorName ?? "--"}</span>{" "}
         {creatorVersion && <span>{creatorVersion}</span>}
       </div>

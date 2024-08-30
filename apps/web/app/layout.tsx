@@ -4,7 +4,7 @@ import { JetBrains_Mono } from "next/font/google";
 
 const defaultMono = JetBrains_Mono({
   subsets: ["latin"],
-  display: "swap",
+  display: "block",
   variable: "--font-default-mono",
 });
 

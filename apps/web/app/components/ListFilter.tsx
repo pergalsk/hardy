@@ -45,7 +45,7 @@ export function ListFilter() {
       className={`${highlightPanelClasses} flex gap-2 rounded-md px-2 py-2 transition-colors duration-200`}
     >
       <div className="flex flex-1 flex-row items-center gap-2 p-0">
-        <span className="select-none font-bold">URL</span>
+        <span className="select-none font-bold uppercase">URL</span>
         <input
           type="text"
           className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
@@ -55,7 +55,7 @@ export function ListFilter() {
       </div>
 
       <div className="flex flex-1 flex-row items-center gap-2 p-0">
-        <span className="select-none font-bold">Status</span>
+        <span className="select-none font-bold uppercase">Status</span>
         <input
           type="text"
           className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
@@ -65,7 +65,7 @@ export function ListFilter() {
       </div>
 
       <div className="flex flex-1 flex-row items-center gap-2 p-0">
-        <span className="select-none font-bold">Method</span>
+        <span className="select-none font-bold uppercase">Method</span>
         <input
           type="text"
           className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}

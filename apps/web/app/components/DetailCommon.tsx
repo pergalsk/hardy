@@ -47,7 +47,9 @@ export function DetailCommon(): JSX.Element | null {
           <DetailField label={"Time:"}>
             <Time time={time} />
           </DetailField>
-          <DetailField label={"Server IP:"}>{serverIPAddress}</DetailField>
+          <DetailField label={"Server IP:"}>
+            {serverIPAddress ?? "N/A"}
+          </DetailField>
         </div>
       </div>
     </div>

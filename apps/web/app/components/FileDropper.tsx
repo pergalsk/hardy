@@ -4,6 +4,7 @@ import { readFileData } from "../helpers/helpers";
 import { nanoid } from "../helpers/nanoid";
 import { addFile, setRowId } from "../store/actions";
 import { FileOpener } from "./FileOpener";
+import { FileOpenSvg } from "./FileOpenSvg";
 
 export const FileDropper = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -62,15 +63,21 @@ export const FileDropper = () => {
 
   return (
     <div
-      className={`${isDragging ? "border-accent-600 text-accent-600" : "text-mirage-500 border-mirage-400"} group flex h-2/3 w-4/5 select-none flex-col items-center justify-center gap-3 rounded-2xl border-4 border-dashed font-bold transition-colors duration-200`}
+      className={`${isDragging ? "border-accent-600 text-accent-600" : "border-mirage-200 dark:border-bunker-100 text-mirage-200"} flex h-full w-full select-none flex-row items-center justify-center gap-3 rounded-2xl border-4 border-dashed font-bold transition-colors duration-200`}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      <div className="text-center">Drop HAR file here</div>
-      <div className="text-md pb-2 text-center">or</div>
-      <FileOpener />
+      <div className="flex h-2/3 w-2/5">
+        <FileOpenSvg />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <div className="text-center">Drop HAR file here</div>
+        <div className="text-md pb-2 text-center">or</div>
+        <FileOpener />
+      </div>
     </div>
   );
 };

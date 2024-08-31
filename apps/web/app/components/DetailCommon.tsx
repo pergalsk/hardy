@@ -23,7 +23,7 @@ export function DetailCommon(): JSX.Element | null {
         <Url url={url} />
       </DetailField>
 
-      <hr className="border-mirage-100 dark:border-bunker-600 my-1 border border-b" />
+      <hr className="border-mirage-100 dark:border-bunker-700 my-1 border border-b" />
 
       <div className="flex text-sm">
         <div className="flex flex-1 flex-col gap-1">

@@ -24,6 +24,7 @@ export const theme = {
     },
     colors: {
       // https://www.tailwindshades.com/#color=223%2C25%2C15&step-up=8&step-down=8&hue-shift=-14&name=mirage&base-stop=9.5&v=1&overrides=e30%3D
+      // https://www.tailwindshades.com/#color=223%2C25%2C15&step-up=8&step-down=8&hue-shift=-14&name=mirage&base-stop=9&v=1&overrides=e30%3D
       mirage: {
         DEFAULT: "#1D2230",
         50: "#D6DEE6",
@@ -52,6 +53,7 @@ export const theme = {
         900: "#0F121A",
         950: "#0D1016",
       },
+      // https://www.tailwindshades.com/#color=189.3913043478261%2C83.94160583941607%2C26.862745098039216&step-up=7&step-down=6&hue-shift=0&name=accent&base-stop=8&v=1&overrides=e30%3D
       accent: {
         DEFAULT: "#0B6C7E",
         50: "#9EE9F7",

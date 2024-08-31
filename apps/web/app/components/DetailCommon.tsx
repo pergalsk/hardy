@@ -26,7 +26,7 @@ export function DetailCommon(): JSX.Element | null {
       <hr className="border-mirage-100 dark:border-bunker-600 my-1 border border-b" />
 
       <div className="flex text-sm">
-        <div className="flex flex-1 flex-col">
+        <div className="flex flex-1 flex-col gap-1">
           <DetailField label={"Method:"}>
             <Method method={method} colored={true} />
           </DetailField>
@@ -36,14 +36,14 @@ export function DetailCommon(): JSX.Element | null {
           </DetailField>
         </div>
 
-        <div className="flex flex-1 flex-col">
+        <div className="flex flex-1 flex-col gap-1">
           <DetailField label={"HTTP version:"}>{httpVersion}</DetailField>
           <DetailField label={"Security state:"}>
             {_securityState ?? "N/A"}
           </DetailField>
         </div>
 
-        <div className="flex flex-1 flex-col">
+        <div className="flex flex-1 flex-col gap-1">
           <DetailField label={"Time:"}>
             <Time time={time} />
           </DetailField>

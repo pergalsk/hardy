@@ -1,13 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useDarkMode } from "../helpers/useDarkMode";
 import { readFileData } from "../helpers/helpers";
 import { nanoid } from "../helpers/nanoid";
 import { addFile, setRowId } from "../store/actions";
 import { FileOpener } from "./FileOpener";
-import { FileOpenSvg } from "./FileOpenSvg";
+import { FileOpenLightSvg } from "./FileOpenLightSvg";
+import { FileOpenDarkSvg } from "./FileOpenDarkSvg";
 
 export const FileDropper = () => {
   const [isDragging, setIsDragging] = useState(false);
+  const isDark = useDarkMode();
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -70,7 +73,7 @@ export const FileDropper = () => {
       onDrop={handleDrop}
     >
       <div className="flex h-2/3 w-2/5">
-        <FileOpenSvg />
+        {isDark ? <FileOpenDarkSvg /> : <FileOpenLightSvg />}
       </div>
 
       <div className="flex flex-col gap-2">

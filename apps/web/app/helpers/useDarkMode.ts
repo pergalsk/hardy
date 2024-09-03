@@ -12,6 +12,7 @@ export function useDarkMode() {
   const result: boolean = useSyncExternalStore(
     subscribe,
     () => window.matchMedia(query).matches,
+    () => true,
   );
 
   return result;

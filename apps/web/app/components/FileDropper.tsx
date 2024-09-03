@@ -66,7 +66,7 @@ export const FileDropper = () => {
 
   return (
     <div
-      className={`${isDragging ? "border-accent-600 text-accent-600" : "border-mirage-200 dark:border-bunker-100 text-mirage-200"} flex h-full w-full select-none flex-row items-center justify-center gap-3 rounded-2xl border-4 border-dashed font-bold transition-colors duration-200`}
+      className={`${isDragging ? "border-accent-600 text-accent-600" : "border-mirage-200 dark:border-bunker-100 dark:text-mirage-400 text-mirage-500"} flex h-full w-full select-none flex-row items-center justify-center gap-3 rounded-2xl border-4 border-dashed font-bold transition-colors duration-200`}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
@@ -78,7 +78,7 @@ export const FileDropper = () => {
 
       <div className="flex flex-col gap-2">
         <div className="text-center">Drop HAR file here</div>
-        <div className="text-md pb-2 text-center">or</div>
+        <div className="pb-2 text-center text-sm">or</div>
         <FileOpener />
       </div>
     </div>

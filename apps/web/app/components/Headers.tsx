@@ -1,3 +1,5 @@
+import { LineClamp } from "./LineClamp";
+
 export interface HeaderItem {
   name: string;
   value: string;
@@ -20,7 +22,15 @@ export function Headers({ headers }: { headers: HeaderItem[] }): JSX.Element {
                 <td className="w-auto whitespace-nowrap py-1 pr-2 align-top font-bold">
                   {header.name}:
                 </td>
-                <td className="py-1">{header.value}</td>
+                <td className="py-1">
+                  <LineClamp
+                    lines={2}
+                    active={header.value.length > 100}
+                    classes={"dark:bg-bunker-900 bg-white"}
+                  >
+                    {header.value}
+                  </LineClamp>
+                </td>
               </tr>
             ))}
       </tbody>

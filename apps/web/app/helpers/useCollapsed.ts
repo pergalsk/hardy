@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 
-export function useLineClamp() {
+export function useCollapsed() {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const previousObserver = useRef(null);

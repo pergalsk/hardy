@@ -43,9 +43,11 @@ export function DetailCommon(): JSX.Element | null {
         </div>
 
         <div className="flex flex-1 flex-col gap-1">
-          <DetailField label={"HTTP version:"}>{httpVersion}</DetailField>
+          <DetailField label={"HTTP version:"}>
+            {httpVersion || "N/A"}
+          </DetailField>
           <DetailField label={"Security state:"}>
-            {_securityState ?? "N/A"}
+            {_securityState || "N/A"}
           </DetailField>
         </div>
 
@@ -54,7 +56,7 @@ export function DetailCommon(): JSX.Element | null {
             <Time time={time} />
           </DetailField>
           <DetailField label={"Server IP:"}>
-            {serverIPAddress ?? "N/A"}
+            {serverIPAddress || "N/A"}
           </DetailField>
         </div>
       </div>

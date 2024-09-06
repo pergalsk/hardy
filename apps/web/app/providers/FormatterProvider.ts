@@ -8,8 +8,18 @@ export type FormatterProvider<T> = () => {
   getFormatter: (key: string, id: string) => T | null;
 };
 
-export function FormatterProvider<T>() {
+export type FormatterProviderOptions = {
+  comparativeMethod: "case-sensitive" | "case-insensitive";
+};
+
+export function FormatterProvider<T>(options?: FormatterProviderOptions) {
   const formatters: { [key: string]: { [id: string]: T } } = {};
+
+  const defaultOptions: FormatterProviderOptions = {
+    comparativeMethod: "case-sensitive", // needs implementation
+  };
+
+  const optionsObj = { ...defaultOptions, ...options };
 
   function addFormatter(key: string, formatter: T): string {
     const id = nanoid();
@@ -31,7 +41,7 @@ export function FormatterProvider<T>() {
   }
 
   function getFormatters(key: string): { [id: string]: T } | null {
-    return formatters[key] ? formatters[key] : null;
+    return formatters[key] ?? null;
   }
 
   function getFormattersArr(key: string): T[] | [] {

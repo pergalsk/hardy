@@ -3,6 +3,13 @@ import { HeadersValue } from "./HeadersValue";
 import { HeaderItem } from "../providers/headerValueFormatter";
 
 export function Headers({ headers }: { headers: HeaderItem[] }): JSX.Element {
+  const redirect = (name: string): void => {
+    window.open(
+      `https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/${encodeURIComponent(name)}`,
+      "_blank",
+    );
+  };
+
   return (
     <table className="w-full table-auto text-sm">
       <tbody>
@@ -17,7 +24,11 @@ export function Headers({ headers }: { headers: HeaderItem[] }): JSX.Element {
                 className="dark:text-mirage-200 dark:border-bunker-400 break-all border-b border-slate-100 font-mono text-black last:border-none"
               >
                 <td className="w-auto whitespace-nowrap py-1 pr-2 align-top font-bold">
-                  {header.name}:
+                  {header.name}
+                  <span
+                    className="iconify material-symbols--help-outline-rounded dark:text-mirage-800 dark:hover:text-accent-300 ml-1 inline-flex select-none items-center align-top text-lg"
+                    onClick={() => redirect(header.name)}
+                  ></span>
                 </td>
                 <td className="py-1">
                   <LineClamp

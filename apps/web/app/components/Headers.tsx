@@ -1,83 +1,6 @@
-import { UAParser } from "ua-parser-js";
 import { LineClamp } from "./LineClamp";
-import { FormatterProvider } from "../providers/FormatterProvider";
-
-export interface HeaderItem {
-  name: string;
-  value: string | null | undefined;
-}
-
-export type HeaderValueFormatter = {
-  icon: string;
-  tooltip: string;
-  format: (headerItem: HeaderItem) => JSX.Element | string | null;
-};
-
-const headerValueFormatters = FormatterProvider<HeaderValueFormatter>();
-
-const userAgentParseFormatter: HeaderValueFormatter = {
-  icon: "iconify material-symbols--desktop-windows-outline-rounded",
-  tooltip: "Parse User Agent",
-  format: (headerItem: HeaderItem): string => {
-    const { value } = headerItem;
-    const { name: browser, version } = new UAParser(value ?? "").getBrowser();
-
-    return `${browser} ${version}`;
-  },
-};
-
-const userAgentBgFormatter: HeaderValueFormatter = {
-  icon: "iconify material-symbols--background-replace-rounded",
-  tooltip: "User Agent+",
-  format: (headerItem: HeaderItem): JSX.Element => {
-    const { value } = headerItem;
-    return <span className="bg-red-900">{value}</span>;
-  },
-};
-
-const id1 = headerValueFormatters.addFormatter(
-  "User-Agent",
-  userAgentParseFormatter,
-);
-const id2 = headerValueFormatters.addFormatter(
-  "User-Agent",
-  userAgentBgFormatter,
-);
-
-export function HeaderValue({
-  header,
-}: {
-  header: HeaderItem;
-}): JSX.Element | string {
-  const formatters = headerValueFormatters.getFormatters(header.name) || {};
-
-  const applyFormat = (
-    format: HeaderValueFormatter["format"],
-    tooltip: string,
-  ) => {
-    alert(tooltip);
-  };
-
-  const Icons = (): JSX.Element => (
-    <span className="my-auto ml-2 inline-flex items-center gap-1 align-middle dark:text-white">
-      {Object.entries(formatters).map(([, { tooltip, icon, format }]) => {
-        return (
-          <span
-            className={`dark:hover:text-accent-100 text-lg ${icon}`}
-            onClick={() => applyFormat(format, tooltip)}
-          ></span>
-        );
-      })}
-    </span>
-  );
-
-  return (
-    <>
-      {header.value || ""}
-      <Icons />
-    </>
-  );
-}
+import { HeadersValue } from "./HeadersValue";
+import { HeaderItem } from "../providers/headerValueFormatter";
 
 export function Headers({ headers }: { headers: HeaderItem[] }): JSX.Element {
   return (
@@ -102,7 +25,7 @@ export function Headers({ headers }: { headers: HeaderItem[] }): JSX.Element {
                     active={(header.value || "").length > 100}
                     classes={"dark:bg-bunker-900 bg-white"}
                   >
-                    <HeaderValue header={header} />
+                    <HeadersValue headerItem={header} />
                   </LineClamp>
                 </td>
               </tr>

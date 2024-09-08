@@ -1,13 +1,13 @@
 import { nanoid } from "nanoid";
 
-export type FormatterProvider<T> = () => {
-  addFormatter: (key: string, formatter: T) => void;
+/* export type FormatterProvider<T> = () => {
+  addFormatters: (key: string, formatter: T) => void;
   removeFormatter: (key: string, id?: string) => boolean | undefined;
   getFormatters: (key: string) => { [id: string]: T } | null;
   getFormattersArr: (key: string) => T[] | [];
   getFormatter: (key: string, id: string) => T | null;
 };
-
+ */
 export type FormatterProviderOptions = {
   comparativeMethod: "case-sensitive" | "case-insensitive";
 };
@@ -21,16 +21,22 @@ export function FormatterProvider<T>(options?: FormatterProviderOptions) {
 
   const optionsObj = { ...defaultOptions, ...options };
 
-  function addFormatter(key: string, formatter: T): string {
-    const id = nanoid();
-
-    if (!formatters[key]) {
-      formatters[key] = { [id]: formatter };
-    } else {
-      formatters[key][id] = formatter;
+  function addFormatters(
+    key: string,
+    formatterList: T | T[],
+  ): string | string[] {
+    if (!Array.isArray(formatterList)) {
+      formatterList = [formatterList];
     }
 
-    return id;
+    const [formattersCatalog, indexes] = prepareFormatters<T>(formatterList);
+
+    if (!formatters[key]) {
+      formatters[key] = {};
+    }
+    formatters[key] = { ...formatters[key], ...formattersCatalog };
+
+    return indexes.length === 1 ? indexes[0] || [] : indexes;
   }
 
   function removeFormatter(key: string, id?: string): boolean | undefined {
@@ -56,10 +62,28 @@ export function FormatterProvider<T>(options?: FormatterProviderOptions) {
   }
 
   return {
-    addFormatter,
+    addFormatters,
     removeFormatter,
     getFormatters,
     getFormattersArr,
     getFormatter,
   };
+}
+
+function prepareFormatters<T>(
+  formatters: T[],
+): [{ [id: string]: T }, string[]] {
+  let indexes: string[] = [];
+
+  const formattersCatalog = formatters.reduce(
+    (acc, formatter: T) => {
+      const id: string = nanoid();
+      indexes = [...indexes, id];
+      acc[id] = formatter;
+      return acc;
+    },
+    {} as { [id: string]: T },
+  );
+
+  return [formattersCatalog, indexes];
 }

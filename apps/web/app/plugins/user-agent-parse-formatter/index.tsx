@@ -11,6 +11,6 @@ export const userAgentParseFormatter: HeaderValueFormatter = {
   format: (headerItem: HeaderItem): string => {
     const { value } = headerItem;
     const { name: browser, version } = new UAParser(value ?? "").getBrowser();
-    return `${browser} ${version}`;
+    return browser && version ? `${browser} ${version}` : "N/A";
   },
 };

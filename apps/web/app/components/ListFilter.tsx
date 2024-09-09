@@ -38,7 +38,7 @@ export function ListFilter() {
 
   const highlightButtonClasses = isFilled
     ? "dark:hover:bg-accent-700 hover:bg-accent-800 dark:hover:text-white"
-    : "opacity-50";
+    : "opacity-25";
 
   return (
     <div

@@ -15,7 +15,7 @@ export function TimTab({ data }: { data: any }): JSX.Element {
         {parts.map((part: [string, any], index: number) => (
           <tr
             key={index}
-            className="dark:text-mirage-200 dark:border-bunker-400 break-all border-b border-slate-100 text-black last:border-none"
+            className="hover:dark:bg-bunker-800 hover:dark:text-mirage-50 dark:text-mirage-200 dark:border-bunker-400 break-all border-b border-slate-100 text-black last:border-none"
           >
             <td className="w-[15%] whitespace-nowrap py-1 pr-2 align-top font-bold capitalize">
               {part[0]}:

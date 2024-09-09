@@ -75,7 +75,7 @@ export function ListFilter() {
       </div>
 
       <button
-        className={`${highlightButtonClasses} flex rounded-md p-1 text-xl transition-colors duration-200`}
+        className={`${highlightButtonClasses} flex rounded-md p-1 text-xl`}
         onClick={clearFilter}
         disabled={!isFilled}
       >

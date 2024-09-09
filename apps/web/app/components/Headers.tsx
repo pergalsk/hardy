@@ -26,7 +26,7 @@ export function Headers({ headers }: { headers: HeaderItem[] }): JSX.Element {
                 <td className="w-auto whitespace-nowrap py-1 pr-2 align-top font-bold">
                   {header.name}
                   <span
-                    className="iconify material-symbols--help-outline-rounded dark:text-mirage-800 dark:hover:text-accent-300 ml-1 inline-flex select-none items-center align-top text-lg"
+                    className="iconify material-symbols--help-outline-rounded dark:text-mirage-800 text-mirage-100 dark:hover:text-accent-300 hover:text-accent-600 ml-1 inline-flex select-none items-center align-top text-lg"
                     onClick={() => redirect(header.name)}
                   ></span>
                 </td>

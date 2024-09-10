@@ -15,14 +15,14 @@ export const HeadersIcons = ({
   }
 
   return (
-    <span className="dark:text-accent-400 float-right my-auto ml-2 inline-flex select-none items-center align-top text-slate-300">
+    <span className="dark:text-accent-400 text-accent-600 float-right my-auto ml-2 inline-flex select-none items-center align-top">
       <span className="hidden group-hover:inline">
         {formattersList.map(([id, formatter]) => {
           const { title, tooltip, icon, format } = formatter;
           return (
             <span
               key={id}
-              className="dark:hover:text-accent-100 hover:text-accent-500 ml-1.5"
+              className="dark:hover:text-accent-100 hover:text-accent-800 ml-1.5"
               onClick={() => setFormatter(id)}
             >
               <span className={`text-lg ${icon}`}></span>
@@ -31,7 +31,7 @@ export const HeadersIcons = ({
         })}
       </span>
       <span>
-        <span className="iconify material-symbols--tune-rounded dark:text-accent-400 text-lg group-hover:hidden"></span>
+        <span className="iconify material-symbols--tune-rounded dark:text-accent-400 text-accent-600 text-lg group-hover:hidden"></span>
       </span>
     </span>
   );

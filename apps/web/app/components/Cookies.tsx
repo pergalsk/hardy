@@ -46,7 +46,7 @@ export function Cookies({ data }: { data: any }): JSX.Element {
               <td className="px-2 py-1 text-center">
                 <TrueFalseMark value={httpOnly} />
               </td>
-              <td className="px-2 py-1 text-center">
+              <td className="p-2 text-center">
                 <TrueFalseMark value={secure} />
               </td>
             </tr>

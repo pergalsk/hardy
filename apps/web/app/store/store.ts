@@ -17,6 +17,13 @@ export type Filter = {
   };
 };
 
+export type Toast = {
+  id?: string;
+  message: string;
+  type?: "info" | "alert";
+  icon?: string;
+};
+
 export type TabCode = "REQ" | "RES" | "COO" | "TIM";
 
 export type Ui = {
@@ -41,6 +48,7 @@ export type Settings = {
 export type AppState = {
   files: File[];
   filter: Filter;
+  toasts: Toast[];
   ui: Ui;
   settings: Settings;
 };
@@ -64,6 +72,7 @@ export const useAppStore = create<AppState>(() => ({
     active: false,
     fields: { ...initialFilterFieldsState },
   },
+  toasts: [],
   ui: { ...initialUiState },
   settings: {
     jsonViewer: {

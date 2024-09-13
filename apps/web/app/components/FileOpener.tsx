@@ -2,7 +2,7 @@
 import React from "react";
 import { readFileData } from "../helpers/helpers";
 import { nanoid } from "../helpers/nanoid";
-import { addFile, setRowId } from "../store/actions";
+import { addFile, addToast, setRowId } from "../store/actions";
 
 export const FileOpener = () => {
   const openFileSelector = () => {
@@ -28,7 +28,10 @@ export const FileOpener = () => {
       setRowId(0);
     } catch (error) {
       console.error("Error loading file:", error);
-      // todo: modal with warning
+      addToast({
+        type: "alert",
+        message: "Súbor sa nepodarilo otvoriť. Nesprávny formát.",
+      });
     }
   };
 

@@ -2,8 +2,9 @@ import { AppState, TabCode } from "./store";
 
 export const selectTab = (state: AppState) => state.ui.tab;
 export const selectFiles = (state: AppState) => state.files;
-export const selectRowId = (state: AppState) => state.ui.rowId;
 export const selectFileId = (state: AppState) => state.ui.fileId;
+export const selectToasts = (state: AppState) => state.toasts;
+export const selectRowId = (state: AppState) => state.ui.rowId;
 export const selectFilter = (state: AppState) => state.filter;
 export const selectJsonViewerSettings = (state: AppState) =>
   state.settings.jsonViewer;

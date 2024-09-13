@@ -1,9 +1,11 @@
+import { nanoid } from "nanoid";
 import {
   useAppStore,
   File,
   Filter,
   TabCode,
   initialFilterFieldsState,
+  Toast,
 } from "./store";
 
 export const setFileId = (fileId: number) =>
@@ -46,4 +48,14 @@ export const setFilterFields = (newFilterFields: Filter["fields"]) =>
       ...state.filter,
       fields: { ...state.filter.fields, ...newFilterFields },
     },
+  }));
+
+export const addToast = (toast: Omit<Toast, "id">) =>
+  useAppStore.setState((state) => ({
+    toasts: [...state.toasts, { ...toast, id: nanoid() }],
+  }));
+
+export const removeToast = (id: Toast["id"]) =>
+  useAppStore.setState((state) => ({
+    toasts: state.toasts.filter((toast) => toast.id !== id),
   }));

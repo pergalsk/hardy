@@ -1,5 +1,6 @@
 import { Toast } from "../store/store";
 import { removeToast } from "../store/actions";
+import { useFadeId } from "../helpers/useFadeIn";
 
 // todo: improve using Toast['type]
 const toastTypesMap: { [key: string]: string } = {
@@ -18,8 +19,11 @@ export function ToastItem({
   type?: Toast["type"];
   icon?: Toast["icon"];
 }): JSX.Element {
+  const ref = useFadeId(450, 20);
+
   return (
     <div
+      ref={ref}
       className={`${toastTypesMap[type]} flex gap-3 rounded-lg p-3 align-middle shadow-xl`}
     >
       <div className={`${icon} text-2xl`}></div>

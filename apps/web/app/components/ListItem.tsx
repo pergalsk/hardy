@@ -29,7 +29,9 @@ export function ListItem({ item }: { item: any }): JSX.Element {
           <div className="text-mirage-600">|</div>
           <Time time={time} />
           <div className="text-mirage-600">|</div>
-          <div className="text-mirage-200">#{$$id + 1}</div>
+          <div className="text-mirage-200 dark:text-mirage-500">
+            #{$$id + 1}
+          </div>
         </div>
       </div>
       <div className="flex gap-2">

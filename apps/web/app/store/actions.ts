@@ -59,3 +59,5 @@ export const removeToast = (id: Toast["id"]) =>
   useAppStore.setState((state) => ({
     toasts: state.toasts.filter((toast) => toast.id !== id),
   }));
+
+export const removeAllToasts = () => useAppStore.setState({ toasts: [] });

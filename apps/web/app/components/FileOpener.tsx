@@ -30,7 +30,13 @@ export const FileOpener = () => {
       console.error("Error loading file:", error);
       addToast({
         type: "alert",
-        message: "Súbor sa nepodarilo otvoriť. Nesprávny formát.",
+        message: (
+          <>
+            Súbor{" "}
+            <span className="underline-offset-3 italic underline">{name}</span>{" "}
+            sa nepodarilo otvoriť. Nesprávny formát.
+          </>
+        ),
       });
     }
   };

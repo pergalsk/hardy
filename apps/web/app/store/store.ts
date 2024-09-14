@@ -19,7 +19,7 @@ export type Filter = {
 
 export type Toast = {
   id?: string;
-  message: string;
+  message: string | JSX.Element;
   type?: "info" | "alert";
   icon?: string;
 };

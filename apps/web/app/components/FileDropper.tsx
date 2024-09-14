@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDarkMode } from "../helpers/useDarkMode";
 import { readFileData } from "../helpers/helpers";
 import { nanoid } from "../helpers/nanoid";
-import { addFile, setRowId } from "../store/actions";
+import { addFile, addToast, setRowId } from "../store/actions";
 import { FileOpener } from "./FileOpener";
 import { FileOpenLightSvg } from "./FileOpenLightSvg";
 import { FileOpenDarkSvg } from "./FileOpenDarkSvg";
@@ -46,7 +46,16 @@ export const FileDropper = () => {
       setRowId(0);
     } catch (error) {
       console.error("Error loading file:", error);
-      // todo: modal with warning
+      addToast({
+        type: "alert",
+        message: (
+          <>
+            Súbor{" "}
+            <span className="underline-offset-3 italic underline">{name}</span>{" "}
+            sa nepodarilo otvoriť. Nesprávny formát.
+          </>
+        ),
+      });
     }
   };
 

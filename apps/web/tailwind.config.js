@@ -22,6 +22,9 @@ export const theme = {
     fontFamily: {
       mono: ["var(--font-default-mono)"],
     },
+    textUnderlineOffset: {
+      3: "3px",
+    },
     colors: {
       // https://www.tailwindshades.com/#color=223%2C25%2C15&step-up=8&step-down=8&hue-shift=-14&name=mirage&base-stop=9.5&v=1&overrides=e30%3D
       // https://www.tailwindshades.com/#color=223%2C25%2C15&step-up=8&step-down=8&hue-shift=-14&name=mirage&base-stop=9&v=1&overrides=e30%3D

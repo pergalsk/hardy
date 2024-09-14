@@ -50,10 +50,13 @@ export const setFilterFields = (newFilterFields: Filter["fields"]) =>
     },
   }));
 
-export const addToast = (toast: Omit<Toast, "id">) =>
+export const addToast = (toast: Omit<Toast, "id">): string => {
+  const id = nanoid();
   useAppStore.setState((state) => ({
-    toasts: [...state.toasts, { ...toast, id: nanoid() }],
+    toasts: [...state.toasts, { ...toast, id }],
   }));
+  return id;
+};
 
 export const removeToast = (id: Toast["id"]) =>
   useAppStore.setState((state) => ({

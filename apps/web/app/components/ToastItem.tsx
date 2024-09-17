@@ -24,14 +24,20 @@ export function ToastItem({
   return (
     <div
       ref={ref}
-      className={`${toastTypesMap[type]} flex gap-3 rounded-lg p-3 align-middle shadow-xl`}
+      className={`${toastTypesMap[type]} flex rounded-lg align-middle shadow-xl`}
     >
-      <div className={`${icon} text-2xl`}></div>
-      <div className="my-auto flex-1">{message}</div>
-      <div
-        className={`iconify material-symbols--close-rounded text-2xl`}
-        onClick={() => removeToast(id)}
-      ></div>
+      <div className={`p-3 pr-0`}>
+        <span className={`${icon} text-2xl`}></span>
+      </div>
+      <div className="my-auto flex-1 p-3">{message}</div>
+      <div className="pb-3 pl-0 pr-2 pt-2">
+        <div
+          className="rounded-md p-1 transition-colors duration-200 hover:bg-black hover:bg-opacity-10"
+          onClick={() => removeToast(id)}
+        >
+          <span className="iconify material-symbols--close-rounded text-2xl"></span>
+        </div>
+      </div>
     </div>
   );
 }

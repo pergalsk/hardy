@@ -1,12 +1,15 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { readFileData } from "../helpers/helpers";
 import { nanoid } from "../helpers/nanoid";
 import { addFile, addToast, setRowId } from "../store/actions";
 
 export const FileOpener = () => {
+  const ref = useRef<HTMLInputElement>(null);
+
   const openFileSelector = () => {
-    (document.querySelector("input[type='file']") as HTMLInputElement)?.click();
+    ref.current?.click();
+    // (document.querySelector("input[type='file']") as HTMLInputElement)?.click();
   };
 
   const handleFileInputChange = async (
@@ -32,9 +35,9 @@ export const FileOpener = () => {
         type: "alert",
         message: (
           <>
-            Súbor{" "}
+            File{" "}
             <span className="underline-offset-3 italic underline">{name}</span>{" "}
-            sa nepodarilo otvoriť. Nesprávny formát.
+            cannot be opened. Wrong or disrupted content.
           </>
         ),
       });
@@ -44,6 +47,7 @@ export const FileOpener = () => {
   return (
     <>
       <input
+        ref={ref}
         type="file"
         accept=".har"
         onChange={handleFileInputChange}

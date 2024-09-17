@@ -50,9 +50,9 @@ export const FileDropper = () => {
         type: "alert",
         message: (
           <>
-            Súbor{" "}
+            File{" "}
             <span className="underline-offset-3 italic underline">{name}</span>{" "}
-            sa nepodarilo otvoriť. Nesprávny formát.
+            cannot be opened. Wrong or disrupted content.
           </>
         ),
       });

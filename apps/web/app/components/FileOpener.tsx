@@ -9,7 +9,6 @@ export const FileOpener = () => {
 
   const openFileSelector = () => {
     ref.current?.click();
-    // (document.querySelector("input[type='file']") as HTMLInputElement)?.click();
   };
 
   const handleFileInputChange = async (

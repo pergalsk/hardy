@@ -75,13 +75,13 @@ export const FileDropper = () => {
 
   return (
     <div
-      className={`${isDragging ? "border-accent-600 text-accent-600" : "border-mirage-200 dark:border-bunker-100 dark:text-mirage-400 text-mirage-500"} flex h-full w-full select-none flex-row items-center justify-center gap-3 rounded-2xl border-4 border-dashed font-bold transition-colors duration-200`}
+      className={`${isDragging ? "border-accent-600 text-accent-600" : "border-mirage-200 dark:border-bunker-100 dark:text-mirage-400 text-mirage-500"} flex h-full w-full select-none flex-row items-center justify-center gap-3 rounded-2xl border-4 border-dashed font-bold transition-colors duration-200 portrait:flex-col`}
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      <div className="flex h-2/3 w-2/5">
+      <div className="flex h-1/2 max-h-[800px] w-2/3 max-w-[800px] md:h-2/3 md:w-2/5">
         {isDark ? <FileOpenDarkSvg /> : <FileOpenLightSvg />}
       </div>
 

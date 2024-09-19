@@ -40,10 +40,20 @@ export function ListFilter() {
     ? "dark:hover:bg-accent-700 hover:bg-accent-800 dark:hover:text-white"
     : "opacity-25";
 
+  const highlightIconClasses = isFilled
+    ? "dark:text-accent-100"
+    : "dark:text-accent-100";
+
   return (
     <div
       className={`${highlightPanelClasses} flex gap-2 rounded-md px-2 py-2 transition-colors duration-200`}
     >
+      <div
+        className={`${highlightIconClasses} flex select-none rounded-md p-1 text-xl`}
+      >
+        <span className="iconify material-symbols--filter-alt-outline my-auto"></span>
+      </div>
+
       <div className="flex flex-1 gap-4">
         <div className="flex basis-[66%] flex-row items-center gap-2 p-0">
           <span className="select-none font-bold uppercase">URL</span>

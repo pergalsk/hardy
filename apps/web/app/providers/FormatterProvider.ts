@@ -50,9 +50,9 @@ export function FormatterProvider<T>(options?: FormatterProviderOptions) {
     return formatters[key] ?? null;
   }
 
-  function getFormattersArr(key: string): T[] | [] {
-    return formatters[key] ? Object.values(formatters[key]) : [];
-  }
+  // function getFormattersArr(key: string): any {
+  //   return formatters[key] ? Object.values(formatters[key]) : [];
+  // }
 
   function getFormatter(key: string, id: string): T | null {
     if (!id) {
@@ -65,7 +65,7 @@ export function FormatterProvider<T>(options?: FormatterProviderOptions) {
     addFormatters,
     removeFormatter,
     getFormatters,
-    getFormattersArr,
+    // getFormattersArr,
     getFormatter,
   };
 }

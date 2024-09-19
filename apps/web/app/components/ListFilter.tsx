@@ -44,34 +44,34 @@ export function ListFilter() {
     <div
       className={`${highlightPanelClasses} flex gap-2 rounded-md px-2 py-2 transition-colors duration-200`}
     >
-      <div className="flex flex-1 flex-row items-center gap-2 p-0">
-        <span className="select-none font-bold uppercase">URL</span>
-        <input
-          type="text"
-          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
-          value={url}
-          onChange={handleUrlChange}
-        />
-      </div>
-
-      <div className="flex flex-1 flex-row items-center gap-2 p-0">
-        <span className="select-none font-bold uppercase">Status</span>
-        <input
-          type="text"
-          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
-          value={status}
-          onChange={handleStatusChange}
-        />
-      </div>
-
-      <div className="flex flex-1 flex-row items-center gap-2 p-0">
-        <span className="select-none font-bold uppercase">Method</span>
-        <input
-          type="text"
-          className={`${highlightInputClasses} focus:border-accent-800 flex-1 rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
-          value={method}
-          onChange={handleMethodChange}
-        />
+      <div className="flex flex-1 gap-4">
+        <div className="flex basis-[66%] flex-row items-center gap-2 p-0">
+          <span className="select-none font-bold uppercase">URL</span>
+          <input
+            type="text"
+            className={`${highlightInputClasses} focus:border-accent-800 w-full rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
+            value={url}
+            onChange={handleUrlChange}
+          />
+        </div>
+        <div className="flex flex-row items-center gap-2 p-0">
+          <span className="select-none font-bold uppercase">Status</span>
+          <input
+            type="text"
+            className={`${highlightInputClasses} focus:border-accent-800 w-full rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
+            value={status}
+            onChange={handleStatusChange}
+          />
+        </div>
+        <div className="flex flex-row items-center gap-2 p-0">
+          <span className="select-none font-bold uppercase">Method</span>
+          <input
+            type="text"
+            className={`${highlightInputClasses} focus:border-accent-800 w-full rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
+            value={method}
+            onChange={handleMethodChange}
+          />
+        </div>
       </div>
 
       <button

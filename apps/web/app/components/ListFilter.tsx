@@ -41,8 +41,8 @@ export function ListFilter() {
     : "opacity-25";
 
   const highlightIconClasses = isFilled
-    ? "dark:text-accent-100"
-    : "dark:text-accent-100";
+    ? "dark:text-accent-100 text-accent-100"
+    : "dark:text-accent-100 text-accent-800";
 
   return (
     <div

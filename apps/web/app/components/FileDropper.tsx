@@ -1,11 +1,5 @@
 "use client";
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  LegacyRef,
-} from "react";
+import React, { LegacyRef } from "react";
 import { useDarkMode } from "../helpers/useDarkMode";
 import { readFileData } from "../helpers/helpers";
 import { nanoid } from "../helpers/nanoid";
@@ -13,53 +7,7 @@ import { addFile, addToast, setRowId } from "../store/actions";
 import { FileOpener } from "./FileOpener";
 import { FileOpenLightSvg } from "./FileOpenLightSvg";
 import { FileOpenDarkSvg } from "./FileOpenDarkSvg";
-
-export function useDragging<T extends HTMLElement>(
-  callbackFn: (e: DragEvent) => void,
-) {
-  const ref = useRef<T>(null);
-  const [isDragging, setIsDragging] = useState(false);
-
-  const onDragEnter = useCallback((e: DragEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-  }, []);
-
-  const onDragleave = useCallback((e: DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-  }, []);
-
-  const onDragover = useCallback((e: DragEvent) => {
-    e.preventDefault();
-  }, []);
-
-  const onDrop = useCallback((e: DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-    callbackFn(e);
-  }, []);
-
-  useEffect(() => {
-    if (ref.current != null) {
-      ref.current.addEventListener("dragenter", onDragEnter);
-      ref.current.addEventListener("dragleave", onDragleave);
-      ref.current.addEventListener("dragover", onDragover);
-      ref.current.addEventListener("drop", onDrop);
-    }
-
-    return () => {
-      if (ref.current != null) {
-        ref.current.removeEventListener("dragenter", onDragEnter);
-        ref.current.removeEventListener("dragleave", onDragleave);
-        ref.current.removeEventListener("dragover", onDragover);
-        ref.current.removeEventListener("drop", onDrop);
-      }
-    };
-  }, [ref.current]);
-
-  return [ref, isDragging];
-}
+import { useDragging } from "../helpers/useDragging";
 
 async function openFile(file: File) {
   const { name, size } = file;

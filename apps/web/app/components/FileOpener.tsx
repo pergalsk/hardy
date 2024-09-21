@@ -1,8 +1,15 @@
 "use client";
 import React, { useRef } from "react";
-import { readFileData } from "../helpers/helpers";
-import { nanoid } from "../helpers/nanoid";
-import { addFile, addToast, setRowId } from "../store/actions";
+import { openFile } from "../helpers/openFile";
+import { WrongFile } from "./WrongFile";
+
+const processInputFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0];
+  if (!file) {
+    return;
+  }
+  openFile(file, <WrongFile name={file.name} />);
+};
 
 export const FileOpener = () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -11,45 +18,13 @@ export const FileOpener = () => {
     ref.current?.click();
   };
 
-  const handleFileInputChange = async (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = e.target.files?.[0];
-
-    if (!file) {
-      return;
-    }
-
-    const { name, size } = file;
-    const fileId = nanoid();
-
-    try {
-      const fileData = await readFileData(file);
-      const data = JSON.parse(fileData);
-      addFile({ fileId, name, size, data });
-      setRowId(0);
-    } catch (error) {
-      console.error("Error loading file:", error);
-      addToast({
-        type: "alert",
-        message: (
-          <>
-            File{" "}
-            <span className="underline-offset-3 italic underline">{name}</span>{" "}
-            cannot be opened. Wrong or disrupted content.
-          </>
-        ),
-      });
-    }
-  };
-
   return (
     <>
       <input
         ref={ref}
         type="file"
         accept=".har"
-        onChange={handleFileInputChange}
+        onChange={processInputFile}
         className="hidden"
       />
 

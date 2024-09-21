@@ -1,44 +1,19 @@
 "use client";
 import React, { LegacyRef } from "react";
 import { useDarkMode } from "../helpers/useDarkMode";
-import { readFileData } from "../helpers/helpers";
-import { nanoid } from "../helpers/nanoid";
-import { addFile, addToast, setRowId } from "../store/actions";
 import { FileOpener } from "./FileOpener";
 import { FileOpenLightSvg } from "./FileOpenLightSvg";
 import { FileOpenDarkSvg } from "./FileOpenDarkSvg";
 import { useDragging } from "../helpers/useDragging";
-
-async function openFile(file: File) {
-  const { name, size } = file;
-  const fileId = nanoid();
-
-  try {
-    const rawData = await readFileData(file);
-    const data = JSON.parse(rawData);
-    addFile({ fileId, name, size, data });
-    setRowId(0);
-  } catch (error) {
-    console.error("Error loading file:", error);
-    addToast({
-      type: "alert",
-      message: (
-        <>
-          File{" "}
-          <span className="underline-offset-3 italic underline">{name}</span>{" "}
-          cannot be opened. Wrong or disrupted content.
-        </>
-      ),
-    });
-  }
-}
+import { WrongFile } from "./WrongFile";
+import { openFile } from "../helpers/openFile";
 
 function processDraggedFile(e: DragEvent) {
   const file = e.dataTransfer?.files[0];
   if (!file) {
     return;
   }
-  openFile(file);
+  openFile(file, <WrongFile name={file.name} />);
 }
 
 export const FileDropper = () => {

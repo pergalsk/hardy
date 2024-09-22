@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export function useFadeId(duration: number, fromPosition: number) {
+export function useFadeIn(duration: number, fromPosition: number) {
   const ref = useRef<HTMLDivElement>(null);
 
   let id: number;

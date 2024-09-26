@@ -1,15 +1,15 @@
 const badgeStyles = {
   green: [
-    "dark:bg-green-900 dark:text-white",
-    "dark:bg-accent-950 dark:text-white",
+    "bg-green-400 dark:bg-green-900 dark:text-white text-black",
+    "bg-accent-300 dark:bg-accent-950 dark:text-white text-black",
   ],
   yellow: [
-    "dark:bg-yellow-700 dark:text-white",
-    "dark:bg-yellow-800 dark:text-white",
+    "bg-yellow-400 dark:bg-yellow-700 dark:text-white text-black",
+    "bg-yellow-500 dark:bg-yellow-800 dark:text-white text-black",
   ],
-  brown: [
-    "dark:bg-blue-500 dark:text-white",
-    "dark:bg-blue-800 dark:text-white",
+  violet: [
+    "bg-violet-400 dark:bg-violet-500 dark:text-white",
+    "bg-violet-300 dark:bg-violet-800 dark:text-white",
   ],
 };
 

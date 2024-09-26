@@ -45,7 +45,7 @@ export const userAgentParseFormatter: HeaderValueFormatter = {
         <InfoBadge style={"green"} title={"Browser"} value={browserValue} />
         <InfoBadge style={"yellow"} title={"OS"} value={osValue} />
         {vendor && model && type ? (
-          <InfoBadge style={"brown"} title={"Device"} value={deviceValue} />
+          <InfoBadge style={"violet"} title={"Device"} value={deviceValue} />
         ) : null}
       </div>
     );

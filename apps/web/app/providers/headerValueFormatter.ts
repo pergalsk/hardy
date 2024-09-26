@@ -16,5 +16,5 @@ export type HeaderValueFormatter = {
 
 export const headerValueFormatters = FormatterProvider<HeaderValueFormatter>();
 
-headerValueFormatters.addFormatters("User-Agent", [userAgentRawFormatter]);
 headerValueFormatters.addFormatters("User-Agent", [userAgentParseFormatter]);
+headerValueFormatters.addFormatters("User-Agent", [userAgentRawFormatter]);

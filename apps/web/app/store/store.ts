@@ -79,7 +79,7 @@ export const useAppStore = create<AppState>(() => ({
       collapsed: 2,
       indentWidth: 24,
       enableClipboard: false,
-      displayDataTypes: true,
+      displayDataTypes: false,
       displayObjectSize: false,
       highlightUpdates: false,
     },

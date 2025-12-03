@@ -16,15 +16,17 @@ export function FormatterProvider<T>(options?: FormatterProviderOptions) {
   const formatters: { [key: string]: { [id: string]: T } } = {};
 
   const defaultOptions: FormatterProviderOptions = {
-    comparativeMethod: "case-sensitive", // needs implementation
+    comparativeMethod: "case-insensitive",
   };
 
   const optionsObj = { ...defaultOptions, ...options };
 
   function addFormatters(
-    key: string,
+    originalKey: string,
     formatterList: T | T[],
   ): string | string[] {
+    const key = transformKey(originalKey, optionsObj.comparativeMethod);
+
     if (!Array.isArray(formatterList)) {
       formatterList = [formatterList];
     }
@@ -39,14 +41,20 @@ export function FormatterProvider<T>(options?: FormatterProviderOptions) {
     return indexes.length === 1 ? indexes[0] || [] : indexes;
   }
 
-  function removeFormatter(key: string, id?: string): boolean | undefined {
+  function removeFormatter(
+    originalKey: string,
+    id?: string,
+  ): boolean | undefined {
+    const key = transformKey(originalKey, optionsObj.comparativeMethod);
+
     if (!id) {
       return delete formatters[key];
     }
     return delete formatters[key]?.[id];
   }
 
-  function getFormatters(key: string): { [id: string]: T } | null {
+  function getFormatters(originalKey: string): { [id: string]: T } | null {
+    const key = transformKey(originalKey, optionsObj.comparativeMethod);
     return formatters[key] ?? null;
   }
 
@@ -54,10 +62,11 @@ export function FormatterProvider<T>(options?: FormatterProviderOptions) {
   //   return formatters[key] ? Object.values(formatters[key]) : [];
   // }
 
-  function getFormatter(key: string, id: string): T | null {
+  function getFormatter(originalKey: string, id: string): T | null {
     if (!id) {
       return null;
     }
+    const key = transformKey(originalKey, optionsObj.comparativeMethod);
     return formatters[key]?.[id] || null;
   }
 
@@ -86,4 +95,17 @@ function prepareFormatters<T>(
   );
 
   return [formattersCatalog, indexes];
+}
+
+function transformKey(
+  key: string,
+  comparativeMethod: FormatterProviderOptions["comparativeMethod"],
+) {
+  if (comparativeMethod === "case-sensitive") {
+    return key;
+  }
+  if (comparativeMethod === "case-insensitive") {
+    return key.toLowerCase();
+  }
+  return key;
 }

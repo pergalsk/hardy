@@ -99,3 +99,16 @@ export const findHeader =
   (name: string) =>
   (header: { name: string; value: string }): boolean =>
     header.name.toLowerCase() === name.toLowerCase();
+
+export function parseMimeType(headerValue?: string): string | null {
+  if (!headerValue) {
+    return null;
+  }
+
+  const firstPart = headerValue.split(";")[0];
+  if (!firstPart) {
+    return null;
+  }
+
+  return firstPart.trim().toLowerCase();
+}

@@ -1,25 +1,21 @@
-import { parseJsonData } from "../helpers/helpers";
-import { JsonContent } from "./JsonContent";
+import { Formatter, ContentValue } from "../providers/contentValueFormatter";
 import { NoContent } from "./NoContent";
+import { TextContent } from "./TextContent";
 
-function TextContent({ data }: { data: string }): JSX.Element {
-  return (
-    <span className="dark:text-mirage-200 break-all text-sm text-black">
-      {data}
-    </span>
-  );
-}
-
-export function Content({ data }: { data: any }): JSX.Element {
+export function Content({
+  data,
+  formatFn,
+}: {
+  data: any;
+  formatFn?: Formatter<ContentValue>["format"];
+}): JSX.Element {
   if (!data) {
     return <NoContent>No Content</NoContent>;
   }
 
-  const jsonObj = parseJsonData(data);
-
-  if (!jsonObj) {
-    return <TextContent data={data} />;
+  if (typeof formatFn === "function") {
+    return formatFn({ value: data }) as JSX.Element;
   }
 
-  return <JsonContent data={jsonObj} />;
+  return <TextContent data={data} />;
 }

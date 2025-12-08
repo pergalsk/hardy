@@ -33,12 +33,13 @@ export type Ui = {
 };
 
 export type JsonViewerSettings = {
-  collapsed: number;
+  collapsed: number | boolean;
   indentWidth: number;
   enableClipboard: boolean;
   displayDataTypes: boolean;
   displayObjectSize: boolean;
   highlightUpdates: boolean;
+  shortenTextAfterLength: number;
 };
 
 export type Settings = {
@@ -65,6 +66,16 @@ export const initialUiState: Ui = {
   tab: "REQ",
 };
 
+export const initialJsonViewerSettings: JsonViewerSettings = {
+  collapsed: 2,
+  indentWidth: 24,
+  enableClipboard: false,
+  displayDataTypes: false,
+  displayObjectSize: false,
+  highlightUpdates: false,
+  shortenTextAfterLength: 0,
+};
+
 export const useAppStore = create<AppState>(() => ({
   files: [],
   filter: {
@@ -75,13 +86,6 @@ export const useAppStore = create<AppState>(() => ({
   toasts: [],
   ui: { ...initialUiState },
   settings: {
-    jsonViewer: {
-      collapsed: 2,
-      indentWidth: 24,
-      enableClipboard: false,
-      displayDataTypes: false,
-      displayObjectSize: false,
-      highlightUpdates: false,
-    },
+    jsonViewer: { ...initialJsonViewerSettings },
   },
 }));

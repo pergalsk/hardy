@@ -64,3 +64,14 @@ export const removeToast = (id: Toast["id"]) =>
   }));
 
 export const removeAllToasts = () => useAppStore.setState({ toasts: [] });
+
+export const jsonViewerCollapse = (collapsed: number | boolean) =>
+  useAppStore.setState((state) => ({
+    settings: {
+      ...state.settings,
+      jsonViewer: {
+        ...state.settings.jsonViewer,
+        collapsed,
+      },
+    },
+  }));

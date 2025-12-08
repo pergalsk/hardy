@@ -5,7 +5,7 @@ import {
 
 export const userAgentRawFormatter: HeaderValueFormatter = {
   title: "Original",
-  icon: "iconify material-symbols--settings-backup-restore-rounded",
+  icon: "iconify material-symbols--code-rounded",
   tooltip: "Original raw value",
   format: (headerItem: HeaderItem): string => {
     return headerItem.value ?? "";

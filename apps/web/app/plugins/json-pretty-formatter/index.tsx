@@ -1,0 +1,19 @@
+import { Formatter, ContentValue } from "../../providers/contentValueFormatter";
+import { TextContent } from "../../components/TextContent";
+import { JsonContent } from "../../components/JsonContent";
+import { parseJsonData } from "../../helpers/helpers";
+
+export const jsonPrettyFormatter: Formatter<ContentValue> = {
+  title: "Pretty",
+  icon: "iconify material-symbols--format-align-left-rounded",
+  tooltip: "Pretty formatted value",
+  format: (content: ContentValue): JSX.Element | string => {
+    const jsonObj = parseJsonData(content.value || "");
+
+    if (!jsonObj) {
+      return <TextContent data={content.value || ""} />;
+    }
+
+    return <JsonContent data={jsonObj} />;
+  },
+};

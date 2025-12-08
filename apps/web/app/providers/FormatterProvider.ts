@@ -1,24 +1,15 @@
 import { nanoid } from "nanoid";
 
-/* export type FormatterProvider<T> = () => {
-  addFormatters: (key: string, formatter: T) => void;
-  removeFormatter: (key: string, id?: string) => boolean | undefined;
-  getFormatters: (key: string) => { [id: string]: T } | null;
-  getFormattersArr: (key: string) => T[] | [];
-  getFormatter: (key: string, id: string) => T | null;
-};
- */
 export type FormatterProviderOptions = {
   comparativeMethod: "case-sensitive" | "case-insensitive";
 };
 
+const defaultOptions: FormatterProviderOptions = {
+  comparativeMethod: "case-insensitive",
+};
+
 export function FormatterProvider<T>(options?: FormatterProviderOptions) {
   const formatters: { [key: string]: { [id: string]: T } } = {};
-
-  const defaultOptions: FormatterProviderOptions = {
-    comparativeMethod: "case-insensitive",
-  };
-
   const optionsObj = { ...defaultOptions, ...options };
 
   function addFormatters(
@@ -58,7 +49,8 @@ export function FormatterProvider<T>(options?: FormatterProviderOptions) {
     return formatters[key] ?? null;
   }
 
-  // function getFormattersArr(key: string): any {
+  // function getFormattersArr(originalKey: string): any {
+  //   const key = transformKey(originalKey, optionsObj.comparativeMethod);
   //   return formatters[key] ? Object.values(formatters[key]) : [];
   // }
 

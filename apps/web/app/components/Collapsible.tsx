@@ -1,20 +1,37 @@
 import React, { useState } from "react";
 import { ToggleMark } from "./ToggleMark";
+import { Formatter, ContentValue } from "../providers/contentValueFormatter";
 
 export function Collapsible({
   children,
   title,
   disabled = false,
+  actions = null,
+  activeActionId = "",
+  onAction = () => {},
 }: {
   children: any;
   title: string | JSX.Element;
   disabled?: boolean;
+  actions?: { [id: string]: Formatter<ContentValue> } | null;
+  activeActionId?: string;
+  onAction?: (id: string) => void;
 }) {
   const [isOpen, setIsOpen] = useState(true);
 
   const disabledClasses = disabled
     ? "opacity-50"
     : "hover:bg-mirage-100 dark:hover:bg-bunker-200 dark:hover:text-white";
+
+  const actionList = actions
+    ? Object.entries(actions).map(([id, { icon }]) => (
+        <div
+          key={id}
+          className={`${icon} ${activeActionId === id ? "dark:text-yellow-300" : ""} my-auto text-lg hover:text-white`}
+          onClick={() => onAction(id)}
+        ></div>
+      ))
+    : null;
 
   return (
     <div>
@@ -26,13 +43,11 @@ export function Collapsible({
           <ToggleMark opened={isOpen && !disabled} />
           <div className="w-full">{title}</div>
         </div>
-        {/* <div className="text-mirage-700 bg-mirage-50 dark:text-mirage-500 mr-2 flex gap-2 rounded-md p-1 px-[0.375rem] transition-colors duration-200 dark:bg-transparent">
-          <div className="iconify material-symbols--code-rounded hover:text-accent-700 my-auto text-xl"></div>
-          <div className="iconify material-symbols--image-search-rounded hover:text-accent-700 my-auto text-xl"></div>
-          <div className="iconify material-symbols--close-fullscreen-rounded hover:text-accent-700 my-auto rotate-90 text-xl"></div>
-          <div className="iconify material-symbols--open-in-full-rounded hover:text-accent-700 my-auto rotate-90 text-xl"></div>
-          <div className="iconify material-symbols--content-copy-outline-rounded hover:text-accent-700 my-auto text-xl"></div>
-        </div> */}
+        {!disabled && isOpen && actionList && (
+          <div className="text-mirage-700 bg-mirage-50 dark:text-accent-300 dark:bg-mirage-900 dark:hover:bg-mirage-800 mr-2 flex gap-3 rounded-md p-1 px-2 transition-colors duration-200">
+            {actionList}
+          </div>
+        )}
       </div>
       {!disabled && isOpen && <div className="p-2 pb-0">{children}</div>}
     </div>

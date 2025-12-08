@@ -1,5 +1,6 @@
 import JsonView from "@uiw/react-json-view";
-import { useAppStore } from "../store/store";
+import { useAppStore, initialJsonViewerSettings } from "../store/store";
+import { jsonViewerCollapse } from "../store/actions";
 import { selectJsonViewerSettings } from "../store/selectors";
 import { useDarkMode } from "../helpers/useDarkMode";
 
@@ -72,14 +73,30 @@ const darkStyle: { [key: string]: string } = {
 export function JsonContent({ data }: { data: any }): JSX.Element {
   const settings = useAppStore(selectJsonViewerSettings);
   const isDark = useDarkMode();
-
   return (
-    <div className="break-all">
-      <JsonView
-        value={data}
-        style={isDark ? darkStyle : lightStyle}
-        {...settings}
-      />
+    <div>
+      <div className="text-mirage-700 dark:text-accent-300 border-bunker-700 dark:border-bunker-300 p- relative mb-2 ml-auto flex w-fit items-end justify-end gap-3 rounded-md border p-1.5 px-2 transition-colors duration-200">
+        <div
+          className={`${"iconify material-symbols--expand-content-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
+          onClick={() => {
+            jsonViewerCollapse(false);
+          }}
+        ></div>
+        <div
+          className={`${"iconify material-symbols--collapse-content-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
+          onClick={() => {
+            jsonViewerCollapse(initialJsonViewerSettings.collapsed);
+          }}
+        ></div>
+      </div>
+
+      <div className="break-all">
+        <JsonView
+          value={data}
+          style={isDark ? darkStyle : lightStyle}
+          {...settings}
+        />
+      </div>
     </div>
   );
 }

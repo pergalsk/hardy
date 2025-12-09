@@ -73,19 +73,33 @@ const darkStyle: { [key: string]: string } = {
 export function JsonContent({ data }: { data: any }): JSX.Element {
   const settings = useAppStore(selectJsonViewerSettings);
   const isDark = useDarkMode();
+
   return (
-    <div>
-      <div className="text-mirage-700 dark:text-accent-300 border-bunker-700 dark:border-bunker-300 p- relative mb-2 ml-auto flex w-fit items-end justify-end gap-3 rounded-md border p-1.5 px-2 transition-colors duration-200">
+    <div className="relative">
+      <div className="text-mirage-700 dark:text-accent-300 border-bunker-700 dark:border-bunker-300 absolute right-0 mb-2 ml-auto flex w-fit items-end justify-end gap-3 rounded-md border p-1.5 px-2 transition-colors duration-200">
         <div
-          className={`${"iconify material-symbols--expand-content-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
+          className={`${"iconify material-symbols--expand-all-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
           onClick={() => {
             jsonViewerCollapse(false);
           }}
         ></div>
         <div
-          className={`${"iconify material-symbols--collapse-content-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
+          className={`${"iconify material-symbols--collapse-all-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
           onClick={() => {
             jsonViewerCollapse(initialJsonViewerSettings.collapsed);
+          }}
+        ></div>
+        <div
+          className={`${"iconify material-symbols--content-copy-outline-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
+          onClick={() => {
+            navigator.clipboard
+              .writeText(JSON.stringify(data, null, 2))
+              .then(() => {
+                console.log("JSON copied to clipboard!");
+              })
+              .catch((err) => {
+                console.error("Failed to copy to clipboard:", err);
+              });
           }}
         ></div>
       </div>

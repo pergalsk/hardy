@@ -70,7 +70,7 @@ export const initialJsonViewerSettings: JsonViewerSettings = {
   collapsed: 2,
   indentWidth: 24,
   enableClipboard: false,
-  displayDataTypes: false,
+  displayDataTypes: true,
   displayObjectSize: false,
   highlightUpdates: false,
   shortenTextAfterLength: 0,

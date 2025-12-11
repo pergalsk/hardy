@@ -9,20 +9,8 @@ import { contentValueFormatters } from "../providers/contentValueFormatter";
 import { headersFormatters } from "../providers/headersFormatter";
 
 export function ResTab({ data }: { data: any }): JSX.Element {
-  // headers
-  const { headers, headersSize } = data;
-  const headersFormatterList = headersFormatters.getFormatters("headers");
-  const headersFirstKey = headersFormatterList
-    ? Object.keys(headersFormatterList)[0] || ""
-    : "";
-  const [headersActionId, setHeadersActionId] = useState(headersFirstKey);
-  const headersFormatFn = headersFormatterList?.[headersActionId]?.format;
-  const hInfo = headers != null ? ` ${headersSize} b` : "No data";
-  const hTitle = <CollapsibleTitle title={"Headers"} info={hInfo} />;
-
-  //
   // content
-  const { content, bodySize } = data;
+  const { headers, content, bodySize } = data;
   const cType: { name: string; value: string } =
     headers?.find(findHeader("Content-Type")) || {};
   const mimeType = parseMimeType(cType.value);
@@ -44,17 +32,7 @@ export function ResTab({ data }: { data: any }): JSX.Element {
 
   return (
     <>
-      <Collapsible
-        title={hTitle}
-        disabled={!Array.isArray(headers) || headers.length === 0}
-        actions={headersFormatterList}
-        activeActionId={headersActionId}
-        onAction={(headersActionId: string) =>
-          setHeadersActionId(headersActionId)
-        }
-      >
-        <Headers data={headers} formatFn={headersFormatFn} />
-      </Collapsible>
+      <Headers data={data} />
 
       <Collapsible
         title={cTitle}

@@ -1,6 +1,6 @@
+import { FormatterProvider } from "./FormatterProvider";
 import { jsonRawFormatter } from "../plugins/json-raw-formatter";
 import { jsonPrettyFormatter } from "../plugins/json-pretty-formatter";
-import { FormatterProvider } from "./FormatterProvider";
 
 export interface HeaderItem {
   name: string;

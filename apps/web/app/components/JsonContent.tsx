@@ -1,8 +1,9 @@
 import JsonView from "@uiw/react-json-view";
 import { useAppStore, initialJsonViewerSettings } from "../store/store";
-import { jsonViewerCollapse } from "../store/actions";
+import { addToast, jsonViewerCollapse } from "../store/actions";
 import { selectJsonViewerSettings } from "../store/selectors";
 import { useDarkMode } from "../helpers/useDarkMode";
+import { useState } from "react";
 
 const lightStyle: { [key: string]: string } = {
   "--w-rjv-font-family": "var(--font-default-mono)",
@@ -70,32 +71,49 @@ const darkStyle: { [key: string]: string } = {
   "--w-rjv-type-undefined-color": "#fa8072",
 };
 
-export function JsonContent({ data }: { data: any }): JSX.Element {
+export function JsonContent({
+  data,
+  collapseBtns = true,
+}: {
+  data: any;
+  collapseBtns?: boolean;
+}): JSX.Element {
   const settings = useAppStore(selectJsonViewerSettings);
   const isDark = useDarkMode();
+  const [collapsed, setCollapsed] = useState<boolean | number>(
+    initialJsonViewerSettings.collapsed,
+  );
 
   return (
     <div className="relative">
       <div className="text-mirage-700 dark:text-accent-300 border-bunker-700 dark:border-bunker-300 absolute right-0 mb-2 ml-auto flex w-fit items-end justify-end gap-3 rounded-md border p-1.5 px-2 transition-colors duration-200">
-        <div
-          className={`${"iconify material-symbols--expand-all-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
-          onClick={() => {
-            jsonViewerCollapse(false);
-          }}
-        ></div>
-        <div
-          className={`${"iconify material-symbols--collapse-all-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
-          onClick={() => {
-            jsonViewerCollapse(initialJsonViewerSettings.collapsed);
-          }}
-        ></div>
+        {collapseBtns && (
+          <>
+            <div
+              className={`${"iconify material-symbols--expand-all-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
+              onClick={() => {
+                setCollapsed(false);
+              }}
+            ></div>
+            <div
+              className={`${"iconify material-symbols--collapse-all-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
+              onClick={() => {
+                setCollapsed(initialJsonViewerSettings.collapsed);
+              }}
+            ></div>
+          </>
+        )}
+
         <div
           className={`${"iconify material-symbols--content-copy-outline-rounded"} dark:text-accent-300 my-auto text-lg hover:text-white`}
           onClick={() => {
             navigator.clipboard
               .writeText(JSON.stringify(data, null, 2))
               .then(() => {
-                console.log("JSON copied to clipboard!");
+                addToast({
+                  type: "alert",
+                  message: <div>JSON copied to clipboard!</div>,
+                });
               })
               .catch((err) => {
                 console.error("Failed to copy to clipboard:", err);
@@ -106,9 +124,10 @@ export function JsonContent({ data }: { data: any }): JSX.Element {
 
       <div className="break-all">
         <JsonView
+          {...settings}
           value={data}
           style={isDark ? darkStyle : lightStyle}
-          {...settings}
+          collapsed={collapsed}
         />
       </div>
     </div>

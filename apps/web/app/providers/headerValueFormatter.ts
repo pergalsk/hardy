@@ -1,6 +1,6 @@
+import { FormatterProvider } from "./FormatterProvider";
 import { userAgentParseFormatter } from "../plugins/user-agent-parse-formatter";
 import { userAgentRawFormatter } from "../plugins/user-agent-raw-formatter";
-import { FormatterProvider } from "./FormatterProvider";
 
 export interface HeaderItem {
   name: string;

@@ -6,29 +6,34 @@ import { CollapsibleTitle } from "./CollapsibleTitle";
 import { findHeader, parseMimeType } from "../helpers/helpers";
 
 import { contentValueFormatters } from "../providers/contentValueFormatter";
+import { headersFormatters } from "../providers/headersFormatter";
 
 export function ResTab({ data }: { data: any }): JSX.Element {
-  const { headers, headersSize, content, bodySize } = data;
-
+  // headers
+  const { headers, headersSize } = data;
+  const headersFormatterList = headersFormatters.getFormatters("headers");
+  const headersFirstKey = headersFormatterList
+    ? Object.keys(headersFormatterList)[0] || ""
+    : "";
+  const [headersActionId, setHeadersActionId] = useState(headersFirstKey);
+  const headersFormatFn = headersFormatterList?.[headersActionId]?.format;
   const hInfo = headers != null ? ` ${headersSize} b` : "No data";
   const hTitle = <CollapsibleTitle title={"Headers"} info={hInfo} />;
 
+  //
+  // content
+  const { content, bodySize } = data;
   const cType: { name: string; value: string } =
     headers?.find(findHeader("Content-Type")) || {};
-
   const mimeType = parseMimeType(cType.value);
-
   const contentValueFormatterList = mimeType
     ? contentValueFormatters.getFormatters(mimeType)
     : null;
-
-  const firstKey = contentValueFormatterList
+  const contentFirstKey = contentValueFormatterList
     ? Object.keys(contentValueFormatterList)[0] || ""
     : "";
-
-  const [contentActionId, setContentActionId] = useState(firstKey);
-  const formatFn = contentValueFormatterList?.[contentActionId]?.format;
-
+  const [contentActionId, setContentActionId] = useState(contentFirstKey);
+  const contentFormatFn = contentValueFormatterList?.[contentActionId]?.format;
   const cInfo = content != null ? ` ${bodySize} b` : "No data";
   const cTitle = (
     <CollapsibleTitle
@@ -39,8 +44,16 @@ export function ResTab({ data }: { data: any }): JSX.Element {
 
   return (
     <>
-      <Collapsible title={hTitle} disabled={!headers}>
-        {headers && <Headers headers={headers} />}
+      <Collapsible
+        title={hTitle}
+        disabled={!Array.isArray(headers) || headers.length === 0}
+        actions={headersFormatterList}
+        activeActionId={headersActionId}
+        onAction={(headersActionId: string) =>
+          setHeadersActionId(headersActionId)
+        }
+      >
+        <Headers data={headers} formatFn={headersFormatFn} />
       </Collapsible>
 
       <Collapsible
@@ -52,7 +65,7 @@ export function ResTab({ data }: { data: any }): JSX.Element {
           setContentActionId(contentActionId)
         }
       >
-        <Content data={content} formatFn={formatFn} />
+        <Content data={content} formatFn={contentFormatFn} />
       </Collapsible>
     </>
   );

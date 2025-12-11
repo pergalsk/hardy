@@ -1,5 +1,5 @@
 import { Collapsible } from "./Collapsible";
-import { Headers } from "./Headers";
+import { HeadersTable } from "./HeadersTable";
 import { Content } from "./Content";
 import { CollapsibleTitle } from "./CollapsibleTitle";
 import { findHeader } from "../helpers/helpers";
@@ -24,7 +24,7 @@ export function ReqTab({ data }: { data: any }): JSX.Element {
   return (
     <>
       <Collapsible title={hTitle} disabled={!headers}>
-        {headers && <Headers headers={headers} />}
+        {headers && <HeadersTable headers={headers} />}
       </Collapsible>
 
       <Collapsible title={cTitle} disabled={!content}>

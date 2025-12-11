@@ -13,7 +13,7 @@ export function Collapsible({
   children: any;
   title: string | JSX.Element;
   disabled?: boolean;
-  actions?: { [id: string]: Formatter<ContentValue> } | null;
+  actions?: { [id: string]: Formatter<any> } | null;
   activeActionId?: string;
   onAction?: (id: string) => void;
 }) {

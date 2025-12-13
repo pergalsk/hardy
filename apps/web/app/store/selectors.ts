@@ -9,6 +9,14 @@ export const selectFilter = (state: AppState) => state.filter;
 export const selectJsonViewerSettings = (state: AppState) =>
   state.settings.jsonViewer;
 
+export const selectFileSize = (state: AppState) => {
+  const files = selectFiles(state);
+  const fileId = selectFileId(state);
+
+  const file = files.find((file) => file.fileId === fileId);
+  return file ? file.size : -1;
+};
+
 export const selectFile = (state: AppState) => {
   const files = selectFiles(state);
   const fileId = selectFileId(state);
@@ -48,6 +56,7 @@ export const selectFileTabs = (state: AppState) =>
 
 export function selectFooterData(state: AppState) {
   const harData = selectHarData(state);
+  const fileSize = selectFileSize(state);
 
   if (!harData) {
     return null;
@@ -57,6 +66,7 @@ export function selectFooterData(state: AppState) {
 
   return {
     version,
+    fileSize,
     creatorName: creator?.name,
     creatorVersion: creator?.version,
     entriesNum: entries?.length || 0,

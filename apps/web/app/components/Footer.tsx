@@ -1,5 +1,8 @@
+import { NA } from "../constants/global";
 import { useAppStore } from "../store/store";
 import { selectFooterData } from "../store/selectors";
+import { formatNumber } from "../helpers/formatNumber";
+import { formatFileSize } from "../helpers/formatFileSize";
 
 export function Footer() {
   const data = useAppStore(selectFooterData);
@@ -15,7 +18,14 @@ export function Footer() {
     );
   }
 
-  const { version, creatorName, creatorVersion, entriesNum, totalTime } = data;
+  const {
+    version,
+    fileSize,
+    creatorName,
+    creatorVersion,
+    entriesNum,
+    totalTime,
+  } = data;
 
   return (
     <div
@@ -24,7 +34,7 @@ export function Footer() {
     >
       <div>
         <span className="text-accent-100 dark:text-accent-200">Entries:</span>{" "}
-        <span>{entriesNum ?? "--"}</span>
+        <span>{entriesNum ?? NA}</span>
       </div>
 
       <div>
@@ -33,22 +43,29 @@ export function Footer() {
         </span>{" "}
         {totalTime ? (
           <>
-            <span>{(totalTime / 1000).toFixed(2) ?? "--"} s</span>{" "}
-            <span className="text-accent-50">({totalTime ?? "--"} ms)</span>
+            <span>{(totalTime / 1000).toFixed(2) ?? NA} s</span>{" "}
+            <span className="text-accent-50">
+              ({formatNumber(totalTime) ?? NA} ms)
+            </span>
           </>
         ) : (
-          "--"
+          NA
         )}
+      </div>
+
+      <div>
+        <span className="text-accent-100 dark:text-accent-200">File size:</span>{" "}
+        <span>{formatFileSize(fileSize)}</span>
       </div>
 
       <div className="ml-auto">
         <span className="text-accent-100 dark:text-accent-200">HAR:</span>{" "}
-        <span>{version ? "v" + version : "--"}</span>
+        <span>{version ? "v" + version : NA}</span>
       </div>
 
       <div>
         <span className="text-accent-100 dark:text-accent-200">Creator:</span>{" "}
-        <span>{creatorName ?? "--"}</span>{" "}
+        <span>{creatorName ?? NA}</span>{" "}
         {creatorVersion && <span>{creatorVersion}</span>}
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { NA } from "../constants/global";
 import { useAppStore } from "../store/store";
 import { selectCommonData } from "../store/selectors";
 import { Url } from "./Url";
@@ -43,11 +44,9 @@ export function DetailCommon(): JSX.Element | null {
         </div>
 
         <div className="flex flex-1 flex-col gap-1">
-          <DetailField label={"HTTP version:"}>
-            {httpVersion || "N/A"}
-          </DetailField>
+          <DetailField label={"HTTP version:"}>{httpVersion || NA}</DetailField>
           <DetailField label={"Security state:"}>
-            {_securityState || "N/A"}
+            {_securityState || NA}
           </DetailField>
         </div>
 
@@ -56,7 +55,7 @@ export function DetailCommon(): JSX.Element | null {
             <Time time={time} />
           </DetailField>
           <DetailField label={"Server IP:"}>
-            {serverIPAddress || "N/A"}
+            {serverIPAddress || NA}
           </DetailField>
         </div>
       </div>

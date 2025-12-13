@@ -1,3 +1,5 @@
+import { NA } from "../constants/global";
+
 const badgeStyles = {
   green: [
     "bg-green-400 dark:bg-green-900 dark:text-white text-black",
@@ -36,7 +38,7 @@ export function InfoBadge({
       <div
         className={`${classesValue} flex items-center gap-2 px-2 py-0 text-sm`}
       >
-        {value ?? "N/A"}
+        {value ?? NA}
       </div>
     </div>
   );

@@ -87,12 +87,13 @@ export function selectListData(state: AppState): any {
   const entries = selectFileEntries(state);
 
   return entries.map((entry: any) => {
-    const { startedDateTime, time, request, response, $$id } = entry;
+    const { pageref, startedDateTime, time, request, response, $$id } = entry;
     const { method, url } = request;
     const { status, statusText } = response;
 
     return {
       $$id,
+      pageref,
       status,
       statusText,
       url,

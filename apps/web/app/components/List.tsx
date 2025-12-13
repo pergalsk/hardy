@@ -1,10 +1,11 @@
+import { useEffect } from "react";
 import { useAppStore } from "../store/store";
 import { selectFilter, selectListData } from "../store/selectors";
+import { setFilteredCount } from "../store/actions";
 import { filterData } from "../helpers/filter";
 import { HiddenCount } from "./HiddenCount";
 import { ListItem } from "./ListItem";
-import { setFilteredCount } from "../store/actions";
-import { useEffect } from "react";
+import { PageRef } from "./PageRef";
 
 export function List(): JSX.Element {
   const filter = useAppStore(selectFilter);
@@ -19,12 +20,20 @@ export function List(): JSX.Element {
 
   return (
     <div className="flex flex-col gap-2 overflow-y-auto pr-2">
-      {items.map((item: any) => {
-        const { $$id, $$stats } = item;
-        return $$stats ? (
-          <HiddenCount key={$$id} count={item.$$hidden} />
-        ) : (
-          <ListItem key={$$id} item={item} />
+      {items.map((item: any, index: number, all: any[]) => {
+        const { pageref: prev_pageRef } = index > 0 ? all[index - 1] : {};
+        const { $$id, $$stats, pageref } = item;
+
+        return (
+          <div key={$$id} className="w-full">
+            {pageref !== prev_pageRef && <PageRef pageref={pageref} />}
+
+            {$$stats ? (
+              <HiddenCount count={item.$$hidden} />
+            ) : (
+              <ListItem item={item} />
+            )}
+          </div>
         );
       })}
     </div>

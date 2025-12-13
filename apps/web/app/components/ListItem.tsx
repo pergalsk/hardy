@@ -10,7 +10,16 @@ import { Time } from "./Time";
 export function ListItem({ item }: { item: any }): JSX.Element {
   const rowId = useAppStore(selectRowId);
 
-  const { status, statusText, method, url, startedDateTime, time, $$id } = item;
+  const {
+    pageref,
+    status,
+    statusText,
+    method,
+    url,
+    startedDateTime,
+    time,
+    $$id,
+  } = item;
 
   const selectedClasses =
     $$id === rowId
@@ -25,6 +34,8 @@ export function ListItem({ item }: { item: any }): JSX.Element {
       <div className="flex items-center justify-between gap-1">
         <Status status={status} text={statusText} colored={true} />
         <div className="flex items-center gap-1 text-sm">
+          <div>{(pageref ?? "").toUpperCase()}</div>
+          <div className="text-mirage-600">|</div>
           <Time time={time} />
           <div className="text-mirage-600">|</div>
           <DateTime dateTime={startedDateTime} timeOnly={true} />

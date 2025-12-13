@@ -5,7 +5,7 @@ import { parseJsonData } from "../../helpers/helpers";
 
 export const jsonPrettyFormatter: Formatter<ContentValue> = {
   title: "Pretty",
-  icon: "iconify material-symbols--format-align-left-rounded",
+  icon: "iconify material-symbols--notes-rounded",
   tooltip: "Pretty formatted value",
   format: (content: ContentValue): JSX.Element | string => {
     const jsonObj = parseJsonData(content.value || "");

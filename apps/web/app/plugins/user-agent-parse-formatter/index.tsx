@@ -7,7 +7,7 @@ import { InfoBadge } from "../../components/InfoBadge";
 
 export const userAgentParseFormatter: HeaderValueFormatter = {
   title: "Parse",
-  icon: "iconify material-symbols--format-align-left-rounded",
+  icon: "iconify material-symbols--notes-rounded",
   tooltip: "Parse User Agent",
   format: (headerItem: HeaderItem): JSX.Element | string => {
     const { value } = headerItem;

@@ -25,9 +25,9 @@ export function ListItem({ item }: { item: any }): JSX.Element {
       <div className="flex items-center justify-between gap-1">
         <Status status={status} text={statusText} colored={true} />
         <div className="flex items-center gap-1 text-sm">
-          <DateTime dateTime={startedDateTime} timeOnly={true} />
-          <div className="text-mirage-600">|</div>
           <Time time={time} />
+          <div className="text-mirage-600">|</div>
+          <DateTime dateTime={startedDateTime} timeOnly={true} />
           <div className="text-mirage-600">|</div>
           <div className="text-mirage-200 dark:text-mirage-500">
             #{$$id + 1}

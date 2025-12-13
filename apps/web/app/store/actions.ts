@@ -4,6 +4,7 @@ import {
   File,
   Filter,
   TabCode,
+  initialFilterState,
   initialFilterFieldsState,
   Toast,
 } from "./store";
@@ -27,6 +28,11 @@ export const removeFile = (fileId: string) =>
 
 export const removeAllFiles = () => useAppStore.setState({ files: [] });
 
+export const setFilteredCount = (count: number) =>
+  useAppStore.setState((state) => ({
+    filter: { ...state.filter, count },
+  }));
+
 export const setFilter = (newFilter: Filter) =>
   useAppStore.setState((state) => ({
     filter: { ...state.filter, ...newFilter },
@@ -37,6 +43,7 @@ export const clearFilter = () =>
   useAppStore.setState((state) => ({
     filter: {
       ...state.filter,
+      count: initialFilterState.count,
       fields: { ...initialFilterFieldsState },
     },
   }));

@@ -10,6 +10,7 @@ export type File = {
 export type Filter = {
   visible: boolean;
   active: boolean;
+  count: number;
   fields: {
     url: string;
     method: string;
@@ -48,8 +49,8 @@ export type Settings = {
 
 export type AppState = {
   files: File[];
-  filter: Filter;
   toasts: Toast[];
+  filter: Filter;
   ui: Ui;
   settings: Settings;
 };
@@ -58,6 +59,13 @@ export const initialFilterFieldsState: Filter["fields"] = {
   url: "",
   method: "",
   status: "",
+};
+
+export const initialFilterState: Filter = {
+  visible: false,
+  active: false,
+  count: -1,
+  fields: { ...initialFilterFieldsState },
 };
 
 export const initialUiState: Ui = {
@@ -78,12 +86,8 @@ export const initialJsonViewerSettings: JsonViewerSettings = {
 
 export const useAppStore = create<AppState>(() => ({
   files: [],
-  filter: {
-    visible: false,
-    active: false,
-    fields: { ...initialFilterFieldsState },
-  },
   toasts: [],
+  filter: { ...initialFilterState },
   ui: { ...initialUiState },
   settings: {
     jsonViewer: { ...initialJsonViewerSettings },

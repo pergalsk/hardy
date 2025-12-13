@@ -1,6 +1,6 @@
 import { NA } from "../constants/global";
 import { useAppStore } from "../store/store";
-import { selectFooterData } from "../store/selectors";
+import { selectFilter, selectFooterData } from "../store/selectors";
 import { formatNumber } from "../helpers/formatNumber";
 import { formatFileSize } from "../helpers/formatFileSize";
 import { formatThousands } from "../helpers/formatThousands";
@@ -19,6 +19,7 @@ export function FooterEmpty() {
 
 export function Footer() {
   const data = useAppStore(selectFooterData);
+  const { count } = useAppStore(selectFilter);
 
   if (!data) {
     return <FooterEmpty />;
@@ -33,12 +34,15 @@ export function Footer() {
     totalTime,
   } = data;
 
+  const filteredNum =
+    count >= 0 && count !== entriesNum ? ` (filtered: ${count})` : "";
+
   return (
     <div
       id="footer"
       className="bg-accent-700 dark:bg-accent-950 flex flex-row gap-8 px-2 py-1 text-sm text-white drop-shadow-lg dark:text-white"
     >
-      <FooterItem label="Entries" value={entriesNum} />
+      <FooterItem label="Entries" value={entriesNum} extra={filteredNum} />
 
       <FooterItem
         label="Total time"

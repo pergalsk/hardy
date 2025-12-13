@@ -16,7 +16,8 @@ export const selectFile = (state: AppState) => {
   if (!Array.isArray(files) || files.length === 0) {
     return null;
   }
-  return files[fileId] || null;
+
+  return files.find((file) => file.fileId === fileId) || null;
 };
 
 export const selectHarData = (state: AppState) =>

@@ -27,7 +27,7 @@ export type Toast = {
 export type TabCode = "REQ" | "RES" | "COO" | "TIM";
 
 export type Ui = {
-  fileId: number;
+  fileId: string;
   rowId: number;
   tab: TabCode;
 };
@@ -61,7 +61,7 @@ export const initialFilterFieldsState: Filter["fields"] = {
 };
 
 export const initialUiState: Ui = {
-  fileId: 0,
+  fileId: "",
   rowId: 0,
   tab: "REQ",
 };

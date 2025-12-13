@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 import { readFileData } from "./helpers";
-import { addFile, addToast, setRowId } from "../store/actions";
+import { addFile, addToast, setFileId, setRowId } from "../store/actions";
 
 export async function openFile(file: File, message: string | JSX.Element) {
   const { name, size } = file;
@@ -10,6 +10,7 @@ export async function openFile(file: File, message: string | JSX.Element) {
     const rawData = await readFileData(file);
     const data = JSON.parse(rawData);
     addFile({ fileId, name, size, data });
+    setFileId(fileId);
     setRowId(0);
   } catch (error) {
     console.error("Error loading file:", error);

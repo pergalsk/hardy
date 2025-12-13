@@ -8,7 +8,7 @@ import {
   Toast,
 } from "./store";
 
-export const setFileId = (fileId: number) =>
+export const setFileId = (fileId: string) =>
   useAppStore.setState((state) => ({ ui: { ...state.ui, fileId } }));
 
 export const setRowId = (rowId: number) =>

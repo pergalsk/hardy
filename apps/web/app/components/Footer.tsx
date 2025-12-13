@@ -3,19 +3,25 @@ import { useAppStore } from "../store/store";
 import { selectFooterData } from "../store/selectors";
 import { formatNumber } from "../helpers/formatNumber";
 import { formatFileSize } from "../helpers/formatFileSize";
+import { formatThousands } from "../helpers/formatThousands";
+import { FooterItem } from "./FooterItem";
+
+export function FooterEmpty() {
+  return (
+    <div
+      id="footer"
+      className="dark:bg-bunker-600 dark:text-mirage-400 flex flex-row gap-8 bg-slate-300 px-2 py-1 text-sm text-slate-600 drop-shadow-lg"
+    >
+      Open HAR file
+    </div>
+  );
+}
 
 export function Footer() {
   const data = useAppStore(selectFooterData);
 
   if (!data) {
-    return (
-      <div
-        id="footer"
-        className="dark:bg-bunker-600 dark:text-mirage-400 flex flex-row gap-8 bg-slate-300 px-2 py-1 text-sm text-slate-600 drop-shadow-lg"
-      >
-        Open HAR file
-      </div>
-    );
+    return <FooterEmpty />;
   }
 
   const {
@@ -32,42 +38,33 @@ export function Footer() {
       id="footer"
       className="bg-accent-700 dark:bg-accent-950 flex flex-row gap-8 px-2 py-1 text-sm text-white drop-shadow-lg dark:text-white"
     >
-      <div>
-        <span className="text-accent-100 dark:text-accent-200">Entries:</span>{" "}
-        <span>{entriesNum ?? NA}</span>
-      </div>
+      <FooterItem label="Entries" value={entriesNum} />
 
-      <div>
-        <span className="text-accent-100 dark:text-accent-200">
-          Total time:
-        </span>{" "}
-        {totalTime ? (
-          <>
-            <span>{(totalTime / 1000).toFixed(2) ?? NA} s</span>{" "}
-            <span className="text-accent-50">
-              ({formatNumber(totalTime) ?? NA} ms)
-            </span>
-          </>
-        ) : (
-          NA
-        )}
-      </div>
+      <FooterItem
+        label="Total time"
+        value={totalTime ? `${(totalTime / 1000).toFixed(2)} s` : null}
+        extra={totalTime ? `(${formatNumber(totalTime)} ms)` : null}
+      />
 
-      <div>
-        <span className="text-accent-100 dark:text-accent-200">File size:</span>{" "}
-        <span>{formatFileSize(fileSize)}</span>
-      </div>
+      <FooterItem
+        label="File size"
+        value={formatFileSize(fileSize)}
+        extra={`(${formatThousands(fileSize)} B)`}
+      />
 
-      <div className="ml-auto">
-        <span className="text-accent-100 dark:text-accent-200">HAR:</span>{" "}
-        <span>{version ? "v" + version : NA}</span>
-      </div>
+      <div className="ml-auto"></div>
 
-      <div>
-        <span className="text-accent-100 dark:text-accent-200">Creator:</span>{" "}
-        <span>{creatorName ?? NA}</span>{" "}
-        {creatorVersion && <span>{creatorVersion}</span>}
-      </div>
+      <FooterItem label="HAR" value={version ? "v" + version : NA} />
+
+      <FooterItem
+        label="Creator"
+        value={creatorName ? creatorName + " " + creatorVersion : NA}
+      />
+
+      <FooterItem
+        label="Creator"
+        value={creatorName ? creatorName + " " + creatorVersion : NA}
+      />
     </div>
   );
 }

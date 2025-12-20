@@ -27,7 +27,7 @@ export function Collapsible({
     ? Object.entries(actions).map(([id, { icon }]) => (
         <div
           key={id}
-          className={`${icon} ${activeActionId === id ? "dark:text-yellow-300" : ""} my-auto text-lg hover:text-white`}
+          className={`${icon} ${activeActionId === id ? "dark:text-accent-300" : ""} my-auto text-lg hover:text-white`}
           onClick={() => onAction(id)}
         ></div>
       ))
@@ -43,12 +43,14 @@ export function Collapsible({
           <ToggleMark opened={isOpen && !disabled} />
           <div className="w-full">{title}</div>
         </div>
+
         {!disabled && isOpen && actionList && (
           <div className="text-mirage-700 bg-mirage-50 dark:text-accent-300 dark:bg-mirage-900 dark:hover:bg-mirage-800 mr-2 flex gap-3 rounded-md p-1 px-2 transition-colors duration-200">
             {actionList}
           </div>
         )}
       </div>
+
       {!disabled && isOpen && <div className="p-2 pb-0">{children}</div>}
     </div>
   );

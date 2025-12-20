@@ -13,7 +13,7 @@ export function Headers({ data }: { data: any }) {
   const [actionId, setActionId] = useState(firstKey);
 
   const formatFn = formatterList?.[actionId]?.format;
-  const info = headers != null ? ` ${headersSize} b` : "No data";
+  const info = headers != null ? ` ${headersSize} B` : "No data";
   const title = <CollapsibleTitle title={"Headers"} info={info} />;
 
   let HeadersContent = null;

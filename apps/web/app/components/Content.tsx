@@ -23,7 +23,7 @@ export function Content({ data }: { data: any }) {
   const [actionId, setActionId] = useState(firstKey);
 
   const formatFn = formatterList?.[actionId]?.format;
-  const size = content != null ? ` ${bodySize} b` : "No data";
+  const size = content != null ? ` ${bodySize} B` : "No data";
   const info = [contentType.value, size].filter(Boolean).join(" | ");
   const title = <CollapsibleTitle title={"Content"} info={info} />;
 

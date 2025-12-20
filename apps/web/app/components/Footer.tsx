@@ -64,11 +64,6 @@ export function Footer() {
         label="Creator"
         value={creatorName ? creatorName + " " + creatorVersion : NA}
       />
-
-      <FooterItem
-        label="Creator"
-        value={creatorName ? creatorName + " " + creatorVersion : NA}
-      />
     </div>
   );
 }

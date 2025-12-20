@@ -60,13 +60,15 @@ export function JsonContent({
         ></div>
       </div>
 
-      <div className="break-all">
-        <JsonView
-          {...settings}
-          value={data}
-          style={isDark ? darkStyle : lightStyle}
-          collapsed={collapsed}
-        />
+      <div className="relative top-[-36px]">
+        <div className="break-all">
+          <JsonView
+            {...settings}
+            value={data}
+            style={isDark ? darkStyle : lightStyle}
+            collapsed={collapsed}
+          />
+        </div>
       </div>
     </div>
   );

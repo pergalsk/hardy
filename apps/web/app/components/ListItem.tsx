@@ -3,7 +3,7 @@ import { selectRowId } from "../store/selectors";
 import { setRowId } from "../store/actions";
 import { Method } from "./Method";
 import { Url } from "./Url";
-import { Status } from "./Status";
+import { Status, statusColors } from "./Status";
 import { DateTime } from "./DateTime";
 import { Time } from "./Time";
 
@@ -21,14 +21,24 @@ export function ListItem({ item }: { item: any }): JSX.Element {
     $$id,
   } = item;
 
+  const isError = parseInt(status) <= 599 && parseInt(status) >= 400;
+
   const selectedClasses =
     $$id === rowId
-      ? "border-accent-500 hover:border-accent-300 dark:border-accent-700 dark:hover:border-accent-400"
-      : "border-transparent hover:border-mirage-100 dark:hover:border-bunker-200";
+      ? isError
+        ? "border-red-500 hover:border-red-300 dark:border-red-800 dark:hover:border-red-600"
+        : "border-accent-500 hover:border-accent-300 dark:border-accent-700 dark:hover:border-accent-400"
+      : isError
+        ? "border-transparent hover:border-red-100 dark:hover:border-red-950"
+        : "border-transparent hover:border-mirage-100 dark:hover:border-bunker-200";
+
+  const bgClasses = isError
+    ? "bg-red-100 dark:bg-[#ff00001c]"
+    : "dark:bg-bunker-800 bg-slate-100";
 
   return (
     <div
-      className={`${selectedClasses} text-mirage-800 dark:bg-bunker-800 dark:text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 bg-slate-100 p-2 transition-colors duration-200 hover:border-2`}
+      className={`${selectedClasses} ${bgClasses} text-mirage-800 dark:text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 p-2 transition-colors duration-200 hover:border-2`}
       onClick={() => setRowId($$id)}
     >
       <div className="flex items-center justify-between gap-1">

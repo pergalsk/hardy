@@ -3,8 +3,8 @@ export const methodColors: { [key: string]: string } = {
   POST: "text-blue-500",
   DELETE: "text-yellow-600",
   PUT: "text-violet-500",
-  PATCH: "text-red-400",
-  OPTIONS: "text-orange-700",
+  PATCH: "text-cyan-400",
+  OPTIONS: "text-mirage-400",
 };
 
 interface MethodProps {

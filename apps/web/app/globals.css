@@ -123,3 +123,6 @@ input[type="text"] {
 .w-rjv-object-size {
   opacity: 0.6 !important;
 }
+.w-rjv-type:not([data-type="null"], [data-type="undefined"]) {
+  display: none;
+}

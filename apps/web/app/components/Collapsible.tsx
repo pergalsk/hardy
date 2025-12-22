@@ -27,7 +27,7 @@ export function Collapsible({
     ? Object.entries(actions).map(([id, { icon }]) => (
         <div
           key={id}
-          className={`${icon} ${activeActionId === id ? "dark:text-accent-300" : ""} my-auto text-lg hover:text-white`}
+          className={`${icon} ${activeActionId === id ? "text-accent-600 dark:text-accent-300" : ""} hover:text-accent-500 my-auto text-lg dark:hover:text-white`}
           onClick={() => onAction(id)}
         ></div>
       ))
@@ -45,7 +45,7 @@ export function Collapsible({
         </div>
 
         {!disabled && isOpen && actionList && (
-          <div className="text-mirage-300 bg-mirage-50 dark:bg-mirage-900 dark:group-hover:bg-mirage-800 mr-2 flex gap-3 rounded-md p-1 px-2 transition-colors duration-200">
+          <div className="bg-mirage-50 text-mirage-700 group-hover:bg-mirage-100 dark:bg-mirage-900 dark:group-hover:bg-mirage-800 mr-2 flex gap-3 rounded-md p-1 px-2 transition-colors duration-200">
             {actionList}
           </div>
         )}

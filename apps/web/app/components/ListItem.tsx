@@ -26,14 +26,14 @@ export function ListItem({ item }: { item: any }): JSX.Element {
   const selectedClasses =
     $$id === rowId
       ? isError
-        ? "border-red-500 hover:border-red-300 dark:border-red-800 dark:hover:border-red-600"
-        : "border-accent-500 hover:border-accent-300 dark:border-accent-700 dark:hover:border-accent-400"
+        ? "border-red-400 hover:border-red-600 dark:border-red-800 dark:hover:border-red-600"
+        : "border-accent-500 hover:border-accent-600 dark:border-accent-700 dark:hover:border-accent-400"
       : isError
-        ? "border-transparent hover:border-red-100 dark:hover:border-red-950"
+        ? "border-transparent hover:border-red-200 dark:hover:border-red-950"
         : "border-transparent hover:border-mirage-100 dark:hover:border-bunker-200";
 
   const bgClasses = isError
-    ? "bg-red-100 dark:bg-[#ff00001c]"
+    ? "bg-[#ff000013] dark:bg-[#ff00001c]"
     : "dark:bg-bunker-800 bg-slate-100";
 
   return (

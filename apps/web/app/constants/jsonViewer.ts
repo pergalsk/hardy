@@ -13,7 +13,7 @@ export const lightStyle: { [key: string]: string } = {
   "--w-rjv-curlybraces-color": "#185d8196",
   "--w-rjv-colon-color": "#185d8196",
   "--w-rjv-brackets-color": "#185d8196",
-  "--w-rjv-ellipsis-color": "#ff0000",
+  "--w-rjv-ellipsis-color": "#185d8196",
   "--w-rjv-quotes-color": "#185d8196",
   "--w-rjv-quotes-string-color": "#185d8196",
   "--w-rjv-line-color": "#f1f5f9",

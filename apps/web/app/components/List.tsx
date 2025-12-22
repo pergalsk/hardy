@@ -26,12 +26,13 @@ export function List(): JSX.Element {
 
         return (
           <div key={$$id} className="w-full">
-            {pageref !== prev_pageRef && <PageRef pageref={pageref} />}
-
             {$$stats ? (
               <HiddenCount count={item.$$hidden} />
             ) : (
-              <ListItem item={item} />
+              <>
+                {pageref !== prev_pageRef && <PageRef pageref={pageref} />}
+                <ListItem item={item} />
+              </>
             )}
           </div>
         );

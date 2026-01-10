@@ -65,12 +65,39 @@ const resolveVectors =
   };
 
 /**
- * Returns filter method for filtering list of HAR entries
+ * Map method for marking items as visible/hidden according to the filter.
  *
  * @param filter
- * @returns filter method
+ * @returns map method
  */
-export const filterData = ({ fields }: Filter) => {
+export const markVisible = ({ fields }: Filter) => {
+  const tokenVectors = getTokenVectors(fields);
+
+  // array's map method
+  return (listItem: any): any => {
+    // list item which should be visible
+    // initial `true` means all entries should be included at the beginning
+    const shouldBeVisible =
+      tokenVectors.length < 1 ||
+      tokenVectors.reduce(resolveVectors(listItem), true);
+
+    return {
+      ...listItem,
+      $$visible: shouldBeVisible,
+      $$hidden: !shouldBeVisible,
+    };
+  };
+};
+
+/**
+ * Deprecated.
+ * Returns older/unused reducer method for filtering list of HAR entries,
+ * (and grouped hidden items)
+ *
+ * @param filter
+ * @returns reduce method
+ */
+export const reduceData = ({ fields }: Filter) => {
   const tokenVectors = getTokenVectors(fields);
 
   // filters's reduce method

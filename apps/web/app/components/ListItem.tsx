@@ -19,6 +19,7 @@ export function ListItem({ item }: { item: any }): JSX.Element {
     startedDateTime,
     time,
     $$id,
+    $$hidden,
   } = item;
 
   const isError = parseInt(status) <= 599 && parseInt(status) >= 400;
@@ -38,7 +39,7 @@ export function ListItem({ item }: { item: any }): JSX.Element {
 
   return (
     <div
-      className={`${selectedClasses} ${bgClasses} text-mirage-800 dark:text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 p-2 transition-colors duration-200 hover:border-2`}
+      className={`${selectedClasses} ${bgClasses} ${$$hidden ? "opacity-20" : ""} text-mirage-800 dark:text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 p-2 transition-colors duration-200 hover:border-2`}
       onClick={() => setRowId($$id)}
     >
       <div className="flex items-center justify-between gap-1">

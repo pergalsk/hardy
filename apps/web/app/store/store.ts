@@ -44,7 +44,10 @@ export type JsonViewerSettings = {
 };
 
 export type Settings = {
-  jsonViewer: JsonViewerSettings;
+  showPages: boolean;
+  groupHidden: boolean;
+  excludeHidden: boolean;
+  hideEmptyPages: boolean;
 };
 
 export type AppState = {
@@ -52,6 +55,7 @@ export type AppState = {
   toasts: Toast[];
   filter: Filter;
   ui: Ui;
+  jsonViewer: JsonViewerSettings;
   settings: Settings;
 };
 
@@ -89,7 +93,11 @@ export const useAppStore = create<AppState>(() => ({
   toasts: [],
   filter: { ...initialFilterState },
   ui: { ...initialUiState },
+  jsonViewer: { ...initialJsonViewerSettings },
   settings: {
-    jsonViewer: { ...initialJsonViewerSettings },
+    showPages: true,
+    groupHidden: true,
+    excludeHidden: false,
+    hideEmptyPages: true,
   },
 }));

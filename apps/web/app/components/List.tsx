@@ -1,42 +1,45 @@
 import { useEffect } from "react";
 import { useAppStore } from "../store/store";
-import { selectFilter, selectListData } from "../store/selectors";
+import {
+  selectFilter,
+  selectListData,
+  selectSettings,
+} from "../store/selectors";
 import { setFilteredCount } from "../store/actions";
-import { filterData } from "../helpers/filter";
-import { HiddenCount } from "./HiddenCount";
-import { ListItem } from "./ListItem";
-import { PageRef } from "./PageRef";
+import { markVisible } from "../helpers/filter";
+import { groupByProperty } from "../helpers/groupByProperty";
+import { PanelList } from "./PanelList";
+import { ListItems } from "./ListItems";
+import { PageRefGroup } from "./PageRefGroup";
 
 export function List(): JSX.Element {
   const filter = useAppStore(selectFilter);
   const listData = useAppStore(selectListData);
-  const items = listData.reduce(filterData(filter), []);
+  const { showPages, hideEmptyPages } = useAppStore(selectSettings);
 
-  const filtered = items.filter((item: any) => !item.$$stats);
+  const listItems = listData.map(markVisible(filter));
+  const filtered = listItems.filter((item: any) => !item.$$hidden);
 
   useEffect(() => {
     setFilteredCount(filtered.length);
   }, [filtered.length]);
 
-  return (
-    <div className="flex flex-col gap-2 overflow-y-auto pr-2">
-      {items.map((item: any, index: number, all: any[]) => {
-        const { pageref: prev_pageRef } = index > 0 ? all[index - 1] : {};
-        const { $$id, $$stats, pageref } = item;
+  if (!showPages) {
+    return (
+      <PanelList rightGap>
+        <ListItems items={listItems} />
+      </PanelList>
+    );
+  }
 
-        return (
-          <div key={$$id} className="w-full">
-            {$$stats ? (
-              <HiddenCount count={item.$$hidden} />
-            ) : (
-              <>
-                {pageref !== prev_pageRef && <PageRef pageref={pageref} />}
-                <ListItem item={item} />
-              </>
-            )}
-          </div>
+  return (
+    <PanelList rightGap>
+      {groupByProperty(listItems, "pageref").map((group, groupIndex) => {
+        return hideEmptyPages &&
+          !group.some((item) => !item.$$hidden) ? null : (
+          <PageRefGroup key={groupIndex} items={group} />
         );
       })}
-    </div>
+    </PanelList>
   );
 }

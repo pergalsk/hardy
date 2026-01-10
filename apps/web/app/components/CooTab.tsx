@@ -20,7 +20,7 @@ export function CooTab({ data }: { data: any }): JSX.Element {
   );
 
   return (
-    <>
+    <div className="mr-2 flex flex-col gap-2">
       <Collapsible title={reqTitle} disabled={!reqLength}>
         {reqLength ? <Cookies data={request} /> : <NoContent />}
       </Collapsible>
@@ -28,6 +28,6 @@ export function CooTab({ data }: { data: any }): JSX.Element {
       <Collapsible title={resTitle} disabled={!resLength}>
         {resLength ? <Cookies data={response} /> : <NoContent />}
       </Collapsible>
-    </>
+    </div>
   );
 }

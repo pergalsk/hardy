@@ -32,14 +32,14 @@ export function HeadersTable({
                 key={index}
                 className="dark:text-mirage-200 dark:border-bunker-400 hover:dark:bg-bunker-800 hover:dark:text-mirage-50 group break-all border-b border-slate-100 font-mono text-black last:border-none hover:bg-slate-50"
               >
-                <td className="w-auto whitespace-nowrap py-1 pr-2 align-top font-bold">
+                <td className="w-auto whitespace-nowrap px-2 py-1 align-top font-bold">
                   {header.name}
                   <span
                     className="iconify material-symbols--help-outline-rounded dark:text-mirage-800 text-mirage-100 dark:hover:text-accent-300 hover:text-accent-600 ml-1 inline-flex select-none items-center align-top text-lg"
                     onClick={() => redirect(header.name)}
                   ></span>
                 </td>
-                <td className="py-1">
+                <td className="p-1">
                   <LineClamp
                     lines={2}
                     active={(header.value || "").length > 100}

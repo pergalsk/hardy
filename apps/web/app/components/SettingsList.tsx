@@ -7,35 +7,34 @@ import ToggleSwitch from "./ToggleSwitch";
 type Props = {
   items: SettingItem[];
   form: AppSettings;
-  //   onToggle: (key: keyof AppSettings) => void;
   onChange: (key: keyof AppSettings, value?: any) => void;
 };
 
 type SettingComponentProps = {
-  item: SettingItem;
+  label: string;
   value: unknown;
   onChange: (value?: any) => void;
 };
 
 const SwitchRenderer: React.FC<SettingComponentProps> = ({
-  item,
+  label,
   value,
   onChange,
 }) => (
   <ToggleSwitch
     checked={value as boolean}
     onChange={onChange}
-    ariaLabel={item.label}
+    ariaLabel={label}
   />
 );
 
 const TextRenderer: React.FC<SettingComponentProps> = ({
-  item,
+  label,
   value,
   onChange,
 }) => (
   <input
-    aria-label={item.label}
+    aria-label={label}
     type="text"
     value={(value as string) ?? ""}
     onChange={(e) => onChange(e.target.value)}
@@ -44,12 +43,12 @@ const TextRenderer: React.FC<SettingComponentProps> = ({
 );
 
 const IntegerRenderer: React.FC<SettingComponentProps> = ({
-  item,
+  label,
   value,
   onChange,
 }) => (
   <input
-    aria-label={item.label}
+    aria-label={label}
     type="number"
     value={typeof value === "number" ? String(value) : ""}
     onChange={(e) => {
@@ -75,12 +74,7 @@ const rendererMap: Record<
 /**
  * SettingsList - uses rendererMap based on item.type
  */
-export default function SettingsList({
-  items,
-  form,
-  //   onToggle,
-  onChange,
-}: Props) {
+export default function SettingsList({ items, form, onChange }: Props) {
   return items.map((it) => {
     const value = form[it.key];
 
@@ -110,7 +104,7 @@ export default function SettingsList({
 
         <div className="mt-1">
           <Renderer
-            item={it}
+            label={it.label}
             value={value as any}
             onChange={(v: any) => onChange(it.key, v)}
           />

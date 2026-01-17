@@ -1,16 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useAppStore } from "../store/store";
+import { useAppStore, initialSettings } from "../store/store";
 import type { Settings as AppSettings } from "../store/store";
 import Modal from "./Modal";
 import Button from "./Button";
 import { SettingItem } from "./Settings";
 import SettingsList from "./SettingsList";
+import { selectSettings } from "../store/selectors";
 
 type Props = {
   open: boolean;
   onClose: () => void;
-  initialForm: AppSettings;
 };
 
 const items: SettingItem[] = [
@@ -44,7 +44,8 @@ const items: SettingItem[] = [
   },
 ];
 
-export default function SettingsModal({ open, onClose, initialForm }: Props) {
+export default function SettingsModal({ open, onClose }: Props) {
+  const initialForm = useAppStore(selectSettings);
   const [form, setForm] = useState<AppSettings>(initialForm);
 
   // keep local form in sync whenever modal opens with new initialForm
@@ -55,11 +56,8 @@ export default function SettingsModal({ open, onClose, initialForm }: Props) {
   const setFormValue = (key: keyof AppSettings, value: any) =>
     setForm((f) => ({ ...(f as AppSettings), [key]: value }) as AppSettings);
 
-  const toggleKey = (key: keyof AppSettings) =>
-    setForm(
-      (f) =>
-        ({ ...(f as AppSettings), [key]: !(f[key] as boolean) }) as AppSettings,
-    );
+  // reset local form to app defaults (does NOT auto-save)
+  const resetToDefaults = () => setForm({ ...initialSettings });
 
   const save = () => {
     useAppStore.setState({ settings: { ...form } });
@@ -77,12 +75,14 @@ export default function SettingsModal({ open, onClose, initialForm }: Props) {
         <SettingsList
           items={items}
           form={form}
-          onToggle={(k) => toggleKey(k)}
           onChange={(k, v) => setFormValue(k, v)}
         />
       </div>
 
       <div className="flex justify-end gap-2 border-t border-gray-200 p-4 dark:border-slate-700">
+        <Button variant="ghost" onClick={resetToDefaults} className="mr-auto">
+          Reset to default
+        </Button>
         <Button onClick={onClose}>Cancel</Button>
         <Button variant="primary" onClick={save}>
           Save

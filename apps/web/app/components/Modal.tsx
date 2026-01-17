@@ -97,17 +97,21 @@ export default function Modal({
       }
     >
       <div className="w-[90vw] max-w-2xl select-none overflow-hidden rounded-lg bg-white shadow-xl dark:bg-slate-800">
-        <header className="flex items-center justify-between border-b border-gray-100 bg-slate-700 px-4 py-1 dark:border-slate-700">
-          <div className="font-medium uppercase text-white dark:text-gray-100">
+        <header className="flex justify-between border-b border-gray-100 bg-slate-700 dark:border-slate-700">
+          <div className="px-4 py-3 font-medium uppercase text-white dark:text-gray-100">
             {title}
           </div>
+
           <button
             type="button"
             aria-label="Close"
             onClick={onClose}
-            className="text-2xl text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+            className="flex items-center px-3 text-2xl text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-slate-600 dark:hover:text-white"
           >
-            ×
+            <span
+              aria-hidden="true"
+              className="iconify material-symbols--close-rounded text-2xl"
+            ></span>
           </button>
         </header>
         <div>{children}</div>

@@ -15,23 +15,16 @@ export type SettingItem = {
 };
 
 export function Settings() {
-  const current = useAppStore(selectSettings);
   const [open, setOpen] = useState(false);
-
-  const openModal = () => setOpen(true);
 
   return (
     <>
       <div
         className={`iconify material-symbols--settings hover:text-accent-600 my-auto ml-auto mr-1 text-xl dark:bg-slate-500 dark:hover:bg-slate-400`}
-        onClick={openModal}
+        onClick={() => setOpen(true)}
       ></div>
 
-      <SettingsModal
-        open={open}
-        onClose={() => setOpen(false)}
-        initialForm={current}
-      />
+      <SettingsModal open={open} onClose={() => setOpen(false)} />
     </>
   );
 }

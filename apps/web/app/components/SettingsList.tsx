@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
-import ToggleRow from "./ToggleRow";
 import type { SettingItem } from "./Settings";
 import type { Settings as AppSettings } from "../store/store";
+import ToggleSwitch from "./ToggleSwitch";
 
 type Props = {
   items: SettingItem[];
   form: AppSettings;
-  onToggle: (key: keyof AppSettings) => void;
+  //   onToggle: (key: keyof AppSettings) => void;
   onChange: (key: keyof AppSettings, value?: any) => void;
 };
 
@@ -22,11 +22,10 @@ const SwitchRenderer: React.FC<SettingComponentProps> = ({
   value,
   onChange,
 }) => (
-  <ToggleRow
-    label={item.label}
-    desc={item.desc}
-    value={Boolean(value)}
-    onToggle={() => onChange()}
+  <ToggleSwitch
+    checked={value as boolean}
+    onChange={onChange}
+    ariaLabel={item.label}
   />
 );
 
@@ -79,7 +78,7 @@ const rendererMap: Record<
 export default function SettingsList({
   items,
   form,
-  onToggle,
+  //   onToggle,
   onChange,
 }: Props) {
   return items.map((it) => {
@@ -97,7 +96,7 @@ export default function SettingsList({
         key={it.id}
         className="flex justify-between border-b border-gray-200 py-2 last:border-b-0 dark:border-slate-700"
       >
-        <div>
+        <div className="mr-4">
           <div className="text-mirage-800 dark:text-mirage-100 text-md font-medium">
             {it.label}
           </div>

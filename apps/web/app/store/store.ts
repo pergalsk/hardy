@@ -50,6 +50,14 @@ export type Settings = {
   hideEmptyPages: boolean;
 };
 
+// default settings exported so other modules can reset to them
+export const initialSettings: Settings = {
+  showPages: true,
+  groupHidden: true,
+  excludeHidden: false,
+  hideEmptyPages: true,
+};
+
 export type AppState = {
   files: File[];
   toasts: Toast[];
@@ -94,10 +102,5 @@ export const useAppStore = create<AppState>(() => ({
   filter: { ...initialFilterState },
   ui: { ...initialUiState },
   jsonViewer: { ...initialJsonViewerSettings },
-  settings: {
-    showPages: true,
-    groupHidden: true,
-    excludeHidden: false,
-    hideEmptyPages: true,
-  },
+  settings: { ...initialSettings },
 }));

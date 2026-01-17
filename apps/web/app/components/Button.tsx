@@ -1,7 +1,7 @@
 import React from "react";
 
 type Size = "sm" | "md" | "lg";
-type Variant = "primary" | "secondary";
+type Variant = "primary" | "secondary" | "ghost";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: string; // iconify class name, e.g. "material-symbols--arrow-upward-alt-rounded"
@@ -45,6 +45,9 @@ export default function Button({
       "bg-accent-700 text-white hover:bg-accent-800 dark:bg-accent-700 dark:hover:bg-accent-600",
     secondary:
       "bg-mirage-50 text-mirage-700 hover:bg-mirage-100 dark:text-mirage-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:hover:text-white",
+    // transparent/ghost variant for left-sided "Reset to default" button
+    ghost:
+      "bg-transparent text-mirage-700 hover:bg-mirage-100 dark:text-mirage-100 dark:hover:bg-slate-700",
   };
 
   const disabledClasses = disabled

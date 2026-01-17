@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import type { SettingItem } from "./Settings";
 import type { Settings as AppSettings } from "../store/store";
 import ToggleSwitch from "./ToggleSwitch";
+import { SettingItem } from "./SettingsModal";
 
 type Props = {
   items: SettingItem[];
@@ -87,7 +87,7 @@ export default function SettingsList({ items, form, onChange }: Props) {
 
     return (
       <div
-        key={it.id}
+        key={it.key}
         className="flex justify-between border-b border-gray-200 py-2 last:border-b-0 dark:border-slate-700"
       >
         <div className="mr-4">

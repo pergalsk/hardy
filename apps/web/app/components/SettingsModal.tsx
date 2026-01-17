@@ -4,7 +4,6 @@ import { useAppStore, initialSettings } from "../store/store";
 import type { Settings as AppSettings } from "../store/store";
 import Modal from "./Modal";
 import Button from "./Button";
-import { SettingItem } from "./Settings";
 import SettingsList from "./SettingsList";
 import { selectSettings } from "../store/selectors";
 
@@ -13,30 +12,34 @@ type Props = {
   onClose: () => void;
 };
 
+export type SettingItem = {
+  key: keyof AppSettings;
+  label: string;
+  desc?: string;
+  type: "switch" | "text" | "integer";
+  disabled?: boolean;
+};
+
 const items: SettingItem[] = [
   {
-    id: "showPages",
     key: "showPages",
     label: "Show Pages",
     desc: "Group requests by pages if pages are defined.",
     type: "switch",
   },
   {
-    id: "hideEmptyPages",
     key: "hideEmptyPages",
     label: "Exclude Empty Pages",
     desc: "Hide pages that contain no entries.",
     type: "switch",
   },
   {
-    id: "excludeHidden",
     key: "excludeHidden",
     label: "Exclude Hidden Items",
     desc: "Completely exclude hidden items from the list.",
     type: "switch",
   },
   {
-    id: "groupHidden",
     key: "groupHidden",
     label: "Group Hidden Items",
     desc: "Group items marked as hidden instead of listing them individually.",

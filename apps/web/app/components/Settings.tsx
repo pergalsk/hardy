@@ -1,18 +1,5 @@
-"use client";
 import React, { useState } from "react";
 import SettingsModal from "./SettingsModal";
-import { useAppStore } from "../store/store";
-import { selectSettings } from "../store/selectors";
-import type { Settings as AppSettings } from "../store/store";
-
-export type SettingItem = {
-  id: string;
-  key: keyof AppSettings;
-  label: string;
-  desc?: string;
-  type: "switch" | "text" | "integer";
-  disabled?: boolean;
-};
 
 export function Settings() {
   const [open, setOpen] = useState(false);

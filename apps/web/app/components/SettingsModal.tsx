@@ -34,15 +34,15 @@ const items: SettingItem[] = [
     type: "switch",
   },
   {
-    key: "excludeHidden",
-    label: "Exclude Hidden Items",
-    desc: "Completely exclude hidden items from the list.",
-    type: "switch",
-  },
-  {
     key: "groupHidden",
     label: "Group Hidden Items",
     desc: "Group items marked as hidden instead of listing them individually.",
+    type: "switch",
+  },
+  {
+    key: "excludeHidden",
+    label: "Exclude Hidden Items",
+    desc: "Completely exclude hidden items from the list.",
     type: "switch",
   },
 ];

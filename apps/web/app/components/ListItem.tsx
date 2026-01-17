@@ -3,7 +3,7 @@ import { selectRowId } from "../store/selectors";
 import { setRowId } from "../store/actions";
 import { Method } from "./Method";
 import { Url } from "./Url";
-import { Status, statusColors } from "./Status";
+import { Status } from "./Status";
 import { DateTime } from "./DateTime";
 import { Time } from "./Time";
 
@@ -51,7 +51,7 @@ export function ListItem({ item }: { item: any }): JSX.Element {
           <div className="text-mirage-600">|</div>
           <DateTime dateTime={startedDateTime} timeOnly={true} />
           <div className="text-mirage-600">|</div>
-          <div className="text-mirage-200 dark:text-mirage-500">
+          <div className="text-mirage-200 dark:bg-accent-600 rounded px-1 dark:text-black">
             #{$$id + 1}
           </div>
         </div>

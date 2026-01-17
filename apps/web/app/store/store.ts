@@ -18,6 +18,12 @@ export type Filter = {
   };
 };
 
+export type Sorting = {
+  sortBy?: "url" | "status" | "method" | "time" | "pageref";
+  sortDir: "asc" | "desc";
+  sortInsidePages: boolean;
+};
+
 export type Toast = {
   id?: string;
   message: string | JSX.Element;
@@ -58,6 +64,12 @@ export const initialSettings: Settings = {
   hideEmptyPages: true,
 };
 
+export const initialSortingState: Sorting = {
+  sortBy: undefined,
+  sortDir: "asc",
+  sortInsidePages: false,
+};
+
 export type AppState = {
   files: File[];
   toasts: Toast[];
@@ -65,6 +77,7 @@ export type AppState = {
   ui: Ui;
   jsonViewer: JsonViewerSettings;
   settings: Settings;
+  sorting: Sorting;
 };
 
 export const initialFilterFieldsState: Filter["fields"] = {
@@ -103,4 +116,5 @@ export const useAppStore = create<AppState>(() => ({
   ui: { ...initialUiState },
   jsonViewer: { ...initialJsonViewerSettings },
   settings: { ...initialSettings },
+  sorting: { ...initialSortingState },
 }));

@@ -79,3 +79,46 @@ export const jsonViewerCollapse = (collapsed: number | boolean) =>
       collapsed,
     },
   }));
+
+// sorting actions
+export const setSorting = (
+  sortBy?: "url" | "status" | "method" | "time" | "pageref",
+  dir?: "asc" | "desc",
+) =>
+  useAppStore.setState((state) => {
+    const current = state.sorting;
+    if (!sortBy) {
+      return { sorting: { ...current, sortBy: undefined, sortDir: "asc" } };
+    }
+    const newDir =
+      dir ??
+      (current.sortBy === sortBy
+        ? current.sortDir === "asc"
+          ? "desc"
+          : "asc"
+        : "asc");
+    return { sorting: { ...current, sortBy, sortDir: newDir } };
+  });
+
+export const setSortInsidePages = (inside: boolean) =>
+  useAppStore.setState((state) => ({
+    sorting: { ...state.sorting, sortInsidePages: inside },
+  }));
+
+export const toggleSortInsidePages = () =>
+  useAppStore.setState((state) => ({
+    sorting: {
+      ...state.sorting,
+      sortInsidePages: !state.sorting.sortInsidePages,
+    },
+  }));
+
+export const clearSorting = () =>
+  useAppStore.setState((state) => ({
+    sorting: {
+      ...state.sorting,
+      sortBy: undefined,
+      sortDir: "asc",
+      sortInsidePages: false,
+    },
+  }));

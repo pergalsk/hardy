@@ -23,7 +23,7 @@ export default function ToggleSwitch({
     ? "bg-accent-600 hover:bg-accent-500"
     : "bg-gray-300 dark:bg-slate-600 hover:bg-gray-400 dark:hover:bg-slate-500";
 
-  const disabledClasses = disabled ? "opacity-60" : "";
+  const disabledClasses = disabled ? "opacity-40" : "";
 
   const buttonClass = [base, stateClasses, disabledClasses, className]
     .filter(Boolean)

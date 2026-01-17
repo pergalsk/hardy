@@ -1,7 +1,7 @@
 import React from "react";
 
-type Size = "sm" | "md" | "lg";
-type Variant = "primary" | "secondary" | "ghost";
+type Size = "sm" | "nr" | "md" | "lg";
+type Variant = "primary" | "secondary" | "ghost" | "flat";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: string; // iconify class name, e.g. "material-symbols--arrow-upward-alt-rounded"
@@ -29,6 +29,7 @@ export default function Button({
 
   const sizeMap: Record<Size, string> = {
     sm: "text-sm px-3 py-1.5 gap-0 min-w-16",
+    nr: "text-base px-4 py-1 gap-0.5 min-w-16",
     md: "text-base px-4 py-2 gap-0.5 min-w-16",
     lg: "text-lg px-5 py-2.5 gap-1 min-w-16",
   };
@@ -36,6 +37,7 @@ export default function Button({
   // Styles when only icon: make it a square button per size
   const iconOnlySizeMap: Record<Size, string> = {
     sm: "text-sm w-8 h-8",
+    nr: "text-base w-9 h-8",
     md: "text-base w-9 h-9",
     lg: "text-lg w-10 h-10",
   };
@@ -48,6 +50,7 @@ export default function Button({
     // transparent/ghost variant for left-sided "Reset to default" button
     ghost:
       "bg-transparent text-mirage-700 hover:bg-mirage-100 dark:text-mirage-100 dark:hover:bg-slate-700",
+    flat: "bg-transparent text-white dark:text-mirage-100 dark:hover:text-white",
   };
 
   const disabledClasses = disabled
@@ -56,6 +59,7 @@ export default function Button({
 
   const iconSizeMap: Record<Size, string> = {
     sm: "text-sm",
+    nr: "text-xl",
     md: "text-xl",
     lg: "text-2xl",
   };
@@ -63,6 +67,7 @@ export default function Button({
   // Reduce padding on the icon side when an icon is present (not for iconOnly)
   const iconSidePaddingMap: Record<Size, { left: string; right: string }> = {
     sm: { left: "pl-2", right: "pr-2" },
+    nr: { left: "pl-2.5", right: "pr-2.5" },
     md: { left: "pl-2.5", right: "pr-2.5" },
     lg: { left: "pl-4", right: "pr-4" },
   };

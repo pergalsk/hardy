@@ -103,6 +103,7 @@ export function ListSorting() {
           checked={!!sortInsidePages}
           disabled={!isActive}
           onChange={onToggleInsidePages}
+          size="small"
         />
       </div>
 

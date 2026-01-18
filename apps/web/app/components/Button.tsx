@@ -29,7 +29,7 @@ export default function Button({
 
   const sizeMap: Record<Size, string> = {
     sm: "text-sm px-3 py-1.5 gap-0 min-w-16",
-    nr: "text-base px-4 py-1 gap-0.5 min-w-16",
+    nr: "text-base px-4 py-1 gap-0 min-w-16",
     md: "text-base px-4 py-2 gap-0.5 min-w-16",
     lg: "text-lg px-5 py-2.5 gap-1 min-w-16",
   };
@@ -44,13 +44,12 @@ export default function Button({
 
   const variantMap: Record<Variant, string> = {
     primary:
-      "bg-accent-700 text-white hover:bg-accent-800 dark:bg-accent-700 dark:hover:bg-accent-600",
+      "dark:hover:text-white bg-accent-700 text-white hover:bg-accent-800 dark:bg-accent-700 dark:hover:bg-accent-600",
     secondary:
-      "bg-mirage-50 text-mirage-700 hover:bg-mirage-100 dark:text-mirage-100 dark:bg-slate-700 dark:hover:bg-slate-600 dark:hover:text-white",
-    // transparent/ghost variant for left-sided "Reset to default" button
+      "dark:hover:text-white bg-mirage-50 text-mirage-700 hover:bg-mirage-100 dark:text-mirage-100 dark:bg-slate-700 dark:hover:bg-slate-600",
     ghost:
-      "bg-transparent text-mirage-700 hover:bg-mirage-100 dark:text-mirage-100 dark:hover:bg-slate-700",
-    flat: "bg-transparent text-white dark:text-mirage-100 dark:hover:text-white",
+      "dark:hover:text-white bg-transparent text-mirage-700 hover:bg-mirage-100 dark:text-mirage-100 dark:hover:bg-slate-700",
+    flat: "dark:hover:text-white bg-transparent text-white dark:text-mirage-100",
   };
 
   const disabledClasses = disabled
@@ -59,7 +58,7 @@ export default function Button({
 
   const iconSizeMap: Record<Size, string> = {
     sm: "text-sm",
-    nr: "text-xl",
+    nr: "text-lg",
     md: "text-xl",
     lg: "text-2xl",
   };

@@ -91,7 +91,7 @@ export default function SettingsList({ items, form, onChange }: Props) {
         className="flex justify-between border-b border-gray-200 py-2 last:border-b-0 dark:border-slate-700"
       >
         <div className="mr-4">
-          <div className="text-mirage-800 dark:text-mirage-100 text-md font-medium">
+          <div className="text-mirage-800 text-md font-medium dark:text-white">
             {it.label}
           </div>
 

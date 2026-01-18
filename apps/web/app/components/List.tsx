@@ -53,7 +53,7 @@ function sortItemsArray(
 export function List(): JSX.Element {
   const filter = useAppStore(selectFilter);
   const rawListData = useAppStore(selectListData);
-  const settings = useAppStore(selectSettings);
+  const { showPages, hideEmptyPages } = useAppStore(selectSettings);
   const sorting = useAppStore(selectSorting);
 
   const entriesWithVisibility = rawListData.map(markVisible(filter));
@@ -61,16 +61,13 @@ export function List(): JSX.Element {
     (entry: any) => !entry.$$hidden,
   );
 
-  useEffect(() => {
-    setFilteredCount(visibleEntries.length);
-  }, [visibleEntries.length]);
-
-  const showPages = !!settings.showPages;
-  const hideEmptyPages = !!settings.hideEmptyPages;
-
   const sortByField = sorting.sortBy;
   const sortDirection = sorting.sortDir || "asc";
   const sortInsidePages = !!sorting.sortInsidePages;
+
+  useEffect(() => {
+    setFilteredCount(visibleEntries.length);
+  }, [visibleEntries.length]);
 
   if (!showPages) {
     const sortedList = sortItemsArray(

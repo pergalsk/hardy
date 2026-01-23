@@ -37,6 +37,8 @@ export type Ui = {
   fileId: string;
   rowId: number;
   tab: TabCode;
+  filterActive: boolean;
+  sortingActive: boolean;
 };
 
 export type JsonViewerSettings = {
@@ -58,7 +60,7 @@ export type Settings = {
 
 // default settings exported so other modules can reset to them
 export const initialSettings: Settings = {
-  showPages: true,
+  showPages: false,
   groupHidden: true,
   excludeHidden: false,
   hideEmptyPages: true,
@@ -97,6 +99,8 @@ export const initialUiState: Ui = {
   fileId: "",
   rowId: 0,
   tab: "REQ",
+  filterActive: false,
+  sortingActive: false,
 };
 
 export const initialJsonViewerSettings: JsonViewerSettings = {

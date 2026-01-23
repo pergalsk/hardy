@@ -18,6 +18,12 @@ export const setRowId = (rowId: number) =>
 export const setTab = (tab: TabCode) =>
   useAppStore.setState((state) => ({ ui: { ...state.ui, tab } }));
 
+export const setFilterActive = (filterActive: boolean) =>
+  useAppStore.setState((state) => ({ ui: { ...state.ui, filterActive } }));
+
+export const setSortingActive = (sortingActive: boolean) =>
+  useAppStore.setState((state) => ({ ui: { ...state.ui, sortingActive } }));
+
 export const addFile = (file: File) =>
   useAppStore.setState((state) => ({ files: [...state.files, file] }));
 
@@ -121,4 +127,9 @@ export const clearSorting = () =>
       sortDir: "asc",
       sortInsidePages: false,
     },
+  }));
+
+export const setShowPages = (show: boolean) =>
+  useAppStore.setState((state) => ({
+    settings: { ...state.settings, showPages: show },
   }));

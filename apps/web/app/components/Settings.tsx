@@ -7,7 +7,7 @@ export function Settings() {
   return (
     <>
       <div
-        className={`iconify material-symbols--settings hover:text-accent-600 my-auto ml-auto mr-1 text-xl dark:bg-slate-500 dark:hover:bg-slate-400`}
+        className={`iconify material-symbols--settings my-auto mr-1 text-xl dark:bg-slate-400 dark:hover:bg-slate-300`}
         onClick={() => setOpen(true)}
       ></div>
 

@@ -101,7 +101,7 @@ export const initialUiState: Ui = {
   fileId: "",
   rowId: 0,
   tab: "REQ",
-  filterActive: false,
+  filterActive: true,
   sortingActive: false,
   detailFormatterId:
     detailFormatters.getDefaultFormatter("detail")?.[0] || null,

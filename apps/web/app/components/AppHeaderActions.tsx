@@ -19,6 +19,7 @@ import { ActionBar } from "./ActionBar";
 import { ActionText } from "./ActionText";
 import { ActionSeparator } from "./ActionSeparator";
 import { ActionIcon } from "./ActionIcon";
+import { FileOpener } from "./FileOpener";
 import { Settings } from "./Settings";
 import { detailFormatters } from "../providers/detailFormatter";
 
@@ -46,21 +47,35 @@ export function AppHeaderActions(): JSX.Element {
   };
 
   return (
-    <ActionBar alignRight>
+    <ActionBar>
+      {files.length === 0 && (
+        <>
+          <ActionText>Open</ActionText>
+          <FileOpener>
+            <ActionIcon
+              onClick={handleFilterActive}
+              icon="iconify material-symbols--folder-open-outline-rounded"
+            />
+          </FileOpener>
+        </>
+      )}
+
+      <ActionSeparator type="space" />
+
       {files.length > 0 && (
         <>
           <ActionText>List</ActionText>
 
           <ActionIcon
-            onClick={handleSortingActive}
-            active={sortingActive}
-            icon="iconify material-symbols--sort-rounded"
-          />
-
-          <ActionIcon
             onClick={handleFilterActive}
             active={filterActive}
             icon="iconify material-symbols--filter-alt-outline"
+          />
+
+          <ActionIcon
+            onClick={handleSortingActive}
+            active={sortingActive}
+            icon="iconify material-symbols--sort-rounded"
           />
 
           <ActionIcon

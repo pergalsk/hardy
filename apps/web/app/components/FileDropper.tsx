@@ -32,7 +32,12 @@ export const FileDropper = () => {
       <div className="flex flex-col gap-2">
         <div className="text-center">Drop HAR file here</div>
         <div className="pb-2 text-center text-sm">or</div>
-        <FileOpener />
+        <FileOpener>
+          <button className="bg-accent-800 hover:bg-accent-600 upper flex rounded-lg px-8 py-4 align-middle font-bold uppercase text-white transition-colors duration-200">
+            <span className="iconify material-symbols--folder-open-outline-rounded my-auto mr-3 text-2xl"></span>
+            <span className="my-auto align-middle">Open HAR file</span>
+          </button>
+        </FileOpener>
       </div>
     </div>
   );

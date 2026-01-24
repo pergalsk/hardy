@@ -11,12 +11,34 @@ const processInputFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
   openFile(file, <WrongFile name={file.name} />);
 };
 
-export const FileOpener = () => {
+export const FileOpener = ({ children }: { children?: React.ReactNode }) => {
   const ref = useRef<HTMLInputElement>(null);
 
   const openFileSelector = () => {
     ref.current?.click();
   };
+
+  // prepare the visible trigger based on children
+  let trigger: React.ReactNode = null;
+
+  if (React.isValidElement(children)) {
+    const childProps = (children.props as any) || {};
+    const existingOnClick = childProps.onClick;
+    const mergedOnClick = (e?: any) => {
+      try {
+        existingOnClick && existingOnClick(e);
+      } finally {
+        openFileSelector();
+      }
+    };
+
+    trigger = React.cloneElement(children as React.ReactElement, {
+      onClick: mergedOnClick,
+    });
+  } else if (children != null) {
+    // non-element children (string, nodes) - wrap in a clickable container
+    trigger = <div onClick={openFileSelector}>{children}</div>;
+  }
 
   return (
     <>
@@ -27,14 +49,7 @@ export const FileOpener = () => {
         onChange={processInputFile}
         className="hidden"
       />
-
-      <button
-        className="bg-accent-800 hover:bg-accent-600 upper flex rounded-lg px-8 py-4 align-middle font-bold uppercase text-white transition-colors duration-200"
-        onClick={openFileSelector}
-      >
-        <span className="iconify material-symbols--folder-open-outline-rounded my-auto mr-3 text-2xl"></span>
-        <span className="my-auto align-middle">Open HAR file</span>
-      </button>
+      {trigger}
     </>
   );
 };

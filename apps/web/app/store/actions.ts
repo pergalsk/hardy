@@ -133,3 +133,8 @@ export const setShowPages = (show: boolean) =>
   useAppStore.setState((state) => ({
     settings: { ...state.settings, showPages: show },
   }));
+
+export const setDetailFormatter = (formatterId: string) =>
+  useAppStore.setState((state) => ({
+    ui: { ...state.ui, detailFormatterId: formatterId },
+  }));

@@ -11,6 +11,8 @@ export const selectFilter = (state: AppState) => state.filter;
 export const selectJsonViewerSettings = (state: AppState) => state.jsonViewer;
 export const selectSettings = (state: AppState) => state.settings;
 export const selectSorting = (state: AppState) => state.sorting;
+export const selectDetailFormatterId = (state: AppState) =>
+  state.ui.detailFormatterId;
 
 export const selectFileSize = (state: AppState) => {
   const files = selectFiles(state);

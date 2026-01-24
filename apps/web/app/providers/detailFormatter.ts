@@ -14,7 +14,7 @@ export type Formatter<T> = {
   format: (data: T) => JSX.Element | string | null;
 };
 
-export const detailFormatters = FormatterProvider<Formatter<HeaderItem[]>>();
+export const detailFormatters = FormatterProvider<Formatter<any>>();
 
 detailFormatters.addFormatters("detail", [detailEnhancedFormatter]);
 detailFormatters.addFormatters("detail", [detailRawFormatter]);

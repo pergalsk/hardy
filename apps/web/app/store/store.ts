@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { detailFormatters } from "../providers/detailFormatter";
 
 export type File = {
   fileId: string;
@@ -39,6 +40,7 @@ export type Ui = {
   tab: TabCode;
   filterActive: boolean;
   sortingActive: boolean;
+  detailFormatterId: string | null;
 };
 
 export type JsonViewerSettings = {
@@ -101,6 +103,8 @@ export const initialUiState: Ui = {
   tab: "REQ",
   filterActive: false,
   sortingActive: false,
+  detailFormatterId:
+    detailFormatters.getDefaultFormatter("detail")?.[0] || null,
 };
 
 export const initialJsonViewerSettings: JsonViewerSettings = {

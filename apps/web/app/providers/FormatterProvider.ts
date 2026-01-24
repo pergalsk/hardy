@@ -62,12 +62,24 @@ export function FormatterProvider<T>(options?: FormatterProviderOptions) {
     return formatters[key]?.[id] || null;
   }
 
+  function getDefaultFormatter(originalKey: string): [string, T] | null {
+    const key = transformKey(originalKey, optionsObj.comparativeMethod);
+    const formattersObj = formatters[key];
+
+    if (formattersObj == null) {
+      return null;
+    }
+
+    return Object.entries(formattersObj)[0] || null;
+  }
+
   return {
     addFormatters,
     removeFormatter,
     getFormatters,
     // getFormattersArr,
     getFormatter,
+    getDefaultFormatter,
   };
 }
 

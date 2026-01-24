@@ -1,7 +1,7 @@
-"use client";
 import React from "react";
 import { useAppStore } from "../store/store";
 import {
+  selectDetailFormatterId,
   selectFiles,
   selectFilterActive,
   selectSettings,
@@ -10,6 +10,7 @@ import {
 import {
   clearFilter,
   clearSorting,
+  setDetailFormatter,
   setFilterActive,
   setShowPages,
   setSortingActive,
@@ -28,6 +29,7 @@ export function AppHeaderActions(): JSX.Element {
   const filterActive = useAppStore(selectFilterActive);
   const sortingActive = useAppStore(selectSortingActive);
   const { showPages } = useAppStore(selectSettings);
+  const detailFormatterId = useAppStore(selectDetailFormatterId);
 
   const handleFilterActive = () => {
     setFilterActive(!filterActive);
@@ -71,11 +73,12 @@ export function AppHeaderActions(): JSX.Element {
 
           <ActionText>Detail</ActionText>
 
-          {Object.values(formatters).map((formatter: any) => (
+          {Object.entries(formatters).map(([key, formatter]: [string, any]) => (
             <ActionIcon
-              key={formatter.title}
-              active={false}
+              key={key}
+              active={key === detailFormatterId}
               icon={`iconify ${formatter.icon}`}
+              onClick={() => setDetailFormatter(key)}
             />
           ))}
 

@@ -7,7 +7,7 @@ export function ActionBar({
   children: React.ReactNode;
   alignRight?: boolean;
 }) {
-  const base = "flex select-none items-center gap-3";
+  const base = "flex flex-1 select-none items-center gap-3";
   const alignClass = alignRight ? "ml-auto" : "mr-auto";
   const className = `${base} ${alignClass}`.trim();
 

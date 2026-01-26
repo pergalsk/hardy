@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 import { detailFormatters } from "../providers/detailFormatter";
 
 export type File = {
@@ -117,12 +118,34 @@ export const initialJsonViewerSettings: JsonViewerSettings = {
   shortenTextAfterLength: 0,
 };
 
-export const useAppStore = create<AppState>(() => ({
-  files: [],
-  toasts: [],
-  filter: { ...initialFilterState },
-  ui: { ...initialUiState },
-  jsonViewer: { ...initialJsonViewerSettings },
-  settings: { ...initialSettings },
-  sorting: { ...initialSortingState },
-}));
+const settingsStorage =
+  typeof window !== "undefined"
+    ? createJSONStorage(() => localStorage)
+    : undefined;
+
+export const useAppStore = create<AppState>()(
+  persist(
+    () => ({
+      files: [],
+      toasts: [],
+      filter: { ...initialFilterState },
+      ui: { ...initialUiState },
+      jsonViewer: { ...initialJsonViewerSettings },
+      settings: { ...initialSettings },
+      sorting: { ...initialSortingState },
+    }),
+    {
+      name: "harviewer-settings",
+      storage: settingsStorage,
+      partialize: (state) => ({ settings: state.settings }),
+      merge: (persistedState, currentState) => ({
+        ...currentState,
+        ...persistedState,
+        settings: {
+          ...currentState.settings,
+          ...(persistedState as Partial<AppState>).settings,
+        },
+      }),
+    }
+  )
+);

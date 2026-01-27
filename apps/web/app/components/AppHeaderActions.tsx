@@ -4,7 +4,7 @@ import {
   selectDetailFormatterId,
   selectFiles,
   selectFilterActive,
-  selectSettings,
+  selectShowPages,
   selectSortingActive,
 } from "../store/selectors";
 import {
@@ -29,7 +29,7 @@ export function AppHeaderActions(): JSX.Element {
   const files = useAppStore(selectFiles);
   const filterActive = useAppStore(selectFilterActive);
   const sortingActive = useAppStore(selectSortingActive);
-  const { showPages } = useAppStore(selectSettings);
+  const showPages = useAppStore(selectShowPages);
   const detailFormatterId = useAppStore(selectDetailFormatterId);
 
   const handleFilterActive = () => {

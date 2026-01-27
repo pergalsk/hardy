@@ -22,12 +22,6 @@ export type SettingItem = {
 
 const items: SettingItem[] = [
   {
-    key: "showPages",
-    label: "Show Pages",
-    desc: "Group requests by pages if pages are defined.",
-    type: "switch",
-  },
-  {
     key: "hideEmptyPages",
     label: "Exclude Empty Pages",
     desc: "Hide pages that contain no entries.",

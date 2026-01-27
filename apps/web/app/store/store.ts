@@ -39,8 +39,12 @@ export type Ui = {
   fileId: string;
   rowId: number;
   tab: TabCode;
+};
+
+export type UiPersistent = {
   filterActive: boolean;
   sortingActive: boolean;
+  showPages: boolean;
   detailFormatterId: string | null;
 };
 
@@ -55,24 +59,9 @@ export type JsonViewerSettings = {
 };
 
 export type Settings = {
-  showPages: boolean;
   groupHidden: boolean;
   excludeHidden: boolean;
   hideEmptyPages: boolean;
-};
-
-// default settings exported so other modules can reset to them
-export const initialSettings: Settings = {
-  showPages: false,
-  groupHidden: true,
-  excludeHidden: false,
-  hideEmptyPages: true,
-};
-
-export const initialSortingState: Sorting = {
-  sortBy: undefined,
-  sortDir: "asc",
-  sortInsidePages: false,
 };
 
 export type AppState = {
@@ -80,9 +69,16 @@ export type AppState = {
   toasts: Toast[];
   filter: Filter;
   ui: Ui;
-  jsonViewer: JsonViewerSettings;
+  uiPersistent: UiPersistent;
   settings: Settings;
   sorting: Sorting;
+  jsonViewer: JsonViewerSettings;
+};
+
+export const initialSortingState: Sorting = {
+  sortBy: undefined,
+  sortDir: "asc",
+  sortInsidePages: false,
 };
 
 export const initialFilterFieldsState: Filter["fields"] = {
@@ -102,8 +98,19 @@ export const initialUiState: Ui = {
   fileId: "",
   rowId: 0,
   tab: "REQ",
+};
+
+// default settings exported so other modules can reset to them
+export const initialSettings: Settings = {
+  groupHidden: true,
+  excludeHidden: false,
+  hideEmptyPages: true,
+};
+
+export const initialUiPersistentState: UiPersistent = {
   filterActive: true,
   sortingActive: false,
+  showPages: false,
   detailFormatterId:
     detailFormatters.getDefaultFormatter("detail")?.[0] || null,
 };
@@ -128,9 +135,10 @@ const initialState: AppState = {
   toasts: [],
   filter: { ...initialFilterState },
   ui: { ...initialUiState },
-  jsonViewer: { ...initialJsonViewerSettings },
+  uiPersistent: { ...initialUiPersistentState },
   settings: { ...initialSettings },
   sorting: { ...initialSortingState },
+  jsonViewer: { ...initialJsonViewerSettings },
 };
 
 export const useAppStore = create<AppState>()(
@@ -139,15 +147,15 @@ export const useAppStore = create<AppState>()(
     // storage may be undefined during SSR; cast to any to satisfy typings
     storage: settingsStorage as any,
     partialize: (state: AppState) => ({
-      ui: state.ui,
+      uiPersistent: state.uiPersistent,
       settings: state.settings,
     }),
     merge: (persistedState: Partial<AppState>, currentState: AppState) => ({
       ...currentState,
       ...persistedState,
-      ui: {
-        ...currentState.ui,
-        ...(persistedState as Partial<AppState>).ui,
+      uiPersistent: {
+        ...currentState.uiPersistent,
+        ...(persistedState as Partial<AppState>).uiPersistent,
       },
       settings: {
         ...currentState.settings,

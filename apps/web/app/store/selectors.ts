@@ -3,16 +3,21 @@ import { AppState, TabCode } from "./store";
 export const selectTab = (state: AppState) => state.ui.tab;
 export const selectFiles = (state: AppState) => state.files;
 export const selectFileId = (state: AppState) => state.ui.fileId;
-export const selectFilterActive = (state: AppState) => state.ui.filterActive;
-export const selectSortingActive = (state: AppState) => state.ui.sortingActive;
 export const selectToasts = (state: AppState) => state.toasts;
 export const selectRowId = (state: AppState) => state.ui.rowId;
 export const selectFilter = (state: AppState) => state.filter;
 export const selectJsonViewerSettings = (state: AppState) => state.jsonViewer;
 export const selectSettings = (state: AppState) => state.settings;
 export const selectSorting = (state: AppState) => state.sorting;
+
+export const selectFilterActive = (state: AppState) =>
+  state.uiPersistent.filterActive;
+export const selectSortingActive = (state: AppState) =>
+  state.uiPersistent.sortingActive;
+export const selectShowPages = (state: AppState) =>
+  state.uiPersistent.showPages;
 export const selectDetailFormatterId = (state: AppState) =>
-  state.ui.detailFormatterId;
+  state.uiPersistent.detailFormatterId;
 
 export const selectFileSize = (state: AppState) => {
   const files = selectFiles(state);

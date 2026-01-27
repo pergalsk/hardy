@@ -19,10 +19,19 @@ export const setTab = (tab: TabCode) =>
   useAppStore.setState((state) => ({ ui: { ...state.ui, tab } }));
 
 export const setFilterActive = (filterActive: boolean) =>
-  useAppStore.setState((state) => ({ ui: { ...state.ui, filterActive } }));
+  useAppStore.setState((state) => ({
+    uiPersistent: { ...state.uiPersistent, filterActive },
+  }));
 
 export const setSortingActive = (sortingActive: boolean) =>
-  useAppStore.setState((state) => ({ ui: { ...state.ui, sortingActive } }));
+  useAppStore.setState((state) => ({
+    uiPersistent: { ...state.uiPersistent, sortingActive },
+  }));
+
+export const setShowPages = (showPages: boolean) =>
+  useAppStore.setState((state) => ({
+    uiPersistent: { ...state.uiPersistent, showPages },
+  }));
 
 export const addFile = (file: File) =>
   useAppStore.setState((state) => ({ files: [...state.files, file] }));
@@ -129,12 +138,7 @@ export const clearSorting = () =>
     },
   }));
 
-export const setShowPages = (show: boolean) =>
-  useAppStore.setState((state) => ({
-    settings: { ...state.settings, showPages: show },
-  }));
-
 export const setDetailFormatter = (formatterId: string) =>
   useAppStore.setState((state) => ({
-    ui: { ...state.ui, detailFormatterId: formatterId },
+    uiPersistent: { ...state.uiPersistent, detailFormatterId: formatterId },
   }));

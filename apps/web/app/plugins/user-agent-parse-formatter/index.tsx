@@ -1,11 +1,10 @@
+import { Formatter } from "../../providers/Formatter";
 import UAParser from "ua-parser-js";
-import {
-  HeaderItem,
-  HeaderValueFormatter,
-} from "../../providers/headerValueFormatter";
+import { HeaderItem } from "../../providers/headerValueFormatter";
 import { InfoBadge } from "../../components/InfoBadge";
 
-export const userAgentParseFormatter: HeaderValueFormatter = {
+export const userAgentParseFormatter: Formatter<HeaderItem> = {
+  id: "user-agent-parse-formatter",
   title: "Parse",
   icon: "iconify material-symbols--notes-rounded",
   tooltip: "Parse User Agent",

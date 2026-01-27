@@ -1,9 +1,8 @@
-import {
-  HeaderItem,
-  HeaderValueFormatter,
-} from "../../providers/headerValueFormatter";
+import { Formatter } from "../../providers/Formatter";
+import { HeaderItem } from "../../providers/headerValueFormatter";
 
-export const userAgentRawFormatter: HeaderValueFormatter = {
+export const userAgentRawFormatter: Formatter<HeaderItem> = {
+  id: "user-agent-raw-formatter",
   title: "Original",
   icon: "iconify material-symbols--code-rounded",
   tooltip: "Original raw value",

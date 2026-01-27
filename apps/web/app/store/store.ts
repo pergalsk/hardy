@@ -123,29 +123,36 @@ const settingsStorage =
     ? createJSONStorage(() => localStorage)
     : undefined;
 
+const initialState: AppState = {
+  files: [],
+  toasts: [],
+  filter: { ...initialFilterState },
+  ui: { ...initialUiState },
+  jsonViewer: { ...initialJsonViewerSettings },
+  settings: { ...initialSettings },
+  sorting: { ...initialSortingState },
+};
+
 export const useAppStore = create<AppState>()(
-  persist(
-    () => ({
-      files: [],
-      toasts: [],
-      filter: { ...initialFilterState },
-      ui: { ...initialUiState },
-      jsonViewer: { ...initialJsonViewerSettings },
-      settings: { ...initialSettings },
-      sorting: { ...initialSortingState },
+  persist<AppState>(() => initialState, {
+    name: "har-viewer-settings",
+    // storage may be undefined during SSR; cast to any to satisfy typings
+    storage: settingsStorage as any,
+    partialize: (state: AppState) => ({
+      ui: state.ui,
+      settings: state.settings,
     }),
-    {
-      name: "harviewer-settings",
-      storage: settingsStorage,
-      partialize: (state) => ({ settings: state.settings }),
-      merge: (persistedState, currentState) => ({
-        ...currentState,
-        ...persistedState,
-        settings: {
-          ...currentState.settings,
-          ...(persistedState as Partial<AppState>).settings,
-        },
-      }),
-    }
-  )
+    merge: (persistedState: Partial<AppState>, currentState: AppState) => ({
+      ...currentState,
+      ...persistedState,
+      ui: {
+        ...currentState.ui,
+        ...(persistedState as Partial<AppState>).ui,
+      },
+      settings: {
+        ...currentState.settings,
+        ...(persistedState as Partial<AppState>).settings,
+      },
+    }),
+  } as any),
 );

@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 
+type Size = "small" | "medium" | "big" | "full";
+
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -8,6 +10,8 @@ type ModalProps = {
   children?: React.ReactNode;
   closeOnBackdropClick?: boolean;
   className?: string;
+  size?: Size;
+  footer?: React.ReactNode;
 };
 
 export default function Modal({
@@ -17,6 +21,8 @@ export default function Modal({
   children,
   closeOnBackdropClick = true,
   className = "",
+  size = "medium",
+  footer,
 }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
@@ -87,6 +93,33 @@ export default function Modal({
     };
   }, [onClose, closeOnBackdropClick]);
 
+  // compute panel class based on size
+  const panelBase =
+    "select-none overflow-hidden rounded-lg bg-white shadow-xl dark:bg-slate-800 flex flex-col";
+  const sizeClasses: Record<Size, string> = {
+    small: "w-[85vw] max-w-md",
+    medium: "w-[90vw] max-w-3xl",
+    big: "w-[95vw] max-w-6xl",
+    full: "w-screen h-screen max-w-none rounded-none",
+  };
+
+  const panelSizeClass = sizeClasses[size] || sizeClasses.medium;
+  const panelClass = `${panelSizeClass} ${panelBase} ${
+    size === "full" ? "overflow-auto" : ""
+  }`.trim();
+
+  // content area should scroll when it exceeds available viewport height
+  const hasFooter = Boolean(footer);
+  const contentClass =
+    size === "full"
+      ? "flex-1 overflow-auto p-4"
+      : `overflow-auto p-4 ${hasFooter ? "pb-4" : ""}`.trim();
+  const contentStyle: React.CSSProperties | undefined =
+    size === "full" ? undefined : { maxHeight: "calc(100vh - 160px)" }; // leave space for header and footer
+
+  const footerClass =
+    `flex-none border-t border-gray-200 p-4 dark:border-slate-700 bg-white dark:bg-slate-800 ${hasFooter ? "sticky bottom-0 z-10" : ""}`.trim();
+
   return (
     <dialog
       ref={dialogRef}
@@ -96,7 +129,7 @@ export default function Modal({
         className
       }
     >
-      <div className="w-[90vw] max-w-2xl select-none overflow-hidden rounded-lg bg-white shadow-xl dark:bg-slate-800">
+      <div className={panelClass}>
         <header className="flex justify-between border-b border-gray-100 bg-slate-700 dark:border-slate-700">
           <div className="px-4 py-3 font-medium uppercase text-white dark:text-gray-100">
             {title}
@@ -114,7 +147,10 @@ export default function Modal({
             ></span>
           </button>
         </header>
-        <div>{children}</div>
+        <div className={contentClass} style={contentStyle}>
+          {children}
+        </div>
+        {footer ? <div className={footerClass}>{footer}</div> : null}
       </div>
     </dialog>
   );

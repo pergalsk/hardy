@@ -1,11 +1,12 @@
-import { HeaderValueFormatter } from "../providers/headerValueFormatter";
+import { Formatter } from "../providers/Formatter";
+import { HeaderItem } from "../providers/headerValueFormatter";
 
 export const HeadersIcons = ({
   formatters,
   setFormatter,
 }: {
   formatters: {
-    [id: string]: HeaderValueFormatter;
+    [id: string]: Formatter<HeaderItem>;
   };
   setFormatter: (id: string) => void;
 }): JSX.Element | null => {

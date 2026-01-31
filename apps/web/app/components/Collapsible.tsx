@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ToggleMark } from "./ToggleMark";
-import { Formatter, ContentValue } from "../providers/contentValueFormatter";
+import { Formatter } from "../providers/Formatter";
 
 export function Collapsible({
   children,

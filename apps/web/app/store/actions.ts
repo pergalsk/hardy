@@ -142,3 +142,14 @@ export const setDetailFormatter = (formatterId: string) =>
   useAppStore.setState((state) => ({
     uiPersistent: { ...state.uiPersistent, detailFormatterId: formatterId },
   }));
+
+export const togglePinnedRow = (rowId: number) =>
+  useAppStore.setState((state) => {
+    const pinnedIds = new Set(state.ui.pinnedIds);
+    if (pinnedIds.has(rowId)) {
+      pinnedIds.delete(rowId);
+    } else {
+      pinnedIds.add(rowId);
+    }
+    return { ui: { ...state.ui, pinnedIds } };
+  });

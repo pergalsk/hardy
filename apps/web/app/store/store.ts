@@ -38,6 +38,7 @@ export type TabCode = "REQ" | "RES" | "COO" | "TIM";
 export type Ui = {
   fileId: string;
   rowId: number;
+  pinnedIds: Set<number>;
   tab: TabCode;
 };
 
@@ -97,6 +98,7 @@ export const initialFilterState: Filter = {
 export const initialUiState: Ui = {
   fileId: "",
   rowId: 0,
+  pinnedIds: new Set<number>(),
   tab: "REQ",
 };
 

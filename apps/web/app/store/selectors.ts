@@ -5,6 +5,7 @@ export const selectFiles = (state: AppState) => state.files;
 export const selectFileId = (state: AppState) => state.ui.fileId;
 export const selectToasts = (state: AppState) => state.toasts;
 export const selectRowId = (state: AppState) => state.ui.rowId;
+export const selectPinnedIds = (state: AppState) => state.ui.pinnedIds;
 export const selectFilter = (state: AppState) => state.filter;
 export const selectJsonViewerSettings = (state: AppState) => state.jsonViewer;
 export const selectSettings = (state: AppState) => state.settings;

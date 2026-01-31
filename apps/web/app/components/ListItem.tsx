@@ -1,6 +1,6 @@
 import { useAppStore } from "../store/store";
-import { selectRowId } from "../store/selectors";
-import { setRowId } from "../store/actions";
+import { selectPinnedIds, selectRowId } from "../store/selectors";
+import { setRowId, togglePinnedRow } from "../store/actions";
 import { Method } from "./Method";
 import { Url } from "./Url";
 import { Status } from "./Status";
@@ -10,6 +10,7 @@ import ListItemWrapper from "./ListItemWrapper";
 
 export function ListItem({ item }: { item: any }): JSX.Element {
   const rowId = useAppStore(selectRowId);
+  const pinnedIds = useAppStore(selectPinnedIds);
 
   const {
     pageref,
@@ -21,22 +22,27 @@ export function ListItem({ item }: { item: any }): JSX.Element {
     time,
     $$id,
     $$hidden,
-    $$pinned,
   } = item;
 
   const isError = parseInt(status) <= 599 && parseInt(status) >= 400;
+  const isPinned = pinnedIds.has($$id);
+  const isSelected = $$id === rowId;
 
   const highlightNum = false;
   const numClasses = highlightNum
     ? "text-mirage-200 dark:bg-accent-600 rounded px-1 dark:text-black"
     : "";
 
+  const pinnedClasses = isPinned
+    ? "iconify material-symbols--bookmark-check-rounded text-lg text-yellow-400"
+    : "iconify material-symbols--bookmark-outline-rounded text-mirage-200 hover:text-accent-200 text-lg";
+
   const Separator = () => <div className="text-mirage-600">|</div>;
 
   return (
     <ListItemWrapper
-      selected={$$id === rowId}
-      pinned={$$pinned}
+      selected={isSelected}
+      pinned={isPinned}
       error={isError}
       hidden={!!$$hidden}
       onClick={() => setRowId($$id)}
@@ -53,11 +59,10 @@ export function ListItem({ item }: { item: any }): JSX.Element {
           <Separator />
           <div className={`${numClasses}`}>#{$$id + 1}</div>
           <Separator />
-          {$$pinned ? (
-            <div className="iconify material-symbols--bookmark-check-rounded text-lg text-yellow-400"></div>
-          ) : (
-            <div className="iconify material-symbols--bookmark-outline-rounded text-mirage-200 hover:text-accent-200 text-lg"></div>
-          )}
+          <div
+            className={`${pinnedClasses}`}
+            onClick={() => togglePinnedRow($$id)}
+          ></div>
         </div>
       </div>
 

@@ -61,7 +61,7 @@ export default function UrlDetailsModal({ url }: { url: string }) {
           value: (
             <>
               <div className="break-all">
-                {parsed.search || <span className="text-mirage-400">—</span>}
+                {parsed.search || <span className="text-mirage-600">—</span>}
               </div>
               {queryEntries.length > 0 && (
                 <div className="mt-2">

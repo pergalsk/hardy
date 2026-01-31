@@ -61,29 +61,33 @@ export default function SettingsModal({ open, onClose }: Props) {
     onClose();
   };
 
+  const footer = (
+    <div className="flex w-full items-center gap-2">
+      <Button variant="ghost" onClick={resetToDefaults} className="mr-auto">
+        Reset to default
+      </Button>
+      <Button onClick={onClose}>Cancel</Button>
+      <Button variant="primary" onClick={save}>
+        Save
+      </Button>
+    </div>
+  );
+
   return (
     <Modal
       isOpen={open}
       onClose={onClose}
       title="Settings"
+      size="small"
       closeOnBackdropClick
+      footer={footer}
     >
-      <div className="space-y-2 p-4">
+      <div className="space-y-2">
         <SettingsList
           items={items}
           form={form}
           onChange={(k, v) => setFormValue(k, v)}
         />
-      </div>
-
-      <div className="flex justify-end gap-2 border-t border-gray-200 p-4 dark:border-slate-700">
-        <Button variant="ghost" onClick={resetToDefaults} className="mr-auto">
-          Reset to default
-        </Button>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button variant="primary" onClick={save}>
-          Save
-        </Button>
       </div>
     </Modal>
   );

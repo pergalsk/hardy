@@ -4,15 +4,19 @@ import {
   selectDetailFormatterId,
   selectFiles,
   selectFilterActive,
+  selectPinnedIds,
   selectShowPages,
+  selectShowPinnedOnly,
   selectSortingActive,
 } from "../store/selectors";
 import {
+  clearAllPinned,
   clearFilter,
   clearSorting,
   setDetailFormatter,
   setFilterActive,
   setShowPages,
+  setShowPinnedOnly,
   setSortingActive,
 } from "../store/actions";
 import { ActionBar } from "./ActionBar";
@@ -30,7 +34,11 @@ export function AppHeaderActions(): JSX.Element {
   const filterActive = useAppStore(selectFilterActive);
   const sortingActive = useAppStore(selectSortingActive);
   const showPages = useAppStore(selectShowPages);
+  const showPinnedOnly = useAppStore(selectShowPinnedOnly);
+  const pinnedIds = useAppStore(selectPinnedIds);
   const detailFormatterId = useAppStore(selectDetailFormatterId);
+
+  const isPinnedEmpty = pinnedIds.size === 0;
 
   const handleFilterActive = () => {
     setFilterActive(!filterActive);
@@ -44,6 +52,14 @@ export function AppHeaderActions(): JSX.Element {
 
   const handleShowPages = () => {
     setShowPages(!showPages);
+  };
+
+  const handleShowPinnedOnly = () => {
+    setShowPinnedOnly(!showPinnedOnly);
+  };
+
+  const handleClearPinned = () => {
+    clearAllPinned();
   };
 
   return (
@@ -82,6 +98,23 @@ export function AppHeaderActions(): JSX.Element {
             onClick={handleShowPages}
             active={showPages}
             icon="iconify material-symbols--note-stack-outline"
+          />
+
+          <ActionIcon
+            onClick={handleShowPinnedOnly}
+            active={showPinnedOnly}
+            disabled={isPinnedEmpty}
+            icon={
+              isPinnedEmpty
+                ? `iconify material-symbols--bookmarks-outline`
+                : `iconify material-symbols--bookmarks-rounded`
+            }
+          />
+
+          <ActionIcon
+            onClick={handleClearPinned}
+            disabled={isPinnedEmpty}
+            icon="iconify material-symbols--bookmark-remove-outline-rounded"
           />
 
           <ActionSeparator type="line" />

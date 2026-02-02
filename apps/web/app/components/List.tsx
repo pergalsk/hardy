@@ -3,8 +3,10 @@ import { useAppStore } from "../store/store";
 import {
   selectFilter,
   selectListData,
+  selectPinnedIds,
   selectSettings,
   selectShowPages,
+  selectShowPinnedOnly,
   selectSorting,
 } from "../store/selectors";
 import { setFilteredCount } from "../store/actions";
@@ -57,8 +59,15 @@ export function List(): JSX.Element {
   const { hideEmptyPages } = useAppStore(selectSettings);
   const sorting = useAppStore(selectSorting);
   const showPages = useAppStore(selectShowPages);
+  const showPinnedOnly = useAppStore(selectShowPinnedOnly);
+  const pinnedIds = useAppStore(selectPinnedIds);
 
-  const entriesWithVisibility = rawListData.map(markVisible(filter));
+  const rawListPinned =
+    showPinnedOnly && pinnedIds.size > 0
+      ? rawListData.filter((entry: any) => pinnedIds.has(entry.$$id))
+      : rawListData;
+
+  const entriesWithVisibility = rawListPinned.map(markVisible(filter));
   const visibleEntries = entriesWithVisibility.filter(
     (entry: any) => !entry.$$hidden,
   );

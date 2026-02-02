@@ -18,6 +18,11 @@ export const setRowId = (rowId: number) =>
 export const setTab = (tab: TabCode) =>
   useAppStore.setState((state) => ({ ui: { ...state.ui, tab } }));
 
+export const setShowPinnedOnly = (showPinnedOnly: boolean) =>
+  useAppStore.setState((state) => ({
+    ui: { ...state.ui, showPinnedOnly },
+  }));
+
 export const setFilterActive = (filterActive: boolean) =>
   useAppStore.setState((state) => ({
     uiPersistent: { ...state.uiPersistent, filterActive },
@@ -143,6 +148,15 @@ export const setDetailFormatter = (formatterId: string) =>
     uiPersistent: { ...state.uiPersistent, detailFormatterId: formatterId },
   }));
 
+export const clearAllPinned = () =>
+  useAppStore.setState((state) => ({
+    ui: {
+      ...state.ui,
+      pinnedIds: new Set(),
+      showPinnedOnly: false,
+    },
+  }));
+
 export const togglePinnedRow = (rowId: number) =>
   useAppStore.setState((state) => {
     const pinnedIds = new Set(state.ui.pinnedIds);
@@ -151,5 +165,11 @@ export const togglePinnedRow = (rowId: number) =>
     } else {
       pinnedIds.add(rowId);
     }
-    return { ui: { ...state.ui, pinnedIds } };
+    return {
+      ui: {
+        ...state.ui,
+        pinnedIds,
+        showPinnedOnly: pinnedIds.size > 0 ? state.ui.showPinnedOnly : false,
+      },
+    };
   });

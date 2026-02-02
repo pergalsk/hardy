@@ -10,6 +10,8 @@ export const selectFilter = (state: AppState) => state.filter;
 export const selectJsonViewerSettings = (state: AppState) => state.jsonViewer;
 export const selectSettings = (state: AppState) => state.settings;
 export const selectSorting = (state: AppState) => state.sorting;
+export const selectShowPinnedOnly = (state: AppState) =>
+  state.ui.showPinnedOnly;
 
 export const selectFilterActive = (state: AppState) =>
   state.uiPersistent.filterActive;

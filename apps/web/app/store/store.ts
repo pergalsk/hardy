@@ -39,6 +39,7 @@ export type Ui = {
   fileId: string;
   rowId: number;
   pinnedIds: Set<number>;
+  showPinnedOnly: boolean;
   tab: TabCode;
 };
 
@@ -99,6 +100,7 @@ export const initialUiState: Ui = {
   fileId: "",
   rowId: 0,
   pinnedIds: new Set<number>(),
+  showPinnedOnly: false,
   tab: "REQ",
 };
 

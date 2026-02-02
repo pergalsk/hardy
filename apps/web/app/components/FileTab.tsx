@@ -1,4 +1,4 @@
-import { clearFilter, removeFile } from "../store/actions";
+import { clearAllPinned, clearFilter, removeFile } from "../store/actions";
 
 interface FileTabProps {
   file: {
@@ -13,6 +13,7 @@ export function FileTab({ file }: FileTabProps): JSX.Element {
   const handleFileClose = () => {
     removeFile(fileId);
     clearFilter();
+    clearAllPinned();
   };
 
   return (

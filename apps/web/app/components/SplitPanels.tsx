@@ -53,7 +53,7 @@ export default function SplitPanels({
   };
 
   const dividerBase =
-    "w-[5px] cursor-ew-resize bg-bunker-600 transition-colors duration-150 border-l-[2px] border-r-[2px] border-bunker-950";
+    "w-[5px] cursor-ew-resize bg-bunker-600 transition-colors duration-300 border-l-[2px] border-r-[2px] border-bunker-950";
   const dividerHover =
     "bg-slate-200 dark:bg-bunker-500 border-slate-200 dark:border-bunker-500";
   const dividerActive =

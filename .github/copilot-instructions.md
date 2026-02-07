@@ -45,6 +45,7 @@ turbo.json                # Turborepo pipeline
 - Keep Tailwind class strings readable; compute long `className` strings outside `return`.
 - Don’t do drive-by refactors unrelated to the goal.
 - Keep file names short and descriptive.
+- File names should start with a segment indicating their purpose (e.g. `List.tsx`, `ListSorting.tsx`, `ListSortingBtn.tsx`...).
 
 ## Constants and helpers
 

@@ -139,7 +139,7 @@ export default function Modal({
             type="button"
             aria-label="Close"
             onClick={onClose}
-            className="flex items-center px-3 text-2xl text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-slate-600 dark:hover:text-white"
+            className="flex items-center px-3 text-2xl text-white transition-colors duration-200 hover:bg-slate-600 hover:text-white dark:text-gray-300 dark:hover:bg-slate-600 dark:hover:text-white"
           >
             <span
               aria-hidden="true"

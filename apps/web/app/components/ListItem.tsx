@@ -34,8 +34,8 @@ export function ListItem({ item }: { item: any }): JSX.Element {
     : "";
 
   const pinnedClasses = isPinned
-    ? "iconify material-symbols--bookmark-check-rounded text-lg text-yellow-400"
-    : "iconify material-symbols--bookmark-outline-rounded text-mirage-200 hover:text-accent-200 text-lg";
+    ? "iconify material-symbols--bookmark-check-rounded text-lg text-yellow-600"
+    : "iconify material-symbols--bookmark-outline-rounded hover:text-accent-700 dark:text-mirage-200 dark:hover:text-accent-200 text-lg";
 
   const Separator = () => <div className="text-mirage-600">|</div>;
 

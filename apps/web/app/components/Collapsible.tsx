@@ -55,7 +55,7 @@ export function Collapsible({
         </div>
       ) : (
         <div
-          className={`${sticky ? "sticky top-0 z-10 drop-shadow-lg" : ""} dark:bg-bunker-950 group flex bg-white`}
+          className={`${sticky ? "sticky top-0 z-10" : ""} dark:bg-bunker-950 group flex bg-white`}
         >
           <div
             className={`${disabledClasses} ${transparent ? "bg-transparent" : "bg-mirage-50 dark:bg-bunker-500"} text-mirage-700 dark:text-mirage-300 flex flex-1 select-none justify-start gap-2 rounded-md p-3 py-1.5 pl-2 transition-colors duration-200`}

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import SettingsModal from "./SettingsModal";
+import { ActionIcon } from "./ActionIcon";
 
 export function Settings() {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <div
-        className={`iconify material-symbols--settings-outline-rounded my-auto mr-1 text-xl dark:bg-slate-400 dark:hover:bg-slate-300`}
+      <ActionIcon
         onClick={() => setOpen(true)}
-      ></div>
+        icon="iconify material-symbols--settings-outline-rounded"
+      />
 
       <SettingsModal open={open} onClose={() => setOpen(false)} />
     </>

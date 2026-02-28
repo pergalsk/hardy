@@ -53,11 +53,11 @@ export default function SplitPanels({
   };
 
   const dividerBase =
-    "w-[5px] cursor-ew-resize bg-bunker-600 transition-colors duration-300 border-l-[2px] border-r-[2px] border-bunker-950";
+    "w-[5px] cursor-ew-resize bg-slate-200 dark:bg-bunker-600 transition-colors duration-300 border-l-[2px] border-r-[2px] dark:border-bunker-950 border-white";
   const dividerHover =
-    "bg-slate-200 dark:bg-bunker-500 border-slate-200 dark:border-bunker-500";
+    "bg-slate-400 dark:bg-bunker-500 border-slate-400 dark:border-bunker-500";
   const dividerActive =
-    "bg-slate-300 dark:bg-bunker-500 border-slate-300 dark:border-bunker-500";
+    "bg-slate-500 dark:bg-bunker-500 border-slate-500 dark:border-bunker-500";
 
   const dividerClassName = `${dividerBase} ${
     isDragging ? dividerActive : isHoveringDivider ? dividerHover : ""

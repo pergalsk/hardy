@@ -19,10 +19,10 @@ export default function UrlQueryTable({ entries }: Props) {
         }`;
         return (
           <div key={`${paramKey}-${index}`} className={rowClassName}>
-            <div className="text-mirage-700 col-span-4 pr-2 text-sm font-medium dark:text-white">
+            <div className="text-mirage-800 col-span-4 pr-2 text-sm font-medium dark:text-white">
               {paramKey}
             </div>
-            <div className="text-mirage-700 dark:text-mirage-200 col-span-8 break-all pl-2 text-sm">
+            <div className="text-mirage-800 dark:text-mirage-200 col-span-8 break-all pl-2 text-sm">
               <span className="text-mirage-600">=</span> {paramValue}
             </div>
           </div>

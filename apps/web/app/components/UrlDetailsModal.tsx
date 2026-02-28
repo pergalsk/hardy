@@ -61,7 +61,11 @@ export default function UrlDetailsModal({ url }: { url: string }) {
           value: (
             <>
               <div className="break-all">
-                {parsed.search || <span className="text-mirage-600">—</span>}
+                {parsed.search || (
+                  <span className="dark:text-mirage-600 text-mirage-300">
+                    —
+                  </span>
+                )}
               </div>
               {queryEntries.length > 0 && (
                 <div className="mt-2">
@@ -80,7 +84,7 @@ export default function UrlDetailsModal({ url }: { url: string }) {
         type="button"
         onClick={() => setOpen(true)}
         title="Show URL details"
-        className="iconify material-symbols--list-alt-outline-rounded text-accent-400 hover:text-accent-200 text-xl"
+        className="iconify material-symbols--list-alt-outline-rounded dark:text-accent-400 dark:hover:text-accent-200 text-accent-600 hover:text-accent-700 text-xl"
       />
 
       <Modal
@@ -104,15 +108,19 @@ export default function UrlDetailsModal({ url }: { url: string }) {
                 key={label}
                 className="grid grid-cols-9 gap-4 border-b border-gray-200 py-2 last:border-b-0 dark:border-slate-700"
               >
-                <div className="text-mirage-700 col-span-2 flex text-sm font-medium dark:text-white">
+                <div className="col-span-2 flex text-sm font-medium text-black dark:text-white">
                   <span className="">{label}</span>
                   <span
                     className="iconify material-symbols--help-outline-rounded dark:text-mirage-600 text-mirage-100 dark:hover:text-accent-300 hover:text-accent-600 ml-1 inline-flex cursor-pointer select-none items-center align-top text-lg"
                     onClick={() => openMdnFor(label)}
                   />
                 </div>
-                <div className="text-mirage-700 dark:text-mirage-200 col-span-7 break-all text-sm">
-                  {value || <span className="text-mirage-600">—</span>}
+                <div className="dark:text-mirage-200 col-span-7 break-all text-sm text-black">
+                  {value || (
+                    <span className="dark:text-mirage-600 text-mirage-300">
+                      —
+                    </span>
+                  )}
                 </div>
               </div>
             ))}

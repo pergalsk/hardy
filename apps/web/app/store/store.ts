@@ -1,6 +1,9 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import type { JsonViewerSettings } from "@repo/formatter-core";
 import { detailFormatters } from "../providers/detailFormatter";
+
+export type { JsonViewerSettings };
 
 export type File = {
   fileId: string;
@@ -48,16 +51,6 @@ export type UiPersistent = {
   sortingActive: boolean;
   showPages: boolean;
   detailFormatterId: string | null;
-};
-
-export type JsonViewerSettings = {
-  collapsed: number | boolean;
-  indentWidth: number;
-  enableClipboard: boolean;
-  displayDataTypes: boolean;
-  displayObjectSize: boolean;
-  highlightUpdates: boolean;
-  shortenTextAfterLength: number;
 };
 
 export type Settings = {

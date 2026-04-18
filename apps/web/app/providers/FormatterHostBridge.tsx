@@ -5,6 +5,9 @@ import { useAppStore } from "../store/store";
 import { selectJsonViewerSettings } from "../store/selectors";
 import { addToast } from "../store/actions";
 import { useDarkMode } from "../helpers/useDarkMode";
+import { bootstrapPlugins } from "../plugins.config";
+
+bootstrapPlugins();
 
 export function FormatterHostBridge({
   children,

@@ -1,6 +1,6 @@
 import { Formatter } from "@repo/formatter-core";
 import { HeaderItem } from "../../providers/headerValueFormatter";
-import { JsonContent } from "../../components/JsonContent";
+import { JsonView } from "@repo/formatter-ui/json-view";
 
 export const headersRawFormatter: Formatter<HeaderItem[]> = {
   id: "headers-raw-formatter",
@@ -8,6 +8,6 @@ export const headersRawFormatter: Formatter<HeaderItem[]> = {
   icon: "iconify material-symbols--code-rounded",
   tooltip: "Raw formatted value",
   format: (headers: HeaderItem[]): JSX.Element | string => {
-    return <JsonContent data={headers} collapseBtns={false} />;
+    return <JsonView data={headers} collapseBtns={false} />;
   },
 };

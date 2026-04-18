@@ -1,7 +1,7 @@
 import { Formatter } from "@repo/formatter-core";
 import { ContentValue } from "../../providers/contentValueFormatter";
 import { TextContent } from "@repo/ui/text-content";
-import { JsonContent } from "../../components/JsonContent";
+import { JsonView } from "@repo/formatter-ui/json-view";
 import { parseJsonData } from "../../helpers/helpers";
 
 export const jsonPrettyFormatter: Formatter<ContentValue> = {
@@ -16,6 +16,6 @@ export const jsonPrettyFormatter: Formatter<ContentValue> = {
       return <TextContent data={content.value || ""} />;
     }
 
-    return <JsonContent data={jsonObj} />;
+    return <JsonView data={jsonObj} />;
   },
 };

@@ -8,6 +8,7 @@ import { Status } from "./Status";
 import { Time } from "./Time";
 import { DetailField } from "./DetailField";
 import { LineClamp } from "./LineClamp";
+import UrlDetailsModal from "./UrlDetailsModal";
 
 export function DetailCommon(): JSX.Element | null {
   const data = useAppStore(selectCommonData);
@@ -21,14 +22,21 @@ export function DetailCommon(): JSX.Element | null {
 
   return (
     <div className="bg-mirage-50 dark:bg-bunker-500 flex flex-1 flex-col gap-1 rounded-md p-2">
-      <LineClamp
-        active={url.length > 100}
-        classes={"dark:bg-bunker-500 bg-mirage-50"}
-      >
-        <DetailField label={"URL:"}>
-          <Url url={url} />
-        </DetailField>
-      </LineClamp>
+      <div className="flex gap-2">
+        <div className="flex-1">
+          <LineClamp
+            active={url.length > 100}
+            classes={"dark:bg-bunker-500 bg-mirage-50"}
+          >
+            <DetailField label={"URL:"}>
+              <Url url={url} />
+            </DetailField>
+          </LineClamp>
+        </div>
+        <div>
+          <UrlDetailsModal url={url} />
+        </div>
+      </div>
 
       <hr className="border-mirage-100 dark:border-bunker-700 my-1 border border-b" />
 

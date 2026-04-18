@@ -1,5 +1,3 @@
-import { nanoid } from "nanoid";
-
 export type FormatterProviderOptions = {
   comparativeMethod: "case-sensitive" | "case-insensitive";
 };
@@ -8,7 +6,13 @@ const defaultOptions: FormatterProviderOptions = {
   comparativeMethod: "case-insensitive",
 };
 
-export function FormatterProvider<T>(options?: FormatterProviderOptions) {
+export type FormatterBase = {
+  id: string;
+};
+
+export function FormatterProvider<T extends FormatterBase>(
+  options?: FormatterProviderOptions,
+) {
   const formatters: { [key: string]: { [id: string]: T } } = {};
   const optionsObj = { ...defaultOptions, ...options };
 
@@ -83,14 +87,14 @@ export function FormatterProvider<T>(options?: FormatterProviderOptions) {
   };
 }
 
-function prepareFormatters<T>(
+function prepareFormatters<T extends FormatterBase>(
   formatters: T[],
 ): [{ [id: string]: T }, string[]] {
   let indexes: string[] = [];
 
   const formattersCatalog = formatters.reduce(
     (acc, formatter: T) => {
-      const id: string = nanoid();
+      const id: string = formatter.id;
       indexes = [...indexes, id];
       acc[id] = formatter;
       return acc;

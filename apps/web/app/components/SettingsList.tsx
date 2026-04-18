@@ -91,12 +91,12 @@ export default function SettingsList({ items, form, onChange }: Props) {
         className="flex justify-between border-b border-gray-200 py-2 last:border-b-0 dark:border-slate-700"
       >
         <div className="mr-4">
-          <div className="text-mirage-800 text-md font-medium dark:text-white">
+          <div className="text-md font-medium text-black dark:text-white">
             {it.label}
           </div>
 
           {it.desc && (
-            <div className="text-mirage-500 dark:text-mirage-300 text-sm">
+            <div className="dark:text-mirage-300 text-sm text-slate-500">
               {it.desc}
             </div>
           )}

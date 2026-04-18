@@ -18,11 +18,25 @@ export const setRowId = (rowId: number) =>
 export const setTab = (tab: TabCode) =>
   useAppStore.setState((state) => ({ ui: { ...state.ui, tab } }));
 
+export const setShowPinnedOnly = (showPinnedOnly: boolean) =>
+  useAppStore.setState((state) => ({
+    ui: { ...state.ui, showPinnedOnly },
+  }));
+
 export const setFilterActive = (filterActive: boolean) =>
-  useAppStore.setState((state) => ({ ui: { ...state.ui, filterActive } }));
+  useAppStore.setState((state) => ({
+    uiPersistent: { ...state.uiPersistent, filterActive },
+  }));
 
 export const setSortingActive = (sortingActive: boolean) =>
-  useAppStore.setState((state) => ({ ui: { ...state.ui, sortingActive } }));
+  useAppStore.setState((state) => ({
+    uiPersistent: { ...state.uiPersistent, sortingActive },
+  }));
+
+export const setShowPages = (showPages: boolean) =>
+  useAppStore.setState((state) => ({
+    uiPersistent: { ...state.uiPersistent, showPages },
+  }));
 
 export const addFile = (file: File) =>
   useAppStore.setState((state) => ({ files: [...state.files, file] }));
@@ -129,12 +143,33 @@ export const clearSorting = () =>
     },
   }));
 
-export const setShowPages = (show: boolean) =>
-  useAppStore.setState((state) => ({
-    settings: { ...state.settings, showPages: show },
-  }));
-
 export const setDetailFormatter = (formatterId: string) =>
   useAppStore.setState((state) => ({
-    ui: { ...state.ui, detailFormatterId: formatterId },
+    uiPersistent: { ...state.uiPersistent, detailFormatterId: formatterId },
   }));
+
+export const clearAllPinned = () =>
+  useAppStore.setState((state) => ({
+    ui: {
+      ...state.ui,
+      pinnedIds: new Set(),
+      showPinnedOnly: false,
+    },
+  }));
+
+export const togglePinnedRow = (rowId: number) =>
+  useAppStore.setState((state) => {
+    const pinnedIds = new Set(state.ui.pinnedIds);
+    if (pinnedIds.has(rowId)) {
+      pinnedIds.delete(rowId);
+    } else {
+      pinnedIds.add(rowId);
+    }
+    return {
+      ui: {
+        ...state.ui,
+        pinnedIds,
+        showPinnedOnly: pinnedIds.size > 0 ? state.ui.showPinnedOnly : false,
+      },
+    };
+  });

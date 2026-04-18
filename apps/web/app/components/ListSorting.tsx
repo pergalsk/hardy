@@ -2,56 +2,31 @@ import React from "react";
 import { useAppStore } from "../store/store";
 import { selectSorting } from "../store/selectors";
 import { setSorting, clearSorting, setSortInsidePages } from "../store/actions";
-import Button from "./Button";
-import ToggleSwitch from "./ToggleSwitch";
+import ListSortingBtn from "./ListSortingBtn";
+import KeepPagesToggle from "./KeepPagesToggle";
+import ResetSortingBtn from "./ResetSortingBtn";
 
-const FIELDS: {
-  key: "url" | "status" | "method" | "time" | "pageref";
-  label: string;
-  icon?: string;
-}[] = [
-  {
-    key: "url",
-    label: "URL",
-    icon: "material-symbols--arrow-cool-down-rounded",
-  },
-  {
-    key: "status",
-    label: "Status",
-    icon: "material-symbols--arrow-cool-down-rounded",
-  },
-  {
-    key: "method",
-    label: "Method",
-    icon: "material-symbols--arrow-warm-up-rounded",
-  },
-  {
-    key: "time",
-    label: "Time",
-    icon: "material-symbols--arrow-cool-down-rounded",
-  },
-  {
-    key: "pageref",
-    label: "Page",
-    icon: "material-symbols--arrow-cool-down-rounded",
-  },
+type SortKey = "url" | "status" | "method" | "time" | "pageref";
+
+const SORT_FIELDS: { key: SortKey; label: string }[] = [
+  { key: "url", label: "URL" },
+  { key: "status", label: "Status" },
+  { key: "method", label: "Method" },
+  { key: "time", label: "Time" },
+  { key: "pageref", label: "Page" },
 ];
 
 export function ListSorting() {
   const { sortDir, sortBy, sortInsidePages } = useAppStore(selectSorting);
   const isActive = Boolean(sortBy);
 
-  const onFieldClick = (key: (typeof FIELDS)[number]["key"]) => setSorting(key);
+  const onFieldClick = (sortKey: SortKey) => setSorting(sortKey);
   const onToggleInsidePages = (checked: boolean) => setSortInsidePages(checked);
   const onResetSorting = () => clearSorting();
 
   const panelClasses = isActive
     ? "bg-accent-700 text-white dark:bg-accent-800 dark:text-white"
     : "bg-mirage-50 text-black dark:bg-bunker-500 dark:text-mirage-200";
-
-  const buttonHoverClasses = isActive
-    ? "dark:hover:bg-accent-700 hover:bg-accent-800 dark:hover:text-white"
-    : "opacity-25";
 
   const iconClasses = isActive
     ? "dark:text-accent-100 text-accent-100"
@@ -68,52 +43,25 @@ export function ListSorting() {
       <div className="ml-1 uppercase">Sort by</div>
 
       <div className="flex flex-1 items-center justify-center gap-4">
-        {FIELDS.map(({ key, label }) => {
-          const fieldIsActive = sortBy === key;
-          const variant = fieldIsActive ? "primary" : "flat";
-
-          const icon = fieldIsActive
-            ? sortDir === "asc"
-              ? "iconify material-symbols--arrow-upward-rounded"
-              : "iconify material-symbols--arrow-downward-rounded"
-            : "";
-
-          return (
-            <Button
-              key={key}
-              variant={variant as any}
-              icon={icon}
-              size="nr"
-              onClick={() => onFieldClick(key)}
-              className="flex items-center gap-2 py-0"
-            >
-              {label}
-            </Button>
-          );
-        })}
+        {SORT_FIELDS.map(({ key, label }) => (
+          <ListSortingBtn
+            key={key}
+            sortKey={key}
+            label={label}
+            isSelected={sortBy === key}
+            sortDir={sortDir}
+            onClick={onFieldClick}
+          />
+        ))}
       </div>
 
-      <div className="flex items-center gap-2">
-        <div
-          className={`${isActive ? "" : "opacity-40"} mt-0.5 text-sm uppercase`}
-        >
-          Keep pages
-        </div>
-        <ToggleSwitch
-          checked={!!sortInsidePages}
-          disabled={!isActive}
-          onChange={onToggleInsidePages}
-          size="small"
-        />
-      </div>
+      <KeepPagesToggle
+        isActive={isActive}
+        checked={Boolean(sortInsidePages)}
+        onChange={onToggleInsidePages}
+      />
 
-      <button
-        className={`${buttonHoverClasses} flex rounded-md p-1 text-xl`}
-        onClick={onResetSorting}
-        disabled={!isActive}
-      >
-        <span className="iconify material-symbols--delete-outline-rounded my-auto" />
-      </button>
+      <ResetSortingBtn isActive={isActive} onClick={onResetSorting} />
     </div>
   );
 }

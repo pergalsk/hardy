@@ -11,6 +11,7 @@ import { Panel } from "./Panel";
 import { ListFilter } from "./ListFilter";
 import { ListSorting } from "./ListSorting";
 import { detailFormatters } from "../providers/detailFormatter";
+import SplitPanels from "./SplitPanels";
 
 export function FileContent(): JSX.Element {
   const filterActive = useAppStore(selectFilterActive);
@@ -24,14 +25,23 @@ export function FileContent(): JSX.Element {
 
   const DetailView = formatFn ? formatFn(entry) : null;
 
+  const leftPanel = (
+    <Panel>
+      {filterActive && <ListFilter />}
+      {sortingActive && <ListSorting />}
+      <List />
+    </Panel>
+  );
+
+  const rightPanel = <Panel>{DetailView}</Panel>;
+
   return (
-    <main className="flex flex-1 flex-col items-stretch overflow-hidden lg:flex-row">
-      <Panel>
-        {filterActive && <ListFilter />}
-        {sortingActive && <ListSorting />}
-        <List />
-      </Panel>
-      <Panel>{DetailView}</Panel>
+    <main className="flex flex-1 items-stretch overflow-hidden">
+      <SplitPanels
+        left={leftPanel}
+        right={rightPanel}
+        initialLeftPercent={50}
+      />
     </main>
   );
 }

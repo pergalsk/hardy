@@ -49,11 +49,11 @@ export default function Button({
       "dark:hover:text-white bg-mirage-50 text-mirage-700 hover:bg-mirage-100 dark:text-mirage-100 dark:bg-slate-700 dark:hover:bg-slate-600",
     ghost:
       "dark:hover:text-white bg-transparent text-mirage-700 hover:bg-mirage-100 dark:text-mirage-100 dark:hover:bg-slate-700",
-    flat: "dark:hover:text-white bg-transparent text-white dark:text-mirage-100",
+    flat: "dark:hover:text-white bg-transparent text-black dark:text-mirage-100",
   };
 
   const disabledClasses = disabled
-    ? "opacity-60 cursor-not-allowed pointer-events-none"
+    ? "opacity-60 cursor-default pointer-events-none"
     : "cursor-pointer";
 
   const iconSizeMap: Record<Size, string> = {

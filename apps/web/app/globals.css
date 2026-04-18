@@ -58,6 +58,15 @@
     #a853ba 180deg,
     #e92a67 360deg
   );
+
+  /* background for pinned items: multiple layers (radial + linear) */
+  --item-gradient: radial-gradient(circle at calc(100% + 14px) 9px, rgba(245,158,11,0.25) 0, rgba(245,158,11,0.12) 5%, rgba(0,0,0,0) 16%);
+}
+
+/* helper class for pinned overlay (use together with bg-[var(--item-gradient)]) */
+.pinned-overlay {
+  background-image: var(--item-gradient);
+  /* mix-blend-mode: screen; */
 }
 
 * {

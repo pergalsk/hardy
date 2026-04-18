@@ -1,0 +1,27 @@
+{
+  "name": "@repo/plugin-user-agent-parse",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.tsx"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0"
+  },
+  "dependencies": {
+    "@repo/formatter-core": "*",
+    "@repo/ui": "*",
+    "ua-parser-js": "^1.0.38"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "@types/ua-parser-js": "^0.7.39",
+    "@types/eslint": "^8.56.5",
+    "eslint": "^8.57.0",
+    "react": "^18.2.0",
+    "typescript": "^5.3.3"
+  }
+}

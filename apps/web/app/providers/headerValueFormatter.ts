@@ -1,14 +1,10 @@
-import { Formatter } from "@repo/formatter-core";
-import { FormatterProvider } from "@repo/formatter-core/registry";
-import { userAgentParseFormatter } from "../plugins/user-agent-parse-formatter";
+import type { HeaderItem } from "@repo/formatter-core";
+import { headerValueFormatters } from "@repo/formatter-core/registry";
+import { userAgentParseFormatter } from "@repo/plugin-user-agent-parse";
 import { userAgentRawFormatter } from "../plugins/user-agent-raw-formatter";
 
-export interface HeaderItem {
-  name: string;
-  value: string | null | undefined;
-}
-
-export const headerValueFormatters = FormatterProvider<Formatter<HeaderItem>>();
+export type { HeaderItem };
+export { headerValueFormatters };
 
 headerValueFormatters.addFormatters("User-Agent", [userAgentParseFormatter]);
 headerValueFormatters.addFormatters("User-Agent", [userAgentRawFormatter]);

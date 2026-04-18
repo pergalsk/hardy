@@ -1,4 +1,4 @@
-import { Formatter } from "../../providers/Formatter";
+import { Formatter } from "@repo/formatter-core";
 import { JsonContent } from "../../components/JsonContent";
 
 export const detailRawFormatter: Formatter<any> = {

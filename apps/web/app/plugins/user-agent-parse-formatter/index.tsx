@@ -1,4 +1,4 @@
-import { Formatter } from "../../providers/Formatter";
+import { Formatter } from "@repo/formatter-core";
 import UAParser from "ua-parser-js";
 import { HeaderItem } from "../../providers/headerValueFormatter";
 import { InfoBadge } from "../../components/InfoBadge";

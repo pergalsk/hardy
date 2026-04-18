@@ -1,4 +1,4 @@
-import { Formatter } from "../../providers/Formatter";
+import { Formatter } from "@repo/formatter-core";
 import { ContentValue } from "../../providers/contentValueFormatter";
 import { TextContent } from "../../components/TextContent";
 

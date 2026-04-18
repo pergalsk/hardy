@@ -1,4 +1,4 @@
-import { Formatter } from "../../providers/Formatter";
+import { Formatter } from "@repo/formatter-core";
 import { HeaderItem } from "../../providers/headerValueFormatter";
 import { HeadersTable } from "../../components/HeadersTable";
 

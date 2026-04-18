@@ -1,1 +1,1 @@
-export {};
+export type { Formatter } from "./Formatter";

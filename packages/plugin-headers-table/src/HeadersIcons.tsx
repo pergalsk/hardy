@@ -1,5 +1,4 @@
-import { Formatter } from "@repo/formatter-core";
-import { HeaderItem } from "../providers/headerValueFormatter";
+import type { Formatter, HeaderItem } from "@repo/formatter-core";
 
 export const HeadersIcons = ({
   formatters,
@@ -19,7 +18,7 @@ export const HeadersIcons = ({
     <span className="dark:text-accent-400 text-accent-600 float-right my-auto ml-2 inline-flex select-none items-center align-top">
       <span className="hidden group-hover:inline">
         {formattersList.map(([id, formatter]) => {
-          const { title, tooltip, icon, format } = formatter;
+          const { icon } = formatter;
           return (
             <span
               key={id}

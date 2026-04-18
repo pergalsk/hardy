@@ -1,9 +1,7 @@
 import { useState } from "react";
+import type { HeaderItem } from "@repo/formatter-core";
+import { headerValueFormatters } from "@repo/formatter-core/registry";
 import { HeadersIcons } from "./HeadersIcons";
-import {
-  HeaderItem,
-  headerValueFormatters,
-} from "../providers/headerValueFormatter";
 
 export function HeadersValue({
   headerItem,
@@ -23,7 +21,6 @@ export function HeadersValue({
     return value || "";
   }
 
-  // set first formatter from catalog
   const [id, setId] = useState(firstId);
 
   const formatter = formatters[id];

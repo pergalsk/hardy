@@ -1,6 +1,5 @@
-import { Formatter } from "@repo/formatter-core";
-import { HeaderItem } from "../../providers/headerValueFormatter";
-import { HeadersTable } from "../../components/HeadersTable";
+import type { Formatter, HeaderItem } from "@repo/formatter-core";
+import { HeadersTable } from "./HeadersTable";
 
 export const headersTableFormatter: Formatter<HeaderItem[]> = {
   id: "headers-table-formatter",

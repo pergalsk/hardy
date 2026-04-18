@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { JsonViewerSettings } from "@repo/formatter-core";
-import { detailFormatters } from "../providers/detailFormatter";
+import { detailFormatters } from "@repo/formatter-core/registry";
+import "../plugins.config";
 
 export type { JsonViewerSettings };
 

@@ -25,11 +25,10 @@ import { ActionSeparator } from "./ActionSeparator";
 import { ActionIcon } from "./ActionIcon";
 import { FileOpener } from "./FileOpener";
 import { Settings } from "./Settings";
-import { detailFormatters } from "../providers/detailFormatter";
-
-const formatters = detailFormatters.getFormatters("detail") || {};
+import { detailFormatters } from "@repo/formatter-core/registry";
 
 export function AppHeaderActions(): JSX.Element {
+  const formatters = detailFormatters.getFormatters("detail") || {};
   const files = useAppStore(selectFiles);
   const filterActive = useAppStore(selectFilterActive);
   const sortingActive = useAppStore(selectSortingActive);

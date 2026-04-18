@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { headersFormatters } from "../providers/headersFormatter";
+import { headersFormatters } from "@repo/formatter-core/registry";
 import { Collapsible } from "./Collapsible";
 import { CollapsibleTitle } from "./CollapsibleTitle";
 import { NoContent } from "@repo/ui/no-content";

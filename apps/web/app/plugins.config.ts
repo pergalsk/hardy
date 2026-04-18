@@ -58,3 +58,5 @@ export function bootstrapPlugins(): void {
     registry.addFormatters(key, formatters);
   }
 }
+
+bootstrapPlugins();

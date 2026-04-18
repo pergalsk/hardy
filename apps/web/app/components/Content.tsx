@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { findHeader, parseMimeType } from "../helpers/helpers";
-import { contentValueFormatters } from "../providers/contentValueFormatter";
+import { contentValueFormatters } from "@repo/formatter-core/registry";
 import { NoContent } from "@repo/ui/no-content";
 import { TextContent } from "@repo/ui/text-content";
 import { CollapsibleTitle } from "./CollapsibleTitle";

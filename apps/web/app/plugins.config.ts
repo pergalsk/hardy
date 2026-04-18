@@ -11,6 +11,7 @@ import { jsonPrettyFormatter } from "@repo/plugin-json-pretty";
 import { jsonRawFormatter } from "@repo/plugin-json-raw";
 import { headersTableFormatter } from "@repo/plugin-headers-table";
 import { headersRawFormatter } from "@repo/plugin-headers-raw";
+import { headersPlainFormatter } from "@repo/plugin-headers-plain";
 import { userAgentParseFormatter } from "@repo/plugin-user-agent-parse";
 import { userAgentRawFormatter } from "@repo/plugin-user-agent-raw";
 import { detailEnhancedFormatter } from "./plugins/detail-enhanced-formatter";
@@ -35,7 +36,7 @@ const registrations: Registration<any>[] = [
   {
     registry: headersFormatters as Registry<HeaderItem[]>,
     key: "headers",
-    formatters: [headersTableFormatter, headersRawFormatter],
+    formatters: [headersTableFormatter, headersPlainFormatter, headersRawFormatter],
   },
   {
     registry: headerValueFormatters as Registry<HeaderItem>,

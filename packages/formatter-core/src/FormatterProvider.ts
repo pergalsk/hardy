@@ -53,11 +53,6 @@ export function FormatterProvider<T extends FormatterBase>(
     return formatters[key] ?? null;
   }
 
-  // function getFormattersArr(originalKey: string): any {
-  //   const key = transformKey(originalKey, optionsObj.comparativeMethod);
-  //   return formatters[key] ? Object.values(formatters[key]) : [];
-  // }
-
   function getFormatter(originalKey: string, id: string): T | null {
     if (!id) {
       return null;
@@ -81,7 +76,6 @@ export function FormatterProvider<T extends FormatterBase>(
     addFormatters,
     removeFormatter,
     getFormatters,
-    // getFormattersArr,
     getFormatter,
     getDefaultFormatter,
   };

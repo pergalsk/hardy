@@ -1,5 +1,5 @@
-import { Formatter } from "./Formatter";
-import { FormatterProvider } from "./FormatterProvider";
+import { Formatter } from "@repo/formatter-core";
+import { FormatterProvider } from "@repo/formatter-core/registry";
 import { jsonRawFormatter } from "../plugins/json-raw-formatter";
 import { jsonPrettyFormatter } from "../plugins/json-pretty-formatter";
 

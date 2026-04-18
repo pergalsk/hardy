@@ -1,5 +1,5 @@
-import { Formatter } from "./Formatter";
-import { FormatterProvider } from "./FormatterProvider";
+import { Formatter } from "@repo/formatter-core";
+import { FormatterProvider } from "@repo/formatter-core/registry";
 import { userAgentParseFormatter } from "../plugins/user-agent-parse-formatter";
 import { userAgentRawFormatter } from "../plugins/user-agent-raw-formatter";
 

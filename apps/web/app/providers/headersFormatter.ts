@@ -1,5 +1,5 @@
-import { Formatter } from "./Formatter";
-import { FormatterProvider } from "./FormatterProvider";
+import { Formatter } from "@repo/formatter-core";
+import { FormatterProvider } from "@repo/formatter-core/registry";
 import { headersRawFormatter } from "../plugins/headers-raw-formatter";
 import { headersTableFormatter } from "../plugins/headers-table-formatter";
 

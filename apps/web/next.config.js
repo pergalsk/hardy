@@ -8,6 +8,7 @@ module.exports = {
     "@repo/plugin-json-pretty",
     "@repo/plugin-headers-table",
     "@repo/plugin-headers-raw",
+    "@repo/plugin-user-agent-parse",
   ],
   output: "export",
 };

@@ -1,8 +1,7 @@
-import { Formatter } from "@repo/formatter-core";
-import { ContentValue } from "../../providers/contentValueFormatter";
+import type { ContentValue, Formatter } from "@repo/formatter-core";
 import { TextContent } from "@repo/ui/text-content";
 import { JsonView } from "@repo/formatter-ui/json-view";
-import { parseJsonData } from "../../helpers/helpers";
+import { parseJsonData } from "./parseJsonData";
 
 export const jsonPrettyFormatter: Formatter<ContentValue> = {
   id: "json-pretty-formatter",

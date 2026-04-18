@@ -5,6 +5,7 @@ module.exports = {
     "@repo/formatter-core",
     "@repo/formatter-ui",
     "@repo/plugin-json-raw",
+    "@repo/plugin-json-pretty",
   ],
   output: "export",
 };

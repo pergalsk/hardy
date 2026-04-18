@@ -1,7 +1,7 @@
 import type { ContentValue, Formatter } from "@repo/formatter-core";
 import { FormatterProvider } from "@repo/formatter-core/registry";
 import { jsonRawFormatter } from "@repo/plugin-json-raw";
-import { jsonPrettyFormatter } from "../plugins/json-pretty-formatter";
+import { jsonPrettyFormatter } from "@repo/plugin-json-pretty";
 
 export type { ContentValue };
 

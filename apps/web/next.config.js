@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  transpilePackages: ["@repo/ui", "@repo/formatter-core", "@repo/formatter-ui"],
+  transpilePackages: [
+    "@repo/ui",
+    "@repo/formatter-core",
+    "@repo/formatter-ui",
+    "@repo/plugin-json-raw",
+  ],
   output: "export",
 };

@@ -1,4 +1,4 @@
-import { Formatter } from "../../providers/Formatter";
+import { Formatter } from "@repo/formatter-core";
 import { Detail } from "../../components/Detail";
 
 export const detailEnhancedFormatter: Formatter<any> = {

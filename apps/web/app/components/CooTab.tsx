@@ -1,7 +1,7 @@
 import { Collapsible } from "./Collapsible";
 import { CollapsibleTitle } from "./CollapsibleTitle";
 import { Cookies } from "./Cookies";
-import { NoContent } from "./NoContent";
+import { NoContent } from "@repo/ui/no-content";
 
 export function CooTab({ data }: { data: any }): JSX.Element {
   const { cookies } = data;

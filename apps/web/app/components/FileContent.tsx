@@ -10,7 +10,7 @@ import { List } from "./List";
 import { Panel } from "./Panel";
 import { ListFilter } from "./ListFilter";
 import { ListSorting } from "./ListSorting";
-import { detailFormatters } from "../providers/detailFormatter";
+import { detailFormatters } from "@repo/formatter-core/registry";
 import SplitPanels from "./SplitPanels";
 
 export function FileContent(): JSX.Element {

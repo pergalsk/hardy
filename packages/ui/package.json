@@ -5,7 +5,15 @@
   "exports": {
     "./button": "./src/button.tsx",
     "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    "./code": "./src/code.tsx",
+    "./text-content": "./src/text-content.tsx",
+    "./info-badge": "./src/info-badge.tsx",
+    "./na": "./src/na.ts",
+    "./no-content": "./src/no-content.tsx",
+    "./magnifying-glass-svg": "./src/magnifying-glass-svg.tsx",
+    "./line-clamp": "./src/line-clamp.tsx",
+    "./expand-button": "./src/expand-button.tsx",
+    "./use-collapsed": "./src/use-collapsed.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

@@ -9,6 +9,15 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@repo/formatter-core": "*",
+    "@repo/formatter-ui": "*",
+    "@repo/plugin-headers-plain": "*",
+    "@repo/plugin-headers-raw": "*",
+    "@repo/plugin-headers-table": "*",
+    "@repo/plugin-json-pretty": "*",
+    "@repo/plugin-json-raw": "*",
+    "@repo/plugin-user-agent-parse": "*",
+    "@repo/plugin-user-agent-raw": "*",
     "@repo/ui": "*",
     "@types/ua-parser-js": "^0.7.39",
     "next": "^14.1.1",

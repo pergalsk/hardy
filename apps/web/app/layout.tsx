@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { FormatterHostBridge } from "./providers/FormatterHostBridge";
 
 const defaultMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -21,7 +22,9 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={`${defaultMono.variable} text-base`}>{children}</body>
+      <body className={`${defaultMono.variable} text-base`}>
+        <FormatterHostBridge>{children}</FormatterHostBridge>
+      </body>
     </html>
   );
 }

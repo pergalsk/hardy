@@ -4,6 +4,7 @@ const { addIconSelectors } = require("@iconify/tailwind");
 export const content = [
   "./app/**/*.{js,ts,jsx,tsx,mdx}", // Note the addition of the `app` directory.
   "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+  "../../packages/*/src/**/*.{ts,tsx}",
 ];
 
 export const theme = {

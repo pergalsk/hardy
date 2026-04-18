@@ -1,4 +1,4 @@
-import { NA } from "../constants/global";
+import { NA } from "@repo/ui/na";
 
 /**
  * Pretty print a file size using B, kB, and MB.

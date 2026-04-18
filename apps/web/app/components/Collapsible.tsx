@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ToggleMark } from "./ToggleMark";
-import { Formatter } from "../providers/Formatter";
+import { Formatter } from "@repo/formatter-core";
 
 export function Collapsible({
   children,

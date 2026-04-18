@@ -1,5 +1,5 @@
-import { Formatter } from "../../providers/Formatter";
-import { JsonContent } from "../../components/JsonContent";
+import { Formatter } from "@repo/formatter-core";
+import { JsonView } from "@repo/formatter-ui/json-view";
 
 export const detailRawFormatter: Formatter<any> = {
   id: "detail-raw-formatter",
@@ -7,6 +7,6 @@ export const detailRawFormatter: Formatter<any> = {
   icon: "iconify material-symbols--code-blocks-outline-rounded",
   tooltip: "Detail raw view",
   format: (data: any): JSX.Element | string => {
-    return <JsonContent data={data} collapseBtns={true} />;
+    return <JsonView data={data} collapseBtns={true} />;
   },
 };

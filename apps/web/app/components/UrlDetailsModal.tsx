@@ -84,7 +84,7 @@ export default function UrlDetailsModal({ url }: { url: string }) {
         type="button"
         onClick={() => setOpen(true)}
         title="Show URL details"
-        className="iconify material-symbols--list-alt-outline-rounded dark:text-accent-400 dark:hover:text-accent-200 text-accent-600 hover:text-accent-700 text-xl"
+        className="iconify material-symbols--list-alt-outline-rounded text-slate-300 hover:text-white dark:bg-slate-400 dark:hover:bg-slate-300 text-xl"
       />
 
       <Modal

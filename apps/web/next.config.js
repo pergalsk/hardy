@@ -10,6 +10,7 @@ module.exports = {
     "@repo/plugin-headers-raw",
     "@repo/plugin-user-agent-parse",
     "@repo/plugin-user-agent-raw",
+    "@repo/plugin-headers-plain",
   ],
   output: "export",
 };

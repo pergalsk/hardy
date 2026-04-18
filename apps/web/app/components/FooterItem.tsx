@@ -1,4 +1,4 @@
-import { NA } from "../constants/global";
+import { NA } from "@repo/ui/na";
 
 export function FooterItem({
   label,

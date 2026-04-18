@@ -1,4 +1,4 @@
-import { NA } from "../constants/global";
+import { NA } from "./na";
 
 const badgeStyles = {
   green: [

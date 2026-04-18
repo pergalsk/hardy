@@ -1,5 +1,5 @@
 import React from "react";
-import { NA } from "../constants/global";
+import { NA } from "@repo/ui/na";
 import { useAppStore } from "../store/store";
 import { selectCommonData } from "../store/selectors";
 import { Url } from "./Url";

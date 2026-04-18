@@ -1,7 +1,7 @@
 import { Formatter } from "@repo/formatter-core";
 import UAParser from "ua-parser-js";
 import { HeaderItem } from "../../providers/headerValueFormatter";
-import { InfoBadge } from "../../components/InfoBadge";
+import { InfoBadge } from "@repo/ui/info-badge";
 
 export const userAgentParseFormatter: Formatter<HeaderItem> = {
   id: "user-agent-parse-formatter",

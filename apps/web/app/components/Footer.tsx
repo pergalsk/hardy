@@ -1,4 +1,4 @@
-import { NA } from "../constants/global";
+import { NA } from "@repo/ui/na";
 import { useAppStore } from "../store/store";
 import { selectFilter, selectFooterData } from "../store/selectors";
 import { formatNumber } from "../helpers/formatNumber";

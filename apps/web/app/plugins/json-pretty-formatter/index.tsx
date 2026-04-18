@@ -1,6 +1,6 @@
 import { Formatter } from "@repo/formatter-core";
 import { ContentValue } from "../../providers/contentValueFormatter";
-import { TextContent } from "../../components/TextContent";
+import { TextContent } from "@repo/ui/text-content";
 import { JsonContent } from "../../components/JsonContent";
 import { parseJsonData } from "../../helpers/helpers";
 

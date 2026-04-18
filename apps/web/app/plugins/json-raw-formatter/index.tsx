@@ -1,6 +1,6 @@
 import { Formatter } from "@repo/formatter-core";
 import { ContentValue } from "../../providers/contentValueFormatter";
-import { TextContent } from "../../components/TextContent";
+import { TextContent } from "@repo/ui/text-content";
 
 export const jsonRawFormatter: Formatter<ContentValue> = {
   id: "json-raw-formatter",

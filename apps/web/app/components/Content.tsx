@@ -2,7 +2,7 @@ import { useState } from "react";
 import { findHeader, parseMimeType } from "../helpers/helpers";
 import { contentValueFormatters } from "../providers/contentValueFormatter";
 import { NoContent } from "./NoContent";
-import { TextContent } from "./TextContent";
+import { TextContent } from "@repo/ui/text-content";
 import { CollapsibleTitle } from "./CollapsibleTitle";
 import { Collapsible } from "./Collapsible";
 

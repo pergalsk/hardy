@@ -8,7 +8,9 @@
     "./code": "./src/code.tsx",
     "./text-content": "./src/text-content.tsx",
     "./info-badge": "./src/info-badge.tsx",
-    "./na": "./src/na.ts"
+    "./na": "./src/na.ts",
+    "./no-content": "./src/no-content.tsx",
+    "./magnifying-glass-svg": "./src/magnifying-glass-svg.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

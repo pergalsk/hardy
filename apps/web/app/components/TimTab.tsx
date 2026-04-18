@@ -1,4 +1,4 @@
-import { NoContent } from "./NoContent";
+import { NoContent } from "@repo/ui/no-content";
 import { Time } from "./Time";
 
 export function TimTab({ data }: { data: any }): JSX.Element {

@@ -1,7 +1,7 @@
 import { LineClamp } from "./LineClamp";
 import { HeadersValue } from "./HeadersValue";
 import { HeaderItem } from "../providers/headerValueFormatter";
-import { NoContent } from "./NoContent";
+import { NoContent } from "@repo/ui/no-content";
 
 export function HeadersTable({
   headers,

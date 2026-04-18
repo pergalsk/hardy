@@ -1,4 +1,4 @@
-import { LineClamp } from "./LineClamp";
+import { LineClamp } from "@repo/ui/line-clamp";
 import { HeadersValue } from "./HeadersValue";
 import { HeaderItem } from "../providers/headerValueFormatter";
 import { NoContent } from "@repo/ui/no-content";

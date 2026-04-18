@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useCollapsed } from "../helpers/useCollapsed";
-import { ExpandButton } from "./ExpandButton";
+import { useCollapsed } from "./use-collapsed";
+import { ExpandButton } from "./expand-button";
 
 const lineClampClassMap: { [key: number]: string } = {
   0: "line-clamp-none",

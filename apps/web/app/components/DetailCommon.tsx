@@ -7,7 +7,7 @@ import { Method } from "./Method";
 import { Status } from "./Status";
 import { Time } from "./Time";
 import { DetailField } from "./DetailField";
-import { LineClamp } from "./LineClamp";
+import { LineClamp } from "@repo/ui/line-clamp";
 import UrlDetailsModal from "./UrlDetailsModal";
 
 export function DetailCommon(): JSX.Element | null {

@@ -1,9 +1,5 @@
-import type { Formatter } from "@repo/formatter-core";
+import type { ContentValue, Formatter } from "@repo/formatter-core";
 import { TextContent } from "@repo/ui/text-content";
-
-export type ContentValue = {
-  value: string | null | undefined;
-};
 
 export const jsonRawFormatter: Formatter<ContentValue> = {
   id: "json-raw-formatter",

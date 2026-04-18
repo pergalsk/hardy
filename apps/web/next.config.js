@@ -7,6 +7,7 @@ module.exports = {
     "@repo/plugin-json-raw",
     "@repo/plugin-json-pretty",
     "@repo/plugin-headers-table",
+    "@repo/plugin-headers-raw",
   ],
   output: "export",
 };

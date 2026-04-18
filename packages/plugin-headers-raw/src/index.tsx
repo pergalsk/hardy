@@ -1,5 +1,4 @@
-import { Formatter } from "@repo/formatter-core";
-import { HeaderItem } from "../../providers/headerValueFormatter";
+import type { Formatter, HeaderItem } from "@repo/formatter-core";
 import { JsonView } from "@repo/formatter-ui/json-view";
 
 export const headersRawFormatter: Formatter<HeaderItem[]> = {

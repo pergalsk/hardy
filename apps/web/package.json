@@ -9,6 +9,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@repo/formatter-core": "*",
     "@repo/ui": "*",
     "@types/ua-parser-js": "^0.7.39",
     "next": "^14.1.1",

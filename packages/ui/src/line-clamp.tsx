@@ -17,7 +17,6 @@ export function LineClamp({
   label = "...More",
   classes,
   inline = true,
-  isOpen = false,
   active = true,
   children,
 }: {

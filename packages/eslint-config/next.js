@@ -18,7 +18,7 @@ module.exports = {
     node: true,
     browser: true,
   },
-  plugins: ["only-warn"],
+  plugins: ["only-warn", "@typescript-eslint"],
   settings: {
     "import/resolver": {
       typescript: {
@@ -31,5 +31,9 @@ module.exports = {
     ".*.js",
     "node_modules/",
   ],
+  rules: {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+  },
   overrides: [{ files: ["*.js?(x)", "*.ts?(x)"] }],
 };

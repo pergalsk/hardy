@@ -3,7 +3,7 @@ import React from "react";
 
 type ToggleSwitchProps = {
   checked: boolean;
-  onChange: (value: boolean) => void;
+  onChange: (_value: boolean) => void; // unused, remove '_' later
   disabled?: boolean;
   className?: string;
   ariaLabel?: string;

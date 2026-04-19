@@ -31,5 +31,8 @@ module.exports = {
     ".*.js",
     "node_modules/",
   ],
+  rules: {
+    "no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+  },
   overrides: [{ files: ["*.js?(x)", "*.ts?(x)"] }],
 };

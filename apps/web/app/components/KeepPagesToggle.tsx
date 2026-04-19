@@ -4,7 +4,7 @@ import ToggleSwitch from "./ToggleSwitch";
 export default function KeepPagesToggle(props: {
   isActive: boolean;
   checked: boolean;
-  onChange: (checked: boolean) => void;
+  onChange: (_checked: boolean) => void; // unused, remove '_' later
 }) {
   const { isActive, checked, onChange } = props;
 

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useDragging<T extends HTMLElement>(
-  callbackFn: (e: DragEvent) => void,
+  callbackFn: (_e: DragEvent) => void, // unused, remove '_' later
 ) {
   const ref = useRef<T>(null);
   const [isDragging, setIsDragging] = useState(false);

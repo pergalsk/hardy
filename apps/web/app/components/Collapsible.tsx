@@ -25,7 +25,7 @@ export function Collapsible({
   sticky?: boolean;
   actions?: { [id: string]: Formatter<any> } | null;
   activeActionId?: string;
-  onAction?: (id: string) => void;
+  onAction?: (_id: string) => void; // unused, remove '_' later
 }) {
   const [opened, setOpened] = useState(initOpen);
 

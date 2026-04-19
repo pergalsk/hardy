@@ -15,7 +15,7 @@ export default function ListSortingBtn(props: {
   label: string;
   isSelected: boolean;
   sortDir: SortDir;
-  onClick: (sortKey: SortKey) => void;
+  onClick: (_sortKey: SortKey) => void; // unused, remove '_' later
 }) {
   const { sortKey, label, isSelected, sortDir, onClick } = props;
 

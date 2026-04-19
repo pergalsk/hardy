@@ -1,4 +1,3 @@
-import React from "react";
 import type { Formatter, HeaderItem } from "@repo/formatter-core";
 
 export const headersPlainFormatter: Formatter<HeaderItem[]> = {

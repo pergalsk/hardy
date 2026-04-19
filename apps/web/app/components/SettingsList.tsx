@@ -7,13 +7,13 @@ import { SettingItem } from "./SettingsModal";
 type Props = {
   items: SettingItem[];
   form: AppSettings;
-  onChange: (_key: keyof AppSettings, _value?: any) => void; // unused, remove '_' later
+  onChange: (key: keyof AppSettings, value?: any) => void;
 };
 
 type SettingComponentProps = {
   label: string;
   value: unknown;
-  onChange: (_value?: any) => void; // unused, remove '_' later
+  onChange: (value?: any) => void;
 };
 
 const SwitchRenderer: React.FC<SettingComponentProps> = ({

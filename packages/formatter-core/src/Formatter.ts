@@ -3,5 +3,5 @@ export type Formatter<T> = {
   title: string;
   icon: string;
   tooltip: string;
-  format: (_data: T) => JSX.Element | string | null; // unused, remove '_' later
+  format: (data: T) => JSX.Element | string | null;
 };

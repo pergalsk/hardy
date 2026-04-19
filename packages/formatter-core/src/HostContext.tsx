@@ -15,7 +15,7 @@ export type HostToast = {
 export type HostContext = {
   theme: "light" | "dark";
   jsonViewer: JsonViewerSettings;
-  notify: (_toast: HostToast) => void; // unused, remove '_' later
+  notify: (toast: HostToast) => void;
 };
 
 const Context = createContext<HostContext | null>(null);

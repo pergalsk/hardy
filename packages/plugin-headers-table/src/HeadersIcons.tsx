@@ -7,7 +7,7 @@ export const HeadersIcons = ({
   formatters: {
     [id: string]: Formatter<HeaderItem>;
   };
-  setFormatter: (_id: string) => void; // unused, remove '_' later
+  setFormatter: (id: string) => void;
 }): JSX.Element | null => {
   const formattersList = Object.entries(formatters);
   if (formattersList.length === 0) {

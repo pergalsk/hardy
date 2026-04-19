@@ -17,7 +17,6 @@ export function LineClamp({
   label = "...More",
   classes,
   inline = true,
-  isOpen: _isOpen = false, // unused, remove '_' later
   active = true,
   children,
 }: {

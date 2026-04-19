@@ -5,7 +5,7 @@ const project = resolve(process.cwd(), "tsconfig.json");
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: ["eslint:recommended", "prettier", "eslint-config-turbo"],
-  plugins: ["only-warn"],
+  plugins: ["only-warn", "@typescript-eslint"],
   globals: {
     React: true,
     JSX: true,
@@ -27,7 +27,8 @@ module.exports = {
     "dist/",
   ],
   rules: {
-    "no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
   },
   overrides: [
     {

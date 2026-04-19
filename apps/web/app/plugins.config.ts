@@ -18,7 +18,7 @@ import { detailEnhancedFormatter } from "./plugins/detail-enhanced-formatter";
 import { detailRawFormatter } from "./plugins/detail-raw-formatter";
 
 type Registry<T> = {
-  addFormatters: (_key: string, _formatters: Formatter<T>[]) => void; // unused, remove '_' later
+  addFormatters: (key: string, formatters: Formatter<T>[]) => void;
 };
 
 type Registration<T> = {

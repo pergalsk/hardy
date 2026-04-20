@@ -1,5 +1,5 @@
 "use client";
-import React, { LegacyRef } from "react";
+import React from "react";
 import { useDarkMode } from "../helpers/useDarkMode";
 import { FileOpener } from "./FileOpener";
 import { FileOpenLightSvg } from "./FileOpenLightSvg";
@@ -23,7 +23,7 @@ export const FileDropper = () => {
   return (
     <div
       className={`${isDragging ? "border-accent-600 text-accent-600" : "border-mirage-200 dark:border-bunker-100 dark:text-mirage-400 text-mirage-500"} flex h-full w-full select-none flex-row items-center justify-center gap-3 rounded-2xl border-4 border-dashed font-bold portrait:flex-col`}
-      ref={ref as LegacyRef<HTMLDivElement>}
+      ref={ref}
     >
       <div className="flex h-1/2 max-h-[800px] w-2/3 max-w-[800px] md:h-2/3 md:w-2/5">
         {isDark ? <FileOpenDarkSvg /> : <FileOpenLightSvg />}

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, RefObject } from "react";
 
 export function useDragging<T extends HTMLElement>(
   callbackFn: (e: DragEvent) => void,
@@ -44,5 +44,5 @@ export function useDragging<T extends HTMLElement>(
     };
   }, [ref.current]);
 
-  return [ref, isDragging];
+  return [ref, isDragging] as [RefObject<T>, boolean];
 }

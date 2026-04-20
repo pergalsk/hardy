@@ -23,7 +23,7 @@ export function Headers({ data }: { data: any }) {
   }
 
   if (typeof formatFn === "function") {
-    HeadersContent = formatFn(headers) as JSX.Element;
+    HeadersContent = formatFn(headers) as React.JSX.Element;
   }
 
   return (

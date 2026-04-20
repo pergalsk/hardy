@@ -27,7 +27,7 @@ export function LineClamp({
   isOpen?: boolean;
   active?: boolean;
   children: React.ReactNode;
-}): JSX.Element {
+}): React.JSX.Element {
   if (!active) return <>{children}</>;
 
   const [ref, isCollapsed] = useCollapsed();

@@ -8,7 +8,7 @@ export const ExpandButton = ({
   classes?: string;
   handleClick: () => void;
   children: React.ReactNode;
-}): JSX.Element => {
+}): React.JSX.Element => {
   const display = inline
     ? "absolute bottom-0 right-0 inline"
     : "static flex items-end";

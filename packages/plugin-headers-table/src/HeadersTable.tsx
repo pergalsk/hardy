@@ -7,7 +7,7 @@ export function HeadersTable({
   headers,
 }: {
   headers: HeaderItem[];
-}): JSX.Element {
+}): React.JSX.Element {
   const redirect = (name: string): void => {
     window.open(
       `https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/${encodeURIComponent(name)}`,

@@ -7,7 +7,7 @@ interface FileTabProps {
   };
 }
 
-export function FileTab({ file }: FileTabProps): JSX.Element {
+export function FileTab({ file }: FileTabProps): React.JSX.Element {
   const { name, fileId } = file;
 
   const handleFileClose = () => {

@@ -1,3 +1,4 @@
+import type React from "react";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { JsonViewerSettings } from "@repo/formatter-core";
@@ -32,7 +33,7 @@ export type Sorting = {
 
 export type Toast = {
   id?: string;
-  message: string | JSX.Element;
+  message: string | React.JSX.Element;
   type?: "info" | "alert";
   icon?: string;
 };

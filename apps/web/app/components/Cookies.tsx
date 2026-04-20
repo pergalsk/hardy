@@ -1,7 +1,7 @@
 import { DateTime } from "./DateTime";
 import { TrueFalseMark } from "./TrueFalseMark";
 
-export function Cookies({ data }: { data: any }): JSX.Element {
+export function Cookies({ data }: { data: any }): React.JSX.Element {
   return (
     <table className="w-full text-sm">
       <thead className="dark:bg-bunker-950 dark:border-bunker-400 sticky top-0 border-b border-slate-100 bg-slate-50 text-xs font-bold uppercase">

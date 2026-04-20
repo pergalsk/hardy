@@ -6,7 +6,7 @@ export const headersTableFormatter: Formatter<HeaderItem[]> = {
   title: "Table",
   icon: "iconify material-symbols--notes-rounded",
   tooltip: "Headers in table format",
-  format: (headers: HeaderItem[]): JSX.Element | string => {
+  format: (headers: HeaderItem[]): React.JSX.Element | string => {
     return <HeadersTable headers={headers} />;
   },
 };

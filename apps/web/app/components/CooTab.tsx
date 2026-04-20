@@ -3,7 +3,7 @@ import { CollapsibleTitle } from "./CollapsibleTitle";
 import { Cookies } from "./Cookies";
 import { NoContent } from "@repo/ui/no-content";
 
-export function CooTab({ data }: { data: any }): JSX.Element {
+export function CooTab({ data }: { data: any }): React.JSX.Element {
   const { cookies } = data;
   const { request, response } = cookies;
 

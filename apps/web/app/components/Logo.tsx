@@ -1,4 +1,4 @@
-export function Logo(): JSX.Element {
+export function Logo(): React.JSX.Element {
   return (
     <div className="flex select-none content-center gap-3 font-black tracking-wide">
       <div className="rounded-lg bg-yellow-400 px-3 py-1 text-black dark:bg-yellow-500">

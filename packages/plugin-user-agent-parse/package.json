@@ -11,17 +11,18 @@
   "dependencies": {
     "@repo/formatter-core": "*",
     "@repo/ui": "*",
+    "react-dom": "^19.2.5",
     "ua-parser-js": "^1.0.38"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.2.61",
-    "@types/ua-parser-js": "^0.7.39",
     "@types/eslint": "^8.56.5",
+    "@types/node": "^20.11.24",
+    "@types/react": "^19.2.14",
+    "@types/ua-parser-js": "^0.7.39",
     "eslint": "^8.57.0",
-    "react": "^18.2.0",
+    "react": "^19.2.5",
     "typescript": "^5.3.3"
   }
 }

@@ -4,7 +4,7 @@ export function DetailField({
 }: {
   label: string;
   children?: React.ReactNode;
-}): JSX.Element {
+}): React.JSX.Element {
   return (
     <div className="text-mirage-700 dark:text-mirage-200 font-mono">
       <span className="pr-2 font-bold text-slate-600 dark:text-slate-400">

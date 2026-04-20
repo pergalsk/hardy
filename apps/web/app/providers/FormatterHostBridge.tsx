@@ -11,7 +11,7 @@ export function FormatterHostBridge({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}): React.JSX.Element {
   const jsonViewer = useAppStore(selectJsonViewerSettings);
   const isDark = useDarkMode();
 
@@ -23,7 +23,7 @@ export function FormatterHostBridge({
         notify: (toast) => {
           addToast({
             type: toast.type as "info" | "alert",
-            message: toast.message as string | JSX.Element,
+            message: toast.message as string | React.JSX.Element,
           });
         },
       }}

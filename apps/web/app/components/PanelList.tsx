@@ -4,7 +4,7 @@ export function PanelList({
 }: {
   children: React.ReactNode;
   rightGap?: boolean;
-}): JSX.Element {
+}): React.JSX.Element {
   return (
     <div
       className={`${rightGap ? "pr-2" : ""} flex flex-col gap-2 overflow-y-auto`}

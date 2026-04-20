@@ -1,3 +1,4 @@
+import type React from "react";
 import "./globals.css";
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
@@ -19,7 +20,7 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}): React.JSX.Element {
   return (
     <html lang="en">
       <body className={`${defaultMono.variable} text-base`}>

@@ -34,7 +34,7 @@ export function Content({ data }: { data: any }) {
   }
 
   if (typeof formatFn === "function") {
-    ContentValue = formatFn({ value: content }) as JSX.Element;
+    ContentValue = formatFn({ value: content }) as React.JSX.Element;
   }
 
   return (

@@ -1,14 +1,13 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 export function useCollapsed() {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const previousObserver = useRef(null);
+  const previousObserver = { current: null as ResizeObserver | null };
 
-  // todo: proper typing
-  const customRef: any = useCallback((node: HTMLElement) => {
+  const customRef = useCallback((node: HTMLElement | null) => {
     if (previousObserver.current) {
-      (previousObserver.current as ResizeObserver).disconnect();
+      previousObserver.current.disconnect();
       previousObserver.current = null;
     }
 
@@ -22,8 +21,8 @@ export function useCollapsed() {
     });
 
     observer.observe(node);
-    (previousObserver.current as unknown) = observer; // todo: proper typing
+    previousObserver.current = observer;
   }, []);
 
-  return [customRef, isCollapsed];
+  return [customRef, isCollapsed] as [(node: HTMLElement | null) => void, boolean];
 }

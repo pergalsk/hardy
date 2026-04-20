@@ -1,4 +1,4 @@
-export function Time({ time }: { time: number }): JSX.Element | null {
+export function Time({ time }: { time: number }): React.JSX.Element | null {
   if (typeof time !== "number") {
     return null;
   }

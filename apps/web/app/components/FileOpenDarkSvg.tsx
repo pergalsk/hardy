@@ -1,6 +1,6 @@
 import React from "react";
 
-export function FileOpenDarkSvg() {
+export function FileOpenDarkSvg(): React.JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
       <defs>

@@ -2,7 +2,7 @@ import { useAppStore } from "../store/store";
 import { selectFileTabs } from "../store/selectors";
 import { FileTab } from "./FileTab";
 
-export function FileTabs() {
+export function FileTabs(): React.JSX.Element {
   const files = useAppStore(selectFileTabs);
 
   return (

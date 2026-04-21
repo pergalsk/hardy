@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef } from "react";
 
 export function useFadeIn(duration: number, fromPosition: number) {

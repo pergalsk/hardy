@@ -1,3 +1,4 @@
+"use client";
 import { useEffect } from "react";
 import { useAppStore } from "../store/store";
 import {
@@ -53,7 +54,7 @@ function sortItemsArray(
     .map((x) => x.value);
 }
 
-export function List() {
+export function List(): React.JSX.Element {
   const filter = useAppStore(selectFilter);
   const rawListData = useAppStore(selectListData);
   const { hideEmptyPages } = useAppStore(selectSettings);

@@ -5,7 +5,7 @@ import { selectEntriesNum } from "../store/selectors";
 import { FileContent } from "./FileContent";
 import { FileSelect } from "./FileSelect";
 
-export function MainContent() {
+export function MainContent(): React.JSX.Element {
   const isData = !!useAppStore(selectEntriesNum);
   return isData ? <FileContent /> : <FileSelect />;
 }

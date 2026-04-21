@@ -1,4 +1,3 @@
-import type React from "react";
 import { MagnifyingGlassSvg } from "./magnifying-glass-svg";
 
 export function NoContent({
@@ -7,7 +6,7 @@ export function NoContent({
 }: {
   children?: React.ReactNode;
   showIcon?: boolean;
-}) {
+}): React.JSX.Element {
   return (
     <div className="flex h-full flex-col items-center justify-center">
       {showIcon && <MagnifyingGlassSvg />}

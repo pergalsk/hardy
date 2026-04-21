@@ -6,7 +6,7 @@ export const detailEnhancedFormatter: Formatter<any> = {
   title: "Table",
   icon: "iconify material-symbols--table-rows-outline",
   tooltip: "Detail enhanced view",
-  format: () => {
+  format: (): React.JSX.Element | string => {
     return <Detail />;
   },
 };

@@ -27,7 +27,7 @@ import { FileOpener } from "./FileOpener";
 import { Settings } from "./Settings";
 import { detailFormatters } from "@repo/formatter-core/registry";
 
-export function AppHeaderActions() {
+export function AppHeaderActions(): React.JSX.Element {
   const formatters = detailFormatters.getFormatters("detail") || {};
   const files = useAppStore(selectFiles);
   const filterActive = useAppStore(selectFilterActive);

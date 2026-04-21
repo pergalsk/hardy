@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactElement } from "react";
 import ReactJsonView from "@uiw/react-json-view";
 import { useState } from "react";
 import { useFormatterHost } from "@repo/formatter-core";
@@ -11,7 +12,7 @@ export function JsonView({
 }: {
   data: any;
   collapseBtns?: boolean;
-}) {
+}): ReactElement {
   const { theme, jsonViewer, notify } = useFormatterHost();
   const [collapsed, setCollapsed] = useState<boolean | number>(
     jsonViewer.collapsed,

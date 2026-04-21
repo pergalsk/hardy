@@ -1,3 +1,4 @@
+import type React from "react";
 import Image from "next/image";
 import { Card } from "@repo/ui/card";
 import { Code } from "@repo/ui/code";
@@ -12,7 +13,7 @@ function Gradient({
   small?: boolean;
   conic?: boolean;
   className?: string;
-}) {
+}): React.JSX.Element {
   return (
     <span
       className={[
@@ -51,7 +52,7 @@ const LINKS = [
   },
 ];
 
-export default function Page() {
+export default function Page(): React.JSX.Element {
   return (
     <main className={styles.main}>
       <div className={styles.description}>

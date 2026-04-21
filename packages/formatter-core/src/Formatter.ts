@@ -1,9 +1,8 @@
-import type React from "react";
-
+import type { ReactElement } from "react";
 export type Formatter<T> = {
   id: string;
   title: string;
   icon: string;
   tooltip: string;
-  format: (data: T) => React.JSX.Element | string | null;
+  format: (data: T) => ReactElement | string | null;
 };

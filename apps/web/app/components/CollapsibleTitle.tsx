@@ -4,7 +4,7 @@ export function CollapsibleTitle({
 }: {
   title: string;
   info?: string;
-}) {
+}): React.JSX.Element {
   return (
     <div className="flex items-center justify-between">
       <span className="font-bold uppercase">{title}</span>

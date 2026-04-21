@@ -7,7 +7,7 @@ export const userAgentParseFormatter: Formatter<HeaderItem> = {
   title: "Parse",
   icon: "iconify material-symbols--notes-rounded",
   tooltip: "Parse User Agent",
-  format: (headerItem: HeaderItem) => {
+  format: (headerItem: HeaderItem): React.JSX.Element | string => {
     const { value } = headerItem;
 
     const parser = new UAParser(value ?? "");

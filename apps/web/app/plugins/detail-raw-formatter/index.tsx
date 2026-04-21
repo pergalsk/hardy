@@ -6,7 +6,7 @@ export const detailRawFormatter: Formatter<any> = {
   title: "Raw",
   icon: "iconify material-symbols--code-blocks-outline-rounded",
   tooltip: "Detail raw view",
-  format: (data: any) => {
+  format: (data: any): React.JSX.Element | string => {
     return <JsonView data={data} collapseBtns={true} />;
   },
 };

@@ -2,7 +2,7 @@ export function TrueFalseMark({
   value,
 }: {
   value: boolean;
-}) {
+}): React.JSX.Element | null {
   return value === true ? (
     <span className="bg-accent-50 dark:bg-accent-900 rounded-md px-2 py-1">
       Y

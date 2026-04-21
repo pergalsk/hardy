@@ -1,4 +1,3 @@
-import type React from "react";
 import { NA } from "./na";
 
 const badgeStyles = {
@@ -24,7 +23,7 @@ export function InfoBadge({
   title: React.JSX.Element | string;
   value?: React.JSX.Element | string | null;
   style?: keyof typeof badgeStyles;
-}) {
+}): React.JSX.Element {
   const [classesTitle, classesValue] = badgeStyles[style];
 
   return (

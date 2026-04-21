@@ -8,7 +8,7 @@ export const jsonPrettyFormatter: Formatter<ContentValue> = {
   title: "Pretty",
   icon: "iconify material-symbols--notes-rounded",
   tooltip: "Pretty formatted value",
-  format: (content: ContentValue) => {
+  format: (content: ContentValue): React.JSX.Element | string => {
     const jsonObj = parseJsonData(content.value || "");
 
     if (!jsonObj) {

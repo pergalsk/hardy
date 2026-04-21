@@ -10,7 +10,7 @@ import { DetailField } from "./DetailField";
 import { LineClamp } from "@repo/ui/line-clamp";
 import UrlDetailsModal from "./UrlDetailsModal";
 
-export function DetailCommon() {
+export function DetailCommon(): React.JSX.Element | null {
   const data = useAppStore(selectCommonData);
 
   if (!data) {

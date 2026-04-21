@@ -42,7 +42,7 @@ const tabsDef: Tab[] = [
   },
 ];
 
-export function DetailButtons() {
+export function DetailButtons(): React.JSX.Element {
   const tabCode = useAppStore(selectTab);
 
   return (

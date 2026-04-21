@@ -6,7 +6,7 @@ export const headersRawFormatter: Formatter<HeaderItem[]> = {
   title: "Raw",
   icon: "iconify material-symbols--code-rounded",
   tooltip: "Raw formatted value",
-  format: (headers: HeaderItem[]) => {
+  format: (headers: HeaderItem[]): React.JSX.Element | string => {
     return <JsonView data={headers} collapseBtns={false} />;
   },
 };

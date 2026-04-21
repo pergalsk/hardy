@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { ToggleMark } from "./ToggleMark";
 import { Formatter } from "@repo/formatter-core";

@@ -6,7 +6,7 @@ export const headersPlainFormatter: Formatter<HeaderItem[]> = {
   title: "Plain",
   icon: "iconify material-symbols--format-align-left-rounded",
   tooltip: "Headers as plain text",
-  format: (headers: HeaderItem[]) => {
+  format: (headers: HeaderItem[]): React.JSX.Element => {
     return (
       <div className="dark:text-mirage-200 break-all px-2 font-mono text-sm text-black">
         {headers.map((header, idx) => (

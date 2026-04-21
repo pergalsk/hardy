@@ -9,7 +9,7 @@ import { ResTab } from "./ResTab";
 import { CooTab } from "./CooTab";
 import { TimTab } from "./TimTab";
 
-export function Detail() {
+export function Detail(): React.JSX.Element {
   const tab = useAppStore(selectTab);
   const tabData = useAppStore(selectTabData(tab));
 

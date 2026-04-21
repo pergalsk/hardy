@@ -32,9 +32,10 @@ export const FileOpener = ({ children }: { children?: React.ReactNode }) => {
       }
     };
 
-    trigger = React.cloneElement(children as React.ReactElement<any>, {
-      onClick: mergedOnClick,
-    });
+    trigger = React.cloneElement(
+      children as React.ReactElement<{ onClick?: (e?: unknown) => void }>,
+      { onClick: mergedOnClick },
+    );
   } else if (children != null) {
     // non-element children (string, nodes) - wrap in a clickable container
     trigger = <div onClick={openFileSelector}>{children}</div>;

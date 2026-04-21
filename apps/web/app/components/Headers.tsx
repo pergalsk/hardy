@@ -1,3 +1,4 @@
+import type React from "react";
 import { useState } from "react";
 import { headersFormatters } from "@repo/formatter-core/registry";
 import { Collapsible } from "./Collapsible";
@@ -23,7 +24,7 @@ export function Headers({ data }: { data: any }) {
   }
 
   if (typeof formatFn === "function") {
-    HeadersContent = formatFn(headers) as JSX.Element;
+    HeadersContent = formatFn(headers) as React.JSX.Element;
   }
 
   return (

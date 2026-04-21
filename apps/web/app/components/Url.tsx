@@ -4,7 +4,7 @@ interface UrlProps {
   url: string;
 }
 
-export function Url({ url }: UrlProps): JSX.Element {
+export function Url({ url }: UrlProps) {
   const { protocol, domain, port, path, params, hash } = getUrlParts(url);
 
   return (

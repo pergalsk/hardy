@@ -16,8 +16,8 @@ export function Collapsible({
   onAction = () => {},
 }: {
   children: any;
-  title?: string | JSX.Element;
-  handler?: JSX.Element;
+  title?: string | React.JSX.Element;
+  handler?: React.JSX.Element;
   initOpen?: boolean;
   transparent?: boolean;
   disabled?: boolean;

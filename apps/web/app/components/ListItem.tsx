@@ -8,7 +8,7 @@ import { DateTime } from "./DateTime";
 import { Time } from "./Time";
 import ListItemWrapper from "./ListItemWrapper";
 
-export function ListItem({ item }: { item: any }): JSX.Element {
+export function ListItem({ item }: { item: any }) {
   const rowId = useAppStore(selectRowId);
   const pinnedIds = useAppStore(selectPinnedIds);
 

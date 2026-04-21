@@ -8,7 +8,7 @@ export const HeadersIcons = ({
     [id: string]: Formatter<HeaderItem>;
   };
   setFormatter: (id: string) => void;
-}): JSX.Element | null => {
+}) => {
   const formattersList = Object.entries(formatters);
   if (formattersList.length === 0) {
     return null;

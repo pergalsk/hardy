@@ -1,4 +1,4 @@
-export function WrongFile({ name }: { name: string }): JSX.Element {
+export function WrongFile({ name }: { name: string }) {
   return (
     <>
       File <span className="underline-offset-3 italic underline">{name}</span>{" "}

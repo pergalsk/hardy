@@ -13,7 +13,7 @@ import { ListSorting } from "./ListSorting";
 import { detailFormatters } from "@repo/formatter-core/registry";
 import SplitPanels from "./SplitPanels";
 
-export function FileContent(): JSX.Element {
+export function FileContent() {
   const filterActive = useAppStore(selectFilterActive);
   const sortingActive = useAppStore(selectSortingActive);
   const detailFormatterId = useAppStore(selectDetailFormatterId);

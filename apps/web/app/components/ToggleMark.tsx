@@ -4,7 +4,7 @@ export function ToggleMark({
 }: {
   opened: boolean;
   size?: "small" | "medium" | "large";
-}): JSX.Element {
+}) {
   const rotation = opened ? "rotate-90" : "rotate-0";
 
   const sizeClasses = {

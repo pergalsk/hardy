@@ -18,7 +18,7 @@ export function ToastItem({
   message: Toast["message"];
   type?: Toast["type"];
   icon?: Toast["icon"];
-}): JSX.Element {
+}) {
   const ref = useFadeIn(450, 20);
 
   return (

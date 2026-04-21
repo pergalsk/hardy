@@ -12,7 +12,7 @@ interface StatusProps {
   colored: boolean;
 }
 
-export function Status({ status, text, colored }: StatusProps): JSX.Element {
+export function Status({ status, text, colored }: StatusProps) {
   let colorClass;
 
   const statusRange = Math.floor(status / 100);

@@ -11,7 +11,7 @@ export function JsonView({
 }: {
   data: any;
   collapseBtns?: boolean;
-}): JSX.Element {
+}) {
   const { theme, jsonViewer, notify } = useFormatterHost();
   const [collapsed, setCollapsed] = useState<boolean | number>(
     jsonViewer.collapsed,

@@ -32,7 +32,7 @@ export const FileOpener = ({ children }: { children?: React.ReactNode }) => {
       }
     };
 
-    trigger = React.cloneElement(children as React.ReactElement, {
+    trigger = React.cloneElement(children as React.ReactElement<any>, {
       onClick: mergedOnClick,
     });
   } else if (children != null) {

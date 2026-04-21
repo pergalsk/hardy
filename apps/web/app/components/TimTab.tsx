@@ -1,7 +1,7 @@
 import { NoContent } from "@repo/ui/no-content";
 import { Time } from "./Time";
 
-export function TimTab({ data }: { data: any }): JSX.Element {
+export function TimTab({ data }: { data: any }) {
   const { timings } = data;
   const parts = timings ? Object.entries(timings) : [];
 

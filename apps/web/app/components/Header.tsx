@@ -3,7 +3,7 @@ import { Logo } from "./Logo";
 import { FileTabs } from "./FileTabs";
 import { AppHeaderActions } from "./AppHeaderActions";
 
-export function Header(): JSX.Element {
+export function Header() {
   return (
     <Navigation>
       <Logo />

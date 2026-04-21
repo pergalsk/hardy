@@ -53,7 +53,7 @@ function sortItemsArray(
     .map((x) => x.value);
 }
 
-export function List(): JSX.Element {
+export function List() {
   const filter = useAppStore(selectFilter);
   const rawListData = useAppStore(selectListData);
   const { hideEmptyPages } = useAppStore(selectSettings);

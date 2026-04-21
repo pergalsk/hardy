@@ -7,7 +7,7 @@ export function HeadersValue({
   headerItem,
 }: {
   headerItem: HeaderItem;
-}): JSX.Element | string {
+}) {
   const { name, value } = headerItem;
 
   const formatters = headerValueFormatters.getFormatters(name);

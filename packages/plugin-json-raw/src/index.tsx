@@ -6,7 +6,7 @@ export const jsonRawFormatter: Formatter<ContentValue> = {
   title: "Original",
   icon: "iconify material-symbols--code-rounded",
   tooltip: "Original raw value",
-  format: (content: ContentValue): JSX.Element | string => {
+  format: (content: ContentValue) => {
     return <TextContent data={content.value ?? ""} />;
   },
 };

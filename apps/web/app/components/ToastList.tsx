@@ -2,7 +2,7 @@ import { selectToasts } from "../store/selectors";
 import { Toast, useAppStore } from "../store/store";
 import { ToastItem } from "./ToastItem";
 
-export function ToastList(): JSX.Element | null {
+export function ToastList() {
   const toasts = useAppStore(selectToasts);
 
   if (toasts.length < 1) {

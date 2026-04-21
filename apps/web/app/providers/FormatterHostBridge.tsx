@@ -1,5 +1,6 @@
 "use client";
 
+import type React from "react";
 import { HostProvider } from "@repo/formatter-core";
 import { useAppStore } from "../store/store";
 import { selectJsonViewerSettings } from "../store/selectors";
@@ -11,7 +12,7 @@ export function FormatterHostBridge({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}) {
   const jsonViewer = useAppStore(selectJsonViewerSettings);
   const isDark = useDarkMode();
 
@@ -23,7 +24,7 @@ export function FormatterHostBridge({
         notify: (toast) => {
           addToast({
             type: toast.type as "info" | "alert",
-            message: toast.message as string | JSX.Element,
+            message: toast.message as string | React.JSX.Element,
           });
         },
       }}

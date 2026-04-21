@@ -1,5 +1,7 @@
-import { useState } from "react";
+import type React from "react";
+import { useState, useCallback } from "react";
 import { useCollapsed } from "./use-collapsed";
+import { useButtonFits } from "./use-button-fits";
 import { ExpandButton } from "./expand-button";
 
 const lineClampClassMap: { [key: number]: string } = {
@@ -17,7 +19,6 @@ export function LineClamp({
   label = "...More",
   classes,
   inline = true,
-  isOpen = false,
   active = true,
   children,
 }: {
@@ -28,27 +29,52 @@ export function LineClamp({
   isOpen?: boolean;
   active?: boolean;
   children: React.ReactNode;
-}): JSX.Element {
+}) {
   if (!active) return <>{children}</>;
 
-  const [ref, isCollapsed] = useCollapsed();
+  const [collapseRef, isCollapsed] = useCollapsed();
   const [expanded, setExpanded] = useState(false);
+  const { containerRef, buttonRef, buttonFits } = useButtonFits(expanded);
+
+  const setContainerRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      containerRef.current = node;
+      collapseRef(node);
+    },
+    [collapseRef, containerRef],
+  );
 
   const handleClick = () => setExpanded(!expanded);
 
+  const isHidden = expanded && buttonFits === null;
+  const buttonInline = !expanded ? inline : buttonFits !== false;
+
   const button = (
-    <ExpandButton inline={inline} classes={classes} handleClick={handleClick}>
+    <ExpandButton
+      ref={buttonRef}
+      inline={buttonInline}
+      classes={isHidden ? `${classes ?? ""} opacity-0 pointer-events-none`.trim() : classes}
+      handleClick={handleClick}
+    >
       {expanded ? "...Hide" : label}
     </ExpandButton>
   );
 
+  const showButton = isCollapsed || expanded;
+  const buttonElement =
+    expanded && buttonFits === false ? (
+      <div className="flex justify-end">{button}</div>
+    ) : (
+      button
+    );
+
   return (
     <div
-      ref={ref}
+      ref={setContainerRef}
       className={`relative ${lineClampClassMap[expanded ? 0 : lines]}`}
     >
       {children}
-      {isCollapsed ? button : null}
+      {showButton && buttonElement}
     </div>
   );
 }

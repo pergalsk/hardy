@@ -12,7 +12,7 @@ interface MethodProps {
   colored: boolean;
 }
 
-export function Method({ method, colored }: MethodProps): JSX.Element {
+export function Method({ method, colored }: MethodProps) {
   const colorClass = colored
     ? methodColors[method] || "text-gray-500"
     : "text-white";

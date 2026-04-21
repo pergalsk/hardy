@@ -1,6 +1,6 @@
 import React from "react";
 
-export function FileOpenLightSvg(): JSX.Element {
+export function FileOpenLightSvg() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
       <defs>

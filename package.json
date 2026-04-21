@@ -30,6 +30,6 @@
   "dependencies": {
     "@uiw/react-json-view": "^2.0.0-alpha.24",
     "nanoid": "^5.0.7",
-    "zustand": "^4.5.2"
+    "zustand": "^5.0.12"
   }
 }

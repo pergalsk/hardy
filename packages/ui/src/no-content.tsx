@@ -1,3 +1,4 @@
+import type React from "react";
 import { MagnifyingGlassSvg } from "./magnifying-glass-svg";
 
 export function NoContent({

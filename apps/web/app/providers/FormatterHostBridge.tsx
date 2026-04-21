@@ -1,4 +1,5 @@
 "use client";
+import type React from "react";
 
 import { HostProvider } from "@repo/formatter-core";
 import { useAppStore } from "../store/store";

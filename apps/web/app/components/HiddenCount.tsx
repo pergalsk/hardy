@@ -1,3 +1,4 @@
+import type React from "react";
 import { ToggleMark } from "./ToggleMark";
 
 export function HiddenCount({

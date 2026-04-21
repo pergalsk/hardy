@@ -1,3 +1,4 @@
+import type React from "react";
 import { getUrlParts } from "../helpers/helpers";
 
 interface UrlProps {

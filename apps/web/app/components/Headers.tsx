@@ -1,3 +1,4 @@
+import type React from "react";
 import { useState } from "react";
 import { headersFormatters } from "@repo/formatter-core/registry";
 import { Collapsible } from "./Collapsible";

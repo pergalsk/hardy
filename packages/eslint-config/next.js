@@ -10,10 +10,6 @@ module.exports = {
     "plugin:@next/next/recommended-legacy",
     "eslint-config-turbo",
   ],
-  globals: {
-    React: true,
-    JSX: true,
-  },
   env: {
     node: true,
     browser: true,
@@ -27,9 +23,9 @@ module.exports = {
     },
   },
   ignorePatterns: [
-    // Ignore dotfiles
     ".*.js",
     "node_modules/",
+    "out/",
   ],
   rules: {
     "no-unused-vars": "off",

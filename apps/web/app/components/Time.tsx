@@ -1,3 +1,4 @@
+import type React from "react";
 export function Time({ time }: { time: number }): React.JSX.Element | null {
   if (typeof time !== "number") {
     return null;

@@ -1,3 +1,4 @@
+import type React from "react";
 import type { ContentValue, Formatter } from "@repo/formatter-core";
 import { TextContent } from "@repo/ui/text-content";
 import { JsonView } from "@repo/formatter-ui/json-view";

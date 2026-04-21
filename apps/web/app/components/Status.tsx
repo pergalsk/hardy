@@ -1,3 +1,4 @@
+import type React from "react";
 export const statusColors: { [key: string]: string } = {
   "1xx": "bg-violet-500 dark:bg-gray-800",
   "2xx": "bg-lime-700 dark:bg-green-900",

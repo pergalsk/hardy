@@ -1,3 +1,4 @@
+import type React from "react";
 export function ToggleMark({
   opened,
   size,

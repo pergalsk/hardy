@@ -1,3 +1,4 @@
+import type React from "react";
 import { useState } from "react";
 import { findHeader, parseMimeType } from "../helpers/helpers";
 import { contentValueFormatters } from "@repo/formatter-core/registry";

@@ -1,3 +1,4 @@
+import type React from "react";
 export function WrongFile({ name }: { name: string }): React.JSX.Element {
   return (
     <>

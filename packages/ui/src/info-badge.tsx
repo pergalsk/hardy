@@ -1,3 +1,4 @@
+import type React from "react";
 import { NA } from "./na";
 
 const badgeStyles = {

@@ -1,3 +1,4 @@
+import type React from "react";
 export function Logo(): React.JSX.Element {
   return (
     <div className="flex select-none content-center gap-3 font-black tracking-wide">

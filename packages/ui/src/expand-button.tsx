@@ -1,3 +1,5 @@
+import type React from "react";
+
 export const ExpandButton = ({
   inline = true,
   classes = "dark:bg-black bg-white",

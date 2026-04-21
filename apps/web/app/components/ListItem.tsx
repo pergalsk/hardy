@@ -1,3 +1,4 @@
+import type React from "react";
 import { useAppStore } from "../store/store";
 import { selectPinnedIds, selectRowId } from "../store/selectors";
 import { setRowId, togglePinnedRow } from "../store/actions";

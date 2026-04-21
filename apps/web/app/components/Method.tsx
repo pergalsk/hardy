@@ -1,3 +1,4 @@
+import type React from "react";
 export const methodColors: { [key: string]: string } = {
   GET: "text-green-600",
   POST: "text-blue-500",

@@ -1,3 +1,4 @@
+import type React from "react";
 import { useAppStore } from "../store/store";
 import { selectFileTabs } from "../store/selectors";
 import { FileTab } from "./FileTab";

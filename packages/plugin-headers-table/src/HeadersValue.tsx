@@ -1,3 +1,4 @@
+import type React from "react";
 import { useState } from "react";
 import type { HeaderItem } from "@repo/formatter-core";
 import { headerValueFormatters } from "@repo/formatter-core/registry";

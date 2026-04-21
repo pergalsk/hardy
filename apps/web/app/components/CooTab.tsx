@@ -1,3 +1,4 @@
+import type React from "react";
 import { Collapsible } from "./Collapsible";
 import { CollapsibleTitle } from "./CollapsibleTitle";
 import { Cookies } from "./Cookies";

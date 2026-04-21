@@ -1,3 +1,4 @@
+import type React from "react";
 import type { HeaderItem } from "@repo/formatter-core";
 import { LineClamp } from "@repo/ui/line-clamp";
 import { NoContent } from "@repo/ui/no-content";

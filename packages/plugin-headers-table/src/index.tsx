@@ -1,3 +1,4 @@
+import type React from "react";
 import type { Formatter, HeaderItem } from "@repo/formatter-core";
 import { HeadersTable } from "./HeadersTable";
 

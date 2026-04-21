@@ -1,3 +1,4 @@
+import type React from "react";
 import { selectToasts } from "../store/selectors";
 import { Toast, useAppStore } from "../store/store";
 import { ToastItem } from "./ToastItem";

@@ -1,3 +1,4 @@
+import type React from "react";
 "use client";
 
 import { HostProvider } from "@repo/formatter-core";

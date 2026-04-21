@@ -1,3 +1,4 @@
+import type React from "react";
 import { clearAllPinned, clearFilter, removeFile } from "../store/actions";
 
 interface FileTabProps {

@@ -1,3 +1,4 @@
+import type React from "react";
 import { Toast } from "../store/store";
 import { removeToast } from "../store/actions";
 import { useFadeIn } from "../helpers/useFadeIn";

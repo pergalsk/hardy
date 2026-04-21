@@ -1,3 +1,4 @@
+import type React from "react";
 import { NoContent } from "@repo/ui/no-content";
 import { Time } from "./Time";
 

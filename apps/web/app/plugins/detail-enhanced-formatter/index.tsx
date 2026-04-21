@@ -1,3 +1,4 @@
+import type React from "react";
 import { Formatter } from "@repo/formatter-core";
 import { Detail } from "../../components/Detail";
 

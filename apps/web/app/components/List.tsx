@@ -1,3 +1,4 @@
+import type React from "react";
 "use client";
 import { useEffect } from "react";
 import { useAppStore } from "../store/store";

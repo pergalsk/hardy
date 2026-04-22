@@ -1,17 +1,18 @@
 "use client";
 import type React from "react";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useAppStore } from "../store/store";
 import {
   selectFilter,
-  selectListData,
   selectPinnedIds,
+  selectRawEntries,
   selectSettings,
   selectShowPages,
   selectShowPinnedOnly,
   selectSorting,
 } from "../store/selectors";
 import { setFilteredCount } from "../store/actions";
+import { deriveListData } from "../helpers/helpers";
 import { markVisible } from "../helpers/filter";
 import { groupByProperty } from "../helpers/groupByProperty";
 import { PanelList } from "./PanelList";
@@ -57,12 +58,14 @@ function sortItemsArray(
 
 export function List(): React.JSX.Element {
   const filter = useAppStore(selectFilter);
-  const rawListData = useAppStore(selectListData);
+  const rawEntries = useAppStore(selectRawEntries);
   const { hideEmptyPages } = useAppStore(selectSettings);
   const sorting = useAppStore(selectSorting);
   const showPages = useAppStore(selectShowPages);
   const showPinnedOnly = useAppStore(selectShowPinnedOnly);
   const pinnedIds = useAppStore(selectPinnedIds);
+
+  const rawListData = useMemo(() => deriveListData(rawEntries), [rawEntries]);
 
   const rawListPinned =
     showPinnedOnly && pinnedIds.size > 0

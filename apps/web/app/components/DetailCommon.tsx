@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { NA } from "@repo/ui/na";
 import { useAppStore } from "../store/store";
-import { selectCommonData } from "../store/selectors";
+import { selectRawEntry } from "../store/selectors";
+import { deriveCommonData } from "../helpers/helpers";
 import { Url } from "./Url";
 import { Method } from "./Method";
 import { Status } from "./Status";
@@ -11,7 +12,8 @@ import { LineClamp } from "@repo/ui/line-clamp";
 import UrlDetailsModal from "./UrlDetailsModal";
 
 export function DetailCommon(): React.JSX.Element | null {
-  const data = useAppStore(selectCommonData);
+  const rawEntry = useAppStore(selectRawEntry);
+  const data = useMemo(() => deriveCommonData(rawEntry), [rawEntry]);
 
   if (!data) {
     return null;

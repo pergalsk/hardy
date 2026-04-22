@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useAppStore } from "../store/store";
-import { selectTab, selectTabData } from "../store/selectors";
+import { selectTab, selectRawEntry } from "../store/selectors";
+import { deriveTabData } from "../helpers/helpers";
 import { DetailCommon } from "./DetailCommon";
 import { DetailButtons } from "./DetailButtons";
 import { DetailSegment } from "./DetailSegment";
@@ -11,7 +12,8 @@ import { TimTab } from "./TimTab";
 
 export function Detail(): React.JSX.Element {
   const tab = useAppStore(selectTab);
-  const tabData = useAppStore(selectTabData(tab));
+  const rawEntry = useAppStore(selectRawEntry);
+  const tabData = useMemo(() => deriveTabData(rawEntry, tab), [rawEntry, tab]);
 
   return (
     <>

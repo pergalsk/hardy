@@ -1,6 +1,12 @@
+import { useMemo } from "react";
 import { NA } from "@repo/ui/na";
 import { useAppStore } from "../store/store";
-import { selectFilter, selectFooterData } from "../store/selectors";
+import {
+  selectFilter,
+  selectHarData,
+  selectFileSize,
+} from "../store/selectors";
+import { deriveFooterData } from "../helpers/helpers";
 import { formatNumber } from "../helpers/formatNumber";
 import { formatFileSize } from "../helpers/formatFileSize";
 import { formatThousands } from "../helpers/formatThousands";
@@ -18,21 +24,20 @@ export function FooterEmpty() {
 }
 
 export function Footer() {
-  const data = useAppStore(selectFooterData);
+  const harData = useAppStore(selectHarData);
+  const fileSize = useAppStore(selectFileSize);
   const { count } = useAppStore(selectFilter);
+
+  const data = useMemo(
+    () => deriveFooterData(harData, fileSize),
+    [harData, fileSize],
+  );
 
   if (!data) {
     return <FooterEmpty />;
   }
 
-  const {
-    version,
-    fileSize,
-    creatorName,
-    creatorVersion,
-    entriesNum,
-    totalTime,
-  } = data;
+  const { version, creatorName, creatorVersion, entriesNum, totalTime } = data;
 
   const filteredNum =
     count >= 0 && count !== entriesNum ? ` (filtered: ${count})` : "";

@@ -1,12 +1,73 @@
-export function prepareFooter(data: any): any {
-  if (!data) {
-    return null;
+import { TabCode } from "../store/store";
+
+export function deriveListData(entries: any[]): any[] {
+  if (!Array.isArray(entries)) return [];
+
+  return entries.map((entry: any, index: number) => {
+    const { pageref, startedDateTime, time, request, response } = entry;
+    const { method, url } = request;
+    const { status, statusText } = response;
+    return { $$id: index, pageref, status, statusText, url, method, startedDateTime, time };
+  });
+}
+
+export function deriveCommonData(entry: any): any {
+  if (!entry) return null;
+
+  const { request, response, serverIPAddress, time, _securityState } = entry;
+  const { method, url, httpVersion } = request;
+  const { status, statusText } = response;
+
+  return { status, statusText, url, method, serverIPAddress, time, httpVersion, _securityState };
+}
+
+export function deriveTabData(entry: any, tabCode: TabCode): any {
+  if (!entry) return null;
+
+  const { request, response, timings } = entry;
+
+  if (tabCode === "REQ") {
+    return {
+      headers: request?.headers,
+      headersSize: request?.headersSize,
+      bodySize: request?.bodySize,
+      content: request?.postData?.text,
+    };
   }
 
-  const { version, creator, entries } = data;
+  if (tabCode === "RES") {
+    return {
+      headers: response?.headers,
+      headersSize: response?.headersSize,
+      bodySize: response?.bodySize,
+      content: response?.content?.text,
+    };
+  }
+
+  if (tabCode === "COO") {
+    return {
+      cookies: {
+        request: request?.cookies,
+        response: response?.cookies,
+      },
+    };
+  }
+
+  if (tabCode === "TIM") {
+    return { timings };
+  }
+
+  return null;
+}
+
+export function deriveFooterData(harData: any, fileSize: number): any {
+  if (!harData) return null;
+
+  const { version, creator, entries } = harData;
 
   return {
     version,
+    fileSize,
     creatorName: creator?.name,
     creatorVersion: creator?.version,
     entriesNum: entries?.length || 0,

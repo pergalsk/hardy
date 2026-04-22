@@ -28,7 +28,24 @@ export function LineClamp({
   children: React.ReactNode;
 }): React.JSX.Element {
   if (!active) return <>{children}</>;
+  return (
+    <LineClampInner lines={lines} label={label} classes={classes}>
+      {children}
+    </LineClampInner>
+  );
+}
 
+function LineClampInner({
+  lines,
+  label,
+  classes,
+  children,
+}: {
+  lines: number;
+  label: string;
+  classes?: string;
+  children: React.ReactNode;
+}): React.JSX.Element {
   const [collapsedRef, isCollapsed] = useCollapsed();
   const [expanded, setExpanded] = useState(false);
   const { containerRef, buttonRef, buttonFits } = useButtonFits(expanded);

@@ -1,6 +1,7 @@
 import type React from "react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useCollapsed } from "./use-collapsed";
+import { useButtonFits } from "./use-button-fits";
 import { ExpandButton } from "./expand-button";
 
 const lineClampClassMap: { [key: number]: string } = {
@@ -17,38 +18,53 @@ export function LineClamp({
   lines = 3,
   label = "...More",
   classes,
-  inline = true,
   active = true,
   children,
 }: {
   lines?: number;
   label?: string;
   classes?: string;
-  inline?: boolean;
-  isOpen?: boolean;
   active?: boolean;
   children: React.ReactNode;
 }): React.JSX.Element {
   if (!active) return <>{children}</>;
 
-  const [ref, isCollapsed] = useCollapsed();
+  const [collapsedRef, isCollapsed] = useCollapsed();
   const [expanded, setExpanded] = useState(false);
+  const { containerRef, buttonRef, buttonFits } = useButtonFits(expanded);
+
+  const setRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      collapsedRef(node);
+      containerRef.current = node;
+    },
+    [collapsedRef, containerRef],
+  );
 
   const handleClick = () => setExpanded(!expanded);
 
+  const buttonInline = !expanded || buttonFits !== false;
+
   const button = (
-    <ExpandButton inline={inline} classes={classes} handleClick={handleClick}>
+    <ExpandButton
+      ref={buttonRef}
+      inline={buttonInline}
+      classes={classes}
+      handleClick={handleClick}
+    >
       {expanded ? "...Hide" : label}
     </ExpandButton>
   );
 
   return (
     <div
-      ref={ref}
+      ref={setRef}
       className={`relative ${lineClampClassMap[expanded ? 0 : lines]}`}
     >
       {children}
-      {isCollapsed ? button : null}
+      {expanded || isCollapsed ? (
+        buttonInline ? button : <div className="flex justify-end">{button}</div>
+      ) : null}
     </div>
   );
 }

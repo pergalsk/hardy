@@ -1,4 +1,5 @@
 import React from "react";
+import { useShallow } from "zustand/shallow";
 import { useAppStore } from "../store/store";
 import {
   selectDetailFormatterId,
@@ -17,7 +18,8 @@ export function FileContent(): React.JSX.Element {
   const filterActive = useAppStore(selectFilterActive);
   const sortingActive = useAppStore(selectSortingActive);
   const detailFormatterId = useAppStore(selectDetailFormatterId);
-  const entry = useAppStore(selectEntry);
+  // useShallow prevents re-renders when selectEntry returns a new object with the same field values.
+  const entry = useAppStore(useShallow(selectEntry));
 
   const formatFn = detailFormatterId
     ? detailFormatters.getFormatter("detail", detailFormatterId)?.format

@@ -1,20 +1,110 @@
-"use client";
+import React from "react";
 
-import { ReactNode } from "react";
+type Size = "sm" | "nr" | "md" | "lg";
+type Variant = "primary" | "secondary" | "ghost" | "flat";
 
-interface ButtonProps {
-  children: ReactNode;
-  className?: string;
-  appName: string;
-}
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  icon?: string;
+  iconRight?: boolean;
+  iconOnly?: boolean;
+  variant?: Variant;
+  size?: Size;
+  ariaLabel?: string;
+};
 
-export const Button = ({ children, className, appName }: ButtonProps) => {
+export default function Button({
+  children,
+  className = "",
+  icon,
+  iconRight = false,
+  iconOnly = false,
+  variant = "secondary",
+  size = "md",
+  disabled,
+  ariaLabel,
+  ...rest
+}: ButtonProps) {
+  const base =
+    "inline-flex items-center justify-center select-none rounded-md font-bold uppercase transition-colors duration-200 focus:outline-none";
+
+  const sizeMap: Record<Size, string> = {
+    sm: "text-sm px-3 py-1.5 gap-0 min-w-16",
+    nr: "text-base px-4 py-1 gap-0 min-w-16",
+    md: "text-base px-4 py-2 gap-0.5 min-w-16",
+    lg: "text-lg px-5 py-2.5 gap-1 min-w-16",
+  };
+
+  const iconOnlySizeMap: Record<Size, string> = {
+    sm: "text-sm w-8 h-8",
+    nr: "text-base w-9 h-8",
+    md: "text-base w-9 h-9",
+    lg: "text-lg w-10 h-10",
+  };
+
+  const variantMap: Record<Variant, string> = {
+    primary:
+      "dark:hover:text-white bg-accent-700 text-white hover:bg-accent-800 dark:bg-accent-700 dark:hover:bg-accent-600",
+    secondary:
+      "dark:hover:text-white bg-mirage-50 text-mirage-700 hover:bg-mirage-100 dark:text-mirage-100 dark:bg-slate-700 dark:hover:bg-slate-600",
+    ghost:
+      "dark:hover:text-white bg-transparent text-mirage-700 hover:bg-mirage-100 dark:text-mirage-100 dark:hover:bg-slate-700",
+    flat: "dark:hover:text-white bg-transparent text-black dark:text-mirage-100",
+  };
+
+  const disabledClasses = disabled
+    ? "opacity-60 cursor-default pointer-events-none"
+    : "cursor-pointer";
+
+  const iconSizeMap: Record<Size, string> = {
+    sm: "text-sm",
+    nr: "text-lg",
+    md: "text-xl",
+    lg: "text-2xl",
+  };
+
+  const iconSidePaddingMap: Record<Size, { left: string; right: string }> = {
+    sm: { left: "pl-2", right: "pr-2" },
+    nr: { left: "pl-2.5", right: "pr-2.5" },
+    md: { left: "pl-2.5", right: "pr-2.5" },
+    lg: { left: "pl-4", right: "pr-4" },
+  };
+
+  const iconSidePadding =
+    icon && !iconOnly
+      ? iconRight
+        ? iconSidePaddingMap[size].right
+        : iconSidePaddingMap[size].left
+      : "";
+
+  const iconEl = icon ? (
+    <span
+      aria-hidden
+      className={`iconify ${icon} ${iconSizeMap[size]} ${!iconOnly ? (iconRight ? "ml-2" : "mr-2") : ""}`}
+    />
+  ) : null;
+
+  const ariaProps = iconOnly
+    ? {
+        "aria-label": ariaLabel || rest["aria-label"] || rest.title || "Button",
+      }
+    : {};
+
   return (
     <button
-      className={className}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
+      {...rest}
+      {...ariaProps}
+      disabled={disabled}
+      className={`${base} ${iconOnly ? iconOnlySizeMap[size] : sizeMap[size]} ${iconSidePadding} ${variantMap[variant]} ${disabledClasses} ${className}`.trim()}
     >
-      {children}
+      {iconOnly ? (
+        iconEl
+      ) : (
+        <>
+          {!iconRight && iconEl}
+          {children}
+          {iconRight && iconEl}
+        </>
+      )}
     </button>
   );
-};
+}

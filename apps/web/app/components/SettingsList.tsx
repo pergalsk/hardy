@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import type { Settings as AppSettings } from "../store/store";
-import ToggleSwitch from "./ToggleSwitch";
+import ToggleSwitch from "@repo/ui/toggle-switch";
 import { SettingItem } from "./SettingsModal";
 
 type Props = {

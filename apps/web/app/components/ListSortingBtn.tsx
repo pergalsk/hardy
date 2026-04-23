@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import Button from "@repo/ui/button";
 
 type SortKey = "url" | "status" | "method" | "time" | "pageref";
 type SortDir = "asc" | "desc";

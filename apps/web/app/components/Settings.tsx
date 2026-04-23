@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import SettingsModal from "./SettingsModal";
-import { ActionIcon } from "./ActionIcon";
+import { ActionIcon } from "@repo/ui/action-icon";
 
 export function Settings() {
   const [open, setOpen] = useState(false);

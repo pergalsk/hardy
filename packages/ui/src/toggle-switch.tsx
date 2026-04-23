@@ -48,7 +48,6 @@ export default function ToggleSwitch({
     .join(" ");
 
   const knobBase = `inline-block ${sizes.knob} transform rounded-full bg-white transition-transform duration-200`;
-
   const knobClass = `${knobBase} ${checked ? sizes.translateOn : sizes.translateOff}`;
 
   return (

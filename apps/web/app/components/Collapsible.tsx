@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { ToggleMark } from "./ToggleMark";
+import { ToggleMark } from "../features/settings/components/ToggleMark";
 import { Formatter } from "@repo/formatter-core";
 
 export function Collapsible({

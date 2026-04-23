@@ -1,6 +1,6 @@
 import type React from "react";
 import { Formatter } from "@repo/formatter-core";
-import { Detail } from "../../components/Detail";
+import { Detail } from "../../features/detail/components/Detail";
 
 export const detailEnhancedFormatter: Formatter<any> = {
   id: "detail-enhanced-formatter",

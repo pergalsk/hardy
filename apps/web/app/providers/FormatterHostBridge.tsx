@@ -3,9 +3,9 @@ import type React from "react";
 
 import { HostProvider } from "@repo/formatter-core";
 import { useAppStore } from "../store/store";
-import { selectJsonViewerSettings } from "../store/selectors";
-import { addToast } from "../store/actions";
-import { useDarkMode } from "../helpers/useDarkMode";
+import { selectJsonViewerSettings } from "../features/settings/selectors";
+import { addToast } from "../features/notifications/actions";
+import { useDarkMode } from "../core/hooks/useDarkMode";
 import "../plugins.config";
 
 export function FormatterHostBridge({

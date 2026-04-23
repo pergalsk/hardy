@@ -1,6 +1,7 @@
 import type React from "react";
-import { DateTime } from "./DateTime";
-import { TrueFalseMark } from "./TrueFalseMark";
+import { DateTime } from "@repo/ui/date-time";
+import { TrueFalseMark } from "@repo/ui/true-false-mark";
+import { formatDateTime } from "../helpers/helpers";
 
 export function Cookies({ data }: { data: any }): React.JSX.Element {
   return (
@@ -41,7 +42,7 @@ export function Cookies({ data }: { data: any }): React.JSX.Element {
               <td className="break-all px-2 py-1">{path ?? ""}</td>
               <td className="break-all px-2 py-1">{domain ?? ""}</td>
               <td className="px-2 py-1 text-center">
-                <DateTime dateTime={expires} timeOnly={false}></DateTime>
+                <DateTime value={formatDateTime(expires, false)} />
               </td>
               <td className="px-2 py-1 text-center">{sameSite ?? ""}</td>
               <td className="px-2 py-1 text-center">

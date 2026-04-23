@@ -19,10 +19,10 @@ import {
   setShowPinnedOnly,
   setSortingActive,
 } from "../store/actions";
-import { ActionBar } from "./ActionBar";
-import { ActionText } from "./ActionText";
-import { ActionSeparator } from "./ActionSeparator";
-import { ActionIcon } from "./ActionIcon";
+import { ActionBar } from "@repo/ui/action-bar";
+import { ActionText } from "@repo/ui/action-text";
+import { ActionSeparator } from "@repo/ui/action-separator";
+import { ActionIcon } from "@repo/ui/action-icon";
 import { FileOpener } from "./FileOpener";
 import { Settings } from "./Settings";
 import { detailFormatters } from "@repo/formatter-core/registry";

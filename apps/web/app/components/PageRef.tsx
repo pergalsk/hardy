@@ -1,6 +1,7 @@
 import { selectHarData } from "../store/selectors";
 import { useAppStore } from "../store/store";
-import { Url } from "./Url";
+import { Url } from "@repo/ui/url";
+import { getUrlParts } from "../helpers/helpers";
 
 export function PageRef({
   pageref,
@@ -24,7 +25,7 @@ export function PageRef({
         </div>
         {title && (
           <div className="ml-auto break-all text-right">
-            <Url url={title} />
+            <Url {...getUrlParts(title)} />
           </div>
         )}
       </div>

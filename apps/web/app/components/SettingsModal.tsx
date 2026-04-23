@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useAppStore, initialSettings } from "../store/store";
 import type { Settings as AppSettings } from "../store/store";
 import Modal from "./Modal";
-import Button from "./Button";
+import Button from "@repo/ui/button";
 import SettingsList from "./SettingsList";
 import { selectSettings } from "../store/selectors";
 

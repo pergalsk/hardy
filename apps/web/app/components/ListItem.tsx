@@ -2,10 +2,11 @@ import type React from "react";
 import { useAppStore } from "../store/store";
 import { selectPinnedIds, selectRowId } from "../store/selectors";
 import { setRowId, togglePinnedRow } from "../store/actions";
-import { Method } from "./Method";
-import { Url } from "./Url";
-import { Status } from "./Status";
-import { DateTime } from "./DateTime";
+import { Method } from "@repo/ui/method";
+import { Url } from "@repo/ui/url";
+import { Status } from "@repo/ui/status";
+import { DateTime } from "@repo/ui/date-time";
+import { formatDateTime, getUrlParts } from "../helpers/helpers";
 import { Time } from "./Time";
 import ListItemWrapper from "./ListItemWrapper";
 
@@ -56,7 +57,7 @@ export function ListItem({ item }: { item: any }): React.JSX.Element {
           <Separator />
           <Time time={time} />
           <Separator />
-          <DateTime dateTime={startedDateTime} timeOnly={true} />
+          <DateTime value={formatDateTime(startedDateTime, true)} />
           <Separator />
           <div className={`${numClasses}`}>#{$$id + 1}</div>
           <Separator />
@@ -69,7 +70,7 @@ export function ListItem({ item }: { item: any }): React.JSX.Element {
 
       <div className="flex gap-2">
         <Method method={method} colored={true} />
-        <Url url={url} />
+        <Url {...getUrlParts(url)} />
       </div>
     </ListItemWrapper>
   );

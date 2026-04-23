@@ -1,13 +1,15 @@
 import type React from "react";
-import { getUrlParts } from "../helpers/helpers";
 
 interface UrlProps {
-  url: string;
+  protocol?: string;
+  domain: string;
+  port?: string;
+  path: string;
+  params?: string;
+  hash?: string;
 }
 
-export function Url({ url }: UrlProps): React.JSX.Element {
-  const { protocol, domain, port, path, params, hash } = getUrlParts(url);
-
+export function Url({ protocol, domain, port, path, params, hash }: UrlProps): React.JSX.Element {
   return (
     <span className="break-all">
       {protocol && (

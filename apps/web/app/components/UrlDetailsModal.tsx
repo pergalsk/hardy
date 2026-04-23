@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Modal from "./Modal";
 import UrlQueryTable from "./UrlQueryTable";
-import Button from "./Button";
+import Button from "@repo/ui/button";
 
 export default function UrlDetailsModal({ url }: { url: string }) {
   const [open, setOpen] = useState(false);

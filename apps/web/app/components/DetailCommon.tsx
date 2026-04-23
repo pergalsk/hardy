@@ -3,9 +3,10 @@ import { NA } from "@repo/ui/na";
 import { useAppStore } from "../store/store";
 import { selectRawEntry } from "../store/selectors";
 import { deriveCommonData } from "../helpers/helpers";
-import { Url } from "./Url";
-import { Method } from "./Method";
-import { Status } from "./Status";
+import { Url } from "@repo/ui/url";
+import { Method } from "@repo/ui/method";
+import { Status } from "@repo/ui/status";
+import { getUrlParts } from "../helpers/helpers";
 import { Time } from "./Time";
 import { DetailField } from "./DetailField";
 import { LineClamp } from "@repo/ui/line-clamp";
@@ -31,7 +32,7 @@ export function DetailCommon(): React.JSX.Element | null {
             classes={"dark:bg-bunker-500 bg-mirage-50"}
           >
             <DetailField label={"URL:"}>
-              <Url url={url} />
+              <Url {...getUrlParts(url)} />
             </DetailField>
           </LineClamp>
         </div>

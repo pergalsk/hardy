@@ -1,4 +1,5 @@
 import type React from "react";
+
 export const statusColors: { [key: string]: string } = {
   "1xx": "bg-violet-500 dark:bg-gray-800",
   "2xx": "bg-lime-700 dark:bg-green-900",
@@ -14,10 +15,8 @@ interface StatusProps {
 }
 
 export function Status({ status, text, colored }: StatusProps): React.JSX.Element {
-  let colorClass;
-
   const statusRange = Math.floor(status / 100);
-  colorClass = colored
+  const colorClass = colored
     ? statusColors[`${statusRange}xx` as keyof typeof statusColors] ||
       "bg-bunker-200"
     : "bg-bunker-100";

@@ -33,7 +33,7 @@ export function deriveTabData(entry: any, tabCode: TabCode): any {
   }
 
   if (tabCode === "TIM") {
-    return { timings };
+    return { timings, totalTime: entry.time };
   }
 
   return null;

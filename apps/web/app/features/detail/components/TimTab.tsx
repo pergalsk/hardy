@@ -1,33 +1,36 @@
+"use client";
+import { useState } from "react";
 import type React from "react";
 import { NoContent } from "@repo/ui/no-content";
-import { Time } from "./Time";
+import { TimingBar } from "./TimingBar";
+import { TimingTable } from "./TimingTable";
 
 export function TimTab({ data }: { data: any }): React.JSX.Element {
-  const { timings } = data;
-  const parts = timings ? Object.entries(timings) : [];
+  const { timings, totalTime } = data;
+  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
 
-  if (parts.length === 0) {
+  if (!timings || !totalTime) {
     return <NoContent />;
   }
 
   return (
-    <table className="w-full table-auto text-sm">
-      <tbody>
-        {parts.map((part: [string, any], index: number) => (
-          <tr
-            key={index}
-            className="hover:dark:bg-bunker-800 hover:dark:text-mirage-50 dark:text-mirage-200 dark:border-bunker-400 break-all border-b border-slate-100 text-black last:border-none hover:bg-slate-50"
-          >
-            <td className="w-[15%] whitespace-nowrap py-1 pr-2 align-top font-bold capitalize">
-              {part[0]}:
-            </td>
-            <td className="w-[15%] py-1 text-right">
-              <Time time={part[1]} />
-            </td>
-            <td className="w-[70%]"></td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="space-y-4 p-2">
+      <p className="font-medium text-gray-700 dark:text-gray-300">
+        Total request time:{" "}
+        <span className="font-bold">{totalTime.toFixed(2)} ms</span>
+      </p>
+      <TimingBar
+        timings={timings}
+        totalTime={totalTime}
+        hoveredKey={hoveredKey}
+        onHover={setHoveredKey}
+      />
+      <TimingTable
+        timings={timings}
+        totalTime={totalTime}
+        hoveredKey={hoveredKey}
+        onHover={setHoveredKey}
+      />
+    </div>
   );
 }

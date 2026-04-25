@@ -53,12 +53,20 @@ export default function SplitPanels({
   };
 
   const dividerBase =
-    "w-[5px] cursor-ew-resize bg-slate-200 dark:bg-bunker-400 transition-colors duration-300";
-  const dividerColors = isDragging
-    ? "border-l-[2px] border-r-[2px] bg-slate-400 border-slate-400 dark:bg-bunker-100 dark:border-bunker-100"
-    : isHoveringDivider
-      ? "border-l-[2px] border-r-[2px] bg-slate-200 border-slate-200 dark:border-bunker-400"
-      : "border-l-[2px] border-r-[2px] border-white dark:border-bunker-950";
+    "w-[5px] cursor-ew-resize bg-slate-200 dark:bg-bunker-400 transition-colors duration-300 border-l-[2px] border-r-[2px]";
+
+  const hoverClasses = "bg-slate-200 border-slate-200 dark:border-bunker-400";
+  const draggingClasses =
+    "bg-slate-400 border-slate-400 dark:bg-bunker-100 dark:border-bunker-100";
+  const defaultClasses = "border-white dark:border-bunker-950";
+
+  let dividerColors = defaultClasses;
+
+  if (isDragging) {
+    dividerColors = draggingClasses;
+  } else if (isHoveringDivider) {
+    dividerColors = hoverClasses;
+  }
 
   const dividerClassName = `${dividerBase} ${dividerColors}`;
 

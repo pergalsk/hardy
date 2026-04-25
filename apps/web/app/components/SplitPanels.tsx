@@ -53,15 +53,22 @@ export default function SplitPanels({
   };
 
   const dividerBase =
-    "w-[5px] cursor-ew-resize bg-slate-200 dark:bg-bunker-600 transition-colors duration-300 border-l-[2px] border-r-[2px] dark:border-bunker-950 border-white";
-  const dividerHover =
-    "bg-slate-400 dark:bg-bunker-500 border-slate-400 dark:border-bunker-500";
-  const dividerActive =
-    "bg-slate-500 dark:bg-bunker-500 border-slate-500 dark:border-bunker-500";
+    "w-[5px] cursor-ew-resize bg-slate-200 dark:bg-bunker-400 transition-colors duration-300 border-l-[2px] border-r-[2px]";
 
-  const dividerClassName = `${dividerBase} ${
-    isDragging ? dividerActive : isHoveringDivider ? dividerHover : ""
-  }`;
+  const hoverClasses = "bg-slate-200 border-slate-200 dark:border-bunker-400";
+  const draggingClasses =
+    "bg-slate-400 border-slate-400 dark:bg-bunker-100 dark:border-bunker-100";
+  const defaultClasses = "border-white dark:border-bunker-950";
+
+  let dividerColors = defaultClasses;
+
+  if (isDragging) {
+    dividerColors = draggingClasses;
+  } else if (isHoveringDivider) {
+    dividerColors = hoverClasses;
+  }
+
+  const dividerClassName = `${dividerBase} ${dividerColors}`;
 
   return (
     <div ref={containerRef} className="flex h-full w-full items-stretch">

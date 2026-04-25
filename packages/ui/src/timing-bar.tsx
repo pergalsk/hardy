@@ -23,7 +23,7 @@ export interface TimingBarProps {
 }
 
 const BAR_H = 32;
-const BAR_RADIUS = 6;
+const BAR_RADIUS = 3;
 const ROW_SPACING = 30;
 const TOP_PAD = 4;
 const LABEL_AREA = 190;
@@ -137,8 +137,8 @@ export function TimingBar({
                   fillOpacity={0}
                   pointerEvents="all"
                 />
-                <line x1={centerX} y1={barY + BAR_H} x2={centerX} y2={ly} stroke={seg.color} strokeWidth="1.5" />
-                <line x1={centerX} y1={ly} x2={barW} y2={ly} stroke={seg.color} strokeWidth="1.5" />
+                <line x1={centerX} y1={barY + BAR_H} x2={centerX} y2={ly} stroke={seg.color} strokeWidth="1.5" strokeDasharray="8 4" strokeOpacity={0.35} />
+                <line x1={centerX} y1={ly} x2={barW} y2={ly} stroke={seg.color} strokeWidth="1.5" strokeDasharray="8 4" strokeOpacity={0.35} />
                 <text
                   x={barW + LABEL_GAP}
                   y={ly}

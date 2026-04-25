@@ -7,10 +7,10 @@
 // import { Button } from "@repo/ui/button";
 
 import React from "react";
-import { Header } from "./components/Header";
+import { Header } from "./features/header";
 import { MainContent } from "./components/MainContent";
-import { Footer } from "./components/Footer";
-import { ToastList } from "./components/ToastList";
+import { Footer } from "./features/footer";
+import { ToastList } from "./features/notifications";
 
 export default function Page(): React.JSX.Element {
   return (

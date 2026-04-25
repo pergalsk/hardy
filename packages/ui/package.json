@@ -24,7 +24,9 @@
     "./status": "./src/status.tsx",
     "./toggle-switch": "./src/toggle-switch.tsx",
     "./date-time": "./src/date-time.tsx",
-    "./url": "./src/url.tsx"
+    "./url": "./src/url.tsx",
+    "./timing-bar": "./src/timing-bar.tsx",
+    "./timing-table": "./src/timing-table.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

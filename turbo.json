@@ -21,6 +21,10 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "test": {
+      "outputs": ["coverage/**"],
+      "inputs": ["src/**", "vitest.config.ts"]
     }
   }
 }

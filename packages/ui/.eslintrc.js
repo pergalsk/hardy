@@ -7,4 +7,13 @@ module.exports = {
     project: "./tsconfig.lint.json",
     tsconfigRootDir: __dirname,
   },
+  overrides: [
+    {
+      files: ["**/*.test.ts", "**/*.test.tsx", "**/test-setup.ts"],
+      env: { es2020: true },
+      rules: {
+        "no-redeclare": "off",
+      },
+    },
+  ],
 };

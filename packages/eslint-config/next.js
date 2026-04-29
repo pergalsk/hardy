@@ -31,5 +31,12 @@ module.exports = {
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "warn",
   },
-  overrides: [{ files: ["*.js?(x)", "*.ts?(x)"] }],
+  overrides: [
+    { files: ["*.js?(x)", "*.ts?(x)"] },
+    {
+      files: ["**/*.test.ts", "**/*.test.tsx"],
+      plugins: ["vitest"],
+      extends: ["plugin:vitest/legacy-recommended"],
+    },
+  ],
 };

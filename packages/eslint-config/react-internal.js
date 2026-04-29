@@ -35,5 +35,10 @@ module.exports = {
   overrides: [
     // Force ESLint to detect .tsx files
     { files: ["*.js?(x)", "*.ts?(x)"] },
+    {
+      files: ["**/*.test.ts", "**/*.test.tsx"],
+      plugins: ["vitest"],
+      extends: ["plugin:vitest/legacy-recommended"],
+    },
   ],
 };

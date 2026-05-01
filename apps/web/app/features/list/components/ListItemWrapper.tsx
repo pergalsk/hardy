@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ListItemWrapper({
+function ListItemWrapper({
   selected = false,
   pinned = false,
   error = false,
@@ -36,3 +36,5 @@ export default function ListItemWrapper({
     </div>
   );
 }
+
+export default React.memo(ListItemWrapper);

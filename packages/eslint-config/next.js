@@ -26,6 +26,7 @@ module.exports = {
     ".*.js",
     "node_modules/",
     "out/",
+    "coverage/",
   ],
   rules: {
     "no-unused-vars": "off",

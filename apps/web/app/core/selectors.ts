@@ -26,25 +26,16 @@ export const selectRawEntry = (state: AppState) => {
   return entries[rowId] ?? null;
 };
 
-export const selectFileEntries = (state: AppState) => {
-  const file = selectFile(state);
-  const entries = file?.data?.log?.entries;
-
-  if (!Array.isArray(entries)) {
-    return [];
-  }
-
-  return entries.map((entry: any, index: number) => ({
-    ...entry,
-    $$id: index,
-  }));
-};
-
 export function selectEntry(state: AppState) {
-  const entries = selectFileEntries(state);
+  const entries = selectFile(state)?.data?.log?.entries;
   const rowId = selectRowId(state);
 
-  return entries.find((entry: any) => entry.$$id === rowId);
+  if (!Array.isArray(entries) || rowId == null) return undefined;
+
+  const entry = entries[rowId];
+  if (entry == null) return undefined;
+
+  return { ...entry, $$id: rowId };
 }
 
 export const selectFileSize = (state: AppState) => {

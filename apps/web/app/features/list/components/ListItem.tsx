@@ -1,6 +1,4 @@
-import type React from "react";
-import { useAppStore } from "../../../store/store";
-import { selectPinnedIds, selectRowId } from "../selectors";
+import React from "react";
 import { setRowId, togglePinnedRow } from "../actions";
 import { Method } from "@repo/ui/method";
 import { Url } from "@repo/ui/url";
@@ -13,10 +11,15 @@ import ListItemWrapper from "./ListItemWrapper";
 
 const Separator = () => <div className="text-mirage-600">|</div>;
 
-export function ListItem({ item }: { item: any }): React.JSX.Element {
-  const rowId = useAppStore(selectRowId);
-  const pinnedIds = useAppStore(selectPinnedIds);
-
+function ListItemComponent({
+  item,
+  isSelected,
+  isPinned,
+}: {
+  item: any;
+  isSelected: boolean;
+  isPinned: boolean;
+}): React.JSX.Element {
   const {
     pageref,
     status,
@@ -30,8 +33,6 @@ export function ListItem({ item }: { item: any }): React.JSX.Element {
   } = item;
 
   const isError = parseInt(status) <= 599 && parseInt(status) >= 400;
-  const isPinned = pinnedIds.has($$id);
-  const isSelected = $$id === rowId;
 
   const highlightNum = false;
   const numClasses = highlightNum
@@ -76,3 +77,5 @@ export function ListItem({ item }: { item: any }): React.JSX.Element {
     </ListItemWrapper>
   );
 }
+
+export const ListItem = React.memo(ListItemComponent);

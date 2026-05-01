@@ -1,9 +1,14 @@
+import { useAppStore } from "../../../store/store";
+import { selectPinnedIds, selectRowId } from "../selectors";
 import { Collapsible } from "../../../components/Collapsible";
 import { HiddenCount } from "./HiddenCount";
 import { ListItem } from "./ListItem";
 import { PanelList } from "./PanelList";
 
 export function HiddenItemsGroup({ group }: { group: any[] }) {
+  const rowId = useAppStore(selectRowId);
+  const pinnedIds = useAppStore(selectPinnedIds);
+
   return (
     <Collapsible
       handler={<HiddenCount count={group.length} />}
@@ -12,8 +17,13 @@ export function HiddenItemsGroup({ group }: { group: any[] }) {
       sticky={false}
     >
       <PanelList>
-        {group.map((item, index) => (
-          <ListItem item={item} key={index} />
+        {group.map((item) => (
+          <ListItem
+            item={item}
+            key={item.$$id}
+            isSelected={rowId === item.$$id}
+            isPinned={pinnedIds.has(item.$$id)}
+          />
         ))}
       </PanelList>
     </Collapsible>

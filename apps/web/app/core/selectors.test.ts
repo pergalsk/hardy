@@ -16,7 +16,6 @@ import {
   selectHarData,
   selectRawEntries,
   selectRawEntry,
-  selectFileEntries,
   selectEntry,
   selectFileSize,
   selectEntriesNum,
@@ -107,23 +106,6 @@ describe("selectRawEntry", () => {
       ui: { ...initialUiState, fileId: "f1", rowId: 1 },
     });
     expect(selectRawEntry(state)).toEqual({ request: { url: "b" } });
-  });
-});
-
-describe("selectFileEntries", () => {
-  it("returns empty array when no file selected", () => {
-    expect(selectFileEntries(makeState())).toEqual([]);
-  });
-
-  it("maps entries with $$id index", () => {
-    const entries = [{ request: { url: "a" } }, { request: { url: "b" } }];
-    const state = makeState({
-      files: [makeFile({ fileId: "f1", data: { log: { entries } } })],
-      ui: { ...initialUiState, fileId: "f1" },
-    });
-    const result = selectFileEntries(state);
-    expect(result[0]).toMatchObject({ request: { url: "a" }, $$id: 0 });
-    expect(result[1]).toMatchObject({ request: { url: "b" }, $$id: 1 });
   });
 });
 

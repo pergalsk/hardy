@@ -8,3 +8,4 @@ export {
   type HostContext,
   type HostToast,
 } from "./HostContext";
+export { useFormatterSelection } from "./useFormatterSelection";

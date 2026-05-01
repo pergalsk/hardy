@@ -60,7 +60,7 @@ const resolveVectors =
  * @param filter
  * @returns map method
  */
-export const markVisible = ({ fields }: Filter) => {
+export const markVisible = (fields: Filter["fields"]) => {
   const tokenVectors = getTokenVectors(fields);
 
   return (listItem: any): any => {
@@ -84,7 +84,7 @@ export const markVisible = ({ fields }: Filter) => {
  * @param filter
  * @returns reduce method
  */
-export const reduceData = ({ fields }: Filter) => {
+export const reduceData = (fields: Filter["fields"]) => {
   const tokenVectors = getTokenVectors(fields);
 
   return (acc: any, listItem: any, index: number, arr: any[]): any => {

@@ -2,10 +2,10 @@ import { describe, it, expect } from "vitest";
 import { markVisible } from "./filter";
 
 const makeFilter = (fields = {}) => ({
-  visible: true,
-  active: true,
-  count: 0,
-  fields: { url: "", method: "", status: "", ...fields },
+  url: "",
+  method: "",
+  status: "",
+  ...fields,
 });
 
 const makeItem = (overrides = {}) => ({

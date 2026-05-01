@@ -3,7 +3,7 @@ import type React from "react";
 import { useEffect, useMemo } from "react";
 import { useAppStore } from "../../../store/store";
 import {
-  selectFilter,
+  selectFilterFields,
   selectPinnedIds,
   selectShowPinnedOnly,
   selectSorting,
@@ -56,7 +56,7 @@ function sortItemsArray(
 }
 
 export function List(): React.JSX.Element {
-  const filter = useAppStore(selectFilter);
+  const filterFields = useAppStore(selectFilterFields);
   const rawEntries = useAppStore(selectRawEntries);
   const { hideEmptyPages } = useAppStore(selectSettings);
   const sorting = useAppStore(selectSorting);
@@ -71,7 +71,7 @@ export function List(): React.JSX.Element {
       ? rawListData.filter((entry: any) => pinnedIds.has(entry.$$id))
       : rawListData;
 
-  const entriesWithVisibility = rawListPinned.map(markVisible(filter));
+  const entriesWithVisibility = rawListPinned.map(markVisible(filterFields));
   const visibleEntries = entriesWithVisibility.filter(
     (entry: any) => !entry.$$hidden,
   );

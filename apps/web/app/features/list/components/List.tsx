@@ -66,30 +66,59 @@ export function List(): React.JSX.Element {
 
   const rawListData = useMemo(() => deriveListData(rawEntries), [rawEntries]);
 
-  const rawListPinned =
-    showPinnedOnly && pinnedIds.size > 0
-      ? rawListData.filter((entry: any) => pinnedIds.has(entry.$$id))
-      : rawListData;
+  const rawListPinned = useMemo(
+    () =>
+      showPinnedOnly && pinnedIds.size > 0
+        ? rawListData.filter((entry: any) => pinnedIds.has(entry.$$id))
+        : rawListData,
+    [rawListData, showPinnedOnly, pinnedIds],
+  );
 
-  const entriesWithVisibility = rawListPinned.map(markVisible(filterFields));
-  const visibleEntries = entriesWithVisibility.filter(
-    (entry: any) => !entry.$$hidden,
+  const entriesWithVisibility = useMemo(
+    () => rawListPinned.map(markVisible(filterFields)),
+    [rawListPinned, filterFields],
+  );
+
+  const visibleEntries = useMemo(
+    () => entriesWithVisibility.filter((entry: any) => !entry.$$hidden),
+    [entriesWithVisibility],
   );
 
   const sortByField = sorting.sortBy;
   const sortDirection = sorting.sortDir || "asc";
   const sortInsidePages = !!sorting.sortInsidePages;
 
+  const sortedList = useMemo(
+    () => sortItemsArray(entriesWithVisibility, sortByField, sortDirection),
+    [entriesWithVisibility, sortByField, sortDirection],
+  );
+
+  const sortedPageGroups = useMemo(
+    () =>
+      showPages
+        ? sortInsidePages
+          ? groupByProperty(entriesWithVisibility, "pageref").map((pageGroup) =>
+              sortItemsArray(pageGroup, sortByField, sortDirection),
+            )
+          : groupByProperty(
+              sortItemsArray(entriesWithVisibility, sortByField, sortDirection),
+              "pageref",
+            )
+        : null,
+    [
+      entriesWithVisibility,
+      sortByField,
+      sortDirection,
+      sortInsidePages,
+      showPages,
+    ],
+  );
+
   useEffect(() => {
     setFilteredCount(visibleEntries.length);
   }, [visibleEntries.length]);
 
   if (!showPages) {
-    const sortedList = sortItemsArray(
-      entriesWithVisibility,
-      sortByField,
-      sortDirection,
-    );
     return (
       <PanelList rightGap>
         <ListItems items={sortedList} />
@@ -100,37 +129,24 @@ export function List(): React.JSX.Element {
   if (sortInsidePages) {
     return (
       <PanelList rightGap>
-        {groupByProperty(entriesWithVisibility, "pageref").map(
-          (pageGroup, groupIndex) => {
-            const pageHasVisible = pageGroup.some((entry) => !entry.$$hidden);
-            if (hideEmptyPages && !pageHasVisible) return null;
-
-            const sortedPageItems = sortItemsArray(
-              pageGroup,
-              sortByField,
-              sortDirection,
-            );
-            return <PageRefGroup key={groupIndex} items={sortedPageItems} />;
-          },
-        )}
+        {sortedPageGroups!.map((sortedPageItems, groupIndex) => {
+          const pageHasVisible = sortedPageItems.some(
+            (entry) => !entry.$$hidden,
+          );
+          if (hideEmptyPages && !pageHasVisible) return null;
+          return <PageRefGroup key={groupIndex} items={sortedPageItems} />;
+        })}
       </PanelList>
     );
   }
 
-  const globallySorted = sortItemsArray(
-    entriesWithVisibility,
-    sortByField,
-    sortDirection,
-  );
   return (
     <PanelList rightGap>
-      {groupByProperty(globallySorted, "pageref").map(
-        (pageGroup, groupIndex) => {
-          if (hideEmptyPages && !pageGroup.some((entry) => !entry.$$hidden))
-            return null;
-          return <PageRefGroup key={groupIndex} items={pageGroup} />;
-        },
-      )}
+      {sortedPageGroups!.map((pageGroup, groupIndex) => {
+        if (hideEmptyPages && !pageGroup.some((entry) => !entry.$$hidden))
+          return null;
+        return <PageRefGroup key={groupIndex} items={pageGroup} />;
+      })}
     </PanelList>
   );
 }

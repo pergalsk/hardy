@@ -11,6 +11,8 @@ import { getUrlParts } from "../../../core/helpers/getUrlParts";
 import { Time } from "../../detail/components/Time";
 import ListItemWrapper from "./ListItemWrapper";
 
+const Separator = () => <div className="text-mirage-600">|</div>;
+
 export function ListItem({ item }: { item: any }): React.JSX.Element {
   const rowId = useAppStore(selectRowId);
   const pinnedIds = useAppStore(selectPinnedIds);
@@ -39,8 +41,6 @@ export function ListItem({ item }: { item: any }): React.JSX.Element {
   const pinnedClasses = isPinned
     ? "iconify material-symbols--bookmark-check-rounded text-lg text-yellow-600"
     : "iconify material-symbols--bookmark-outline-rounded hover:text-accent-700 dark:text-mirage-200 dark:hover:text-accent-200 text-lg";
-
-  const Separator = () => <div className="text-mirage-600">|</div>;
 
   return (
     <ListItemWrapper

@@ -40,4 +40,8 @@ next-env.d.ts
 .DS_Store
 *.pem
 _stuff
+
+
+# AI
 .claude/
+REPORT.md

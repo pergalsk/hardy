@@ -1,0 +1,19 @@
+{
+  "name": "@repo/har-types",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/har-format": "^1.2.16",
+    "@types/node": "^20.11.24",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3"
+  }
+}

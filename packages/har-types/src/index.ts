@@ -20,3 +20,5 @@ export type {
   CacheDetails,
   Timings,
 } from './types';
+
+export { isHar, hasPostDataText, hasPostDataParams } from './guards';

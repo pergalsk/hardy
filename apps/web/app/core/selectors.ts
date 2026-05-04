@@ -1,3 +1,4 @@
+import type { Log, Entry } from "@repo/har-types";
 import { AppState } from "../store/store";
 import { selectFiles, selectFileId } from "../features/file/selectors";
 import { selectRowId } from "../features/list/selectors";
@@ -13,20 +14,20 @@ export const selectFile = (state: AppState) => {
   return files.find((file) => file.fileId === fileId) || null;
 };
 
-export const selectHarData = (state: AppState) =>
-  selectFile(state)?.data?.log || null;
+export const selectHarData = (state: AppState): Log | null =>
+  selectFile(state)?.data?.log ?? null;
 
-export const selectRawEntries = (state: AppState) =>
+export const selectRawEntries = (state: AppState): Entry[] | null =>
   selectFile(state)?.data?.log?.entries ?? null;
 
-export const selectRawEntry = (state: AppState) => {
+export const selectRawEntry = (state: AppState): Entry | null => {
   const entries = selectFile(state)?.data?.log?.entries;
   const rowId = selectRowId(state);
   if (!Array.isArray(entries) || rowId == null) return null;
   return entries[rowId] ?? null;
 };
 
-export function selectEntry(state: AppState) {
+export function selectEntry(state: AppState): (Entry & { $$id: number }) | undefined {
   const entries = selectFile(state)?.data?.log?.entries;
   const rowId = selectRowId(state);
 

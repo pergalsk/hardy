@@ -1,4 +1,5 @@
 import type React from "react";
+import type { Har } from "@repo/har-types";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { JsonViewerSettings } from "@repo/formatter-core";
@@ -11,7 +12,7 @@ export type File = {
   fileId: string;
   name: string;
   size: number;
-  data: any;
+  data: Har | null;
 };
 
 export type Filter = {

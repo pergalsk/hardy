@@ -11,6 +11,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@repo/har-types": "*",
     "@repo/formatter-core": "*",
     "@repo/formatter-ui": "*",
     "@repo/plugin-headers-plain": "*",

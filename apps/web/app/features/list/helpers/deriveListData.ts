@@ -1,4 +1,6 @@
-export function deriveListData(entries: any[]): any[] {
+import type { Entry } from "@repo/har-types";
+
+export function deriveListData(entries: Entry[] | null): any[] {
   if (!Array.isArray(entries)) return [];
 
   return entries.map((entry: any, index: number) => {

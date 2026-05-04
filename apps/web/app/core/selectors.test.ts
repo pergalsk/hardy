@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 
 vi.mock("../plugins.config", () => ({}));
 
+import type { Har } from "@repo/har-types";
 import type { AppState } from "../store/store";
 import {
   initialUiState,
@@ -33,7 +34,7 @@ const makeState = (overrides: Partial<AppState> = {}): AppState => ({
   ...overrides,
 });
 
-const makeFile = (overrides: Partial<{ fileId: string; name: string; size: number; data: any }> = {}) => ({
+const makeFile = (overrides: Partial<{ fileId: string; name: string; size: number; data: Har | null }> = {}) => ({
   fileId: "file-1",
   name: "test.har",
   size: 1024,
@@ -72,7 +73,7 @@ describe("selectHarData", () => {
   it("returns log from selected file", () => {
     const log = { entries: [], pages: [] };
     const state = makeState({
-      files: [makeFile({ fileId: "f1", data: { log } })],
+      files: [makeFile({ fileId: "f1", data: { log } as unknown as Har })],
       ui: { ...initialUiState, fileId: "f1" },
     });
     expect(selectHarData(state)).toBe(log);
@@ -87,7 +88,7 @@ describe("selectRawEntries", () => {
   it("returns entries array from selected file", () => {
     const entries = [{ request: {} }, { request: {} }];
     const state = makeState({
-      files: [makeFile({ fileId: "f1", data: { log: { entries } } })],
+      files: [makeFile({ fileId: "f1", data: { log: { entries } } as unknown as Har })],
       ui: { ...initialUiState, fileId: "f1" },
     });
     expect(selectRawEntries(state)).toBe(entries);
@@ -102,7 +103,7 @@ describe("selectRawEntry", () => {
   it("returns entry at rowId index", () => {
     const entries = [{ request: { url: "a" } }, { request: { url: "b" } }];
     const state = makeState({
-      files: [makeFile({ fileId: "f1", data: { log: { entries } } })],
+      files: [makeFile({ fileId: "f1", data: { log: { entries } } as unknown as Har })],
       ui: { ...initialUiState, fileId: "f1", rowId: 1 },
     });
     expect(selectRawEntry(state)).toEqual({ request: { url: "b" } });
@@ -117,7 +118,7 @@ describe("selectEntry", () => {
   it("returns entry matching rowId", () => {
     const entries = [{ request: { url: "a" } }, { request: { url: "b" } }];
     const state = makeState({
-      files: [makeFile({ fileId: "f1", data: { log: { entries } } })],
+      files: [makeFile({ fileId: "f1", data: { log: { entries } } as unknown as Har })],
       ui: { ...initialUiState, fileId: "f1", rowId: 0 },
     });
     expect(selectEntry(state)).toMatchObject({ request: { url: "a" }, $$id: 0 });
@@ -146,7 +147,7 @@ describe("selectEntriesNum", () => {
   it("returns entry count", () => {
     const entries = [{}, {}, {}];
     const state = makeState({
-      files: [makeFile({ fileId: "f1", data: { log: { entries } } })],
+      files: [makeFile({ fileId: "f1", data: { log: { entries } } as unknown as Har })],
       ui: { ...initialUiState, fileId: "f1" },
     });
     expect(selectEntriesNum(state)).toBe(3);

@@ -1,5 +1,6 @@
 import type React from "react";
 import { nanoid } from "nanoid";
+import { isHar } from "@repo/har-types";
 import { readFileData } from "./readFileData";
 import { addFile, setFileId } from "../actions";
 import { setRowId } from "../../list/actions";
@@ -11,7 +12,13 @@ export async function openFile(file: File, message: string | React.JSX.Element) 
 
   try {
     const rawData = await readFileData(file);
-    const data = JSON.parse(rawData);
+    const data: unknown = JSON.parse(rawData);
+
+    if (!isHar(data)) {
+      addToast({ type: "alert", message });
+      return;
+    }
+
     addFile({ fileId, name, size, data });
     setFileId(fileId);
     setRowId(0);

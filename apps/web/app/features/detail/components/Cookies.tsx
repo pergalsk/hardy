@@ -1,10 +1,10 @@
 import type React from "react";
+import type { Cookie } from "@repo/har-types";
 import { DateTime } from "@repo/ui/date-time";
 import { TrueFalseMark } from "@repo/ui/true-false-mark";
 import { formatDateTime } from "../../../core/helpers/formatDateTime";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function Cookies({ data }: { data: any }): React.JSX.Element {
+export function Cookies({ data }: { data: Cookie[] }): React.JSX.Element {
   return (
     <table className="w-full text-sm">
       <thead className="dark:bg-bunker-950 dark:border-bunker-400 sticky top-0 border-b border-slate-100 bg-slate-50 text-xs font-bold uppercase">
@@ -21,8 +21,7 @@ export function Cookies({ data }: { data: any }): React.JSX.Element {
       </thead>
 
       <tbody>
-        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-        {data.map((cookie: any, index: number) => {
+        {data.map((cookie, index: number) => {
           const {
             name,
             value,
@@ -44,14 +43,14 @@ export function Cookies({ data }: { data: any }): React.JSX.Element {
               <td className="break-all px-2 py-1">{path ?? ""}</td>
               <td className="break-all px-2 py-1">{domain ?? ""}</td>
               <td className="px-2 py-1 text-center">
-                <DateTime value={formatDateTime(expires, false)} />
+                {expires != null && <DateTime value={formatDateTime(expires, false)} />}
               </td>
               <td className="px-2 py-1 text-center">{sameSite ?? ""}</td>
               <td className="px-2 py-1 text-center">
-                <TrueFalseMark value={httpOnly} />
+                <TrueFalseMark value={httpOnly ?? false} />
               </td>
               <td className="p-2 text-center">
-                <TrueFalseMark value={secure} />
+                <TrueFalseMark value={secure ?? false} />
               </td>
             </tr>
           );

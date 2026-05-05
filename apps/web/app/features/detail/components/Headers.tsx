@@ -1,12 +1,12 @@
 import type React from "react";
+import type { ReqTabData, ResTabData } from "../types";
 import { headersFormatters } from "@repo/formatter-core/registry";
 import { useFormatterSelection } from "@repo/formatter-core";
 import { Collapsible } from "../../../components/Collapsible";
 import { CollapsibleTitle } from "../../../components/CollapsibleTitle";
 import { NoContent } from "@repo/ui/no-content";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function Headers({ data }: { data: any }) {
+export function Headers({ data }: { data: ReqTabData | ResTabData }) {
   const { headers, headersSize } = data;
 
   const formatterList = headersFormatters.getFormatters("headers");

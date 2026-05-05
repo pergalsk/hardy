@@ -1,11 +1,11 @@
 import type React from "react";
+import type { CooTabData } from "../types";
 import { Collapsible } from "../../../components/Collapsible";
 import { CollapsibleTitle } from "../../../components/CollapsibleTitle";
 import { Cookies } from "./Cookies";
 import { NoContent } from "@repo/ui/no-content";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function CooTab({ data }: { data: any }): React.JSX.Element {
+export function CooTab({ data }: { data: CooTabData }): React.JSX.Element {
   const { cookies } = data;
   const { request, response } = cookies;
 

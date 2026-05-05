@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import type { ReqTabData, ResTabData, CooTabData, TimTabData } from "../types";
 import { useAppStore } from "../../../store/store";
 import { selectTab } from "../selectors";
 import { selectRawEntry } from "../../../core/selectors";
@@ -21,10 +22,10 @@ export function Detail(): React.JSX.Element {
       <DetailCommon />
       <DetailButtons />
       <DetailSegment>
-        {tab === "REQ" && <ReqTab data={tabData} />}
-        {tab === "RES" && <ResTab data={tabData} />}
-        {tab === "COO" && <CooTab data={tabData} />}
-        {tab === "TIM" && <TimTab data={tabData} />}
+        {tab === "REQ" && tabData && <ReqTab data={tabData as ReqTabData} />}
+        {tab === "RES" && tabData && <ResTab data={tabData as ResTabData} />}
+        {tab === "COO" && tabData && <CooTab data={tabData as CooTabData} />}
+        {tab === "TIM" && tabData && <TimTab data={tabData as TimTabData} />}
       </DetailSegment>
     </>
   );

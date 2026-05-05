@@ -1,8 +1,8 @@
+import type { ReqTabData } from "../types";
 import { Headers } from "./Headers";
 import { Content } from "./Content";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function ReqTab({ data }: { data: any }) {
+export function ReqTab({ data }: { data: ReqTabData }) {
   return (
     <div className="mr-2 flex flex-col gap-2">
       <Headers data={data} />

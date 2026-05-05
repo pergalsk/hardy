@@ -1,4 +1,5 @@
 import type React from "react";
+import type { ReqTabData, ResTabData } from "../types";
 import { findHeader } from "../../../core/helpers/findHeader";
 import { parseMimeType } from "../../../core/helpers/parseMimeType";
 import { contentValueFormatters } from "@repo/formatter-core/registry";
@@ -8,12 +9,10 @@ import { TextContent } from "@repo/ui/text-content";
 import { CollapsibleTitle } from "../../../components/CollapsibleTitle";
 import { Collapsible } from "../../../components/Collapsible";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function Content({ data }: { data: any }) {
+export function Content({ data }: { data: ReqTabData | ResTabData }) {
   const { headers, content, bodySize } = data;
 
-  const contentType: { name: string; value: string } =
-    headers?.find(findHeader("Content-Type")) || {};
+  const contentType = headers.find(findHeader("Content-Type")) ?? { name: "", value: "" };
 
   const mimeType = parseMimeType(contentType.value);
 
@@ -26,7 +25,7 @@ export function Content({ data }: { data: any }) {
   const info = [contentType.value, size].filter(Boolean).join(" | ");
   const title = <CollapsibleTitle title={"Content"} info={info} />;
 
-  let ContentValue = <TextContent data={content} />;
+  let ContentValue = <TextContent data={content ?? ""} />;
 
   if (!content) {
     ContentValue = <NoContent showIcon={false}>No Content</NoContent>;

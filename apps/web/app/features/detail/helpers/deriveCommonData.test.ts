@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import type { Entry } from "@repo/har-types";
 import { deriveCommonData } from "./deriveCommonData";
 
 const makeEntry = (overrides = {}) => ({
@@ -17,7 +18,7 @@ describe("deriveCommonData", () => {
   });
 
   it("extracts expected fields from a valid entry", () => {
-    const result = deriveCommonData(makeEntry());
+    const result = deriveCommonData(makeEntry() as unknown as Entry);
     expect(result).toEqual({
       status: 200,
       statusText: "OK",
@@ -31,10 +32,9 @@ describe("deriveCommonData", () => {
   });
 
   it("passes through undefined optional fields", () => {
-    const entry = makeEntry();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    delete (entry as any).serverIPAddress;
+    const entry = makeEntry() as unknown as Entry;
+    delete entry.serverIPAddress;
     const result = deriveCommonData(entry);
-    expect(result.serverIPAddress).toBeUndefined();
+    expect(result?.serverIPAddress).toBeUndefined();
   });
 });

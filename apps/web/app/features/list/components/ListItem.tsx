@@ -1,5 +1,6 @@
 import React from "react";
 import { setRowId, togglePinnedRow } from "../actions";
+import type { ListItem as ListItemType } from "../types";
 import { Method } from "@repo/ui/method";
 import { Url } from "@repo/ui/url";
 import { Status } from "@repo/ui/status";
@@ -16,7 +17,7 @@ function ListItemComponent({
   isSelected,
   isPinned,
 }: {
-  item: any;
+  item: ListItemType;
   isSelected: boolean;
   isPinned: boolean;
 }): React.JSX.Element {
@@ -32,7 +33,7 @@ function ListItemComponent({
     $$hidden,
   } = item;
 
-  const isError = parseInt(status) <= 599 && parseInt(status) >= 400;
+  const isError = status <= 599 && status >= 400;
 
   const highlightNum = false;
   const numClasses = highlightNum

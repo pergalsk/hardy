@@ -4,8 +4,9 @@ import { Collapsible } from "../../../components/Collapsible";
 import { HiddenCount } from "./HiddenCount";
 import { ListItem } from "./ListItem";
 import { PanelList } from "./PanelList";
+import type { ListItem as ListItemType } from "../types";
 
-export function HiddenItemsGroup({ group }: { group: any[] }) {
+export function HiddenItemsGroup({ group }: { group: ListItemType[] }) {
   const rowId = useAppStore(selectRowId);
   const pinnedIds = useAppStore(selectPinnedIds);
 

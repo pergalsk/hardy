@@ -1,4 +1,5 @@
 import { Filter } from "../../../store/store";
+import type { ListItem } from "../types";
 
 /**
  * Returns list of field name and token pairs
@@ -40,18 +41,19 @@ const pairTokenWithField = (fieldName: string) => (token: string) => [
   token,
 ];
 
-const resolveToken = (str: string, token: string) =>
-  str.toString().toLowerCase().includes(token.toLocaleLowerCase());
+const resolveToken = (str: string | number | boolean | undefined, token: string) =>
+  String(str ?? "").toLowerCase().includes(token.toLocaleLowerCase());
 
 const resolveVectors =
-  (listItem: any) => (acc: boolean, tokenVector: [string, string]) => {
+  (listItem: ListItem) => (acc: boolean, tokenVector: [string, string]) => {
     const [fieldName, token] = tokenVector;
+    const value = listItem[fieldName as keyof ListItem];
 
     if (token.startsWith("-") && token.length > 1) {
-      return acc && !resolveToken(listItem[fieldName], token.substring(1));
+      return acc && !resolveToken(value, token.substring(1));
     }
 
-    return acc && resolveToken(listItem[fieldName], token);
+    return acc && resolveToken(value, token);
   };
 
 /**
@@ -63,7 +65,7 @@ const resolveVectors =
 export const markVisible = (fields: Filter["fields"]) => {
   const tokenVectors = getTokenVectors(fields);
 
-  return (listItem: any): any => {
+  return (listItem: ListItem): ListItem => {
     const shouldBeVisible =
       tokenVectors.length < 1 ||
       tokenVectors.reduce(resolveVectors(listItem), true);

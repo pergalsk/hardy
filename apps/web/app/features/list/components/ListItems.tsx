@@ -4,15 +4,18 @@ import { useAppStore } from "../../../store/store";
 import { selectPinnedIds, selectRowId } from "../selectors";
 import { HiddenItemsGroup } from "./HiddenItemsGroup";
 import { ListItem } from "./ListItem";
+import type { ListItem as ListItemType } from "../types";
 
-export function ListItems({ items }: { items: any[] }) {
+export function ListItems({ items }: { items: ListItemType[] }) {
   const { groupHidden, excludeHidden } = useAppStore(selectSettings);
   const rowId = useAppStore(selectRowId);
   const pinnedIds = useAppStore(selectPinnedIds);
 
   return groupByProperty(items, "$$hidden").map((group) => {
-    if (groupHidden && !excludeHidden && group[0].$$hidden) {
-      return <HiddenItemsGroup key={"hidden-" + group[0].$$id} group={group} />;
+    const [firstItem] = group;
+    if (!firstItem) return null;
+    if (groupHidden && !excludeHidden && firstItem.$$hidden) {
+      return <HiddenItemsGroup key={"hidden-" + firstItem.$$id} group={group} />;
     }
 
     return group.map((item) => {

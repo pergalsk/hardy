@@ -17,17 +17,18 @@ import { groupByProperty } from "../helpers/groupByProperty";
 import { PanelList } from "./PanelList";
 import { ListItems } from "./ListItems";
 import { PageRefGroup } from "./PageRefGroup";
+import type { ListItem, SortField } from "../types";
 
 function sortItemsArray(
-  items: any[],
-  sortBy?: string | undefined,
+  items: ListItem[],
+  sortBy?: SortField | undefined,
   sortDirection: "asc" | "desc" = "asc",
 ) {
   if (!sortBy) return items.slice();
 
   const directionFactor = sortDirection === "asc" ? 1 : -1;
 
-  const compareValues = (a: any, b: any) => {
+  const compareValues = (a: ListItem, b: ListItem) => {
     const va = a[sortBy];
     const vb = b[sortBy];
 
@@ -69,7 +70,7 @@ export function List(): React.JSX.Element {
   const rawListPinned = useMemo(
     () =>
       showPinnedOnly && pinnedIds.size > 0
-        ? rawListData.filter((entry: any) => pinnedIds.has(entry.$$id))
+        ? rawListData.filter((entry) => pinnedIds.has(entry.$$id))
         : rawListData,
     [rawListData, showPinnedOnly, pinnedIds],
   );
@@ -80,7 +81,7 @@ export function List(): React.JSX.Element {
   );
 
   const visibleEntries = useMemo(
-    () => entriesWithVisibility.filter((entry: any) => !entry.$$hidden),
+    () => entriesWithVisibility.filter((entry) => !entry.$$hidden),
     [entriesWithVisibility],
   );
 

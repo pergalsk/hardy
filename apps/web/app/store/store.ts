@@ -1,5 +1,6 @@
 import type React from "react";
 import type { Har } from "@repo/har-types";
+import type { SortField } from "../features/list/types";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { JsonViewerSettings } from "@repo/formatter-core";
@@ -26,8 +27,10 @@ export type Filter = {
   };
 };
 
+export type { SortField };
+
 export type Sorting = {
-  sortBy?: "url" | "status" | "method" | "time" | "pageref";
+  sortBy?: SortField;
   sortDir: "asc" | "desc";
   sortInsidePages: boolean;
 };

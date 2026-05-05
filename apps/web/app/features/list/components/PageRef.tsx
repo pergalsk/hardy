@@ -7,12 +7,12 @@ export function PageRef({
   pageref,
   counts,
 }: {
-  pageref: any;
+  pageref: string | undefined;
   counts?: number;
 }) {
   const harData = useAppStore(selectHarData);
   const pages = harData?.pages || [];
-  const title = pages.find((page: any) => page.id === pageref)?.title || null;
+  const title = pages.find((page) => page.id === pageref)?.title || null;
 
   return (
     <div>

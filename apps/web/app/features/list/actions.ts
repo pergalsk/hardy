@@ -1,6 +1,7 @@
 import {
   useAppStore,
   Filter,
+  SortField,
   initialFilterState,
   initialFilterFieldsState,
 } from "../../store/store";
@@ -43,7 +44,7 @@ export const setFilterFields = (newFilterFields: Filter["fields"]) =>
   }));
 
 export const setSorting = (
-  sortBy?: "url" | "status" | "method" | "time" | "pageref",
+  sortBy?: SortField,
   dir?: "asc" | "desc",
 ) =>
   useAppStore.setState((state) => {

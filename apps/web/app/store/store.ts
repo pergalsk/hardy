@@ -148,6 +148,7 @@ export const useAppStore = create<AppState>()(
   persist<AppState>(() => initialState, {
     name: "har-viewer-settings",
     // storage may be undefined during SSR; cast to any to satisfy typings
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     storage: settingsStorage as any,
     partialize: (state: AppState) => ({
       uiPersistent: state.uiPersistent,
@@ -165,5 +166,6 @@ export const useAppStore = create<AppState>()(
         ...(persistedState as Partial<AppState>).settings,
       },
     }),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any),
 );

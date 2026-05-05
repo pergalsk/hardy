@@ -3,6 +3,7 @@ import { DateTime } from "@repo/ui/date-time";
 import { TrueFalseMark } from "@repo/ui/true-false-mark";
 import { formatDateTime } from "../../../core/helpers/formatDateTime";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function Cookies({ data }: { data: any }): React.JSX.Element {
   return (
     <table className="w-full text-sm">
@@ -20,6 +21,7 @@ export function Cookies({ data }: { data: any }): React.JSX.Element {
       </thead>
 
       <tbody>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         {data.map((cookie: any, index: number) => {
           const {
             name,

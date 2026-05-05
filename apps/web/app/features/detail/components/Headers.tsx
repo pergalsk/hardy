@@ -5,6 +5,7 @@ import { Collapsible } from "../../../components/Collapsible";
 import { CollapsibleTitle } from "../../../components/CollapsibleTitle";
 import { NoContent } from "@repo/ui/no-content";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function Headers({ data }: { data: any }) {
   const { headers, headersSize } = data;
 

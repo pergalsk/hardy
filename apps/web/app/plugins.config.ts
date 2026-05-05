@@ -27,6 +27,7 @@ type Registration<T> = {
   formatters: Formatter<T>[];
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const registrations: Registration<any>[] = [
   {
     registry: contentValueFormatters as Registry<ContentValue>,
@@ -44,6 +45,7 @@ const registrations: Registration<any>[] = [
     formatters: [userAgentParseFormatter, userAgentRawFormatter],
   },
   {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     registry: detailFormatters as Registry<any>,
     key: "detail",
     formatters: [detailEnhancedFormatter, detailRawFormatter],

@@ -7,12 +7,14 @@ import { SettingItem } from "./SettingsModal";
 type Props = {
   items: SettingItem[];
   form: AppSettings;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: (key: keyof AppSettings, value?: any) => void;
 };
 
 type SettingComponentProps = {
   label: string;
   value: unknown;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: (value?: any) => void;
 };
 
@@ -97,7 +99,9 @@ export default function SettingsList({ items, form, onChange }: Props) {
         <div className="mt-1">
           <Renderer
             label={it.label}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             value={value as any}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onChange={(v: any) => onChange(it.key, v)}
           />
         </div>

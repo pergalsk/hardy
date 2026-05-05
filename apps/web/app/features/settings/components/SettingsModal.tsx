@@ -49,6 +49,7 @@ export default function SettingsModal({ open, onClose }: Props) {
     if (open) setForm(initialForm);
   }, [open, initialForm]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setFormValue = (key: keyof AppSettings, value: any) =>
     setForm((f) => ({ ...(f as AppSettings), [key]: value }) as AppSettings);
 

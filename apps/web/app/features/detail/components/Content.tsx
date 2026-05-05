@@ -8,6 +8,7 @@ import { TextContent } from "@repo/ui/text-content";
 import { CollapsibleTitle } from "../../../components/CollapsibleTitle";
 import { Collapsible } from "../../../components/Collapsible";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function Content({ data }: { data: any }) {
   const { headers, content, bodySize } = data;
 

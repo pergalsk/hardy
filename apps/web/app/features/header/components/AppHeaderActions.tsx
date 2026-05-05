@@ -121,6 +121,7 @@ export function AppHeaderActions(): React.JSX.Element {
 
           <ActionText>Detail</ActionText>
 
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {Object.entries(formatters).map(([key, formatter]: [string, any]) => (
             <ActionIcon
               key={key}

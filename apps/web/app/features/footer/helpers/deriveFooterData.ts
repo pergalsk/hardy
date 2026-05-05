@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function deriveFooterData(harData: any, fileSize: number): any {
   if (!harData) return null;
 
@@ -10,6 +11,7 @@ export function deriveFooterData(harData: any, fileSize: number): any {
     creatorVersion: creator?.version,
     entriesNum: entries?.length || 0,
     totalTime: (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       entries?.reduce((acc: number, entry: any) => acc + entry.time, 0) || 0
     ).toFixed(2),
   };

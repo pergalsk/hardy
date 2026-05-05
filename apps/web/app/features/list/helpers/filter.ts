@@ -24,6 +24,7 @@ import type { ListItem } from "../types";
 const getTokenVectors = (fields: Filter["fields"]) =>
   Object.entries(fields).reduce(resolveFields, []);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const resolveFields = (acc: any[], field: [string, string]) => {
   const [fieldName, searchPhrase] = field;
   const phraseParts: string[] = splitSearchPhrase(searchPhrase);
@@ -89,6 +90,7 @@ export const markVisible = (fields: Filter["fields"]) => {
 export const reduceData = (fields: Filter["fields"]) => {
   const tokenVectors = getTokenVectors(fields);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (acc: any, listItem: any, index: number, arr: any[]): any => {
     const shouldBeVisible =
       tokenVectors.length < 1 ||

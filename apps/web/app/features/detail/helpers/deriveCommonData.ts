@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function deriveCommonData(entry: any): any {
   if (!entry) return null;
 

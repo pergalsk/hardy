@@ -16,6 +16,7 @@ export function Collapsible({
   activeActionId = "",
   onAction = () => {},
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: any;
   title?: string | React.JSX.Element;
   handler?: React.JSX.Element;
@@ -24,6 +25,7 @@ export function Collapsible({
   disabled?: boolean;
   active?: boolean;
   sticky?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   actions?: { [id: string]: Formatter<any> } | null;
   activeActionId?: string;
   onAction?: (id: string) => void;

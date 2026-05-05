@@ -1,5 +1,6 @@
 import { TabCode } from "../../../store/store";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function deriveTabData(entry: any, tabCode: TabCode): any {
   if (!entry) return null;
 

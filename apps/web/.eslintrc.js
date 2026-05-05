@@ -7,6 +7,9 @@ module.exports = {
     project: true,
   },
   ignorePatterns: ["out/", ".next/"],
+  rules: {
+    "@typescript-eslint/no-explicit-any": "error",
+  },
   overrides: [
     {
       files: ["**/*.test.ts", "**/*.test.tsx"],

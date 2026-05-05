@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function parseJsonData(str: string): any {
   if (typeof str !== "string" || !str.length) {
     return null;

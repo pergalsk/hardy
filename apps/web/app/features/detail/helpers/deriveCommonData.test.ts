@@ -32,6 +32,7 @@ describe("deriveCommonData", () => {
 
   it("passes through undefined optional fields", () => {
     const entry = makeEntry();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     delete (entry as any).serverIPAddress;
     const result = deriveCommonData(entry);
     expect(result.serverIPAddress).toBeUndefined();

@@ -5,6 +5,7 @@ import { NoContent } from "@repo/ui/no-content";
 import { TimingBar } from "./TimingBar";
 import { TimingTable } from "./TimingTable";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function TimTab({ data }: { data: any }): React.JSX.Element {
   const { timings, totalTime } = data;
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);

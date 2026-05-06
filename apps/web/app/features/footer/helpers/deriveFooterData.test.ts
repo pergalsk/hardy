@@ -23,14 +23,14 @@ describe("deriveFooterData", () => {
     expect(result.fileSize).toBe(1024);
   });
 
-  it("computes total time as a fixed-2 string", () => {
+  it("computes total time as a number", () => {
     const result = deriveFooterData(makeHar(), 0);
-    expect(result.totalTime).toBe("350.00");
+    expect(result.totalTime).toBe(350);
   });
 
   it("returns 0 entries and 0 total time when entries is missing", () => {
     const result = deriveFooterData(makeHar({ entries: undefined }), 0);
     expect(result.entriesNum).toBe(0);
-    expect(result.totalTime).toBe("0.00");
+    expect(result.totalTime).toBe(0);
   });
 });

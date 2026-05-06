@@ -1,5 +1,15 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function deriveFooterData(harData: any, fileSize: number): any {
+import type { Log } from "@repo/har-types";
+
+export type FooterData = {
+  version: string;
+  fileSize: number;
+  creatorName: string | undefined;
+  creatorVersion: string | undefined;
+  entriesNum: number;
+  totalTime: number;
+};
+
+export function deriveFooterData(harData: Log | null | undefined, fileSize: number): FooterData | null {
   if (!harData) return null;
 
   const { version, creator, entries } = harData;
@@ -10,9 +20,6 @@ export function deriveFooterData(harData: any, fileSize: number): any {
     creatorName: creator?.name,
     creatorVersion: creator?.version,
     entriesNum: entries?.length || 0,
-    totalTime: (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      entries?.reduce((acc: number, entry: any) => acc + entry.time, 0) || 0
-    ).toFixed(2),
+    totalTime: entries?.reduce((acc: number, entry) => acc + entry.time, 0) || 0,
   };
 }

@@ -3,6 +3,7 @@ import type { Har } from "@repo/har-types";
 import type { SortField } from "../features/list/types";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import type { PersistStorage } from "zustand/middleware";
 import type { JsonViewerSettings } from "@repo/formatter-core";
 import { detailFormatters } from "@repo/formatter-core/registry";
 import "../plugins.config";
@@ -128,9 +129,11 @@ export const initialJsonViewerSettings: JsonViewerSettings = {
   shortenTextAfterLength: 0,
 };
 
-const settingsStorage =
+type PersistedState = Pick<AppState, "uiPersistent" | "settings">;
+
+const settingsStorage: PersistStorage<PersistedState> | undefined =
   typeof window !== "undefined"
-    ? createJSONStorage(() => localStorage)
+    ? (createJSONStorage(() => localStorage) as PersistStorage<PersistedState>)
     : undefined;
 
 const initialState: AppState = {
@@ -145,27 +148,26 @@ const initialState: AppState = {
 };
 
 export const useAppStore = create<AppState>()(
-  persist<AppState>(() => initialState, {
+  persist<AppState, [], [], PersistedState>(() => initialState, {
     name: "har-viewer-settings",
-    // storage may be undefined during SSR; cast to any to satisfy typings
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    storage: settingsStorage as any,
-    partialize: (state: AppState) => ({
+    storage: settingsStorage,
+    partialize: (state: AppState): PersistedState => ({
       uiPersistent: state.uiPersistent,
       settings: state.settings,
     }),
-    merge: (persistedState: Partial<AppState>, currentState: AppState) => ({
-      ...currentState,
-      ...persistedState,
-      uiPersistent: {
-        ...currentState.uiPersistent,
-        ...(persistedState as Partial<AppState>).uiPersistent,
-      },
-      settings: {
-        ...currentState.settings,
-        ...(persistedState as Partial<AppState>).settings,
-      },
-    }),
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as any),
+    merge: (persistedState: unknown, currentState: AppState): AppState => {
+      const persisted = persistedState as Partial<PersistedState>;
+      return {
+        ...currentState,
+        uiPersistent: {
+          ...currentState.uiPersistent,
+          ...persisted.uiPersistent,
+        },
+        settings: {
+          ...currentState.settings,
+          ...persisted.settings,
+        },
+      };
+    },
+  }),
 );

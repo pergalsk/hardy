@@ -2,8 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 
 vi.mock("../plugins.config", () => ({ bootstrapPlugins: vi.fn() }));
 vi.mock("zustand/middleware", () => ({
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  persist: (fn: any) => fn,
+  persist: <T>(fn: T): T => fn,
   createJSONStorage: vi.fn(),
 }));
 

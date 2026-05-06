@@ -11,8 +11,7 @@ export function FileTabs(): React.JSX.Element {
 
   return (
     <div className="ml-8 flex h-full flex-row gap-2">
-      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-      {files.map((file: any) => {
+      {files.map((file) => {
         return <FileTab key={file.fileId} file={file} />;
       })}
     </div>

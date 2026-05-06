@@ -12,6 +12,8 @@ type Props = {
   onClose: () => void;
 };
 
+export type SettingValue = boolean | string | number | null;
+
 export type SettingItem = {
   key: keyof AppSettings;
   label: string;
@@ -49,8 +51,7 @@ export default function SettingsModal({ open, onClose }: Props) {
     if (open) setForm(initialForm);
   }, [open, initialForm]);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const setFormValue = (key: keyof AppSettings, value: any) =>
+  const setFormValue = (key: keyof AppSettings, value: SettingValue) =>
     setForm((f) => ({ ...(f as AppSettings), [key]: value }) as AppSettings);
 
   const resetToDefaults = () => setForm({ ...initialSettings });

@@ -3,8 +3,7 @@ import { useSyncExternalStore, useCallback } from "react";
 export function useDarkMode() {
   const query = "(prefers-color-scheme: dark)";
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const subscribe = useCallback((callback: () => any) => {
+  const subscribe = useCallback((callback: () => void) => {
     const matchMedia: MediaQueryList = window.matchMedia(query);
     matchMedia.addEventListener("change", callback);
     return () => matchMedia.removeEventListener("change", callback);

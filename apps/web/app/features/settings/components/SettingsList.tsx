@@ -2,20 +2,18 @@
 import React from "react";
 import type { Settings as AppSettings } from "../../../store/store";
 import ToggleSwitch from "@repo/ui/toggle-switch";
-import { SettingItem } from "./SettingsModal";
+import { SettingItem, SettingValue } from "./SettingsModal";
 
 type Props = {
   items: SettingItem[];
   form: AppSettings;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onChange: (key: keyof AppSettings, value?: any) => void;
+  onChange: (key: keyof AppSettings, value: SettingValue) => void;
 };
 
 type SettingComponentProps = {
   label: string;
   value: unknown;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onChange: (value?: any) => void;
+  onChange: (value: SettingValue) => void;
 };
 
 const SwitchRenderer: React.FC<SettingComponentProps> = ({
@@ -99,10 +97,8 @@ export default function SettingsList({ items, form, onChange }: Props) {
         <div className="mt-1">
           <Renderer
             label={it.label}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            value={value as any}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            onChange={(v: any) => onChange(it.key, v)}
+            value={value}
+            onChange={(v) => onChange(it.key, v ?? null)}
           />
         </div>
       </div>

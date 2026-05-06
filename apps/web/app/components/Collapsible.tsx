@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { ToggleMark } from "../features/settings/components/ToggleMark";
-import { Formatter } from "@repo/formatter-core";
 
 export function Collapsible({
   children,
@@ -16,8 +15,7 @@ export function Collapsible({
   activeActionId = "",
   onAction = () => {},
 }: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children: any;
+  children: React.ReactNode;
   title?: string | React.JSX.Element;
   handler?: React.JSX.Element;
   initOpen?: boolean;
@@ -25,8 +23,7 @@ export function Collapsible({
   disabled?: boolean;
   active?: boolean;
   sticky?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  actions?: { [id: string]: Formatter<any> } | null;
+  actions?: { [id: string]: { id: string; icon: string } } | null;
   activeActionId?: string;
   onAction?: (id: string) => void;
 }) {

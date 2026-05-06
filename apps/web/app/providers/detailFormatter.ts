@@ -3,8 +3,7 @@ import { FormatterProvider } from "@repo/formatter-core/registry";
 import { detailEnhancedFormatter } from "../plugins/detail-enhanced-formatter";
 import { detailRawFormatter } from "../plugins/detail-raw-formatter";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const detailFormatters = FormatterProvider<Formatter<any>>();
+export const detailFormatters = FormatterProvider<Formatter<unknown>>();
 
 detailFormatters.addFormatters("detail", [detailEnhancedFormatter]);
 detailFormatters.addFormatters("detail", [detailRawFormatter]);

@@ -21,11 +21,9 @@ export const FileOpener = ({ children }: { children?: React.ReactNode }) => {
   let trigger: React.ReactNode = null;
 
   if (React.isValidElement(children)) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const childProps = (children.props as any) || {};
-    const existingOnClick = childProps.onClick;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const mergedOnClick = (e?: any) => {
+    const childProps = (children.props as Record<string, unknown>);
+    const existingOnClick = childProps.onClick as ((e?: unknown) => void) | undefined;
+    const mergedOnClick = (e?: unknown) => {
       try {
         existingOnClick && existingOnClick(e);
       } finally {

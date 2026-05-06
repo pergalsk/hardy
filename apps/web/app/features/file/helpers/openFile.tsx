@@ -5,6 +5,7 @@ import { readFileData } from "./readFileData";
 import { addFile, setFileId } from "../actions";
 import { setRowId } from "../../list/actions";
 import { addToast } from "../../notifications/actions";
+import { FileReadError } from "../components/FileReadError";
 
 export async function openFile(file: File, message: string | React.JSX.Element) {
   const { name, size } = file;
@@ -23,10 +24,16 @@ export async function openFile(file: File, message: string | React.JSX.Element) 
     setFileId(fileId);
     setRowId(0);
   } catch (error) {
-    console.error("Error loading file:", error);
+    const reason =
+      error instanceof SyntaxError
+        ? "The file contains invalid HAR format."
+        : error instanceof DOMException
+          ? `Read failed: ${error.message}`
+          : "An unexpected error occurred.";
+
     addToast({
       type: "alert",
-      message,
+      message: <FileReadError name={name} reason={reason} />,
     });
   }
 }

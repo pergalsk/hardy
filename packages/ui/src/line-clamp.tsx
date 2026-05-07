@@ -69,7 +69,7 @@ function LineClampInner({
       classes={classes}
       handleClick={handleClick}
     >
-      {expanded ? "...Hide" : label}
+      {expanded ? "...Less" : label}
     </ExpandButton>
   );
 

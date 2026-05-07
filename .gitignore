@@ -36,6 +36,10 @@ yarn-error.log*
 # Next.js
 next-env.d.ts
 
+# Playwright
+.playwright/
+.playwright-cli/
+
 # Misc
 .DS_Store
 *.pem

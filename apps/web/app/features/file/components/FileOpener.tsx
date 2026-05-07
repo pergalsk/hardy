@@ -5,6 +5,7 @@ import { WrongFile } from "./WrongFile";
 
 const processInputFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
   const file = e.target.files?.[0];
+  e.target.value = "";
   if (!file) {
     return;
   }

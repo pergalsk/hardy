@@ -27,29 +27,25 @@ export default function SplitPanels({
   };
 
   const startDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+    event.currentTarget.setPointerCapture(event.pointerId);
+    setIsDragging(true);
+  };
+
+  const onDragMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
     const containerNode = containerRef.current;
     if (!containerNode) return;
 
-    event.currentTarget.setPointerCapture(event.pointerId);
-    setIsDragging(true);
+    const rect = containerNode.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    let nextPercent = (x / rect.width) * 100;
+    if (nextPercent < minLeftPercent) nextPercent = minLeftPercent;
+    if (nextPercent > maxLeftPercent) nextPercent = maxLeftPercent;
+    setLeftPercent(nextPercent);
+  };
 
-    const onMove = (moveEvent: PointerEvent) => {
-      const rect = containerNode.getBoundingClientRect();
-      const x = moveEvent.clientX - rect.left;
-      let nextPercent = (x / rect.width) * 100;
-      if (nextPercent < minLeftPercent) nextPercent = minLeftPercent;
-      if (nextPercent > maxLeftPercent) nextPercent = maxLeftPercent;
-      setLeftPercent(nextPercent);
-    };
-
-    const onUp = () => {
-      setIsDragging(false);
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerup", onUp);
-    };
-
-    window.addEventListener("pointermove", onMove);
-    window.addEventListener("pointerup", onUp);
+  const stopDrag = () => {
+    setIsDragging(false);
   };
 
   const dividerBase =
@@ -83,6 +79,8 @@ export default function SplitPanels({
         role="separator"
         aria-orientation="vertical"
         onPointerDown={startDrag}
+        onPointerMove={onDragMove}
+        onPointerUp={stopDrag}
         onDoubleClick={resetToCenter}
         onPointerEnter={() => setIsHoveringDivider(true)}
         onPointerLeave={() => setIsHoveringDivider(false)}

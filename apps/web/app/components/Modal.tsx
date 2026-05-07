@@ -25,6 +25,7 @@ export default function Modal({
   footer,
 }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
+  const startedOnBackdrop = useRef(false);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -60,38 +61,31 @@ export default function Modal({
       onClose();
     };
 
-    // Track if the interaction started on the backdrop.
-    // Only close if both down and up happened on the backdrop.
-    let startedOnBackdrop = false;
-
-    const onPointerDown = (e: PointerEvent) => {
-      if (!closeOnBackdropClick) return;
-      startedOnBackdrop = e.target === dialog;
-    };
-    const onPointerUp = (e: PointerEvent) => {
-      if (!closeOnBackdropClick) return;
-      if (startedOnBackdrop && e.target === dialog) {
-        onClose();
-      }
-      startedOnBackdrop = false;
-    };
-
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
 
     dialog.addEventListener("cancel", onCancel);
-    dialog.addEventListener("pointerdown", onPointerDown);
-    dialog.addEventListener("pointerup", onPointerUp);
     window.addEventListener("keydown", onKey);
 
     return () => {
       dialog.removeEventListener("cancel", onCancel);
-      dialog.removeEventListener("pointerdown", onPointerDown);
-      dialog.removeEventListener("pointerup", onPointerUp);
       window.removeEventListener("keydown", onKey);
     };
-  }, [onClose, closeOnBackdropClick]);
+  }, [onClose]);
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDialogElement>) => {
+    if (!closeOnBackdropClick) return;
+    startedOnBackdrop.current = e.target === dialogRef.current;
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDialogElement>) => {
+    if (!closeOnBackdropClick) return;
+    if (startedOnBackdrop.current && e.target === dialogRef.current) {
+      onClose();
+    }
+    startedOnBackdrop.current = false;
+  };
 
   // compute panel class based on size
   const panelBase =
@@ -124,6 +118,8 @@ export default function Modal({
     <dialog
       ref={dialogRef}
       aria-label={title ?? "Dialog"}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
       className={
         "fixed inset-0 m-auto border-0 bg-transparent p-0 backdrop:bg-black/60 backdrop:backdrop-blur-sm " +
         className

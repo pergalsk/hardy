@@ -51,4 +51,43 @@ describe("markVisible", () => {
     expect(mark(makeItem()).$$visible).toBe(true);
     expect(mark(makeItem({ method: "POST" })).$$visible).toBe(false);
   });
+
+  it("is case-insensitive for both token and field value", () => {
+    const mark = markVisible(makeFilter({ url: "USERS" }));
+    expect(mark(makeItem({ url: "https://example.com/api/users" })).$$visible).toBe(true);
+    const markLower = markVisible(makeFilter({ url: "users" }));
+    expect(markLower(makeItem({ url: "https://example.com/api/USERS" })).$$visible).toBe(true);
+  });
+
+  it("treats a lone '-' token as a positive match (not a negative)", () => {
+    // token.length > 1 guard — a bare '-' should not exclude items
+    const mark = markVisible(makeFilter({ url: "-" }));
+    expect(mark(makeItem({ url: "https://example.com" })).$$visible).toBe(false);
+    expect(mark(makeItem({ url: "some-hyphen-url" })).$$visible).toBe(true);
+  });
+
+  it("handles numeric field values (e.g. status as number)", () => {
+    const mark = markVisible(makeFilter({ status: "200" }));
+    expect(mark(makeItem({ status: 200 })).$$visible).toBe(true);
+    expect(mark(makeItem({ status: 404 })).$$visible).toBe(false);
+  });
+
+  it("marks item visible when a negative token is combined with a matching positive token", () => {
+    const mark = markVisible(makeFilter({ url: "example -posts" }));
+    expect(mark(makeItem({ url: "https://example.com/api/users" })).$$visible).toBe(true);
+    expect(mark(makeItem({ url: "https://example.com/api/posts" })).$$visible).toBe(false);
+  });
+
+  it("marks item visible for undefined field value against negative token", () => {
+    const mark = markVisible(makeFilter({ url: "-missing" }));
+    expect(mark(makeItem({ url: undefined })).$$visible).toBe(true);
+  });
+
+  it("preserves all other fields on the returned ListItem", () => {
+    const item = makeItem({ $$id: 7, $$visible: false, $$hidden: false, startedDateTime: "t", time: 99, pageref: "p1", statusText: "OK" });
+    const result = markVisible(makeFilter())(item);
+    expect(result.$$id).toBe(7);
+    expect(result.startedDateTime).toBe("t");
+    expect(result.time).toBe(99);
+  });
 });

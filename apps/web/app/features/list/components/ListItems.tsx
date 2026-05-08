@@ -1,3 +1,4 @@
+import { useShallow } from "zustand/shallow";
 import { groupByProperty } from "../helpers/groupByProperty";
 import { selectSettings } from "../../settings/selectors";
 import { useAppStore } from "../../../store/store";
@@ -7,9 +8,9 @@ import { ListItem } from "./ListItem";
 import type { ListItem as ListItemType } from "../types";
 
 export function ListItems({ items }: { items: ListItemType[] }) {
-  const { groupHidden, excludeHidden } = useAppStore(selectSettings);
+  const { groupHidden, excludeHidden } = useAppStore(useShallow(selectSettings));
   const rowId = useAppStore(selectRowId);
-  const pinnedIds = useAppStore(selectPinnedIds);
+  const pinnedIds = useAppStore(useShallow(selectPinnedIds));
 
   return groupByProperty(items, "$$hidden").map((group) => {
     const [firstItem] = group;

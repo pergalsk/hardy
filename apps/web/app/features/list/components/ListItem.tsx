@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { setRowId, togglePinnedRow } from "../actions";
 import type { ListItem as ListItemType } from "../types";
 import { Method } from "@repo/ui/method";
@@ -44,13 +44,16 @@ function ListItemComponent({
     ? "iconify material-symbols--bookmark-check-rounded text-lg text-yellow-600"
     : "iconify material-symbols--bookmark-outline-rounded hover:text-accent-700 dark:text-mirage-200 dark:hover:text-accent-200 text-lg";
 
+  const handleRowClick = useCallback(() => setRowId($$id), [$$id]);
+  const handlePinClick = useCallback(() => togglePinnedRow($$id), [$$id]);
+
   return (
     <ListItemWrapper
       selected={isSelected}
       pinned={isPinned}
       error={isError}
       hidden={!!$$hidden}
-      onClick={() => setRowId($$id)}
+      onClick={handleRowClick}
     >
       <div className="flex items-center justify-between gap-1">
         <Status status={status} text={statusText} colored={true} />
@@ -66,7 +69,7 @@ function ListItemComponent({
           <Separator />
           <div
             className={`${pinnedClasses}`}
-            onClick={() => togglePinnedRow($$id)}
+            onClick={handlePinClick}
           ></div>
         </div>
       </div>

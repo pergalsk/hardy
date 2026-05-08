@@ -24,7 +24,6 @@ export const setFilter = (newFilter: Filter) =>
     filter: { ...state.filter, ...newFilter },
   }));
 
-// todo: simplify with immer
 export const clearFilter = () =>
   useAppStore.setState((state) => ({
     filter: {
@@ -34,7 +33,6 @@ export const clearFilter = () =>
     },
   }));
 
-// todo: simplify with immer
 export const setFilterFields = (newFilterFields: Filter["fields"]) =>
   useAppStore.setState((state) => ({
     filter: {

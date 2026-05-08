@@ -8,8 +8,7 @@ import { useFadeIn } from "../../../core/hooks/useFadeIn";
 const TOAST_AUTO_DISMISS_MS = 15000;
 const FADE_DURATION = 500;
 
-// todo: improve using Toast['type]
-const toastTypesMap: { [key: string]: string } = {
+const toastTypesMap: Record<NonNullable<Toast["type"]>, string> = {
   info: "dark:bg-accent-800 dark:text-white bg-accent-400 text-black",
   alert: "dark:bg-yellow-500 dark:text-black bg-yellow-500 text-black",
 };

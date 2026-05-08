@@ -1,6 +1,7 @@
 "use client";
 import type React from "react";
 import { useEffect, useMemo } from "react";
+import { useShallow } from "zustand/shallow";
 import { useAppStore } from "../../../store/store";
 import {
   selectFilterFields,
@@ -57,13 +58,13 @@ function sortItemsArray(
 }
 
 export function List(): React.JSX.Element {
-  const filterFields = useAppStore(selectFilterFields);
-  const rawEntries = useAppStore(selectRawEntries);
-  const { hideEmptyPages } = useAppStore(selectSettings);
-  const sorting = useAppStore(selectSorting);
+  const filterFields = useAppStore(useShallow(selectFilterFields));
+  const rawEntries = useAppStore(useShallow(selectRawEntries));
+  const { hideEmptyPages } = useAppStore(useShallow(selectSettings));
+  const sorting = useAppStore(useShallow(selectSorting));
   const showPages = useAppStore(selectShowPages);
   const showPinnedOnly = useAppStore(selectShowPinnedOnly);
-  const pinnedIds = useAppStore(selectPinnedIds);
+  const pinnedIds = useAppStore(useShallow(selectPinnedIds));
 
   const rawListData = useMemo(() => deriveListData(rawEntries), [rawEntries]);
 

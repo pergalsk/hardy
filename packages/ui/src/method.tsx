@@ -1,4 +1,4 @@
-import type React from "react";
+import React from "react";
 
 export const methodColors: { [key: string]: string } = {
   GET: "text-green-600",
@@ -14,10 +14,10 @@ interface MethodProps {
   colored: boolean;
 }
 
-export function Method({ method, colored }: MethodProps): React.JSX.Element {
+export const Method = React.memo(function Method({ method, colored }: MethodProps): React.JSX.Element {
   const colorClass = colored
     ? methodColors[method] || "text-gray-500"
     : "text-white";
 
   return <span className={`${colorClass} font-bold`}>{method}</span>;
-}
+});

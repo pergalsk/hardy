@@ -48,4 +48,6 @@ _stuff
 
 # AI
 .claude/
+.claude/.tmp
+.claude/settings.local.json
 REPORT.md

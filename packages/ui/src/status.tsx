@@ -1,4 +1,4 @@
-import type React from "react";
+import React from "react";
 
 export const statusColors: { [key: string]: string } = {
   "1xx": "bg-violet-500 dark:bg-gray-800",
@@ -14,7 +14,7 @@ interface StatusProps {
   colored: boolean;
 }
 
-export function Status({ status, text, colored }: StatusProps): React.JSX.Element {
+export const Status = React.memo(function Status({ status, text, colored }: StatusProps): React.JSX.Element {
   const statusRange = Math.floor(status / 100);
   const colorClass = colored
     ? statusColors[`${statusRange}xx` as keyof typeof statusColors] ||
@@ -31,4 +31,4 @@ export function Status({ status, text, colored }: StatusProps): React.JSX.Elemen
       {text && <span className="ml-2">{text}</span>}
     </span>
   );
-}
+});

@@ -21,7 +21,7 @@ export function Cookies({ data }: { data: Cookie[] }): React.JSX.Element {
       </thead>
 
       <tbody>
-        {data.map((cookie, index: number) => {
+        {data.map((cookie) => {
           const {
             name,
             value,
@@ -35,7 +35,7 @@ export function Cookies({ data }: { data: Cookie[] }): React.JSX.Element {
 
           return (
             <tr
-              key={index}
+              key={`${name}:${value}`}
               className="dark:text-mirage-200 dark:border-bunker-400 hover:dark:bg-bunker-800 hover:dark:text-mirage-50 group border-b border-slate-100 text-black last:border-none hover:bg-slate-50"
             >
               <td className="break-all px-2 py-1">{name}</td>

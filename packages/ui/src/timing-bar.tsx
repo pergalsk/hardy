@@ -11,6 +11,7 @@ export interface TimingSegment {
   widthPct: number;
   leftPct: number;
   subSegment?: {
+    key: string;
     color: string;
     widthPct: number;
   };
@@ -87,6 +88,9 @@ export function TimingBar({
             <clipPath id={`bar-${uid}`}>
               <rect x={0} y={barY} width={barW} height={BAR_H} rx={BAR_RADIUS} />
             </clipPath>
+            <pattern id={`stripe-${uid}`} patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(255,255,255,0.4)" strokeWidth="3" />
+            </pattern>
           </defs>
 
           {/* Bar segments */}
@@ -101,15 +105,16 @@ export function TimingBar({
                   onMouseLeave={() => onHover?.(null)}
                 >
                   <rect x={seg.x} y={barY} width={seg.w} height={BAR_H} fill={seg.color} />
-                  {seg.subSegment && (
-                    <rect
-                      x={seg.x + seg.w - (seg.subSegment.widthPct / 100) * seg.w}
-                      y={barY}
-                      width={(seg.subSegment.widthPct / 100) * seg.w}
-                      height={BAR_H}
-                      fill={seg.subSegment.color}
-                    />
-                  )}
+                  {seg.subSegment && (() => {
+                    const subX = seg.x + seg.w - (seg.subSegment.widthPct / 100) * seg.w;
+                    const subW = (seg.subSegment.widthPct / 100) * seg.w;
+                    return (
+                      <>
+                        <rect x={subX} y={barY} width={subW} height={BAR_H} fill={seg.subSegment.color} />
+                        <rect x={subX} y={barY} width={subW} height={BAR_H} fill={`url(#stripe-${uid})`} />
+                      </>
+                    );
+                  })()}
                 </g>
               );
             })}

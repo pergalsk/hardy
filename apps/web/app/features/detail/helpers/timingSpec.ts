@@ -3,6 +3,7 @@ export interface TimingFieldSpec {
   color: string;
   name: string;
   description: string;
+  parent?: string;
 }
 
 export const TIMING_SPEC: TimingFieldSpec[] = [
@@ -38,9 +39,10 @@ export const TIMING_SPEC: TimingFieldSpec[] = [
   },
   {
     key: "ssl",
-    color: "#c09038",
+    color: "#b87840",
     name: "SSL",
     description: "SSL/TLS handshake time (included within connect)",
+    parent: "connect",
   },
   {
     key: "send",
@@ -62,18 +64,16 @@ export const TIMING_SPEC: TimingFieldSpec[] = [
   },
 ];
 
-export const SSL_KEY = "ssl";
-export const CONNECT_KEY = "connect";
+const childSpecs = TIMING_SPEC.filter((s) => s.parent !== undefined);
 
 export function buildTimingSegments(
   timings: Record<string, number>,
   totalTime: number,
 ) {
-  const mainSpecs = TIMING_SPEC.filter((s) => s.key !== SSL_KEY);
-  const sslSpec = TIMING_SPEC.find((s) => s.key === SSL_KEY)!;
-  const sslValue = timings[SSL_KEY] ?? -1;
+  const childKeys = new Set(childSpecs.map((s) => s.key));
+  const parentSpecs = TIMING_SPEC.filter((s) => !childKeys.has(s.key));
 
-  const visible = mainSpecs
+  const visible = parentSpecs
     .map((s) => ({ ...s, value: timings[s.key] ?? -1 }))
     .filter((s) => s.value > 0);
 
@@ -89,16 +89,18 @@ export function buildTimingSegments(
     const leftPct = cumLeft;
     cumLeft += widthPct;
 
-    const isConnect = s.key === CONNECT_KEY;
+    const childSpec = childSpecs.find((c) => c.parent === s.key);
+    const childValue = childSpec ? (timings[childSpec.key] ?? -1) : -1;
     const subSegment =
-      isConnect && sslValue > 0
-        ? { color: sslSpec.color, widthPct: (sslValue / s.value) * 100 }
+      childSpec && childValue > 0
+        ? { key: childSpec.key, color: childSpec.color, widthPct: (childValue / s.value) * 100 }
         : undefined;
+    const name = subSegment ? `${s.name}/${childSpec!.name}` : s.name;
 
     return {
       key: s.key,
       color: s.color,
-      name: s.name,
+      name,
       value: s.value,
       pct: (s.value / totalTime) * 100,
       widthPct,
@@ -121,5 +123,6 @@ export function buildTimingRows(
       description: s.description,
       value: s.value,
       pct: (s.value / totalTime) * 100,
+      ...(s.parent !== undefined && { striped: true }),
     }));
 }

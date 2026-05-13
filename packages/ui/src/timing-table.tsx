@@ -7,19 +7,20 @@ export interface TimingRow {
   description: string;
   value: number;
   pct: number;
+  striped?: boolean;
 }
 
 export interface TimingTableProps {
   rows: TimingRow[];
   totalTime: number;
-  hoveredKey?: string | null;
+  hoveredKeys?: string[];
   onHover?: (key: string | null) => void;
 }
 
 export function TimingTable({
   rows,
   totalTime,
-  hoveredKey,
+  hoveredKeys,
   onHover,
 }: TimingTableProps): React.JSX.Element {
   return (
@@ -35,7 +36,7 @@ export function TimingTable({
       </thead>
       <tbody>
         {rows.map((row) => {
-          const isHovered = hoveredKey === row.key;
+          const isHovered = hoveredKeys?.includes(row.key) ?? false;
           const white = isHovered ? "white" : undefined;
           return (
             <tr
@@ -48,7 +49,14 @@ export function TimingTable({
               <td className="py-1 pr-2 align-middle">
                 <div
                   className="rounded-sm transition-colors duration-200"
-                  style={{ width: 12, height: 12, backgroundColor: row.color }}
+                  style={{
+                    width: 12,
+                    height: 12,
+                    backgroundColor: row.color,
+                    ...(row.striped && {
+                      backgroundImage: "repeating-linear-gradient(-45deg, rgba(255,255,255,0.4) 0px, rgba(255,255,255,0.4) 2px, transparent 2px, transparent 5px)",
+                    }),
+                  }}
                 />
               </td>
               <td

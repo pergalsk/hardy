@@ -5,14 +5,14 @@ import { buildTimingRows } from "../helpers/timingSpec";
 export interface TimingTableProps {
   timings: Record<string, number>;
   totalTime: number;
-  hoveredKey?: string | null;
+  hoveredKeys?: string[];
   onHover?: (key: string | null) => void;
 }
 
 export function TimingTable({
   timings,
   totalTime,
-  hoveredKey,
+  hoveredKeys,
   onHover,
 }: TimingTableProps): React.JSX.Element {
   const rows = buildTimingRows(timings, totalTime);
@@ -20,7 +20,7 @@ export function TimingTable({
     <TimingTableUI
       rows={rows}
       totalTime={totalTime}
-      hoveredKey={hoveredKey}
+      hoveredKeys={hoveredKeys}
       onHover={onHover}
     />
   );

@@ -28,7 +28,7 @@ export function InfoBadge({
   const [classesTitle, classesValue] = badgeStyles[style];
 
   return (
-    <div className="inline-flex items-stretch overflow-hidden rounded">
+    <div className="inline-flex items-stretch overflow-hidden rounded-sm">
       {title ? (
         <div
           className={`${classesTitle} flex items-center px-2 py-0 text-xs uppercase tracking-wider`}

@@ -49,7 +49,7 @@ export default function SplitPanels({
   };
 
   const dividerBase =
-    "w-[5px] cursor-ew-resize bg-slate-200 dark:bg-bunker-400 transition-colors duration-300 border-l-[2px] border-r-[2px]";
+    "w-[5px] cursor-ew-resize bg-slate-200 dark:bg-bunker-400 transition-colors duration-300 border-l-2 border-r-2";
 
   const hoverClasses = "bg-slate-200 border-slate-200 dark:border-bunker-400";
   const draggingClasses =

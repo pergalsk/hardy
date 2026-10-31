@@ -22,7 +22,7 @@ export const ExpandButton = forwardRef<
       <button
         ref={ref}
         onClick={() => handleClick()}
-        className={`${display} ${classes} dark:text-accent-300 dark:bg-bunker-500 hover:dark:text-accent-100 text-accent-600 hover:text-accent-800 select-none rounded-sm pl-2 text-[90%] uppercase transition-colors duration-200`}
+        className={`${display} ${classes} dark:text-accent-300 dark:bg-bunker-500 dark:hover:text-accent-100 text-accent-600 hover:text-accent-800 select-none rounded-xs pl-2 text-[90%] uppercase transition-colors duration-200`}
       >
         {children}
       </button>

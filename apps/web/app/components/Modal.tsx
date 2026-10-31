@@ -121,7 +121,7 @@ export default function Modal({
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       className={
-        "fixed inset-0 m-auto border-0 bg-transparent p-0 backdrop:bg-black/60 backdrop:backdrop-blur-sm " +
+        "fixed inset-0 m-auto border-0 bg-transparent p-0 backdrop:bg-black/60 backdrop:backdrop-blur-xs " +
         className
       }
     >

@@ -59,7 +59,7 @@ export function ListFilter() {
           <span className="select-none font-bold uppercase">URL</span>
           <input
             type="text"
-            className={`${highlightInputClasses} focus:border-accent-800 w-full rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
+            className={`${highlightInputClasses} focus:border-accent-800 w-full rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-hidden focus:ring-2 dark:text-white`}
             value={url}
             onChange={handleUrlChange}
           />
@@ -68,7 +68,7 @@ export function ListFilter() {
           <span className="select-none font-bold uppercase">Status</span>
           <input
             type="text"
-            className={`${highlightInputClasses} focus:border-accent-800 w-full rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
+            className={`${highlightInputClasses} focus:border-accent-800 w-full rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-hidden focus:ring-2 dark:text-white`}
             value={status}
             onChange={handleStatusChange}
           />
@@ -77,7 +77,7 @@ export function ListFilter() {
           <span className="select-none font-bold uppercase">Method</span>
           <input
             type="text"
-            className={`${highlightInputClasses} focus:border-accent-800 w-full rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-none focus:ring-2 dark:text-white`}
+            className={`${highlightInputClasses} focus:border-accent-800 w-full rounded-md px-2 py-1 text-sm text-black transition-colors duration-200 focus:outline-hidden focus:ring-2 dark:text-white`}
             value={method}
             onChange={handleMethodChange}
           />

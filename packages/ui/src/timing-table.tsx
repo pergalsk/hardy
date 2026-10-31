@@ -48,7 +48,7 @@ export function TimingTable({
             >
               <td className="py-1 pr-2 align-middle">
                 <div
-                  className="rounded-sm transition-colors duration-200"
+                  className="rounded-xs transition-colors duration-200"
                   style={{
                     width: 12,
                     height: 12,

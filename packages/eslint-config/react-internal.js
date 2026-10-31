@@ -1,6 +1,5 @@
-const { resolve } = require("node:path");
-
-const project = resolve(process.cwd(), "tsconfig.json");
+import globals from "globals";
+import { createConfig } from "./base.js";
 
 /*
  * This is a custom ESLint configuration for use with
@@ -8,38 +7,10 @@ const project = resolve(process.cwd(), "tsconfig.json");
  * that utilize React.
  */
 
-/** @type {import("eslint").Linter.Config} */
-module.exports = {
-  extends: ["eslint:recommended", "prettier", "eslint-config-turbo"],
-  plugins: ["only-warn", "@typescript-eslint"],
-  env: {
-    browser: true,
+/** @type {import("eslint").Linter.Config[]} */
+export default createConfig({
+  ignores: ["**/node_modules/", "**/dist/", "**/coverage/"],
+  globals: {
+    ...globals.browser,
   },
-  settings: {
-    "import/resolver": {
-      typescript: {
-        project,
-      },
-    },
-  },
-  ignorePatterns: [
-    // Ignore dotfiles
-    ".*.js",
-    "node_modules/",
-    "dist/",
-    "coverage/",
-  ],
-  rules: {
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "warn",
-  },
-  overrides: [
-    // Force ESLint to detect .tsx files
-    { files: ["*.js?(x)", "*.ts?(x)"] },
-    {
-      files: ["**/*.test.ts", "**/*.test.tsx"],
-      plugins: ["vitest"],
-      extends: ["plugin:vitest/legacy-recommended"],
-    },
-  ],
-};
+});

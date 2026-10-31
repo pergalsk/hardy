@@ -1,43 +1,13 @@
-const { resolve } = require("node:path");
+import nextPlugin from "@next/eslint-plugin-next";
+import globals from "globals";
+import { createConfig } from "./base.js";
 
-const project = resolve(process.cwd(), "tsconfig.json");
-
-/** @type {import("eslint").Linter.Config} */
-module.exports = {
-  extends: [
-    "eslint:recommended",
-    "prettier",
-    "plugin:@next/next/recommended-legacy",
-    "eslint-config-turbo",
-  ],
-  env: {
-    node: true,
-    browser: true,
+/** @type {import("eslint").Linter.Config[]} */
+export default createConfig({
+  ignores: ["**/node_modules/", "**/out/", "**/coverage/"],
+  globals: {
+    ...globals.node,
+    ...globals.browser,
   },
-  plugins: ["only-warn", "@typescript-eslint"],
-  settings: {
-    "import/resolver": {
-      typescript: {
-        project,
-      },
-    },
-  },
-  ignorePatterns: [
-    ".*.js",
-    "node_modules/",
-    "out/",
-    "coverage/",
-  ],
-  rules: {
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "warn",
-  },
-  overrides: [
-    { files: ["*.js?(x)", "*.ts?(x)"] },
-    {
-      files: ["**/*.test.ts", "**/*.test.tsx"],
-      plugins: ["vitest"],
-      extends: ["plugin:vitest/legacy-recommended"],
-    },
-  ],
-};
+  extends: [nextPlugin.configs.recommended],
+});

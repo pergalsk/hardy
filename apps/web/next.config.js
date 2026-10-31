@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+  agentRules: false,
   typescript: {
     tsconfigPath: "tsconfig.build.json",
   },

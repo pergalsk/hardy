@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, act, within } from "@testing-library/react";
+import type { Har } from "@repo/har-types";
 import { useAppStore } from "./store/store";
 import { mockHarEntry } from "../src/test-fixtures";
 import { List } from "./features/list/components/List";
@@ -27,7 +28,7 @@ const entries = [
 
 beforeEach(() => {
   useAppStore.setState({
-    files: [{ fileId: "f1", name: "test.har", size: 0, data: { log: { entries, pages: [] } } }],
+    files: [{ fileId: "f1", name: "test.har", size: 0, data: { log: { entries, pages: [] } } as unknown as Har }],
     ui: { fileId: "f1", rowId: 0, pinnedIds: new Set(), showPinnedOnly: false, tab: "REQ" },
     filter: { visible: false, active: false, count: -1, fields: { url: "", method: "", status: "" } },
     settings: { groupHidden: false, excludeHidden: false, hideEmptyPages: true },

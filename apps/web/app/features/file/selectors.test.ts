@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 
 vi.mock("../../plugins.config", () => ({}));
 
+import type { Har } from "@repo/har-types";
 import type { AppState } from "../../store/store";
 import {
   initialUiState,
@@ -29,7 +30,7 @@ const makeFile = (fileId: string, name: string, size = 1024) => ({
   fileId,
   name,
   size,
-  data: {},
+  data: {} as unknown as Har,
 });
 
 describe("selectFiles", () => {

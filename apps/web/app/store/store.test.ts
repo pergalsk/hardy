@@ -6,7 +6,8 @@ vi.mock("zustand/middleware", () => ({
   createJSONStorage: vi.fn(),
 }));
 
-import { createStore } from "zustand/vanilla";
+import { createStore, type StoreApi } from "zustand/vanilla";
+import type { Har } from "@repo/har-types";
 import type { AppState } from "./store";
 import {
   initialSortingState,
@@ -71,7 +72,7 @@ describe("store – initial state constants", () => {
 });
 
 describe("store – isolated createStore instances", () => {
-  let store: ReturnType<typeof createStore<AppState>>;
+  let store: StoreApi<AppState>;
 
   const makeState = (overrides: Partial<AppState> = {}): AppState => ({
     files: [],
@@ -101,7 +102,7 @@ describe("store – isolated createStore instances", () => {
     const storeA = createStore<AppState>()(() => makeState());
     const storeB = createStore<AppState>()(() => makeState());
 
-    storeA.setState({ files: [{ fileId: "a", name: "a.har", size: 100, data: {} }] });
+    storeA.setState({ files: [{ fileId: "a", name: "a.har", size: 100, data: {} as unknown as Har }] });
 
     expect(storeA.getState().files).toHaveLength(1);
     expect(storeB.getState().files).toHaveLength(0);

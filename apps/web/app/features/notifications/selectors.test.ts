@@ -42,6 +42,6 @@ describe("selectToasts", () => {
 
   it("reflects toast message content", () => {
     const state = makeState({ toasts: [{ id: "x", message: "Test msg", type: "info" }] });
-    expect(selectToasts(state)[0].message).toBe("Test msg");
+    expect(selectToasts(state)[0]?.message).toBe("Test msg");
   });
 });

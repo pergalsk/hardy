@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { markVisible } from "./filter";
+import type { ListItem } from "../types";
 
 const makeFilter = (fields = {}) => ({
   url: "",
@@ -13,7 +14,7 @@ const makeItem = (overrides = {}) => ({
   method: "GET",
   status: "200",
   ...overrides,
-});
+}) as unknown as ListItem;
 
 describe("markVisible", () => {
   it("marks all items visible when filter fields are empty", () => {

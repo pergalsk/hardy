@@ -1,5 +1,6 @@
 export const mockHarEntry = {
   $$id: 0,
+  $$visible: true,
   $$hidden: false,
   pageref: "page_1",
   startedDateTime: "2024-01-01T00:00:00.000Z",
@@ -29,7 +30,7 @@ export const mockHarEntry = {
   timings: { send: 1, wait: 100, receive: 22.45 },
   serverIPAddress: "93.184.216.34",
   _securityState: "secure",
-  status: "200",
+  status: 200,
   statusText: "OK",
   method: "GET",
   url: "https://example.com/api/test",

@@ -1,4 +1,5 @@
 import { render, screen, act } from "@testing-library/react";
+import type { Har } from "@repo/har-types";
 import { useAppStore } from "../../../store/store";
 import { setFilterFields, clearFilter } from "../actions";
 import { mockHarEntry } from "../../../../src/test-fixtures";
@@ -31,7 +32,7 @@ const setupStore = () =>
             ],
             pages: [],
           },
-        },
+        } as unknown as Har,
       },
     ],
     ui: { fileId: "f1", rowId: 0, pinnedIds: new Set(), showPinnedOnly: false, tab: "REQ" },

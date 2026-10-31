@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+  typescript: {
+    tsconfigPath: "tsconfig.build.json",
+  },
   transpilePackages: [
     "@repo/ui",
     "@repo/formatter-core",

@@ -58,7 +58,7 @@ describe("deriveListData", () => {
   it("passes through undefined pageref", () => {
     const entry = makeEntry({ pageref: undefined });
     const result = deriveListData([entry]);
-    expect(result[0].pageref).toBeUndefined();
+    expect(result[0]?.pageref).toBeUndefined();
   });
 
   it("preserves each entry's distinct field values", () => {
@@ -67,9 +67,9 @@ describe("deriveListData", () => {
       makeEntry({ request: { method: "POST", url: "https://b.com" }, response: { status: 201, statusText: "Created" } }),
     ];
     const result = deriveListData(entries);
-    expect(result[0].method).toBe("GET");
-    expect(result[1].method).toBe("POST");
-    expect(result[0].status).toBe(200);
-    expect(result[1].status).toBe(201);
+    expect(result[0]?.method).toBe("GET");
+    expect(result[1]?.method).toBe("POST");
+    expect(result[0]?.status).toBe(200);
+    expect(result[1]?.status).toBe(201);
   });
 });

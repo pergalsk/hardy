@@ -3,7 +3,7 @@ import { Headers } from "./Headers";
 
 test("renders without crashing", () => {
   const { container } = render(
-    <Headers data={{ headers: [], headersSize: 0 }} />,
+    <Headers data={{ headers: [], headersSize: 0, bodySize: -1, content: undefined }} />,
   );
   expect(container).not.toBeEmptyDOMElement();
 });

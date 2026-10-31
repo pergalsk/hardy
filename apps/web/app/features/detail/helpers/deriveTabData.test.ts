@@ -79,7 +79,7 @@ describe("deriveTabData", () => {
 
     it("returns undefined content when response content has no text", () => {
       const entry = makeEntry();
-      (entry.response.content as Record<string, unknown>).text = undefined;
+      (entry.response.content as unknown as Record<string, unknown>).text = undefined;
       const result = deriveTabData(entry, "RES");
       expect((result as { content: unknown })?.content).toBeUndefined();
     });

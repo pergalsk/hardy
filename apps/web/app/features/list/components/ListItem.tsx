@@ -37,7 +37,7 @@ function ListItemComponent({
 
   const highlightNum = false;
   const numClasses = highlightNum
-    ? "text-mirage-200 dark:bg-accent-600 rounded px-1 dark:text-black"
+    ? "text-mirage-200 dark:bg-accent-600 rounded-sm px-1 dark:text-black"
     : "";
 
   const pinnedClasses = isPinned

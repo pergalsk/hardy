@@ -33,7 +33,7 @@ export default function ToggleSwitch({
     },
   }[size];
 
-  const base = `relative inline-flex ${sizes.switch} items-center rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent-300 dark:focus:ring-accent-500`;
+  const base = `relative inline-flex ${sizes.switch} items-center rounded-full transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-accent-300 dark:focus:ring-accent-500`;
 
   const stateClasses = checked
     ? "bg-accent-600 hover:bg-accent-500 dark:hover:bg-accent-500"

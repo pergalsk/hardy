@@ -16,7 +16,7 @@ export function ToggleMark({
 
   return (
     <span
-      className={`${rotation} ${sizeClasses[size || "medium"]} iconify material-symbols--keyboard-arrow-right relative bottom-[1px] transform transition-transform duration-200`}
+      className={`${rotation} ${sizeClasses[size || "medium"]} iconify material-symbols--keyboard-arrow-right relative bottom-px transform transition-transform duration-200`}
     ></span>
   );
 }

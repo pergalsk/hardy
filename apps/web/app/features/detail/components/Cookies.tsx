@@ -36,7 +36,7 @@ export function Cookies({ data }: { data: Cookie[] }): React.JSX.Element {
           return (
             <tr
               key={`${name}:${value}`}
-              className="dark:text-mirage-200 dark:border-bunker-400 hover:dark:bg-bunker-800 hover:dark:text-mirage-50 group border-b border-slate-100 text-black last:border-none hover:bg-slate-50"
+              className="dark:text-mirage-200 dark:border-bunker-400 dark:hover:bg-bunker-800 dark:hover:text-mirage-50 group border-b border-slate-100 text-black last:border-none hover:bg-slate-50"
             >
               <td className="break-all px-2 py-1">{name}</td>
               <td className="break-all px-2 py-1">{value}</td>

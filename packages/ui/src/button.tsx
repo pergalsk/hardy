@@ -25,7 +25,7 @@ export default function Button({
   ...rest
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center select-none rounded-md font-bold uppercase transition-colors duration-200 focus:outline-none";
+    "inline-flex items-center justify-center select-none rounded-md font-bold uppercase transition-colors duration-200 focus:outline-hidden";
 
   const sizeMap: Record<Size, string> = {
     sm: "text-sm px-3 py-1.5 gap-0 min-w-16",

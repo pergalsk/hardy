@@ -38,7 +38,7 @@ const TextRenderer: React.FC<SettingComponentProps> = ({
     type="text"
     value={(value as string) ?? ""}
     onChange={(e) => onChange(e.target.value)}
-    className="ml-4 w-48 rounded border border-gray-200 px-2 py-1 text-sm dark:border-slate-600 dark:bg-slate-700"
+    className="ml-4 w-48 rounded-sm border border-gray-200 px-2 py-1 text-sm dark:border-slate-600 dark:bg-slate-700"
   />
 );
 
@@ -55,7 +55,7 @@ const IntegerRenderer: React.FC<SettingComponentProps> = ({
       const v = e.target.value === "" ? null : Number(e.target.value);
       onChange(v);
     }}
-    className="ml-4 w-32 rounded border border-gray-200 px-2 py-1 text-sm dark:border-slate-600 dark:bg-slate-700"
+    className="ml-4 w-32 rounded-sm border border-gray-200 px-2 py-1 text-sm dark:border-slate-600 dark:bg-slate-700"
   />
 );
 

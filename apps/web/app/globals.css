@@ -1,6 +1,82 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss';
+
+@source "../../../packages";
+
+@plugin "@iconify/tailwind4" {
+  prefixes: material-symbols;
+}
+
+@theme {
+  --text-*: initial;
+  --text-xs: 0.6rem;
+  --text-sm: 0.8rem;
+  --text-base: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.563rem;
+  --text-3xl: 1.953rem;
+  --text-4xl: 2.441rem;
+  --text-5xl: 3.052rem;
+
+  --font-mono: var(--font-default-mono);
+
+  --color-mirage-50: #d6dee6;
+  --color-mirage-100: #c9d3de;
+  --color-mirage-200: #afbecf;
+  --color-mirage-300: #96a8c0;
+  --color-mirage-400: #7c92b1;
+  --color-mirage-500: #637ba1;
+  --color-mirage-600: #526689;
+  --color-mirage-700: #435270;
+  --color-mirage-800: #343f56;
+  --color-mirage-900: #242b3d;
+  --color-mirage-950: #1d2230;
+  --color-mirage: #1d2230;
+
+  --color-bunker-50: #304150;
+  --color-bunker-100: #2e3e4d;
+  --color-bunker-200: #2a3846;
+  --color-bunker-300: #263240;
+  --color-bunker-400: #222d39;
+  --color-bunker-500: #1f2733;
+  --color-bunker-600: #1b222d;
+  --color-bunker-700: #171c26;
+  --color-bunker-800: #131720;
+  --color-bunker-900: #0f121a;
+  --color-bunker-950: #0d1016;
+  --color-bunker: #0d1016;
+
+  --color-accent-50: #9ee9f7;
+  --color-accent-100: #8ee5f5;
+  --color-accent-200: #6dddf2;
+  --color-accent-300: #4cd6ef;
+  --color-accent-400: #2bceed;
+  --color-accent-500: #14c0e1;
+  --color-accent-600: #11a4c0;
+  --color-accent-700: #0e889f;
+  --color-accent-800: #0b6c7e;
+  --color-accent-900: #095462;
+  --color-accent-950: #074854;
+  --color-accent: #0b6c7e;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 /* width */
 ::-webkit-scrollbar {
@@ -10,7 +86,7 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply rounded bg-transparent;
+  @apply rounded-sm bg-transparent;
 }
 
 /* Handle */
@@ -69,40 +145,43 @@
   /* mix-blend-mode: screen; */
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  cursor: default;
-}
+/* in @layer base so Tailwind utilities can override these (as in v3) */
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    cursor: default;
+  }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))
+      )
+      rgb(var(--background-start-rgb));
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-button {
-  cursor: default;
-}
+  button {
+    cursor: default;
+  }
 
-input[type="text"] {
-  cursor: text;
+  input[type="text"] {
+    cursor: text;
+  }
 }
 
 /* JSON viewer */

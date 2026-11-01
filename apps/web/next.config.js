@@ -1,5 +1,7 @@
-/** @type {import('next').NextConfig} */
-module.exports = {
+const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
+
+/** @type {(phase: string) => import('next').NextConfig} */
+module.exports = (phase) => ({
   agentRules: false,
   transpilePackages: [
     "@repo/ui",
@@ -25,7 +27,10 @@ module.exports = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline'",
+              // React needs eval() in dev only (debug callstacks)
+              phase === PHASE_DEVELOPMENT_SERVER
+                ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+                : "script-src 'self' 'unsafe-inline'",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data:",
               "font-src 'self'",
@@ -37,4 +42,4 @@ module.exports = {
       },
     ];
   },
-};
+});

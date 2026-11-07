@@ -27,6 +27,31 @@ describe("Modal — closed state", () => {
   });
 });
 
+describe("Modal — focus", () => {
+  // elements inside a closed dialog can not get focus
+  beforeEach(() => {
+    HTMLDialogElement.prototype.showModal = vi.fn(function (this: HTMLDialogElement) {
+      this.setAttribute("open", "");
+    });
+  });
+
+  it("focuses the first text field when opened", () => {
+    render(
+      <Modal isOpen={true} onClose={() => {}}>
+        <input aria-label="field" />
+      </Modal>,
+    );
+    expect(screen.getByLabelText("field")).toHaveFocus();
+  });
+
+  it("focuses the dialog when there is no text field", () => {
+    const focus = vi.spyOn(HTMLElement.prototype, "focus");
+    render(<Modal isOpen={true} onClose={() => {}}>content</Modal>);
+    expect(focus.mock.contexts).toContainEqual(expect.any(HTMLDialogElement));
+    focus.mockRestore();
+  });
+});
+
 describe("Modal — Escape key", () => {
   it("calls onClose when Escape is pressed", () => {
     const onClose = vi.fn();

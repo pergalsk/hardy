@@ -40,7 +40,10 @@ export default function Modal({
         }
       }
       document.documentElement.style.overflow = "hidden";
-      dialog.focus();
+      // focus the first text field (React autoFocus does not work inside a closed dialog)
+      (
+        dialog.querySelector<HTMLElement>("input, textarea, select") ?? dialog
+      ).focus();
     } else {
       if (dialog.open) dialog.close();
       document.documentElement.style.overflow = "";

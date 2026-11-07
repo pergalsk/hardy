@@ -28,21 +28,16 @@ test.beforeEach(async ({ page }) => {
 
 test.describe("global search", () => {
   for (const shortcut of ["Control+k", "Control+Shift+F"]) {
-    test(`${shortcut} opens modal`, async ({ page }) => {
+    test(`${shortcut} opens modal with focused input`, async ({ page }) => {
       await page.keyboard.press(shortcut);
       await expect(dialog(page)).toBeVisible();
+      await expect(input(page)).toBeFocused();
     });
   }
 
-  // Bug: Modal focuses the <dialog> after opening, so the input loses autofocus.
-  test.fixme("modal opens with focused input", async ({ page }) => {
-    await page.keyboard.press("Control+k");
-    await expect(input(page)).toBeFocused();
-  });
-
   test("header button opens modal; Esc and X close it", async ({ page }) => {
     await headerIcon(page, "search-rounded").click();
-    await expect(dialog(page)).toBeVisible();
+    await expect(input(page)).toBeFocused();
     await page.keyboard.press("Escape");
     await expect(dialog(page)).toBeHidden();
 

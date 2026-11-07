@@ -23,13 +23,17 @@ export function CooTab({ data }: { data: CooTabData }): React.JSX.Element {
 
   return (
     <div className="mr-2 flex flex-col gap-2">
-      <Collapsible title={reqTitle} disabled={!reqLength}>
-        {reqLength ? <Cookies data={request} /> : <NoContent />}
-      </Collapsible>
+      <div data-search-section="reqCookie">
+        <Collapsible title={reqTitle} disabled={!reqLength}>
+          {reqLength ? <Cookies data={request} /> : <NoContent />}
+        </Collapsible>
+      </div>
 
-      <Collapsible title={resTitle} disabled={!resLength}>
-        {resLength ? <Cookies data={response} /> : <NoContent />}
-      </Collapsible>
+      <div data-search-section="resCookie">
+        <Collapsible title={resTitle} disabled={!resLength}>
+          {resLength ? <Cookies data={response} /> : <NoContent />}
+        </Collapsible>
+      </div>
     </div>
   );
 }

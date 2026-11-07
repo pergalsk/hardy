@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import type { ReqTabData, ResTabData, CooTabData, TimTabData } from "../types";
 import { useAppStore } from "../../../store/store";
 import { selectTab } from "../selectors";
@@ -11,14 +11,17 @@ import { ReqTab } from "./ReqTab";
 import { ResTab } from "./ResTab";
 import { CooTab } from "./CooTab";
 import { TimTab } from "./TimTab";
+import { useSearchHighlight } from "../../search/hooks/useSearchHighlight";
 
 export function Detail(): React.JSX.Element {
   const tab = useAppStore(selectTab);
   const rawEntry = useAppStore(selectRawEntry);
   const tabData = useMemo(() => deriveTabData(rawEntry, tab), [rawEntry, tab]);
+  const rootRef = useRef<HTMLDivElement>(null);
+  useSearchHighlight(rootRef);
 
   return (
-    <>
+    <div ref={rootRef} className="contents">
       <DetailCommon />
       <DetailButtons />
       <DetailSegment>
@@ -27,6 +30,6 @@ export function Detail(): React.JSX.Element {
         {tab === "COO" && tabData && <CooTab data={tabData as CooTabData} />}
         {tab === "TIM" && tabData && <TimTab data={tabData as TimTabData} />}
       </DetailSegment>
-    </>
+    </div>
   );
 }

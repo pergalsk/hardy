@@ -1,6 +1,7 @@
 import type React from "react";
 import type { Har } from "@repo/har-types";
 import type { SortField } from "../features/list/types";
+import type { SearchSection } from "../features/search/types";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { PersistStorage } from "zustand/middleware";
@@ -45,12 +46,21 @@ export type Toast = {
 
 export type TabCode = "REQ" | "RES" | "COO" | "TIM";
 
+export type SearchTarget = {
+  section: SearchSection;
+  label: string;
+  query: string;
+  // changes on every jump so the same result can be highlighted again
+  key: number;
+};
+
 export type Ui = {
   fileId: string;
   rowId: number;
   pinnedIds: Set<number>;
   showPinnedOnly: boolean;
   tab: TabCode;
+  searchTarget?: SearchTarget | null;
 };
 
 export type UiPersistent = {

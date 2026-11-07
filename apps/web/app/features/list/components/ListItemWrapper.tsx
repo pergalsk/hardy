@@ -5,6 +5,7 @@ function ListItemWrapper({
   pinned = false,
   error = false,
   hidden = false,
+  rowId,
   onClick,
   children,
 }: {
@@ -12,6 +13,7 @@ function ListItemWrapper({
   pinned?: boolean;
   error?: boolean;
   hidden?: boolean;
+  rowId?: number;
   onClick?: () => void;
   children: React.ReactNode;
 }) {
@@ -31,7 +33,7 @@ function ListItemWrapper({
   const containerClass = `${selectedClasses} ${bgClasses} ${hidden ? "opacity-20" : ""} text-mirage-800 dark:text-mirage-200 group flex w-full flex-col gap-2 rounded-xl border-2 p-2 transition-colors duration-200 hover:border-2 relative`;
 
   return (
-    <div className={containerClass} onClick={onClick}>
+    <div className={containerClass} data-row-id={rowId} onClick={onClick}>
       {children}
     </div>
   );

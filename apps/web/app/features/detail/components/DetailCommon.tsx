@@ -26,7 +26,7 @@ export function DetailCommon(): React.JSX.Element | null {
   return (
     <div className="bg-mirage-50 dark:bg-bunker-500 flex flex-1 flex-col gap-1 rounded-md p-2">
       <div className="flex gap-2">
-        <div className="flex-1">
+        <div className="flex-1" data-search-section="url">
           <LineClamp
             active={url.length > 100}
             classes={"dark:bg-bunker-500 bg-mirage-50"}

@@ -55,6 +55,7 @@ export function Collapsible({
         </div>
       ) : (
         <div
+          data-search-skip
           className={`${sticky ? "sticky top-0 z-10" : ""} dark:bg-bunker-950 group flex bg-white`}
         >
           <div

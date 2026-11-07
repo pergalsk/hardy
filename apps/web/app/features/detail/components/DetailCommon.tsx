@@ -23,13 +23,24 @@ export function DetailCommon(): React.JSX.Element | null {
   const { url, method, status, statusText, httpVersion } = data;
   const { _securityState, time, serverIPAddress } = data;
 
+  const isError = status <= 599 && status >= 400;
+
+  // opaque versions of the selected error list item colors (red tint over the panel background),
+  // so the "...More" button can still cover the url text
+  const bgClasses = isError
+    ? "bg-[#ffeded] dark:bg-[#280e14]"
+    : "dark:bg-bunker-500 bg-mirage-50";
+  const dividerClasses = isError
+    ? "border-red-200 dark:border-[#1c090d]"
+    : "border-mirage-100 dark:border-bunker-700";
+
   return (
-    <div className="bg-mirage-50 dark:bg-bunker-500 flex flex-1 flex-col gap-1 rounded-md p-2">
+    <div className={`${bgClasses} flex flex-1 flex-col gap-1 rounded-md p-2`}>
       <div className="flex gap-2">
         <div className="flex-1" data-search-section="url">
           <LineClamp
             active={url.length > 100}
-            classes={"dark:bg-bunker-500 bg-mirage-50"}
+            classes={isError ? "bg-[#ffeded] dark:bg-[#280e14]!" : bgClasses}
           >
             <DetailField label={"URL:"}>
               <Url {...getUrlParts(url)} />
@@ -41,7 +52,7 @@ export function DetailCommon(): React.JSX.Element | null {
         </div>
       </div>
 
-      <hr className="border-mirage-100 dark:border-bunker-700 my-1 border border-b" />
+      <hr className={`${dividerClasses} my-1 border border-b`} />
 
       <div className="flex text-sm">
         <div className="flex flex-1 flex-col gap-1">

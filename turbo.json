@@ -25,6 +25,10 @@
     "test": {
       "outputs": ["coverage/**"],
       "inputs": ["src/**", "vitest.config.ts"]
+    },
+    "test:e2e": {
+      "cache": false,
+      "env": ["CI"]
     }
   }
 }

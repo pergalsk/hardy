@@ -38,6 +38,8 @@ next-env.d.ts
 # Playwright
 .playwright/
 .playwright-cli/
+test-results/
+playwright-report/
 
 # Notes
 REPORT*.md

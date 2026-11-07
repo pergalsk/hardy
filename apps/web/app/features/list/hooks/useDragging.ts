@@ -5,15 +5,22 @@ export function useDragging<T extends HTMLElement>(
 ) {
   const ref = useRef<T>(null);
   const [isDragging, setIsDragging] = useState(false);
+  // dragenter/dragleave also fire when moving over child elements,
+  // so count them and turn off the highlight only when the drag leaves the zone.
+  const dragCounter = useRef(0);
 
   const onDragEnter = useCallback((e: DragEvent) => {
     e.preventDefault();
+    dragCounter.current++;
     setIsDragging(true);
   }, []);
 
   const onDragleave = useCallback((e: DragEvent) => {
     e.preventDefault();
-    setIsDragging(false);
+    dragCounter.current = Math.max(0, dragCounter.current - 1);
+    if (dragCounter.current === 0) {
+      setIsDragging(false);
+    }
   }, []);
 
   const onDragover = useCallback((e: DragEvent) => {
@@ -22,6 +29,7 @@ export function useDragging<T extends HTMLElement>(
 
   const onDrop = useCallback((e: DragEvent) => {
     e.preventDefault();
+    dragCounter.current = 0;
     setIsDragging(false);
     callbackFn(e);
   }, []);

@@ -34,8 +34,7 @@ test.describe("global search", () => {
     });
   }
 
-  // Bug: Modal focuses the <dialog> after opening, so the input loses autofocus.
-  test.fixme("modal opens with focused input", async ({ page }) => {
+  test("modal opens with focused input", async ({ page }) => {
     await page.keyboard.press("Control+k");
     await expect(input(page)).toBeFocused();
   });

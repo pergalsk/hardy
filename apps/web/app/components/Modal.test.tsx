@@ -90,3 +90,23 @@ describe("Modal — close button", () => {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 });
+
+describe("Modal — initial focus", () => {
+  it("focuses the first text field when it opens", () => {
+    // The mocked showModal leaves the dialog closed, and jsdom makes a closed
+    // dialog's content unfocusable, so open it for this test.
+    vi.spyOn(HTMLDialogElement.prototype, "showModal").mockImplementation(
+      function (this: HTMLDialogElement) {
+        this.open = true;
+      },
+    );
+
+    render(
+      <Modal isOpen={true} onClose={() => {}}>
+        <input aria-label="Search" />
+      </Modal>,
+    );
+
+    expect(screen.getByLabelText("Search")).toHaveFocus();
+  });
+});

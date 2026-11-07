@@ -40,7 +40,12 @@ export default function Modal({
         }
       }
       document.documentElement.style.overflow = "hidden";
-      dialog.focus();
+      // Focus the first field so the modal opens ready to type; the dialog
+      // itself is the fallback when there is nothing to type into.
+      const firstField = dialog.querySelector<HTMLElement>(
+        'input:not([type="hidden"]), textarea, select',
+      );
+      (firstField ?? dialog).focus();
     } else {
       if (dialog.open) dialog.close();
       document.documentElement.style.overflow = "";

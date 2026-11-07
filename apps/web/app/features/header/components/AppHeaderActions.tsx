@@ -26,6 +26,7 @@ import { ActionSeparator } from "@repo/ui/action-separator";
 import { ActionIcon } from "@repo/ui/action-icon";
 import { FileOpener } from "../../file/components/FileOpener";
 import { Settings } from "../../settings/components/Settings";
+import { Search } from "../../search/components/Search";
 import { detailFormatters } from "@repo/formatter-core/registry";
 
 export function AppHeaderActions(): React.JSX.Element {
@@ -80,6 +81,12 @@ export function AppHeaderActions(): React.JSX.Element {
 
       {files.length > 0 && (
         <>
+          <ActionText>Search</ActionText>
+
+          <Search />
+
+          <ActionSeparator type="line" />
+
           <ActionText>List</ActionText>
 
           <ActionIcon

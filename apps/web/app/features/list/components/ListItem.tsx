@@ -53,6 +53,7 @@ function ListItemComponent({
       pinned={isPinned}
       error={isError}
       hidden={!!$$hidden}
+      rowId={$$id}
       onClick={handleRowClick}
     >
       <div className="flex items-center justify-between gap-1">

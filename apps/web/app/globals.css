@@ -214,3 +214,9 @@
 .w-rjv-type:not([data-type="null"], [data-type="undefined"]) {
   display: none;
 }
+
+/* Search hit */
+::highlight(search-hit) {
+  background-color: var(--color-accent-300);
+  color: black;
+}

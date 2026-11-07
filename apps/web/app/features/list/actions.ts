@@ -7,7 +7,9 @@ import {
 } from "../../store/store";
 
 export const setRowId = (rowId: number) =>
-  useAppStore.setState((state) => ({ ui: { ...state.ui, rowId } }));
+  useAppStore.setState((state) => ({
+    ui: { ...state.ui, rowId, searchTarget: null },
+  }));
 
 export const setShowPinnedOnly = (showPinnedOnly: boolean) =>
   useAppStore.setState((state) => ({

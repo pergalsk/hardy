@@ -1,7 +1,8 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Logo } from "./Logo";
 
-test("renders without crashing", () => {
-  const { container } = render(<Logo />);
-  expect(container).not.toBeEmptyDOMElement();
+test("renders logo image and name", () => {
+  render(<Logo />);
+  expect(screen.getByRole("img", { name: "HARDY logo" })).toBeInTheDocument();
+  expect(screen.getByText("HARDY")).toBeInTheDocument();
 });

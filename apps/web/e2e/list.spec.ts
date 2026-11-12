@@ -1,4 +1,6 @@
+import fs from "node:fs";
 import { test, expect, type Page } from "@playwright/test";
+import { isHar, type Har } from "@repo/har-types";
 import {
   detailPanel,
   filterInput,
@@ -8,6 +10,7 @@ import {
   openHar,
   readHar,
   rowIds,
+  selectFile,
   setSettings,
   sortingPanel,
 } from "./helpers";
@@ -293,5 +296,45 @@ test.describe("list", () => {
 
     await openHar(page);
     await expect(page.getByText("page_1", { exact: true })).toBeVisible();
+  });
+});
+
+test.describe("export", () => {
+  test("exports filtered entries as a new HAR file", async ({ page }) => {
+    const exportIcon = headerIcon(page, "download-rounded");
+
+    await filterInput(page, "method").fill("nothing-matches");
+    await expect(exportIcon).toHaveClass(/pointer-events-none/);
+
+    await filterInput(page, "method").fill("post");
+    expect(await rowIds(page)).toEqual([1, 5]);
+    await expect(exportIcon).not.toHaveClass(/pointer-events-none/);
+
+    const downloadPromise = page.waitForEvent("download");
+    await exportIcon.click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toBe("basic-filtered.har");
+
+    const content = fs.readFileSync(await download.path(), "utf-8");
+    const har = JSON.parse(content) as Har;
+    const original = readHar("basic.har").log;
+
+    expect(isHar(har)).toBe(true);
+    expect(har.log.version).toBe(original.version);
+    expect(har.log.creator).toEqual(original.creator);
+    expect(har.log.entries).toEqual([original.entries[1], original.entries[5]]);
+    expect(har.log.pages?.map((p) => p.id)).toEqual(["page_1", "page_3"]);
+    expect(content).not.toContain("$$");
+
+    // exported file opens again and shows the same entries
+    await page.goto("/");
+    await selectFile(page, {
+      name: "basic-filtered.har",
+      mimeType: "application/json",
+      buffer: Buffer.from(content),
+    });
+    await expect(listRow(page, 0)).toBeVisible();
+    expect(await rowIds(page)).toEqual([0, 1]);
+    await expect(listRow(page, 1)).toContainText("/form");
   });
 });

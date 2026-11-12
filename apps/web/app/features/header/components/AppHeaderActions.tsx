@@ -25,6 +25,7 @@ import { ActionText } from "@repo/ui/action-text";
 import { ActionSeparator } from "@repo/ui/action-separator";
 import { ActionIcon } from "@repo/ui/action-icon";
 import { FileOpener } from "../../file/components/FileOpener";
+import { ExportHarBtn } from "../../list/components/ExportHarBtn";
 import { Settings } from "../../settings/components/Settings";
 import { Search } from "../../search/components/Search";
 import { detailFormatters } from "@repo/formatter-core/registry";
@@ -123,6 +124,8 @@ export function AppHeaderActions(): React.JSX.Element {
             disabled={isPinnedEmpty}
             icon="iconify material-symbols--bookmark-remove-outline-rounded"
           />
+
+          <ExportHarBtn />
 
           <ActionSeparator type="line" />
 

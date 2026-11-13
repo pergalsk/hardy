@@ -31,7 +31,12 @@ jobs:
 
       - run: npm ci
       - run: npm run lint
-      - run: npm run test
+      - run: npm run test:coverage
+
+      - name: Coverage summary
+        if: ${{ !cancelled() }}
+        run: npm run coverage:summary --silent >> "$GITHUB_STEP_SUMMARY"
+
       - run: npm run build
 
   e2e:

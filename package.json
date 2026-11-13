@@ -8,7 +8,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "test": "turbo test",
     "test:e2e": "turbo test:e2e",
-    "test:coverage": "turbo test -- --coverage"
+    "test:coverage": "turbo test -- --coverage",
+    "coverage:summary": "node scripts/coverage-summary.mjs"
   },
   "devDependencies": {
     "@iconify-json/material-symbols": "^1.1.89",

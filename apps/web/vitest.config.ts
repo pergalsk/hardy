@@ -10,8 +10,22 @@ export default defineConfig({
     // Playwright E2E tests run with `npm run test:e2e`
     exclude: [...configDefaults.exclude, "e2e/**"],
     coverage: {
-      include: ["app/**/*.tsx"],
-      exclude: ["app/layout.tsx", "app/page.tsx", "app/plugins/**"],
+      provider: "v8",
+      reporter: ["text-summary", "json-summary", "lcov"],
+      include: ["app/**/*.{ts,tsx}"],
+      exclude: [
+        "app/layout.tsx",
+        "app/page.tsx",
+        "app/plugins/**",
+        "**/*.test.{ts,tsx}",
+        "**/types.ts",
+      ],
+      thresholds: {
+        lines: 77,
+        statements: 75,
+        functions: 65,
+        branches: 64,
+      },
     },
   },
 });

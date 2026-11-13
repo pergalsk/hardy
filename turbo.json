@@ -22,9 +22,13 @@
       "cache": false,
       "persistent": true
     },
+    "transit": {
+      "dependsOn": ["^transit"]
+    },
     "test": {
+      "dependsOn": ["^transit"],
       "outputs": ["coverage/**"],
-      "inputs": ["src/**", "vitest.config.ts"]
+      "inputs": ["$TURBO_DEFAULT$", "!e2e/**", "!playwright.config.ts"]
     },
     "test:e2e": {
       "cache": false,

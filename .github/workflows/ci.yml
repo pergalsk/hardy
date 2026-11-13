@@ -84,3 +84,43 @@ jobs:
             apps/web/playwright-report/
             apps/web/test-results/
           retention-days: 7
+
+  deploy:
+    name: Deploy
+    needs: [ci, e2e]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build -- --filter=web
+
+      - run: sudo apt-get update && sudo apt-get install -y lftp
+
+      # Order matters: users must never get a page that points to missing files.
+      # 1. assets (everything except page files), 2. page files, 3. delete old files.
+      - name: Upload via FTPS
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+        run: |
+          lftp -c "
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set net:max-retries 3;
+            open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_SERVER\";
+            mirror --reverse --verbose --parallel=4 --exclude-glob *.html --exclude-glob *.txt apps/web/out/ \"$FTP_REMOTE_DIR\";
+            mirror --reverse --verbose --parallel=4 apps/web/out/ \"$FTP_REMOTE_DIR\";
+            mirror --reverse --verbose --delete --exclude ^\.well-known/ apps/web/out/ \"$FTP_REMOTE_DIR\";
+          "

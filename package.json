@@ -22,8 +22,8 @@
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
-    "turbo": "^2.9.6",
-    "vite": "^8.3.5",
+    "turbo": "^2.11.11",
+    "vite": "^8.3.8",
     "vitest": "^5.0.5"
   },
   "engines": {

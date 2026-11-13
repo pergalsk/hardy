@@ -34,8 +34,14 @@ test.describe("file handling", () => {
       return transfer;
     }, content);
     const dropZone = page.locator("div.border-dashed");
-    await dropZone.dispatchEvent("dragenter", { dataTransfer });
-    await expect(dropZone).toHaveClass(/border-accent-600/);
+    // Drag listeners are attached after React hydrates, so an early dragenter
+    // can be lost. Repeat it until the drop zone is highlighted.
+    await expect(async () => {
+      await dropZone.dispatchEvent("dragenter", { dataTransfer });
+      await expect(dropZone).toHaveClass(/border-accent-600/, {
+        timeout: 500,
+      });
+    }).toPass();
     await dropZone.dispatchEvent("drop", { dataTransfer });
 
     await expect(listRow(page, 0)).toBeVisible();

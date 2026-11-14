@@ -3,6 +3,7 @@ const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 /** @type {(phase: string) => import('next').NextConfig} */
 module.exports = (phase) => ({
   agentRules: false,
+  output: "export",
   transpilePackages: [
     "@repo/ui",
     "@repo/formatter-core",

@@ -5,6 +5,7 @@ import { useAppStore } from "../../../store/store";
 import { selectFilter } from "../selectors";
 import { setFilterFields, clearFilter } from "../actions";
 import { Filter } from "../../../store/store";
+import { Tooltip } from "@repo/ui/tooltip";
 
 export function ListFilter() {
   const filter: Filter = useAppStore(selectFilter);
@@ -84,13 +85,17 @@ export function ListFilter() {
         </div>
       </div>
 
-      <button
-        className={`${highlightButtonClasses} flex rounded-md p-1 text-xl`}
-        onClick={clearFilter}
-        disabled={!isFilled}
-      >
-        <span className="iconify material-symbols--delete-outline-rounded my-auto"></span>
-      </button>
+      <Tooltip content="Clear filter">
+        <button
+          type="button"
+          aria-label="Clear filter"
+          className={`${highlightButtonClasses} flex rounded-md p-1 text-xl`}
+          onClick={() => isFilled && clearFilter()}
+          aria-disabled={!isFilled || undefined}
+        >
+          <span className="iconify material-symbols--delete-outline-rounded my-auto"></span>
+        </button>
+      </Tooltip>
     </div>
   );
 }

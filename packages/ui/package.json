@@ -19,6 +19,7 @@
     "./action-separator": "./src/action-separator.tsx",
     "./action-text": "./src/action-text.tsx",
     "./action-icon": "./src/action-icon.tsx",
+    "./tooltip": "./src/tooltip.tsx",
     "./true-false-mark": "./src/true-false-mark.tsx",
     "./method": "./src/method.tsx",
     "./status": "./src/status.tsx",
@@ -51,6 +52,7 @@
     "vitest": "^5.1.0"
   },
   "dependencies": {
+    "@radix-ui/react-tooltip": "^1.4.1",
     "react-dom": "^19.2.5"
   }
 }

@@ -34,7 +34,7 @@ export async function selectFile(
 
 /** Header action icon, found by its iconify class name. */
 export const headerIcon = (page: Page, icon: string) =>
-  page.locator(`nav [role="button"].material-symbols--${icon}`);
+  page.locator(`nav button.material-symbols--${icon}`);
 
 export const listPanel = (page: Page) =>
   page.locator('div:has(+ [role="separator"])');
@@ -70,7 +70,7 @@ export const section = (page: Page, name: string): Locator =>
 
 /** Content/headers formatter icon in a collapsible title bar. */
 export const formatterIcon = (sectionLocator: Locator, icon: string) =>
-  sectionLocator.locator(`div.material-symbols--${icon}`);
+  sectionLocator.locator(`button.material-symbols--${icon}`);
 
 export const detailTab = (page: Page, name: string) =>
   detailPanel(page).getByRole("button", { name, exact: true });

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { Tooltip } from "@repo/ui/tooltip";
 import { ToggleMark } from "../features/settings/components/ToggleMark";
 
 export function Collapsible({
@@ -23,7 +24,9 @@ export function Collapsible({
   disabled?: boolean;
   active?: boolean;
   sticky?: boolean;
-  actions?: { [id: string]: { id: string; icon: string } } | null;
+  actions?: {
+    [id: string]: { id: string; icon: string; tooltip: string };
+  } | null;
   activeActionId?: string;
   onAction?: (id: string) => void;
 }) {
@@ -38,12 +41,15 @@ export function Collapsible({
     : "group-hover:bg-mirage-100 dark:group-hover:bg-bunker-200 dark:group-hover:text-white";
 
   const actionList = actions
-    ? Object.entries(actions).map(([id, { icon }]) => (
-        <div
-          key={id}
-          className={`${icon} ${activeActionId === id ? "text-accent-600 dark:text-accent-300" : ""} hover:text-accent-500 my-auto text-lg dark:hover:text-white`}
-          onClick={() => onAction(id)}
-        ></div>
+    ? Object.entries(actions).map(([id, { icon, tooltip }]) => (
+        <Tooltip key={id} content={tooltip}>
+          <button
+            type="button"
+            aria-label={tooltip}
+            className={`${icon} ${activeActionId === id ? "text-accent-600 dark:text-accent-300" : ""} hover:text-accent-500 my-auto text-lg dark:hover:text-white`}
+            onClick={() => onAction(id)}
+          />
+        </Tooltip>
       ))
     : null;
 

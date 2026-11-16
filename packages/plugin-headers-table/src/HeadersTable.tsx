@@ -2,6 +2,7 @@ import type React from "react";
 import type { HeaderItem } from "@repo/formatter-core";
 import { LineClamp } from "@repo/ui/line-clamp";
 import { NoContent } from "@repo/ui/no-content";
+import { Tooltip } from "@repo/ui/tooltip";
 import { HeadersValue } from "./HeadersValue";
 
 export function HeadersTable({
@@ -35,10 +36,14 @@ export function HeadersTable({
               >
                 <td className="w-auto whitespace-nowrap px-2 py-1 align-top font-bold">
                   {header.name}
-                  <span
-                    className="iconify material-symbols--help-outline-rounded dark:text-mirage-800 text-mirage-100 dark:hover:text-accent-300 hover:text-accent-600 ml-1 inline-flex select-none items-center align-top text-lg"
-                    onClick={() => redirect(header.name)}
-                  ></span>
+                  <Tooltip content="Open MDN docs">
+                    <button
+                      type="button"
+                      aria-label={`Open MDN docs for ${header.name}`}
+                      className="iconify material-symbols--help-outline-rounded dark:text-mirage-800 text-mirage-100 dark:hover:text-accent-300 hover:text-accent-600 ml-1 inline-flex select-none items-center align-top text-lg"
+                      onClick={() => redirect(header.name)}
+                    />
+                  </Tooltip>
                 </td>
                 <td className="p-1">
                   <LineClamp

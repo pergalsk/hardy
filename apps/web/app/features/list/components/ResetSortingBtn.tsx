@@ -1,4 +1,5 @@
 import React from "react";
+import { Tooltip } from "@repo/ui/tooltip";
 
 export default function ResetSortingBtn(props: {
   isActive: boolean;
@@ -11,12 +12,16 @@ export default function ResetSortingBtn(props: {
     : "opacity-25";
 
   return (
-    <button
-      className={`${buttonHoverClasses} flex rounded-md p-1 text-xl`}
-      onClick={onClick}
-      disabled={!isActive}
-    >
-      <span className="iconify material-symbols--delete-outline-rounded my-auto" />
-    </button>
+    <Tooltip content="Reset sorting">
+      <button
+        type="button"
+        aria-label="Reset sorting"
+        className={`${buttonHoverClasses} flex rounded-md p-1 text-xl`}
+        onClick={() => isActive && onClick()}
+        aria-disabled={!isActive || undefined}
+      >
+        <span className="iconify material-symbols--delete-outline-rounded my-auto" />
+      </button>
+    </Tooltip>
   );
 }

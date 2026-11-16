@@ -1,32 +1,49 @@
 import React from "react";
+import { Tooltip } from "./tooltip";
 
 export function ActionIcon({
   onClick,
   active,
   disabled,
   icon,
+  label,
+  shortcut,
 }: {
   onClick?: () => void;
   active?: boolean;
   disabled?: boolean;
   icon?: string;
+  label: string;
+  shortcut?: string;
 }) {
   const base = "my-auto text-xl";
 
-  const stateClasses = active
-    ? "text-accent-300 hover:text-accent-100 dark:text-accent-500 dark:hover:text-accent-300"
-    : "text-slate-300 hover:text-white dark:bg-slate-400 dark:hover:bg-slate-300";
+  const colorClasses = active
+    ? "text-accent-300 dark:text-accent-500"
+    : "text-slate-300 dark:bg-slate-400";
 
-  const disabledClasses = disabled ? "opacity-50 pointer-events-none" : "";
+  const hoverClasses = active
+    ? "hover:text-accent-100 dark:hover:text-accent-300"
+    : "hover:text-white dark:hover:bg-slate-300";
 
-  const handleClick = () => onClick?.();
+  // aria-disabled (not `disabled` / pointer-events-none) keeps hover and focus, so the tooltip still shows
+  const stateClasses = disabled
+    ? `${colorClasses} opacity-50 cursor-default`
+    : `${colorClasses} ${hoverClasses}`;
+
+  const handleClick = () => {
+    if (!disabled) onClick?.();
+  };
 
   return (
-    <div
-      role="button"
-      tabIndex={0}
-      onClick={disabled ? undefined : handleClick}
-      className={`${stateClasses} ${base} ${disabledClasses} ${icon ?? ""}`}
-    />
+    <Tooltip content={label} shortcut={shortcut}>
+      <button
+        type="button"
+        aria-label={label}
+        aria-disabled={disabled || undefined}
+        onClick={handleClick}
+        className={`${stateClasses} ${base} ${icon ?? ""}`}
+      />
+    </Tooltip>
   );
 }

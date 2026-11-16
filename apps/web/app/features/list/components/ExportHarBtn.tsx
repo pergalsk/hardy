@@ -47,10 +47,13 @@ export function ExportHarBtn(): React.JSX.Element {
     setTimeout(() => URL.revokeObjectURL(url));
   };
 
+  const disabled = !file?.data || visibleIds.length === 0;
+
   return (
     <ActionIcon
       onClick={handleExport}
-      disabled={!file?.data || visibleIds.length === 0}
+      disabled={disabled}
+      label="Export HAR"
       icon="iconify material-symbols--download-rounded"
     />
   );

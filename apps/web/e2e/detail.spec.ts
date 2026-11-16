@@ -44,7 +44,7 @@ test.describe("detail", () => {
     const dialog = (page: Page) =>
       page.getByRole("dialog", { name: "URL details" });
     const open = async (page: Page) => {
-      await page.getByTitle("Show URL details").click();
+      await page.getByRole("button", { name: "URL details" }).click();
       await expect(dialog(page)).toBeVisible();
     };
 

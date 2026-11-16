@@ -246,14 +246,14 @@ test.describe("list", () => {
       );
     const showPinned = (page: Page) =>
       page.locator(
-        'nav [role="button"]:is(.material-symbols--bookmarks-outline, .material-symbols--bookmarks-rounded)',
+        "nav button:is(.material-symbols--bookmarks-outline, .material-symbols--bookmarks-rounded)",
       );
     const clearPinned = (page: Page) =>
       headerIcon(page, "bookmark-remove-outline-rounded");
 
     test("buttons are disabled when nothing is pinned", async ({ page }) => {
-      await expect(showPinned(page)).toHaveClass(/pointer-events-none/);
-      await expect(clearPinned(page)).toHaveClass(/pointer-events-none/);
+      await expect(showPinned(page)).toHaveAttribute("aria-disabled", "true");
+      await expect(clearPinned(page)).toHaveAttribute("aria-disabled", "true");
     });
 
     test("pin, show pinned only, unpin and clear", async ({ page }) => {
@@ -261,7 +261,7 @@ test.describe("list", () => {
       await pinIcon(page, 3).click();
       await expect(pinIcon(page, 1)).toHaveClass(/bookmark-check-rounded/);
       await expect(listRow(page, 1)).toHaveClass(/pinned-overlay/);
-      await expect(showPinned(page)).not.toHaveClass(/pointer-events-none/);
+      await expect(showPinned(page)).not.toHaveAttribute("aria-disabled");
 
       await showPinned(page).click();
       expect(await rowIds(page)).toEqual([1, 3]);
@@ -272,7 +272,7 @@ test.describe("list", () => {
       await clearPinned(page).click();
       expect(await rowIds(page)).toEqual([0, 1, 2, 3, 4, 5]);
       await expect(pinIcon(page, 1)).toHaveClass(/bookmark-outline-rounded/);
-      await expect(clearPinned(page)).toHaveClass(/pointer-events-none/);
+      await expect(clearPinned(page)).toHaveAttribute("aria-disabled", "true");
     });
   });
 
@@ -304,11 +304,11 @@ test.describe("export", () => {
     const exportIcon = headerIcon(page, "download-rounded");
 
     await filterInput(page, "method").fill("nothing-matches");
-    await expect(exportIcon).toHaveClass(/pointer-events-none/);
+    await expect(exportIcon).toHaveAttribute("aria-disabled", "true");
 
     await filterInput(page, "method").fill("post");
     expect(await rowIds(page)).toEqual([1, 5]);
-    await expect(exportIcon).not.toHaveClass(/pointer-events-none/);
+    await expect(exportIcon).not.toHaveAttribute("aria-disabled");
 
     const downloadPromise = page.waitForEvent("download");
     await exportIcon.click();

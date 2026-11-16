@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import Modal from "../../../components/Modal";
 import UrlQueryTable from "./UrlQueryTable";
 import Button from "@repo/ui/button";
+import { Tooltip } from "@repo/ui/tooltip";
 
 export default function UrlDetailsModal({ url }: { url: string }) {
   const [open, setOpen] = useState(false);
@@ -79,12 +80,14 @@ export default function UrlDetailsModal({ url }: { url: string }) {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        title="Show URL details"
-        className="iconify material-symbols--list-alt-outline-rounded text-slate-300 hover:text-white dark:bg-slate-400 dark:hover:bg-slate-300 text-xl"
-      />
+      <Tooltip content="URL details">
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="URL details"
+          className="iconify material-symbols--list-alt-outline-rounded text-slate-300 hover:text-white dark:bg-slate-400 dark:hover:bg-slate-300 text-xl"
+        />
+      </Tooltip>
 
       <Modal
         isOpen={open}
@@ -109,10 +112,14 @@ export default function UrlDetailsModal({ url }: { url: string }) {
               >
                 <div className="col-span-2 flex text-sm font-medium text-black dark:text-white">
                   <span className="">{label}</span>
-                  <span
-                    className="iconify material-symbols--help-outline-rounded dark:text-mirage-600 text-mirage-100 dark:hover:text-accent-300 hover:text-accent-600 ml-1 inline-flex cursor-pointer select-none items-center align-top text-lg"
-                    onClick={() => openMdnFor(label)}
-                  />
+                  <Tooltip content="Open MDN docs">
+                    <button
+                      type="button"
+                      aria-label={`Open MDN docs for ${label}`}
+                      className="iconify material-symbols--help-outline-rounded dark:text-mirage-600 text-mirage-100 dark:hover:text-accent-300 hover:text-accent-600 ml-1 inline-flex cursor-pointer select-none items-center align-top text-lg"
+                      onClick={() => openMdnFor(label)}
+                    />
+                  </Tooltip>
                 </div>
                 <div className="dark:text-mirage-200 col-span-7 break-all text-sm text-black">
                   {value || (

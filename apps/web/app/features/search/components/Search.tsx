@@ -24,6 +24,8 @@ export function Search() {
     <>
       <ActionIcon
         onClick={() => setOpen(true)}
+        label="Search"
+        shortcut="Ctrl+K"
         icon="iconify material-symbols--search-rounded"
       />
 

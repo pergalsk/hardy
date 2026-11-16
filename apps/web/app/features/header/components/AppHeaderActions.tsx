@@ -72,6 +72,7 @@ export function AppHeaderActions(): React.JSX.Element {
           <FileOpener>
             <ActionIcon
               onClick={handleFilterActive}
+              label="Open file"
               icon="iconify material-symbols--folder-open-outline-rounded"
             />
           </FileOpener>
@@ -93,18 +94,21 @@ export function AppHeaderActions(): React.JSX.Element {
           <ActionIcon
             onClick={handleFilterActive}
             active={filterActive}
+            label="Filter list"
             icon="iconify material-symbols--filter-alt-outline"
           />
 
           <ActionIcon
             onClick={handleSortingActive}
             active={sortingActive}
+            label="Sort list"
             icon="iconify material-symbols--sort-rounded"
           />
 
           <ActionIcon
             onClick={handleShowPages}
             active={showPages}
+            label="Group by pages"
             icon="iconify material-symbols--note-stack-outline"
           />
 
@@ -112,6 +116,7 @@ export function AppHeaderActions(): React.JSX.Element {
             onClick={handleShowPinnedOnly}
             active={showPinnedOnly}
             disabled={isPinnedEmpty}
+            label="Show pinned only"
             icon={
               isPinnedEmpty
                 ? `iconify material-symbols--bookmarks-outline`
@@ -122,6 +127,7 @@ export function AppHeaderActions(): React.JSX.Element {
           <ActionIcon
             onClick={handleClearPinned}
             disabled={isPinnedEmpty}
+            label="Unpin all"
             icon="iconify material-symbols--bookmark-remove-outline-rounded"
           />
 
@@ -135,6 +141,7 @@ export function AppHeaderActions(): React.JSX.Element {
             <ActionIcon
               key={key}
               active={key === detailFormatterId}
+              label={formatter.tooltip}
               icon={`iconify ${formatter.icon}`}
               onClick={() => setDetailFormatter(key)}
             />

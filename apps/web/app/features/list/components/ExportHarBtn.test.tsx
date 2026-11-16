@@ -31,13 +31,13 @@ beforeEach(() => {
 
 test("renders disabled when no file is open", () => {
   render(<ExportHarBtn />);
-  expect(screen.getByRole("button")).toHaveClass("pointer-events-none");
+  expect(screen.getByRole("button")).toHaveAttribute("aria-disabled", "true");
 });
 
 test("renders enabled when a file is open and entries are visible", () => {
   openFile();
   render(<ExportHarBtn />);
-  expect(screen.getByRole("button")).not.toHaveClass("pointer-events-none");
+  expect(screen.getByRole("button")).not.toHaveAttribute("aria-disabled");
 });
 
 test("renders disabled when the filter hides all entries", () => {
@@ -49,5 +49,5 @@ test("renders disabled when the filter hides all entries", () => {
     },
   });
   render(<ExportHarBtn />);
-  expect(screen.getByRole("button")).toHaveClass("pointer-events-none");
+  expect(screen.getByRole("button")).toHaveAttribute("aria-disabled", "true");
 });

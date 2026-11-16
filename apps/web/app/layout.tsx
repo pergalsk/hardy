@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import { FormatterHostBridge } from "./providers/FormatterHostBridge";
+import { TooltipProvider } from "@repo/ui/tooltip";
 
 const defaultMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${defaultMono.variable} text-base`}>
-        <FormatterHostBridge>{children}</FormatterHostBridge>
+        <TooltipProvider>
+          <FormatterHostBridge>{children}</FormatterHostBridge>
+        </TooltipProvider>
       </body>
     </html>
   );

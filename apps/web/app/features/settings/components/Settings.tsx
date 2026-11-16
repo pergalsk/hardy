@@ -10,6 +10,7 @@ export function Settings() {
     <>
       <ActionIcon
         onClick={() => setOpen(true)}
+        label="Settings"
         icon="iconify material-symbols--settings-outline-rounded"
       />
 

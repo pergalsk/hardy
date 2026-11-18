@@ -25,13 +25,13 @@ export function HeadersTable({
     <table className="w-full table-auto text-sm">
       <tbody>
         {Array.isArray(headers) &&
-          headers
+          [...headers]
             .sort((a: HeaderItem, b: HeaderItem) =>
               a.name.localeCompare(b.name),
             )
             .map((header: HeaderItem, index: number) => (
               <tr
-                key={index}
+                key={`${header.name}-${index}`}
                 className="dark:text-mirage-200 dark:border-bunker-400 dark:hover:bg-bunker-800 dark:hover:text-mirage-50 group break-all border-b border-slate-100 font-mono text-black last:border-none hover:bg-slate-50"
               >
                 <td className="w-auto whitespace-nowrap px-2 py-1 align-top font-bold">

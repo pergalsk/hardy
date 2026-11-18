@@ -11,7 +11,7 @@ export const headersPlainFormatter: Formatter<HeaderItem[]> = {
     return (
       <div className="dark:text-mirage-200 break-all px-2 font-mono text-sm text-black">
         {headers.map((header, idx) => (
-          <Fragment key={header.name}>
+          <Fragment key={`${header.name}-${idx}`}>
             {header.name}: {header.value ?? ""}
             {idx < headers.length - 1 && <br />}
           </Fragment>

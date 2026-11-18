@@ -7,3 +7,4 @@ export { FileTab } from "./components/FileTab";
 export { WrongFile } from "./components/WrongFile";
 export * from "./selectors";
 export * from "./actions";
+export * from "./session";

@@ -2,7 +2,6 @@ import {
   useAppStore,
   AppState,
   File,
-  initialFilterState,
   initialFilterFieldsState,
 } from "../../store/store";
 
@@ -21,7 +20,6 @@ const activate = (state: AppState, fileId: string): Partial<AppState> => ({
   },
   filter: {
     ...state.filter,
-    count: initialFilterState.count,
     fields: { ...initialFilterFieldsState },
   },
 });

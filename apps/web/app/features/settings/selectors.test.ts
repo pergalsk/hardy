@@ -1,6 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
-
-vi.mock("../../plugins.config", () => ({}));
+import { describe, it, expect } from "vitest";
+import { detailFormatters } from "@repo/formatter-core/registry";
 
 import type { AppState } from "../../store/store";
 import {
@@ -115,6 +114,21 @@ describe("selectDetailFormatterId", () => {
       uiPersistent: { ...initialUiPersistentState, detailFormatterId: "my-formatter" },
     });
     expect(selectDetailFormatterId(state)).toBe("my-formatter");
+  });
+
+  it("falls back to the default detail formatter when unset", () => {
+    detailFormatters.addFormatters("detail", {
+      id: "default-detail",
+      title: "",
+      icon: "",
+      tooltip: "",
+      format: () => null,
+    });
+    const state = makeState({
+      uiPersistent: { ...initialUiPersistentState, detailFormatterId: null },
+    });
+    expect(selectDetailFormatterId(state)).toBe("default-detail");
+    detailFormatters.removeFormatter("detail");
   });
 });
 

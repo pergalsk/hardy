@@ -37,7 +37,9 @@ export function Content({
   const [appliedSearchKey, setAppliedSearchKey] = useState<number>();
   if (searchTarget && searchTarget.key !== appliedSearchKey) {
     setAppliedSearchKey(searchTarget.key);
-    const rawId = Object.keys(formatterList ?? {}).find((id) => id.includes("raw"));
+    const rawId = mimeType
+      ? contentValueFormatters.getFallbackFormatter(mimeType)?.[0]
+      : undefined;
     if (searchTarget.section === searchSection && rawId) setActiveId(rawId);
   }
   const size = content != null ? ` ${bodySize} B` : "No data";

@@ -8,6 +8,7 @@ const defaultOptions: FormatterProviderOptions = {
 
 export type FormatterBase = {
   id: string;
+  fallback?: boolean;
 };
 
 export function FormatterProvider<T extends FormatterBase>(
@@ -72,12 +73,27 @@ export function FormatterProvider<T extends FormatterBase>(
     return Object.entries(formattersObj)[0] || null;
   }
 
+  function getFallbackFormatter(originalKey: string): [string, T] | null {
+    const key = transformKey(originalKey, optionsObj.comparativeMethod);
+    const formattersObj = formatters[key];
+
+    if (formattersObj == null) {
+      return null;
+    }
+
+    return (
+      Object.entries(formattersObj).find(([, formatter]) => formatter.fallback) ||
+      null
+    );
+  }
+
   return {
     addFormatters,
     removeFormatter,
     getFormatters,
     getFormatter,
     getDefaultFormatter,
+    getFallbackFormatter,
   };
 }
 

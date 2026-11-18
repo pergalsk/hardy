@@ -21,6 +21,7 @@ export const detailRawFormatter: Formatter<unknown> = {
   title: "Raw",
   icon: "iconify material-symbols--code-blocks-outline-rounded",
   tooltip: "Detail raw view",
+  fallback: true,
   format: (data: unknown): React.JSX.Element | string => {
     return <JsonView data={stripInternalKeys(data)} collapseBtns={true} />;
   },

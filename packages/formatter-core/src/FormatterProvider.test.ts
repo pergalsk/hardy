@@ -52,6 +52,22 @@ describe("FormatterProvider – registration and retrieval", () => {
     expect(provider.getFormatters("CONTENT-TYPE")).not.toBeNull();
   });
 
+  it("getFallbackFormatter returns the formatter declared as fallback", () => {
+    const provider = FormatterProvider<Item & { fallback?: boolean }>();
+    provider.addFormatters("key", [
+      { id: "pretty", name: "Pretty" },
+      { id: "original", name: "Original", fallback: true },
+    ]);
+    expect(provider.getFallbackFormatter("key")?.[0]).toBe("original");
+  });
+
+  it("getFallbackFormatter returns null when no formatter is fallback", () => {
+    const provider = FormatterProvider<Item>();
+    provider.addFormatters("key", { id: "pretty", name: "Pretty" });
+    expect(provider.getFallbackFormatter("key")).toBeNull();
+    expect(provider.getFallbackFormatter("missing")).toBeNull();
+  });
+
   it("falls back to null when formatter key is absent", () => {
     const provider = FormatterProvider<Item>();
     expect(provider.getDefaultFormatter("nope")).toBeNull();

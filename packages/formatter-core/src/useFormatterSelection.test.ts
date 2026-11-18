@@ -46,6 +46,51 @@ describe("useFormatterSelection", () => {
     expect(result.current.formatFn).toBe(fmtB.format);
   });
 
+  it("selects the first formatter when the list changes from null", () => {
+    const fmt = makeFormatter("fmt-a");
+    const { result, rerender } = renderHook(
+      ({ list }) => useFormatterSelection(list),
+      { initialProps: { list: null as { [id: string]: Formatter<string> } | null } },
+    );
+    expect(result.current.activeId).toBe("");
+
+    rerender({ list: { "fmt-a": fmt } });
+
+    expect(result.current.activeId).toBe("fmt-a");
+    expect(result.current.formatFn).toBe(fmt.format);
+  });
+
+  it("resets the selection when the list changes", () => {
+    const fmtA = makeFormatter("fmt-a");
+    const fmtB = makeFormatter("fmt-b");
+    const fmtC = makeFormatter("fmt-c");
+    const { result, rerender } = renderHook(
+      ({ list }) => useFormatterSelection(list),
+      { initialProps: { list: { "fmt-a": fmtA, "fmt-b": fmtB } } as { list: { [id: string]: Formatter<string> } } },
+    );
+
+    act(() => result.current.setActiveId("fmt-b"));
+    expect(result.current.activeId).toBe("fmt-b");
+
+    rerender({ list: { "fmt-c": fmtC } });
+
+    expect(result.current.activeId).toBe("fmt-c");
+    expect(result.current.formatFn).toBe(fmtC.format);
+  });
+
+  it("keeps the selection when the same list is passed again", () => {
+    const fmtA = makeFormatter("fmt-a");
+    const fmtB = makeFormatter("fmt-b");
+    const { result, rerender } = renderHook(() =>
+      useFormatterSelection({ "fmt-a": fmtA, "fmt-b": fmtB }),
+    );
+
+    act(() => result.current.setActiveId("fmt-b"));
+    rerender();
+
+    expect(result.current.activeId).toBe("fmt-b");
+  });
+
   it("returns null formatFn when activeId has no match in formatterList", () => {
     const fmt = makeFormatter("fmt-a");
     const { result } = renderHook(() =>

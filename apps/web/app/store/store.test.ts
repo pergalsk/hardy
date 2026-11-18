@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-vi.mock("../plugins.config", () => ({ bootstrapPlugins: vi.fn() }));
 vi.mock("zustand/middleware", () => ({
   persist: <T>(fn: T): T => fn,
   createJSONStorage: vi.fn(),
@@ -68,6 +67,10 @@ describe("store – initial state constants", () => {
     expect(initialUiPersistentState.filterActive).toBe(true);
     expect(initialUiPersistentState.sortingActive).toBe(false);
     expect(initialUiPersistentState.showPages).toBe(false);
+  });
+
+  it("initialUiPersistentState leaves detailFormatterId unset (default formatter)", () => {
+    expect(initialUiPersistentState.detailFormatterId).toBeNull();
   });
 });
 

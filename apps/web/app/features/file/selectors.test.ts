@@ -1,6 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
-
-vi.mock("../../plugins.config", () => ({}));
+import { describe, it, expect } from "vitest";
 
 import type { Har } from "@repo/har-types";
 import type { AppState } from "../../store/store";

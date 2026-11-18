@@ -6,8 +6,6 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { PersistStorage } from "zustand/middleware";
 import type { JsonViewerSettings } from "@repo/formatter-core";
-import { detailFormatters } from "@repo/formatter-core/registry";
-import "../plugins.config";
 
 export type { JsonViewerSettings };
 
@@ -125,8 +123,8 @@ export const initialUiPersistentState: UiPersistent = {
   filterActive: true,
   sortingActive: false,
   showPages: false,
-  detailFormatterId:
-    detailFormatters.getDefaultFormatter("detail")?.[0] || null,
+  // null = use the default (first registered) detail formatter
+  detailFormatterId: null,
 };
 
 export const initialJsonViewerSettings: JsonViewerSettings = {

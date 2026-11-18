@@ -113,3 +113,22 @@ test("clear filter opens the entry", () => {
   expect(useAppStore.getState().ui.rowId).toBe(1);
   expect(onClose).toHaveBeenCalled();
 });
+
+test("treats an entry hidden by pinned only as hidden and clear shows it", () => {
+  useAppStore.setState((state) => ({
+    ui: { ...state.ui, pinnedIds: new Set([0]), showPinnedOnly: true },
+  }));
+  render(<SearchModal open={true} onClose={onClose} />);
+  typeQuery("s3cret");
+  fireEvent.click(screen.getByText("Response cookie"));
+
+  expect(screen.getByText(/hidden by the filter or pinned only/)).toBeInTheDocument();
+  expect(onClose).not.toHaveBeenCalled();
+
+  fireEvent.click(screen.getByText("Clear filter"));
+
+  expect(useAppStore.getState().ui.showPinnedOnly).toBe(false);
+  expect(useAppStore.getState().ui.pinnedIds.has(0)).toBe(true);
+  expect(useAppStore.getState().ui.rowId).toBe(1);
+  expect(onClose).toHaveBeenCalled();
+});

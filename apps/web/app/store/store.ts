@@ -19,7 +19,6 @@ export type File = {
 export type Filter = {
   visible: boolean;
   active: boolean;
-  count: number;
   fields: {
     url: string;
     method: string;
@@ -100,7 +99,6 @@ export const initialFilterFieldsState: Filter["fields"] = {
 export const initialFilterState: Filter = {
   visible: false,
   active: false,
-  count: -1,
   fields: { ...initialFilterFieldsState },
 };
 

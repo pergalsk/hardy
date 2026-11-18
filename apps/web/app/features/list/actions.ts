@@ -2,7 +2,6 @@ import {
   useAppStore,
   Filter,
   SortField,
-  initialFilterState,
   initialFilterFieldsState,
 } from "../../store/store";
 
@@ -16,11 +15,6 @@ export const setShowPinnedOnly = (showPinnedOnly: boolean) =>
     ui: { ...state.ui, showPinnedOnly },
   }));
 
-export const setFilteredCount = (count: number) =>
-  useAppStore.setState((state) => ({
-    filter: { ...state.filter, count },
-  }));
-
 export const setFilter = (newFilter: Filter) =>
   useAppStore.setState((state) => ({
     filter: { ...state.filter, ...newFilter },
@@ -30,7 +24,6 @@ export const clearFilter = () =>
   useAppStore.setState((state) => ({
     filter: {
       ...state.filter,
-      count: initialFilterState.count,
       fields: { ...initialFilterFieldsState },
     },
   }));

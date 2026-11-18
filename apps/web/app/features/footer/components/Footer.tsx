@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { NA } from "@repo/ui/na";
 import { useAppStore } from "../../../store/store";
 import { selectHarData, selectFileSize } from "../../../core/selectors";
-import { selectFilter } from "../../list/selectors";
+import { useListView } from "../../list/hooks/useListView";
 import { deriveFooterData } from "../helpers/deriveFooterData";
 import { formatNumber } from "../../../core/helpers/formatNumber";
 import { formatFileSize } from "../../../core/helpers/formatFileSize";
@@ -23,7 +23,7 @@ export function FooterEmpty() {
 export function Footer() {
   const harData = useAppStore(selectHarData);
   const fileSize = useAppStore(selectFileSize);
-  const { count } = useAppStore(selectFilter);
+  const { visibleCount } = useListView();
 
   const data = useMemo(
     () => deriveFooterData(harData, fileSize),
@@ -37,7 +37,7 @@ export function Footer() {
   const { version, creatorName, creatorVersion, entriesNum, totalTime } = data;
 
   const filteredNum =
-    count >= 0 && count !== entriesNum ? ` (filtered: ${count})` : "";
+    visibleCount !== entriesNum ? ` (filtered: ${visibleCount})` : "";
 
   return (
     <div

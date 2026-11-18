@@ -36,7 +36,7 @@ const setupStore = () =>
       },
     ],
     ui: { fileId: "f1", rowId: 0, pinnedIds: new Set(), showPinnedOnly: false, tab: "REQ" },
-    filter: { visible: false, active: false, count: -1, fields: { url: "", method: "", status: "" } },
+    filter: { visible: false, active: false, fields: { url: "", method: "", status: "" } },
     settings: { groupHidden: false, excludeHidden: true, hideEmptyPages: true },
     uiPersistent: { filterActive: false, sortingActive: false, showPages: false, detailFormatterId: null },
   });

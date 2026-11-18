@@ -1,36 +1,13 @@
 import type React from "react";
-import { useMemo } from "react";
-import { useShallow } from "zustand/shallow";
 import { ActionIcon } from "@repo/ui/action-icon";
 import { useAppStore } from "../../../store/store";
 import { selectFile } from "../../../core/selectors";
-import {
-  selectFilterFields,
-  selectPinnedIds,
-  selectShowPinnedOnly,
-} from "../selectors";
-import { deriveListData } from "../helpers/deriveListData";
-import { markVisible } from "../helpers/filter";
+import { useListView } from "../hooks/useListView";
 import { buildFilteredHar, getFilteredFileName } from "../helpers/exportHar";
 
 export function ExportHarBtn(): React.JSX.Element {
   const file = useAppStore(selectFile);
-  const filterFields = useAppStore(useShallow(selectFilterFields));
-  const showPinnedOnly = useAppStore(selectShowPinnedOnly);
-  const pinnedIds = useAppStore(selectPinnedIds);
-
-  // same visibility rules as the List component
-  const visibleIds = useMemo(() => {
-    const items = deriveListData(file?.data?.log.entries ?? null);
-    const pinned =
-      showPinnedOnly && pinnedIds.size > 0
-        ? items.filter((item) => pinnedIds.has(item.$$id))
-        : items;
-    return pinned
-      .map(markVisible(filterFields))
-      .filter((item) => item.$$visible)
-      .map((item) => item.$$id);
-  }, [file, filterFields, showPinnedOnly, pinnedIds]);
+  const { visibleIds } = useListView();
 
   const handleExport = () => {
     if (!file?.data) return;

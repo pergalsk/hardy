@@ -7,4 +7,3 @@ export const selectPinnedIds = (state: AppState) => state.ui.pinnedIds;
 export const selectRowId = (state: AppState) => state.ui.rowId;
 export const selectShowPinnedOnly = (state: AppState) =>
   state.ui.showPinnedOnly;
-export const selectFilteredCount = (state: AppState) => state.filter.count;

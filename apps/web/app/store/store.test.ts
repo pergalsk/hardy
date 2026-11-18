@@ -35,7 +35,6 @@ describe("store – initial state constants", () => {
   it("initialFilterState has expected defaults", () => {
     expect(initialFilterState.visible).toBe(false);
     expect(initialFilterState.active).toBe(false);
-    expect(initialFilterState.count).toBe(-1);
     expect(initialFilterState.fields).toEqual(initialFilterFieldsState);
   });
 
@@ -110,9 +109,5 @@ describe("store – isolated createStore instances", () => {
 
   it("ui.tab defaults to REQ", () => {
     expect(store.getState().ui.tab).toBe("REQ");
-  });
-
-  it("filter.count defaults to -1", () => {
-    expect(store.getState().filter.count).toBe(-1);
   });
 });

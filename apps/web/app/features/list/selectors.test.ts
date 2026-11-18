@@ -17,7 +17,6 @@ import {
   selectPinnedIds,
   selectRowId,
   selectShowPinnedOnly,
-  selectFilteredCount,
 } from "./selectors";
 
 const makeState = (overrides: Partial<AppState> = {}): AppState => ({
@@ -39,10 +38,9 @@ describe("selectFilter", () => {
   });
 
   it("reflects a custom filter state", () => {
-    const customFilter = { ...initialFilterState, active: true, count: 5 };
+    const customFilter = { ...initialFilterState, active: true };
     const state = makeState({ filter: customFilter });
     expect(selectFilter(state).active).toBe(true);
-    expect(selectFilter(state).count).toBe(5);
   });
 });
 
@@ -91,16 +89,5 @@ describe("selectShowPinnedOnly", () => {
   it("returns true when showPinnedOnly is set", () => {
     const state = makeState({ ui: { ...initialUiState, showPinnedOnly: true } });
     expect(selectShowPinnedOnly(state)).toBe(true);
-  });
-});
-
-describe("selectFilteredCount", () => {
-  it("returns -1 by default", () => {
-    expect(selectFilteredCount(makeState())).toBe(-1);
-  });
-
-  it("returns the filtered count", () => {
-    const state = makeState({ filter: { ...initialFilterState, count: 7 } });
-    expect(selectFilteredCount(state)).toBe(7);
   });
 });

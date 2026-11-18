@@ -4,10 +4,8 @@ import { useShallow } from "zustand/shallow";
 import Modal from "../../../components/Modal";
 import { useAppStore } from "../../../store/store";
 import { selectRawEntries } from "../../../core/selectors";
-import { selectFilterFields } from "../../list/selectors";
-import { clearFilter } from "../../list/actions";
-import { deriveListData } from "../../list/helpers/deriveListData";
-import { markVisible } from "../../list/helpers/filter";
+import { clearFilter, setShowPinnedOnly } from "../../list/actions";
+import { useListView } from "../../list/hooks/useListView";
 import { Method } from "@repo/ui/method";
 import { Status } from "@repo/ui/status";
 import { buildSearchIndex, searchIndex } from "../helpers/search";
@@ -26,7 +24,7 @@ export function SearchModal({
   onClose: () => void;
 }) {
   const rawEntries = useAppStore(useShallow(selectRawEntries));
-  const filterFields = useAppStore(useShallow(selectFilterFields));
+  const { isEntryVisible } = useListView();
   const [input, setInput] = useState("");
   const [query, setQuery] = useState("");
   const [hiddenMatch, setHiddenMatch] = useState<SearchMatch | null>(null);
@@ -60,8 +58,7 @@ export function SearchModal({
   };
 
   const handleMatchClick = (match: SearchMatch) => {
-    const listItem = deriveListData(rawEntries)[match.entryId];
-    const isHidden = listItem && markVisible(filterFields)(listItem).$$hidden;
+    const isHidden = !isEntryVisible(match.entryId);
     if (isHidden) {
       setHiddenMatch(match);
     } else {
@@ -71,6 +68,7 @@ export function SearchModal({
 
   const handleClearFilter = () => {
     clearFilter();
+    setShowPinnedOnly(false);
     if (hiddenMatch) openMatch(hiddenMatch);
   };
 
@@ -97,7 +95,7 @@ export function SearchModal({
           {hiddenMatch && (
             <div className="bg-accent-800 flex items-center gap-3 rounded-md px-3 py-2 text-sm text-white">
               <span className="flex-1">
-                This entry is hidden by the filter. Clear the filter?
+                This entry is hidden by the filter or pinned only. Clear them?
               </span>
               <button
                 type="button"

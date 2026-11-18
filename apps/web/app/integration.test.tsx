@@ -30,7 +30,7 @@ beforeEach(() => {
   useAppStore.setState({
     files: [{ fileId: "f1", name: "test.har", size: 0, data: { log: { entries, pages: [] } } as unknown as Har }],
     ui: { fileId: "f1", rowId: 0, pinnedIds: new Set(), showPinnedOnly: false, tab: "REQ" },
-    filter: { visible: false, active: false, count: -1, fields: { url: "", method: "", status: "" } },
+    filter: { visible: false, active: false, fields: { url: "", method: "", status: "" } },
     settings: { groupHidden: false, excludeHidden: false, hideEmptyPages: true },
     uiPersistent: { filterActive: false, sortingActive: false, showPages: false, detailFormatterId: null },
   });

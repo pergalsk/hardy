@@ -1,10 +1,7 @@
 export { Detail } from "./components/Detail";
 export { DetailCommon } from "./components/DetailCommon";
 export { DetailButtons } from "./components/DetailButtons";
-export { DetailField } from "./components/DetailField";
-export { DetailSegment } from "./components/DetailSegment";
-export { ReqTab } from "./components/ReqTab";
-export { ResTab } from "./components/ResTab";
+export { MessageTab } from "./components/MessageTab";
 export { CooTab } from "./components/CooTab";
 export { TimTab } from "./components/TimTab";
 export { Content } from "./components/Content";

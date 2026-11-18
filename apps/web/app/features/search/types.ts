@@ -1,13 +1,7 @@
 import type { TabCode } from "../../store/store";
+import type { SearchSection } from "./sections";
 
-export type SearchSection =
-  | "url"
-  | "reqHeader"
-  | "reqBody"
-  | "resHeader"
-  | "resBody"
-  | "reqCookie"
-  | "resCookie";
+export type { SearchSection };
 
 export type SearchField = {
   entryId: number;

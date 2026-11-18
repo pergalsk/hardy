@@ -29,9 +29,28 @@ beforeEach(() => {
   });
 });
 
-test("renders without crashing", () => {
-  const { container } = render(<Detail />);
-  expect(container).not.toBeEmptyDOMElement();
+const sectionNames = (container: HTMLElement) =>
+  Array.from(container.querySelectorAll("[data-search-section]")).map((el) =>
+    el.getAttribute("data-search-section"),
+  );
+
+describe("Detail — tab content", () => {
+  it.each([
+    ["Request", ["url", "reqHeader", "reqBody"]],
+    ["Response", ["url", "resHeader", "resBody"]],
+    ["Cookies", ["url", "reqCookie", "resCookie"]],
+    ["Timing", ["url"]],
+  ])("%s tab shows its search sections", (name, sections) => {
+    const { container } = render(<Detail />);
+    fireEvent.click(screen.getByRole("button", { name: new RegExp(name, "i") }));
+    expect(sectionNames(container)).toEqual(sections);
+  });
+
+  it("renders no sections when the selected row has no entry", () => {
+    useAppStore.setState({ ui: { ...useAppStore.getState().ui, rowId: 99 } });
+    const { container } = render(<Detail />);
+    expect(sectionNames(container)).toEqual([]);
+  });
 });
 
 describe("Detail — tab switching", () => {

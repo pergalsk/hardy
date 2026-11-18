@@ -1,6 +1,6 @@
 import type React from "react";
 import { useState } from "react";
-import type { ReqTabData, ResTabData } from "../types";
+import type { MessageData } from "../types";
 import type { SearchSection } from "../../search/types";
 import { useAppStore } from "../../../store/store";
 import { selectSearchTarget } from "../../search/selectors";
@@ -17,7 +17,7 @@ export function Content({
   data,
   searchSection,
 }: {
-  data: ReqTabData | ResTabData;
+  data: MessageData;
   searchSection?: SearchSection;
 }) {
   const { headers, content, bodySize } = data;

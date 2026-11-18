@@ -2,19 +2,22 @@ import React, { useMemo } from "react";
 import { NA } from "@repo/ui/na";
 import { useAppStore } from "../../../store/store";
 import { selectRawEntry } from "../../../core/selectors";
-import { deriveCommonData } from "../helpers/deriveCommonData";
+import { getCommonData } from "../helpers/detailEntry";
 import { Url } from "@repo/ui/url";
 import { Method } from "@repo/ui/method";
 import { Status } from "@repo/ui/status";
 import { getUrlParts } from "../../../core/helpers/getUrlParts";
 import { Time } from "./Time";
-import { DetailField } from "./DetailField";
 import { LineClamp } from "@repo/ui/line-clamp";
 import UrlDetailsModal from "./UrlDetailsModal";
+import { SEARCH_SECTIONS, searchSectionProps } from "../../search/sections";
 
 export function DetailCommon(): React.JSX.Element | null {
   const rawEntry = useAppStore(selectRawEntry);
-  const data = useMemo(() => deriveCommonData(rawEntry), [rawEntry]);
+  const data = useMemo(
+    () => (rawEntry ? getCommonData(rawEntry) : null),
+    [rawEntry],
+  );
 
   if (!data) {
     return null;
@@ -37,7 +40,7 @@ export function DetailCommon(): React.JSX.Element | null {
   return (
     <div className={`${bgClasses} flex flex-1 flex-col gap-1 rounded-md p-2`}>
       <div className="flex gap-2">
-        <div className="flex-1" data-search-section="url">
+        <div className="flex-1" {...searchSectionProps(SEARCH_SECTIONS.url)}>
           <LineClamp
             active={url.length > 100}
             classes={isError ? "bg-[#ffeded] dark:bg-[#280e14]!" : bgClasses}
@@ -81,6 +84,23 @@ export function DetailCommon(): React.JSX.Element | null {
           </DetailField>
         </div>
       </div>
+    </div>
+  );
+}
+
+function DetailField({
+  label,
+  children,
+}: {
+  label: string;
+  children?: React.ReactNode;
+}): React.JSX.Element {
+  return (
+    <div className="text-mirage-700 dark:text-mirage-200 font-mono">
+      <span className="pr-2 font-bold text-slate-600 dark:text-slate-400">
+        {label}
+      </span>
+      <span className="text-black dark:text-white">{children}</span>
     </div>
   );
 }

@@ -5,5 +5,6 @@ export const userAgentRawFormatter: Formatter<HeaderItem> = {
   title: "Original",
   icon: "iconify material-symbols--code-rounded",
   tooltip: "Original raw value",
+  fallback: true,
   format: (headerItem: HeaderItem): string => headerItem.value ?? "",
 };

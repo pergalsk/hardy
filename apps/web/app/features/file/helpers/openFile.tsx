@@ -2,8 +2,7 @@ import type React from "react";
 import { nanoid } from "nanoid";
 import { isHar } from "@repo/har-types";
 import { readFileData } from "./readFileData";
-import { addFile, setFileId } from "../actions";
-import { setRowId } from "../../list/actions";
+import * as fileSession from "../session";
 import { addToast } from "../../notifications/actions";
 import { FileReadError } from "../components/FileReadError";
 
@@ -20,9 +19,7 @@ export async function openFile(file: File, message: string | React.JSX.Element) 
       return;
     }
 
-    addFile({ fileId, name, size, data });
-    setFileId(fileId);
-    setRowId(0);
+    fileSession.openFile({ fileId, name, size, data });
   } catch (error) {
     const reason =
       error instanceof SyntaxError

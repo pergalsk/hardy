@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 import { fixturePath, listRow, openHar, selectFile } from "./helpers";
 
 const footer = "#footer";
@@ -48,12 +48,66 @@ test.describe("file handling", () => {
     await expect(page.locator("nav")).toContainText("dropped.har");
   });
 
-  // Not possible yet: once a file is open, there is no way to open another one
-  // and file tabs can not be switched.
-  test.fixme("opens multiple files as tabs and switches between them", async () => {});
+  test.describe("with two open files", () => {
+    const fileTab = (page: Page, name: string) =>
+      page
+        .locator("nav div:has(> span > .material-symbols--close-rounded)")
+        .filter({ hasText: name });
 
-  // Not possible yet: closing a tab does not activate another open tab.
-  test.fixme("closing a tab activates the next tab", async () => {});
+    const closeTab = (page: Page, name: string) =>
+      fileTab(page, name).locator(".material-symbols--close-rounded").click();
+
+    // There is no "open" action once a file with entries is shown yet (#123).
+    // An empty HAR keeps the start screen, so a second file can be opened.
+    test.beforeEach(async ({ page }) => {
+      await page.goto("/");
+      await selectFile(page, fixturePath("empty.har"));
+      await expect(fileTab(page, "empty.har")).toBeVisible();
+      await selectFile(page, fixturePath("basic.har"));
+      await expect(listRow(page, 0)).toBeVisible();
+      await expect(fileTab(page, "basic.har")).toBeVisible();
+    });
+
+    test("clicking a tab switches the file", async ({ page }) => {
+      await fileTab(page, "empty.har").click();
+      await expect(page.locator(footer)).toContainText("Entries: 0");
+      await expect(page.getByText("Drop HAR file here")).toBeVisible();
+
+      await fileTab(page, "basic.har").click();
+      await expect(page.locator(footer)).toContainText("Entries: 6");
+      await expect(page.locator("[data-row-id]")).toHaveCount(6);
+    });
+
+    test("closing the active tab selects the previous file", async ({
+      page,
+    }) => {
+      await closeTab(page, "basic.har");
+
+      await expect(fileTab(page, "basic.har")).toHaveCount(0);
+      await expect(fileTab(page, "empty.har")).toBeVisible();
+      await expect(page.locator(footer)).toContainText("Entries: 0");
+    });
+
+    test("closing the first active tab selects the next file", async ({
+      page,
+    }) => {
+      await fileTab(page, "empty.har").click();
+      await expect(page.locator(footer)).toContainText("Entries: 0");
+
+      await closeTab(page, "empty.har");
+
+      await expect(fileTab(page, "empty.har")).toHaveCount(0);
+      await expect(page.locator(footer)).toContainText("Entries: 6");
+      await expect(listRow(page, 0)).toBeVisible();
+    });
+
+    test("closing an inactive tab keeps the active file", async ({ page }) => {
+      await closeTab(page, "empty.har");
+
+      await expect(fileTab(page, "empty.har")).toHaveCount(0);
+      await expect(page.locator(footer)).toContainText("Entries: 6");
+    });
+  });
 
   test("closing the last tab shows the start screen", async ({ page }) => {
     await openHar(page);

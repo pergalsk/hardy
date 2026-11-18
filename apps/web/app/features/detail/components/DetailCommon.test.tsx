@@ -11,9 +11,15 @@ beforeEach(() => {
   });
 });
 
-test("renders without crashing", () => {
+test("shows the summary fields of the selected entry", () => {
   const { container } = render(<DetailCommon />);
-  expect(container).not.toBeEmptyDOMElement();
+  expect(container).toHaveTextContent("URL:");
+  expect(container).toHaveTextContent("Method:GET");
+  expect(container).toHaveTextContent("Status:200OK");
+  expect(container).toHaveTextContent("HTTP version:HTTP/1.1");
+  expect(container).toHaveTextContent("Security state:secure");
+  expect(container).toHaveTextContent("Time:123.45 ms");
+  expect(container).toHaveTextContent("Server IP:93.184.216.34");
 });
 
 const setStatus = (status: number) =>

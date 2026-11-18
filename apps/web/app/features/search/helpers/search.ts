@@ -1,5 +1,6 @@
 import type { Entry } from "@repo/har-types";
 import type { SearchField, SearchMatch, SearchSection } from "../types";
+import { SEARCH_SECTIONS } from "../sections";
 
 const SNIPPET_BEFORE = 40;
 const SNIPPET_AFTER = 80;
@@ -45,13 +46,13 @@ export function buildSearchIndex(entries: Entry[] | null): SearchField[] {
   entries.forEach((entry, entryId) => {
     const { request, response } = entry;
 
-    add(entryId, "url", "", request.url);
-    request.headers.forEach(({ name, value }) => add(entryId, "reqHeader", name, `${name}: ${value}`));
-    add(entryId, "reqBody", "", getRequestBody(entry));
-    response.headers.forEach(({ name, value }) => add(entryId, "resHeader", name, `${name}: ${value}`));
-    add(entryId, "resBody", "", getResponseBody(entry));
-    request.cookies.forEach(({ name, value }) => add(entryId, "reqCookie", name, `${name}=${value}`));
-    response.cookies.forEach(({ name, value }) => add(entryId, "resCookie", name, `${name}=${value}`));
+    add(entryId, SEARCH_SECTIONS.url, "", request.url);
+    request.headers.forEach(({ name, value }) => add(entryId, SEARCH_SECTIONS.reqHeader, name, `${name}: ${value}`));
+    add(entryId, SEARCH_SECTIONS.reqBody, "", getRequestBody(entry));
+    response.headers.forEach(({ name, value }) => add(entryId, SEARCH_SECTIONS.resHeader, name, `${name}: ${value}`));
+    add(entryId, SEARCH_SECTIONS.resBody, "", getResponseBody(entry));
+    request.cookies.forEach(({ name, value }) => add(entryId, SEARCH_SECTIONS.reqCookie, name, `${name}=${value}`));
+    response.cookies.forEach(({ name, value }) => add(entryId, SEARCH_SECTIONS.resCookie, name, `${name}=${value}`));
   });
 
   return fields;

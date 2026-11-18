@@ -1,30 +1,28 @@
 import type { Entry } from "@repo/har-types";
 
-export type ReqTabData = {
+/** Request or response part shown in the Request / Response tab. */
+export type MessageData = {
   headers: Entry["request"]["headers"];
-  headersSize: Entry["request"]["headersSize"];
-  bodySize: Entry["request"]["bodySize"];
+  headersSize: number;
+  bodySize: number;
   content: string | undefined;
 };
 
-export type ResTabData = {
-  headers: Entry["response"]["headers"];
-  headersSize: Entry["response"]["headersSize"];
-  bodySize: Entry["response"]["bodySize"];
-  content: string | undefined;
+export type CookiesData = {
+  request: Entry["request"]["cookies"];
+  response: Entry["response"]["cookies"];
 };
 
-export type CooTabData = {
-  cookies: {
-    request: Entry["request"]["cookies"];
-    response: Entry["response"]["cookies"];
-  };
-};
-
-export type TimTabData = {
+export type TimingData = {
   timings: Record<string, number>;
   totalTime: Entry["time"];
 };
+
+export type TabData =
+  | { tab: "REQ"; data: MessageData }
+  | { tab: "RES"; data: MessageData }
+  | { tab: "COO"; data: CookiesData }
+  | { tab: "TIM"; data: TimingData };
 
 export type CommonData = {
   status: Entry["response"]["status"];

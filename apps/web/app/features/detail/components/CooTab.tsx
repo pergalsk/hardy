@@ -1,13 +1,13 @@
 import type React from "react";
-import type { CooTabData } from "../types";
+import type { CookiesData } from "../types";
 import { Collapsible } from "../../../components/Collapsible";
 import { CollapsibleTitle } from "../../../components/CollapsibleTitle";
 import { Cookies } from "./Cookies";
 import { NoContent } from "@repo/ui/no-content";
+import { SEARCH_SECTIONS, searchSectionProps } from "../../search/sections";
 
-export function CooTab({ data }: { data: CooTabData }): React.JSX.Element {
-  const { cookies } = data;
-  const { request, response } = cookies;
+export function CooTab({ data }: { data: CookiesData }): React.JSX.Element {
+  const { request, response } = data;
 
   const reqLength = request.length > 0;
   const reqInfo = request.length > 0 ? "" : "No data";
@@ -23,13 +23,13 @@ export function CooTab({ data }: { data: CooTabData }): React.JSX.Element {
 
   return (
     <div className="mr-2 flex flex-col gap-2">
-      <div data-search-section="reqCookie">
+      <div {...searchSectionProps(SEARCH_SECTIONS.reqCookie)}>
         <Collapsible title={reqTitle} disabled={!reqLength}>
           {reqLength ? <Cookies data={request} /> : <NoContent />}
         </Collapsible>
       </div>
 
-      <div data-search-section="resCookie">
+      <div {...searchSectionProps(SEARCH_SECTIONS.resCookie)}>
         <Collapsible title={resTitle} disabled={!resLength}>
           {resLength ? <Cookies data={response} /> : <NoContent />}
         </Collapsible>

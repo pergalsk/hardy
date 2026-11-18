@@ -1,13 +1,13 @@
 "use client";
 import { useMemo, useState } from "react";
 import type React from "react";
-import type { TimTabData } from "../types";
+import type { TimingData } from "../types";
 import { NoContent } from "@repo/ui/no-content";
 import { buildTimingSegments } from "../helpers/timingSpec";
 import { TimingBar } from "./TimingBar";
 import { TimingTable } from "./TimingTable";
 
-export function TimTab({ data }: { data: TimTabData }): React.JSX.Element {
+export function TimTab({ data }: { data: TimingData }): React.JSX.Element {
   const { timings, totalTime } = data;
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
 

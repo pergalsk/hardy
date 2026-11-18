@@ -27,7 +27,6 @@ const dirtyState = () =>
     filter: {
       ...state.filter,
       active: true,
-      count: 3,
       fields: { url: "api", method: "GET", status: "200" },
     },
   }));
@@ -40,7 +39,6 @@ const sessionState = () => {
     pinnedIds: [...ui.pinnedIds],
     showPinnedOnly: ui.showPinnedOnly,
     searchTarget: ui.searchTarget ?? null,
-    filterCount: filter.count,
     filterFields: filter.fields,
   };
 };
@@ -50,7 +48,6 @@ const CLEAN = {
   pinnedIds: [],
   showPinnedOnly: false,
   searchTarget: null,
-  filterCount: -1,
   filterFields: { url: "", method: "", status: "" },
 };
 
@@ -59,7 +56,6 @@ const DIRTY = {
   pinnedIds: [1, 2],
   showPinnedOnly: true,
   searchTarget: { section: "url", label: "URL", query: "x", key: 1 },
-  filterCount: 3,
   filterFields: { url: "api", method: "GET", status: "200" },
 };
 

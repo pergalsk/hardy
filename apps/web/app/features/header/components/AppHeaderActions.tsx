@@ -71,7 +71,6 @@ export function AppHeaderActions(): React.JSX.Element {
           <ActionText>Open</ActionText>
           <FileOpener>
             <ActionIcon
-              onClick={handleFilterActive}
               label="Open file"
               icon="iconify material-symbols--folder-open-outline-rounded"
             />

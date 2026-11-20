@@ -85,7 +85,7 @@ export function SearchModal({
           <input
             type="text"
             autoFocus
-            placeholder="Search URLs, headers, cookies, bodies…"
+            placeholder="Search in URLs, headers, cookies, bodies…"
             aria-label="Search"
             className="focus:ring-accent-600 dark:bg-bunker-700 w-full rounded-md bg-slate-100 px-3 py-2 text-sm text-black focus:ring-2 focus:outline-hidden dark:text-white"
             value={input}

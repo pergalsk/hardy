@@ -78,14 +78,14 @@ export function SearchModal({
   };
 
   return (
-    <Modal isOpen={open} onClose={handleClose} title="Search" size="big">
+    <Modal isOpen={open} onClose={handleClose} title="Fulltext Search" size="big">
       <div className="flex flex-col gap-3 select-text">
         {/* sticky, so the input and the filter prompt stay visible while results scroll */}
         <div className="sticky -top-4 z-10 -mt-4 flex flex-col gap-3 bg-white pt-4 pb-1 dark:bg-slate-800">
           <input
             type="text"
             autoFocus
-            placeholder="Search URLs, headers, cookies, bodies…"
+            placeholder="Search in URLs, headers, cookies, bodies…"
             aria-label="Search"
             className="focus:ring-accent-600 dark:bg-bunker-700 w-full rounded-md bg-slate-100 px-3 py-2 text-sm text-black focus:ring-2 focus:outline-hidden dark:text-white"
             value={input}
